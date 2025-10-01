@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import "../../styles/header.css";
 import logo from "../../assets/images/logos/virgo_group_white.png";
+import interior from "../../assets/images/interior-background.jpg";
 const Header = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [showDropdown, setShowDropdown] = useState({
@@ -483,7 +484,7 @@ const Header = () => {
       <section className="interior-section position-relative py-0">
         <img
           className="img-fluid w-100"
-          src={`${templateDirectoryUri}/assets/images/interior-background.jpg`}
+          src={interior}
           alt="Architect or Interior Designer"
         />
         <div className="architect-design">

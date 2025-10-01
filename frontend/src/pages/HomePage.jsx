@@ -9,11 +9,12 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import AOS from "aos";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
-
+import group from "../assets/images/32years.png";
+import wheretobuy from "../assets/images/where-to-buy.jpg";
 const HomePage = () => {
   // Simulated WordPress data (unchanged)
   const siteUrl = "https://www.virgolam.com";
-  const templateDirectoryUri = "/wp-content/themes/virgo";
+  const templateDirectoryUri = "https://media.virgolam.com";
   const permalinks = {
     about: "/about",
     whereToBuy: "/where-to-buy",
@@ -73,13 +74,13 @@ const HomePage = () => {
   const productSolutions = [
     {
       title: "Laminates",
-      image: `${templateDirectoryUri}/assets/images/product-laminates.jpg`,
+      image: `${templateDirectoryUri}/assets/images/product-solution-laminate-Compress.jpg`,
       content: "High-quality laminates for various applications.",
       url: "/laminates",
     },
     {
       title: "ACP",
-      image: `${templateDirectoryUri}/assets/images/acp.jpg`,
+      image: `${templateDirectoryUri}/assets/images/product-solution-acp-Compress.jpg`,
       url: "/acp",
       content: `<h2>ACP</h2>
       <p>Virgo Group with more than ten years of experience of making aluminum rolls & coils have come up with best in class ACP products by the name of Virgo ACP...</p>
@@ -87,7 +88,7 @@ const HomePage = () => {
     },
     {
       title: "PVC",
-      image: `${templateDirectoryUri}/assets/images/pvc.jpg`,
+      image: `${templateDirectoryUri}/assets/images/product-solution-pvc-Compress.jpg`,
       url: "/pvc",
       content: `<h2>PVC</h2>
       <p>We facilitate huge variety of PVC Laminates for our customers. Acknowledged for their features like attractive design, weather and corrosion proof, termite and borer resistant, perfect finish...</p>
@@ -95,7 +96,7 @@ const HomePage = () => {
     },
     {
       title: "Plywood",
-      image: `${templateDirectoryUri}/assets/images/plywood.jpg`,
+      image: `${templateDirectoryUri}/assets/images/product-solution-plywood-1.jpg`,
       url: "/plywood",
       content: `<h2>Plywood</h2>
       <p>Virgo is a name reckoned for superior quality products that are high on performance and quality. Virgo keeps a complete control over all aspects of the development procedure, in-house manufacturing & testing...</p>
@@ -103,7 +104,7 @@ const HomePage = () => {
     },
     {
       title: "Aluminium",
-      image: `${templateDirectoryUri}/assets/images/aluminium.jpg`,
+      image: `${templateDirectoryUri}/assets/images/product-solution-aluminium-Compress.jpg`,
       url: "/aluminium",
       content: `<h2>Aluminium</h2>
       <p>Virgo Aluminum Limited is a customer focused innovative solutions-driven company which manufactures, processes and distributes various Aluminum products to customers worldwide....</p>
@@ -111,7 +112,7 @@ const HomePage = () => {
     },
     {
       title: "MDF",
-      image: `${templateDirectoryUri}/assets/images/mdf.jpg`,
+      image: `${templateDirectoryUri}/assets/images/mdf-inner-banner.jpg`,
       url: "/mdf",
       content: `<h2>MDF</h2>
       <p><strong>Standard</strong> Ideal for furniture and partitions.<br/>
@@ -119,17 +120,6 @@ const HomePage = () => {
          <strong>High-Density</strong> Durable for heavy use.<br/>
          <strong>Low-Density</strong> Lightweight for décor.</p>
       <a href="https://virgolam.com/mdf/" target="_blank">Learn More</a>`,
-    },
-  ];
-
-  const brands = [
-    {
-      src: `${templateDirectoryUri}/assets/images/logos/virgo-laminates.png`,
-      alt: "laminate",
-    },
-    {
-      src: `${templateDirectoryUri}/assets/images/logos/lam-abco.png`,
-      alt: "lam abco",
     },
   ];
 
@@ -206,7 +196,7 @@ const HomePage = () => {
             >
               <h1>
                 <img
-                  src=""
+                  src={group}
                   alt="Home Decor Manufacturers & Suppliers"
                   class="img-fluid w-100"
                 />
@@ -344,91 +334,91 @@ const HomePage = () => {
               >
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/virgo-laminates.png"
+                    src="https://media.virgolam.com/logos/virgo-laminates.png"
                     alt="laminate"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-abco.png"
+                    src="https://media.virgolam.com/logos/lam-abco.png"
                     alt="lam abco"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-corby.png"
+                    src="https://media.virgolam.com/logos/lam-corby.png"
                     alt="lam corby"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-croma.png"
+                    src="https://media.virgolam.com/logos/lam-croma.png"
                     alt="lam croma"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/virgo-looks-lam.png"
+                    src="https://media.virgolam.com/logos/virgo-looks-lam.png"
                     alt="lam croma"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-pvc.png"
+                    src="https://media.virgolam.com/logos/lam-pvc.png"
                     alt="lam pvc"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-cromaply.png"
+                    src="https://media.virgolam.com/logos/lam-cromaply.png"
                     alt="lam cromaply"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-digital.png"
+                    src="https://media.virgolam.com/logos/lam-digital.png"
                     alt="lam digital"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-syncro.png"
+                    src="https://media.virgolam.com/logos/lam-syncro.png"
                     alt="lam syncro"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-spotless.png"
+                    src="https://media.virgolam.com/logos/lam-spotless.png"
                     alt="lam spotless"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-metal.png"
+                    src="https://media.virgolam.com/logos/lam-metal.png"
                     alt="lam metal"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-cromapvc.png"
+                    src="https://media.virgolam.com/logos/lam-cromapvc.png"
                     alt="lam cromapvc"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-corbypvc.png"
+                    src="https://media.virgolam.com/logos/lam-corbypvc.png"
                     alt="lam corbypvc"
                     class="img-fluid"
                   />
@@ -436,28 +426,28 @@ const HomePage = () => {
 
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/virgo-plywood.png"
+                    src="https://media.virgolam.com/logos/virgo-plywood.png"
                     alt="plywood"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/mdf.png"
+                    src="https://media.virgolam.com/logos/mdf.png"
                     alt="higgs"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/aluminium.png"
+                    src="https://media.virgolam.com/logos/aluminium.png"
                     alt="aluminium"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3 col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/higgs.png"
+                    src="https://media.virgolam.com/logos/higgs.png"
                     alt="higgs"
                     class="img-fluid"
                   />
@@ -465,56 +455,56 @@ const HomePage = () => {
 
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/acp.png"
+                    src="https://media.virgolam.com/logos/acp.png"
                     alt="acp"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/acp-antifire.png"
+                    src="https://media.virgolam.com/logos/acp-antifire.png"
                     alt="acp antifire"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/acp-al.png"
+                    src="https://media.virgolam.com/logos/acp-al.png"
                     alt="acp al"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/acp-hpl.png"
+                    src="https://media.virgolam.com/logos/acp-hpl.png"
                     alt="acp hpl"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/acp-sleek.png"
+                    src="https://media.virgolam.com/logos/acp-sleek.png"
                     alt="acp sleek"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/lam-croma.png"
+                    src="https://media.virgolam.com/logos/lam-croma.png"
                     alt="lam croma"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/Hanger.png"
+                    src="https://media.virgolam.com/logos/Hanger.png"
                     alt="lam croma"
                     class="img-fluid"
                   />
                 </div>
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/Verona.png"
+                    src="https://media.virgolam.com/logos/Verona.png"
                     alt="lam croma"
                     class="img-fluid"
                   />
@@ -522,7 +512,7 @@ const HomePage = () => {
 
                 <div class="col-sm-3  col-6 my-4">
                   <img
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/Clad.png"
+                    src="https://media.virgolam.com/logos/Clad.png"
                     alt="lam croma"
                     class="img-fluid"
                   />
@@ -892,7 +882,7 @@ const HomePage = () => {
             <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1000">
               <div class="img-holder">
                 <img
-                  src="<?php echo get_template_directory_uri(); ?>/assets/images/where-to-buy.jpg"
+                  src={wheretobuy}
                   alt="Wholesale Home Decor Suppliers"
                   class="img-fluid w-100"
                 />

@@ -12,7 +12,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-
+import virgogroup from "../assets/images/virgo-group-about.jpg";
 const AboutPage = () => {
   // Simulated WordPress data
   const siteUrl = "https://www.virgolam.com";
@@ -664,7 +664,7 @@ const AboutPage = () => {
         <div class="container" data-aos="fade-up" data-aos-duration="1000">
           <div class="row py-5 px-4">
             <img
-              src="<?php echo get_the_post_thumbnail_url(); ?>"
+              src={virgogroup}
               alt="About Virgo Group"
               class="img-fluid w-100"
             />
