@@ -1,6 +1,6 @@
-const Career = require("../models/mongo/Career");
-const CareerSubmission = require("../models/mongo/CareerSubmission");
-const CacheService = require("../services/cache");
+const Career = require("../models/career");
+const CareerSubmission = require("../models/careerSubmission");
+const CacheService = require("../models/cache");
 const { v4: uuidv4 } = require("uuid");
 
 exports.listCareers = async (req, res) => {

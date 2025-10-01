@@ -1,0 +1,87 @@
+.footer {
+  position: relative;
+  z-index: 10;
+  background-color: #fff; /* Solid background */
+}
+
+.footer .logo {
+  max-width: 150px;
+}
+
+.footer .nav-link {
+  padding-left: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #333;
+}
+
+.footer h5 {
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+}
+
+.copyright {
+  background-color: #333;
+  color: #fff;
+}
+
+.custom-social-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+}
+
+.font-rocklime {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100; /* Above footer but below modals */
+  display: block;
+}
+
+.download-fixed-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 100; /* Above footer but below modals */
+}
+
+.download-fixed-btn img {
+  width: 60px;
+}
+
+.modal-backdrop {
+  z-index: 1050; /* Standard for Bootstrap modals */
+}
+
+.modal-xl {
+  max-width: 1140px;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.split-slideshow {
+  position: relative;
+  z-index: 5; /* Below footer */
+  height: 400px; /* Fixed height to prevent overflow */
+  overflow: hidden;
+}
+
+.slideshow-left,
+.slideshow-right {
+  height: 100%;
+}

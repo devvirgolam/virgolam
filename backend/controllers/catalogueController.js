@@ -1,5 +1,5 @@
-const Catalogue = require("../models/mysql/Catalogue");
-const CacheService = require("../services/cache");
+const Catalogue = require("../models/catalogues");
+const CacheService = require("../models/cache");
 const { v4: uuidv4 } = require("uuid");
 
 exports.listCatalogues = async (req, res) => {

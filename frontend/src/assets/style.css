@@ -1,0 +1,346 @@
+.custom-accordion .sub-heading {
+    background-color: #df1f21;
+    padding: 0.9rem 1rem;
+    color: #fff;
+}
+
+.custom-accordion .card-body table .caption td {
+    background: dimgray !important;
+}
+
+.icon-door-skin {
+    background-position: -320px -440px;
+}
+
+.icon-certifications {
+    background-position: -375px -440px;
+}
+
+.product-tabs .custom-transparent .nav .nav-link.active .icon-door-skin {
+    background-position-x: -250px;
+}
+
+.right-filter-menu {
+    top: 0%;
+}
+
+.privacy-page {
+    background: #fff !important;
+}
+
+.international-office h2 {
+    color: lightgrey !important;
+    font-size: 5vw !important;
+}
+
+/*.screen-reader-response {
+    display: none;
+}*/
+
+input#custom-file-upload-input {
+    display: none !important;
+}
+
+.breadcrumbs {
+    text-transform: uppercase;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-question-circle {
+    background-position: -9px -514px;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-search-boxes {
+    background-position: -67px -514px;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-message-questions {
+    background-position: -246px -514px;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-pages-book {
+    background-position: -368px -514px;
+}
+
+.icon-pages-book {
+    background-position: -58px -443px;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-price-tag {
+    background-position: -129px -514px;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-hand-holding-right-check {
+    background-position: -188px -514px;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-90-rotate-arrow {
+    background-position: -7px -649px;
+}
+
+.product-filter .product-categories .nav .nav-link.active .icon-four-boxes {
+    background-position: -309px -516px;
+}
+/* Header Styling */
+#top-header {
+    position: relative;
+    z-index: 1000;
+    background-color: #000; /* Match existing dark theme */
+}
+
+.navbar {
+    padding: 10px 0;
+}
+
+/* Navbar Header Styling */
+.navbar-header {
+    position: relative;
+    height: 100px; /* Set height as provided */
+}
+
+.navbar-header::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    display: inline-block;
+    top: 0;
+    left: -30px;
+    right: 100%; /* Adjusted to cover the left side properly */
+    background-color: #000; /* Match header background to avoid gaps */
+}
+
+.navbar-header::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    display: inline-block;
+    top: 0;
+    right: -30px;
+    left: 100%; /* Adjusted to cover the right side properly */
+    background-color: #000; /* Match header background to avoid gaps */
+}
+
+.navbar-header .cg-what {
+    margin-right: 10px;
+    height: 40px; /* Adjust as needed */
+}
+
+.navbar-brand .logo {
+    height: 60px; /* Default height */
+    max-width: 200px; /* As provided */
+    width: auto;
+}
+.navbar-brand {
+    display: inline-block;
+    padding-top: 1REM;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+.nav-btns {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.search-bar::placeholder {
+    color: #ccc;
+}
+
+.contact-number {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right: 10px;
+    color: #fff; /* Ensure visibility on dark background */
+}
+
+.where-to-buy {
+    padding: 5px 15px;
+    background-color: #df1f21;
+    color: #fff;
+    text-decoration: none;
+}
+
+.where-to-buy:hover {
+    background-color: #b81c1e;
+}
+
+.years-logo {
+    height: 40px; /* Adjust based on your 32 years logo height */
+    width: auto;
+    margin-left: 10px;
+}
+
+/* Catalogues Menu Styling */
+.catalogues-menu a {
+    background: #df1f21;
+    color: #fff;
+}
+
+.catalogues-menu a span {
+    color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .navbar-header {
+        height: 80px; /* Reduce height for mobile */
+    }
+
+    .navbar-header::before,
+    .navbar-header::after {
+        display: none; /* Hide pseudo-elements on mobile to avoid layout issues */
+    }
+
+    .nav-btns {
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .contact-number,
+    .where-to-buy {
+        margin-bottom: 10px;
+    }
+
+    .years-logo {
+        height: 30px; /* Smaller for mobile */
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .navbar-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cg-what {
+        margin-bottom: 10px;
+    }
+
+    .navbar-brand .logo {
+        height: 50px;
+    }
+}
+
+/* Interior Section Adjustments */
+.interior-section {
+    position: relative;
+    margin-top: 100px; /* Adjust to avoid overlap with header height (100px) */
+}
+
+.interior-section .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    .interior-section {
+        margin-top: 120px; /* Adjust for mobile header height */
+    }
+
+    .interior-section .container {
+        font-size: 24px; /* Reduce font size for mobile */
+    }
+
+    .interior-section button {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        font-size: 1rem;
+    }
+}
+/* @media (min-width: 768px) {
+
+    .where-to-buy-tabs .country-filter .right-filter-menu,
+    .where-to-buy-tabs .state-filter .right-filter-menu {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        bottom: 0;
+        max-height: 100%;
+        overflow: scroll;
+    }
+} */
+
+.col-md-3.col-sm-6.py-md-4.dealers-row {
+    float: left;
+    max-height: 225px;
+}
+
+
+.col-12.blog-item.py-3.py-lg-4 img {
+    float: left;
+    margin-right: 30px;
+}
+
+main.page-wrapper.home-page {
+    /*padding-top: 77px !important;*/
+}
+
+.page-template-temp-laminates .laminate-descriptions {
+    text-align: justify;
+}
+
+.page-template-temp-laminates .laminate-descriptions li {
+    text-align: left;
+}
+
+/* ============ desktop view ============ */
+@media all and (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: none;
+    }
+
+    .navbar .nav-item:hover .nav-link {}
+
+    .navbar .nav-item:hover .dropdown-menu {
+        display: block;
+    }
+
+    .navbar .nav-item .dropdown-menu {
+        margin-top: 0;
+    }
+}
+
+/* ============ desktop view .end// ============ */
+
+/* Move reCAPTCHA v3 badge to the left */
+
+.grecaptcha-badge {
+    width: 70px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    left: 4px !important;
+}
+
+.grecaptcha-badge:hover {
+    width: 256px !important;
+}
+
+/*.site-header{
+    background-color: #df1f21 !important;
+}
+
+.site-header .offcanvas-collapse.open{
+    background-color: #df1f21 !important;
+}*/

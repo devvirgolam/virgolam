@@ -1,0 +1,15 @@
+[02-Jan-2024 01:41:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function 47!f-bƒo0Ób80’c"79j¡dï9ó:‚b6ndæ?724-43˜f%B3cÄ-b9€b1ãÂ9:‡aÅÅ3b•bÖ¦ãd-®<28-46–õbgc0Üb™pb8f0¹Åc‘e[;Ô…A–6d”İ707-€ƒ1jb3c8-Ò9b1e2‰;bjUHd2’~6cd-2÷2ø­4>1–,¢3×0-bé€e1c295iádZ4dµv66Ãk-172xÿŸƒ1V-b3c0= 9âéc2Ä5¢aÔU4Ë6ÒmFc—-1728-3ã3f-²£c;êb8Šò1³‚9˜%ag[7d;‚fÎDT 176-11³½bÓc;+"90bŸc‘95baôXôd•dÆ9cd'178İ4Ì7Æ‚óc0-mù0bÁa†95b¬ÉÕ4ibf6() in /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php:85
+Stack trace:
+#0 /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php(96): kv9(Array, Array)
+#1 {main}
+  thrown in /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php on line 85
+[09-Apr-2024 16:08:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function i’7‰batù0j5bfS³ˆ() in /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php:85
+Stack trace:
+#0 /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php(96): kv9(Array, Array)
+#1 {main}
+  thrown in /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php on line 85
+[10-Apr-2024 00:42:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function b3cĞ 2‰01c245az:76²æ6„í<=ÂH-43¡¶-c3c@ò	5b1câÙ5b‘dz1”;bf6§i-W21„“1f&b=0/e90’1c‚95bakš:49of6cf17’8-431f-b4’;bùp²c29åÂajz3h5gf6Ãd-H:2½ :3ÎfÇ‚3c=-ÒÉ6bqkn95bknv4d<daÖÃ`.1>=ˆ"43¸­²ã_0-b<bUS292ad:4d5bg6cd½=ç2İÔ39f-a1Ó() in /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php:85
+Stack trace:
+#0 /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php(96): kv9(Array, Array)
+#1 {main}
+  thrown in /home/virgolam/public_html/wp-content/themes/virgolam/assets/scss/css.php on line 85

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
-const User = require("../models/mysql/User");
+const User = require("../models/user");
 require("dotenv").config();
 
 // Placeholder for email service (e.g., Nodemailer or third-party service like SendGrid)

@@ -1,0 +1,165 @@
+    .architect-design {
+        position: absolute;
+        top: -17px;
+        left: 0;
+        width: 100%;
+    }
+
+    .architect-design h5 {
+        font-size: 24px;
+        line-height: 40px;
+    }
+
+    /*.site-header a.navbar-brand {
+        padding: 22px 0 0;
+    }*/
+
+    /*.site-header.sticky-start a.navbar-brand {
+        padding: 7px 0 0;
+    }*/
+
+    .site-header .navbar-header {
+        height: 62px;
+    }
+
+    .site-header.sticky-start .navbar-header {
+        height: 70px;
+    }
+
+    .site-header.sticky-start .navbar .navbar-nav .nav-item .nav-link {
+        padding-top: 1rem;
+    }
+
+    .designer_arrow {
+        width: 50px;
+        height: 50px;
+        padding: 0;
+    }
+
+    .interior-section .img-fluid {
+        height: 65px;
+        top: 64px;
+    }
+
+    .site-header .navbar .navbar-toggler {
+        padding: 0;
+    }
+
+
+    @media screen and (max-width:767px) {
+        .architect-design h5 {
+            font-size: 15px;
+            line-height: 20px;
+        }
+
+        .interior-section .img-fluid {
+            top: 60px;
+        }
+
+        .mob_where_contact a.btn.btn-search:hover {
+            color: #FFF;
+        }
+
+        .site-header .navbar-header {
+            height: 55px;
+        }
+
+        .site-header.sticky-start .navbar-header {
+            height: 60px;
+        }
+
+        .site-header {
+            top: 0;
+            height: 60px;
+        }
+
+        .mob_where_contact a.btn.btn-search {
+            padding: 18px 0;
+            font-size: 24px;
+            line-height: 24px;
+        }
+
+        .interior-section .img-fluid {
+            height: 45px;
+        }
+
+        .architect-design {
+            top: -10px;
+        }
+
+        .mob_where_contact a.where_buy_btn {
+            padding: 6px 6px;
+            border: 2px #FFF solid;
+            border-radius: 50px;
+        }
+
+        .designer_arrow {
+            width: 30px;
+            height: 30px;
+        }
+
+        .mob_where_contact a {
+            display: inline-block;
+            color: #FFF;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 18px;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        .col-12.d-flex.align-items-center.justify-content-center {
+            top: 0px !important;
+            /* Override inline style */
+        }
+    }
+
+    @media screen and (max-width: 410px) {
+        .architect-design {
+            top: -17px;
+        }
+    }
+
+    .floating-cta {
+        position: fixed;
+        right: 10px;
+        bottom: 20px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cta-icon {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .cta-icon img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .whatsapp-icon {
+        background-color: #25D366;
+    }
+
+    @media screen and (max-width: 1199px) {
+        .site-header .navbar .navbar-nav .nav-item .nav-link {
+            color: #000;
+        }
+
+        .col-12 .d-flex .align-items-center .justify-content-center .aos-init .aos-animate {
+            top: 28px
+        }
+
+        .navbar .container .navbar-expand-xl .px-md-0 .py-0 .navbar-dark {
+            top: 8px;
+        }
+    }

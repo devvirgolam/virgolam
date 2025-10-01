@@ -1,0 +1,26 @@
+  .error-page {
+    min-height: 100vh;
+  }
+  .text-content h1 {
+    font-size: 6rem;
+    font-weight: bold;
+  }
+  .text-content h2 {
+    font-size: 1.5rem;
+    color: #6c757d;
+  }
+  .text-content p {
+    font-size: 1.25rem;
+    color: #6c757d;
+  }
+  .text-content .btn-primary {
+    background-color: #c9191c;
+    border-color: #c9191c;
+  }
+  .text-content .btn-primary:hover {
+    background-color: #0051d9;
+    border-color: #0051d9;
+  }
+  .text-content .text-primary {
+    color: #c9191c !important;
+  }

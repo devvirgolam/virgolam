@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../../config/db.mysql");
-const Product = require("./Product");
+const sequelize = require("../config/db.mysql");
+const Product = require("./product");
 
 const Variant = sequelize.define(
   "Variant",

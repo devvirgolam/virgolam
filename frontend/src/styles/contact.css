@@ -1,0 +1,292 @@
+/* Existing styles from the provided CSS */
+.contact-page {
+  padding-top: 77px; /* Match header height if fixed */
+}
+
+.main-heading {
+  font-size: 2.5rem;
+  color: #c9191c; /* text-primary */
+  text-transform: uppercase;
+}
+
+.breadcrumb {
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs a {
+  color: #333;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.main-office img {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.main-address-content {
+  background-color: #f8f9fa;
+}
+
+.card-box {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.card-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-box img {
+  max-width: 100px;
+}
+
+.card-box h6 {
+  color: #c9191c; /* text-primary */
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background-color: #c9191c;
+  border-color: #c9191c;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0051cc;
+  border-color: #0051cc;
+}
+
+/* New styles to replace react-bootstrap */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 15px;
+}
+
+.col-lg-5 {
+  flex: 0 0 41.666667%;
+  max-width: 41.666667%;
+  padding: 0 15px;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.col-sm-10 {
+  flex: 0 0 83.333333%;
+  max-width: 83.333333%;
+  padding: 0 15px;
+}
+
+.col-md-5 {
+  flex: 0 0 41.666667%;
+  max-width: 41.666667%;
+  padding: 0 15px;
+}
+
+.col-md-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+}
+
+.col-sm-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.col-lg-8 {
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+  padding: 0 15px;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+@media (max-width: 991.98px) {
+  .col-lg-5 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .col-md-5,
+  .col-md-6,
+  .col-lg-5 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center !important;
+  }
+  .col-md-5.text-right,
+  .col-md-6.text-left {
+    text-align: center !important;
+  }
+  .pl-md-5,
+  .pr-md-0 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .col-sm-10,
+  .col-sm-6,
+  .col-md-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-primary {
+  color: #c9191c !important;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #c9191c;
+  box-shadow: 0 0 5px rgba(0, 97, 255, 0.3);
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.py-3 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-4 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.py-lg-5 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.py-md-3 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.pt-0 {
+  padding-top: 0;
+}
+
+.pb-md-0 {
+  padding-bottom: 0;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+.pt-md-4 {
+  padding-top: 1.5rem;
+}
+
+.pb-5 {
+  padding-bottom: 3rem;
+}
+
+.pb-lg-0 {
+  padding-bottom: 0;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.rounded {
+  border-radius: 4px;
+}

@@ -1,6 +1,6 @@
-const Blog = require("../models/mongo/Blog");
-const BlogCategory = require("../models/mongo/BlogCategory");
-const CacheService = require("../services/cache");
+const Blog = require("../models/blog");
+const BlogCategory = require("../models/blogCategory");
+const CacheService = require("../models/cache");
 const { v4: uuidv4 } = require("uuid");
 
 exports.listBlogs = async (req, res) => {

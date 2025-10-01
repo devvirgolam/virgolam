@@ -1,5 +1,5 @@
-const User = require("../models/mysql/User");
-const Role = require("../models/mysql/Role");
+const User = require("../models/user");
+const Role = require("../models/role");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 

@@ -1,4 +1,4 @@
-const Category = require("../models/mysql/Category");
+const Category = require("../models/category");
 const { v4: uuidv4 } = require("uuid");
 
 exports.listCategories = async (req, res) => {

@@ -1,0 +1,231 @@
+/* General Styles */
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.main-heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Banner Section */
+.banner {
+  position: relative;
+}
+
+.banner-swiper {
+  width: 100%;
+}
+
+.banner-slide {
+  position: relative;
+}
+
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.banner-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  z-index: 2;
+  max-width: 75%;
+}
+
+/* About Section */
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-text,
+.about-image {
+  flex: 1 1 50%;
+  padding: 1rem;
+}
+
+@media (max-width: 991px) {
+  .about-text,
+  .about-image {
+    flex: 1 1 100%;
+  }
+}
+
+/* Product Solutions Section */
+.product-solutions {
+  background: #fff;
+  padding: 2rem 0;
+}
+
+.product-solution-bg {
+  padding: 1rem;
+}
+
+.product-solution-card {
+  text-align: center;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 0.25rem;
+}
+
+/* Brands Section */
+.brands {
+  padding: 2rem 0;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.brand-item {
+  padding: 1rem;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 3rem 0;
+}
+
+.testimonial-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.testimonial-video,
+.testimonial-quote {
+  flex: 1 1 50%;
+  padding: 1rem;
+}
+
+.testimonial-quote blockquote {
+  font-size: 1.2rem;
+}
+
+.quote-icon {
+  margin-right: 0.5rem;
+}
+
+.quote-author {
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+@media (max-width: 991px) {
+  .testimonial-video,
+  .testimonial-quote {
+    flex: 1 1 100%;
+  }
+}
+
+/* Where to Buy Section */
+.where-to-buy {
+  padding: 2rem 0;
+}
+
+.where-to-buy-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.where-to-buy-text,
+.where-to-buy-image {
+  flex: 1 1 50%;
+}
+
+.where-to-buy-nav {
+  margin-top: 2rem;
+}
+
+.country-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.country-nav li {
+  margin: 0.5rem;
+}
+
+.country-nav button {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.country-nav li.active button {
+  border-bottom: 2px solid #007bff;
+  font-weight: bold;
+}
+
+@media (max-width: 991px) {
+  .where-to-buy-text,
+  .where-to-buy-image {
+    flex: 1 1 100%;
+  }
+}

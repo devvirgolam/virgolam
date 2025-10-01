@@ -1,7 +1,7 @@
-const Store = require("../models/mysql/Store");
-const Dealer = require("../models/mysql/Dealer");
-const Address = require("../models/mysql/Address");
-const CacheService = require("../services/cache");
+const Store = require("../models/store");
+const Dealer = require("../models/dealer");
+const Address = require("../models/address");
+const CacheService = require("../models/cache");
 const { v4: uuidv4 } = require("uuid");
 
 exports.listStores = async (req, res) => {

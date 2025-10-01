@@ -1,0 +1,32 @@
+.company-policy-page {
+  padding-top: 77px; /* Match header height if fixed */
+}
+
+.main-heading {
+  font-size: 2.5rem;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.card {
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.card-text {
+  color: #c9191c;
+  text-decoration: underline;
+}

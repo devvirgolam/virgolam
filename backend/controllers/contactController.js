@@ -1,4 +1,4 @@
-const Contact = require("../models/mongo/Contact");
+const Contact = require("../models/contact");
 const { v4: uuidv4 } = require("uuid");
 
 exports.submitContact = async (req, res) => {

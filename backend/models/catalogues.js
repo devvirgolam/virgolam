@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../../config/db.mysql");
+const sequelize = require("../config/db.mysql");
 
 const Catalogue = sequelize.define(
   "Catalogue",
