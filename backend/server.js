@@ -64,6 +64,13 @@ app.use("/api/roles", roleRoutes);
 app.use("/api/stores", storeRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/parent-category", parentCategoryRoutes);
+
+app.use((err, req, res, next) => {
+  console.error("Server error:", err);
+  res
+    .status(500)
+    .json({ error: "Internal server error", details: err.message });
+});
 // ==============================
 // 🔥 START SERVER
 // ==============================
@@ -71,5 +78,3 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-module.exports = app;
