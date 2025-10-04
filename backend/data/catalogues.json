@@ -1,0 +1,231 @@
+[
+  {
+    "pdf_url": "/catalogue/virgo-acp.pdf/",
+    "name": "Virgo ACP",
+    "banner_image_url": "/assets/images/catalogue/virgo-acp.png",
+    "parent_id": "5ecb2d5f-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/cladding.pdf/",
+    "name": "Virgo Cladding",
+    "banner_image_url": "/assets/images/catalogue/cladding.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/verona.pdf/",
+    "name": "Verona",
+    "banner_image_url": "/assets/images/catalogue/cladding.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "https://www.virgolam.com/catalogue/door-skin/pdf/door-skin.pdf",
+    "name": "Evergreen Door Skin",
+    "banner_image_url": "/assets/images/catalogue/virgo-evergreen-door%20cover.png",
+    "parent_id": "5ecc84f2-a03c-11f0-b1b4-f875a42d8cde"
+  },
+
+  {
+    "pdf_url": "#",
+    "name": "Virgolam Plus 2",
+    "banner_image_url": "/assets/images/catalogue/virgolam-plus-2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-abco-mica-2024-25.pdf/",
+    "name": "Virgo Abco Mica 2024-25",
+    "banner_image_url": "/assets/images/catalogue/virgo-abco-mica-2024-25.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/croma-1mm",
+    "name": "Croma 1mm",
+    "banner_image_url": "/assets/images/catalogue/croma-1mm-new.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-abco-lam-new",
+    "name": "Virgo Abco Lam New",
+    "banner_image_url": "/assets/images/catalogue/virgo-abco-lam-new.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "#",
+    "name": "Virgo Craft New",
+    "banner_image_url": "/assets/images/catalogue/virgo-abco-lam-new.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-croma-ecatalogue",
+    "name": "Virgo Croma E-Catalogue",
+    "banner_image_url": "/assets/images/catalogue/virgo-chroma-ecatalogue.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-abco-lam.pdf",
+    "name": "Virgo ABCO Lam",
+    "banner_image_url": "/assets/images/catalogue/virgo-abco-lam.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-blinco.pdf",
+    "name": "Virgo Blinco",
+    "banner_image_url": "/assets/images/catalogue/virgo-blinco.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-corby.pdf",
+    "name": "Virgo Corby",
+    "banner_image_url": "/assets/images/catalogue/virgo-corby.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-looks-plus.pdf",
+    "name": "Virgo Looks",
+    "banner_image_url": "/assets/images/catalogue/virgo-looks-plus.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-the-game.pdf",
+    "name": "Virgo The Game",
+    "banner_image_url": "/assets/images/catalogue/virgo-the-game.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-mica.pdf",
+    "name": "Virgo Mica",
+    "banner_image_url": "/assets/images/catalogue/virgo-mica.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/chroma-doordecor-1mm.pdf/",
+    "name": "Chroma Doordecor 1MM",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/hanger.pdf/",
+    "name": "Hanger",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/cubico.pdf/",
+    "name": "Cubico",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "#",
+    "name": "Chroma 1MM",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+
+  {
+    "pdf_url": "/catalogue/Virgo Blinco Premium Lamintes Catlog 0.92 MM.pdf/",
+    "name": "Virgo Blinco Premium Laminates Catlog 0.92MM",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/1-2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-corby-15x15-1mm.pdf/",
+    "name": "Virgo Corby 15x15 1MM",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/4-1.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+
+  {
+    "pdf_url": "#",
+    "name": "Virgo Corby 15x15",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/4-1.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/VIRGO_DOORDECOR 0.92 MM.pdf/",
+    "name": "Virgo Doordecor 0.92MM",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/virgo-doordecor-0.92mm-2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/VIRGO NEXT LINER 0.7 MM.pdf/",
+    "name": "Virgo Next Liner 0.7MM",
+    "banner_image_url": "https://virgolam.com/wp-content/uploads/2025/09/virgo-doordecor-0.92mm-2.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+
+  {
+    "pdf_url": "/catalogue/3mm-pvc.pdf/",
+    "name": "3MM PVC",
+    "banner_image_url": "/assets/images/catalogue/3mm-pvc.png",
+    "parent_id": "5ecc88ba-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/moments-pvc.pdf/",
+    "name": "Moments PVC",
+    "banner_image_url": "/assets/images/catalogue/moments-pvc.png",
+    "parent_id": "5ecc88ba-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "#",
+    "name": "Virgo Corby PVC Laminates",
+    "banner_image_url": "/assets/images/catalogue/virgo-corby-pvc laminates.png",
+    "parent_id": "5ecc88ba-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "#",
+    "name": "Virgo Croma PVC",
+    "banner_image_url": "/assets/images/catalogue/virgo-croma-pvc.png",
+    "parent_id": "5ecc88ba-a03c-11f0-b1b4-f875a42d8cde"
+  },
+
+  {
+    "pdf_url": "/catalogue/virgo-croma.pdf/",
+    "name": "Virgo Croma",
+    "banner_image_url": "/assets/images/catalogue/virgo-croma-pvc.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-croma-laminates-2023.pdf/",
+    "name": "Virgo Croma Laminates 2023",
+    "banner_image_url": "/assets/images/catalogue/virgo-croma-pvc.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "/catalogue/virgo-studio.pdf/",
+    "name": "Virgo Studio",
+    "banner_image_url": "/assets/images/catalogue/virgo-croma-pvc.png",
+    "parent_id": "5ecc600d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+
+  {
+    "pdf_url": "#",
+    "name": "Virgo Corby 0.8mm",
+    "banner_image_url": "/assets/images/catalogue/virgo-corby-pvc laminates.png",
+    "parent_id": "5ecc88ba-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "pdf/virgo-the-house-of-wood.pdf",
+    "name": "Virgo The House of Wood",
+    "banner_image_url": "/assets/images/catalogue/virgo-corby-pvc laminates.png",
+    "parent_id": "5ecc88ba-a03c-11f0-b1b4-f875a42d8cde"
+  },
+
+  {
+    "pdf_url": "https://www.virgolam.com/products/aluminium.pdf/",
+    "name": "ALUMINIUM",
+    "banner_image_url": "",
+    "parent_id": "5ecc8c2d-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "https://www.virgolam.com/products/sleek-broucher.pdf/",
+    "name": "Sleek Broucher",
+    "banner_image_url": "https://www.virgolam.com/products/aluminium.pdf/",
+    "parent_id": "5ecb2d5f-a03c-11f0-b1b4-f875a42d8cde"
+  },
+  {
+    "pdf_url": "https://www.virgolam.com/products/virgo-xhpl.pdf/",
+    "name": "Virgo XHPL",
+    "banner_image_url": "https://www.virgolam.com/products/aluminium.pdf/",
+    "parent_id": "5ecb2d5f-a03c-11f0-b1b4-f875a42d8cde"
+  }
+]

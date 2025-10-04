@@ -1,0 +1,91 @@
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T05:04:29.570Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T05:04:35.490Z"}
+{"level":"error","message":"Invalid user ID format: No additional error info","status":400,"timestamp":"2025-10-04T05:04:35.629Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T05:04:35.640Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T05:06:10.045Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:06:10.229Z"}
+{"level":"error","message":"Only admins can list users: No additional error info","status":403,"timestamp":"2025-10-04T05:06:12.947Z"}
+{"level":"error","message":"Only admins can list users: No additional error info","status":403,"timestamp":"2025-10-04T05:07:59.577Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:07:59.762Z"}
+{"level":"error","message":"Only admins can list users: No additional error info","status":403,"timestamp":"2025-10-04T05:09:32.424Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:09:32.463Z"}
+{"level":"error","message":"Failed to retrieve users: Cannot read properties of undefined (reading 'name')","stack":"TypeError: Cannot read properties of undefined (reading 'name')\n    at exports.listUsers (E:\\virgo\\backend\\controllers\\userController.js:34:71)\n    at Layer.handleRequest (E:\\virgo\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\virgo\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at module.exports (E:\\virgo\\backend\\middleware\\auth.js:11:5)\n    at Layer.handleRequest (E:\\virgo\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\virgo\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (E:\\virgo\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (E:\\virgo\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (E:\\virgo\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at E:\\virgo\\backend\\node_modules\\router\\index.js:295:15","status":500,"timestamp":"2025-10-04T05:16:31.010Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:16:31.465Z"}
+{"level":"error","message":"Failed to retrieve users: Cannot read properties of undefined (reading 'name')","stack":"TypeError: Cannot read properties of undefined (reading 'name')\n    at exports.listUsers (E:\\virgo\\backend\\controllers\\userController.js:34:71)\n    at Layer.handleRequest (E:\\virgo\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\virgo\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at module.exports (E:\\virgo\\backend\\middleware\\auth.js:11:5)\n    at Layer.handleRequest (E:\\virgo\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\virgo\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (E:\\virgo\\backend\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (E:\\virgo\\backend\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (E:\\virgo\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at E:\\virgo\\backend\\node_modules\\router\\index.js:295:15","status":500,"timestamp":"2025-10-04T05:17:25.183Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:17:25.400Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T05:20:16.699Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T05:20:26.122Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T05:20:26.229Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T05:21:05.285Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T05:21:05.406Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T05:21:05.427Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T05:23:13.874Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:23:14.023Z"}
+{"level":"error","message":"Failed to retrieve users: Role is associated to User using an alias. You've included an alias (Role), but it does not match the alias(es) defined in your association (role).","stack":"SequelizeEagerLoadingError: Role is associated to User using an alias. You've included an alias (Role), but it does not match the alias(es) defined in your association (role).\n    at User._getIncludedAssociation (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:574:15)\n    at User._validateIncludedElement (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:502:53)\n    at E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:421:37\n    at Array.map (<anonymous>)\n    at User._validateIncludedElements (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:417:39)\n    at User.findAll (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:1124:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async exports.listUsers (E:\\virgo\\backend\\controllers\\userController.js:38:19)","status":500,"timestamp":"2025-10-04T05:23:42.731Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T05:25:05.066Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:25:05.123Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:27:02.302Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T05:27:02.314Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:29:47.842Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T05:29:47.853Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:32:23.057Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T05:32:23.063Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:37:26.688Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T05:37:26.698Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:48:37.799Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T05:48:37.808Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T05:56:50.240Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T05:56:50.250Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T06:02:36.875Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T06:08:57.891Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T06:08:58.446Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T06:10:55.600Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T06:13:16.126Z"}
+{"level":"info","message":"Retrieved 3 roles by user: unknown","timestamp":"2025-10-04T06:14:27.491Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T06:14:32.558Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T06:14:32.588Z"}
+{"level":"info","message":"Retrieved 3 roles by user: unknown","timestamp":"2025-10-04T06:14:34.510Z"}
+{"level":"info","message":"Retrieved 37 catalogues","timestamp":"2025-10-04T06:15:15.513Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T06:20:56.245Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T07:04:41.428Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T07:04:49.958Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T07:04:50.038Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T07:04:50.043Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T07:05:05.724Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T07:05:05.809Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T07:05:09.433Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T07:19:26.118Z"}
+{"level":"info","message":"Retrieved 37 catalogues","timestamp":"2025-10-04T07:19:43.647Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T07:20:41.897Z"}
+{"level":"info","message":"Retrieved 3 roles by user: unknown","timestamp":"2025-10-04T07:23:28.991Z"}
+{"level":"info","message":"Retrieved 37 catalogues","timestamp":"2025-10-04T07:23:52.074Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T07:27:03.380Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T07:52:01.444Z"}
+{"level":"info","message":"Retrieved 3 roles by user: unknown","timestamp":"2025-10-04T08:01:22.622Z"}
+{"level":"info","message":"Retrieved 37 catalogues","timestamp":"2025-10-04T08:04:28.712Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T08:04:48.567Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T08:08:53.141Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T08:08:58.931Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T08:08:59.034Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T08:08:59.040Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T08:09:04.176Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T08:09:04.227Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T08:09:06.775Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T08:09:10.145Z"}
+{"level":"info","message":"Retrieved 3 roles by user: unknown","timestamp":"2025-10-04T08:39:49.591Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T09:01:40.273Z"}
+{"level":"info","message":"Retrieved 37 catalogues","timestamp":"2025-10-04T09:01:41.068Z"}
+{"level":"error","message":"Failed to retrieve categories: Category is not associated to Category!","stack":"SequelizeEagerLoadingError: Category is not associated to Category!\n    at Category._getIncludedAssociation (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:565:13)\n    at Category._validateIncludedElement (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:502:53)\n    at E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:421:37\n    at Array.map (<anonymous>)\n    at Category._validateIncludedElements (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:417:39)\n    at Category.findAll (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:1124:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async exports.listCategories (E:\\virgo\\backend\\controllers\\categoryController.js:31:24)","status":500,"timestamp":"2025-10-04T09:33:32.659Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T09:33:32.722Z"}
+{"level":"info","message":"Retrieved 5 parent categories","timestamp":"2025-10-04T09:33:32.748Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T09:33:37.687Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-04T09:33:37.807Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T09:33:37.818Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-04T09:33:42.205Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-04T09:33:42.266Z"}
+{"level":"error","message":"Failed to retrieve categories: Category is not associated to Category!","stack":"SequelizeEagerLoadingError: Category is not associated to Category!\n    at Category._getIncludedAssociation (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:565:13)\n    at Category._validateIncludedElement (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:502:53)\n    at E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:421:37\n    at Array.map (<anonymous>)\n    at Category._validateIncludedElements (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:417:39)\n    at Category.findAll (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:1124:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async exports.listCategories (E:\\virgo\\backend\\controllers\\categoryController.js:31:24)","status":500,"timestamp":"2025-10-04T09:33:44.803Z"}
+{"level":"error","message":"Failed to retrieve categories: Category is not associated to Category!","stack":"SequelizeEagerLoadingError: Category is not associated to Category!\n    at Category._getIncludedAssociation (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:565:13)\n    at Category._validateIncludedElement (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:502:53)\n    at E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:421:37\n    at Array.map (<anonymous>)\n    at Category._validateIncludedElements (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:417:39)\n    at Category.findAll (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:1124:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async exports.listCategories (E:\\virgo\\backend\\controllers\\categoryController.js:31:24)","status":500,"timestamp":"2025-10-04T09:36:35.280Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-04T09:37:35.389Z"}
+{"level":"info","message":"Retrieved 37 catalogues","timestamp":"2025-10-04T09:37:37.359Z"}
+{"level":"error","message":"Failed to retrieve categories: Category is not associated to Category!","stack":"SequelizeEagerLoadingError: Category is not associated to Category!\n    at Category._getIncludedAssociation (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:565:13)\n    at Category._validateIncludedElement (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:502:53)\n    at E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:421:37\n    at Array.map (<anonymous>)\n    at Category._validateIncludedElements (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:417:39)\n    at Category.findAll (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:1124:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async exports.listCategories (E:\\virgo\\backend\\controllers\\categoryController.js:31:24)","status":500,"timestamp":"2025-10-04T09:37:58.448Z"}
+{"level":"error","message":"Failed to retrieve categories: Category is not associated to Category!","stack":"SequelizeEagerLoadingError: Category is not associated to Category!\n    at Category._getIncludedAssociation (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:565:13)\n    at Category._validateIncludedElement (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:502:53)\n    at E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:421:37\n    at Array.map (<anonymous>)\n    at Category._validateIncludedElements (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:417:39)\n    at Category.findAll (E:\\virgo\\backend\\node_modules\\sequelize\\lib\\model.js:1124:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async exports.listCategories (E:\\virgo\\backend\\controllers\\categoryController.js:31:24)","status":500,"timestamp":"2025-10-04T09:38:11.588Z"}

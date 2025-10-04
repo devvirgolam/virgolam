@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../../config/db.mysql");
+const sequelize = require("../config/db.mysql");
 const User = require("./user");
 
 const Lead = sequelize.define(
@@ -49,7 +49,5 @@ const Lead = sequelize.define(
     updatedAt: "updated_at",
   }
 );
-
-Lead.belongsTo(User, { foreignKey: "assigned_to", as: "assignee" });
 
 module.exports = Lead;

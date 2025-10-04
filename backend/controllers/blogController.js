@@ -1,112 +1,251 @@
 const Blog = require("../models/blog");
 const BlogCategory = require("../models/blogCategory");
-const CacheService = require("../models/cache");
 const { v4: uuidv4 } = require("uuid");
+const winston = require("winston");
+require("dotenv").config();
+
+// Configure Winston logger
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+    new winston.transports.File({ filename: "combined.log" }),
+    new winston.transports.Console(), // Console output for development
+  ],
+});
+
+// Centralized error response handler
+const handleError = (res, status, message, error = null) => {
+  logger.error(`${message}: ${error?.message || "No additional error info"}`, {
+    status,
+    stack: error?.stack,
+  });
+  return res.status(status).json({ error: message });
+};
 
 exports.listBlogs = async (req, res) => {
-  const cacheKey = "blogs_list";
-  let blogs = await CacheService.get(cacheKey);
-
-  if (!blogs) {
-    blogs = await Blog.find().populate("category").lean();
-    await CacheService.set(cacheKey, blogs, 300); // Cache for 5 minutes
+  try {
+    const blogs = await Blog.find().populate("category").lean();
+    logger.info(`Retrieved ${blogs.length} blogs`);
+    res.json(blogs);
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve blogs", error);
   }
-
-  res.json(blogs);
 };
 
 exports.getBlogById = async (req, res) => {
-  const cacheKey = `blog_${req.params.id}`;
-  let blog = await CacheService.get(cacheKey);
+  try {
+    const { id } = req.params;
 
-  if (!blog) {
-    blog = await Blog.findById(req.params.id).populate("category").lean();
-    if (!blog) return res.status(404).json({ message: "Blog not found" });
-    await CacheService.set(cacheKey, blog, 300);
+    // Basic validation for ID
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid blog ID format");
+    }
+
+    const blog = await Blog.findById(id).populate("category").lean();
+    if (!blog) {
+      return handleError(res, 404, "Blog not found");
+    }
+
+    logger.info(`Retrieved blog with ID: ${id}`);
+    res.json(blog);
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve blog", error);
   }
-
-  res.json(blog);
 };
 
 exports.getBlogBySlug = async (req, res) => {
-  const cacheKey = `blog_slug_${req.params.slug}`;
-  let blog = await CacheService.get(cacheKey);
+  try {
+    const { slug } = req.params;
 
-  if (!blog) {
-    blog = await Blog.findOne({ slug: req.params.slug })
-      .populate("category")
-      .lean();
-    if (!blog) return res.status(404).json({ message: "Blog not found" });
-    await CacheService.set(cacheKey, blog, 300);
+    // Basic validation for slug
+    if (!slug || typeof slug !== "string") {
+      return handleError(res, 400, "Invalid or missing slug");
+    }
+
+    const blog = await Blog.findOne({ slug }).populate("category").lean();
+    if (!blog) {
+      return handleError(res, 404, "Blog not found");
+    }
+
+    logger.info(`Retrieved blog with slug: ${slug}`);
+    res.json(blog);
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve blog", error);
   }
-
-  res.json(blog);
 };
 
 exports.createBlog = async (req, res) => {
-  const {
-    title,
-    slug,
-    category,
-    content,
-    excerpt,
-    bannerImage,
-    images,
-    seo,
-    status,
-  } = req.body;
-  const blog = await Blog.create({
-    _id: uuidv4(),
-    title,
-    slug,
-    category,
-    content,
-    excerpt,
-    bannerImage,
-    images,
-    seo,
-    status,
-    createdBy: req.user.id,
-  });
-  await CacheService.del("blogs_list"); // Invalidate cache
-  res.status(201).json(blog);
+  try {
+    const {
+      title,
+      slug,
+      category,
+      content,
+      excerpt,
+      bannerImage,
+      images,
+      seo,
+      status,
+    } = req.body;
+
+    // Input validation
+    if (!title || !slug || !category || !content) {
+      return handleError(
+        res,
+        400,
+        "Title, slug, category, and content are required"
+      );
+    }
+
+    // Validate category exists
+    const categoryExists = await BlogCategory.findById(category).lean();
+    if (!categoryExists) {
+      return handleError(res, 400, "Invalid category ID");
+    }
+
+    // Check for duplicate slug
+    const existingBlog = await Blog.findOne({ slug }).lean();
+    if (existingBlog) {
+      return handleError(res, 409, "Slug already exists");
+    }
+
+    const blog = await Blog.create({
+      _id: uuidv4(),
+      title,
+      slug,
+      category,
+      content,
+      excerpt,
+      bannerImage,
+      images,
+      seo,
+      status,
+      createdBy: req.user.id,
+    });
+
+    logger.info(`Blog created with ID: ${blog._id} by user: ${req.user.id}`);
+    res.status(201).json({
+      message: "Blog created successfully",
+      blog: {
+        _id: blog._id,
+        title: blog.title,
+        slug: blog.slug,
+        category: blog.category,
+      },
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to create blog", error);
+  }
 };
 
 exports.updateBlog = async (req, res) => {
-  const { id } = req.params;
-  const updates = req.body;
-  updates.updatedAt = new Date();
-  const blog = await Blog.findByIdAndUpdate(id, updates, { new: true });
-  if (!blog) return res.status(404).json({ message: "Blog not found" });
-  await CacheService.del(`blog_${id}`);
-  await CacheService.del("blogs_list");
-  res.json(blog);
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+
+    // Basic validation for ID
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid blog ID format");
+    }
+
+    // Prevent updating createdBy
+    delete updates.createdBy;
+    updates.updatedAt = new Date();
+
+    const blog = await Blog.findByIdAndUpdate(id, updates, {
+      new: true,
+    }).populate("category");
+    if (!blog) {
+      return handleError(res, 404, "Blog not found");
+    }
+
+    logger.info(`Blog updated with ID: ${id} by user: ${req.user.id}`);
+    res.json({
+      message: "Blog updated successfully",
+      blog,
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to update blog", error);
+  }
 };
 
 exports.deleteBlog = async (req, res) => {
-  const { id } = req.params;
-  const blog = await Blog.findByIdAndDelete(id);
-  if (!blog) return res.status(404).json({ message: "Blog not found" });
-  await CacheService.del(`blog_${id}`);
-  await CacheService.del("blogs_list");
-  res.status(204).send();
+  try {
+    const { id } = req.params;
+
+    // Basic validation for ID
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid blog ID format");
+    }
+
+    const blog = await Blog.findByIdAndDelete(id);
+    if (!blog) {
+      return handleError(res, 404, "Blog not found");
+    }
+
+    logger.info(`Blog deleted with ID: ${id} by user: ${req.user.id}`);
+    res.status(204).send();
+  } catch (error) {
+    handleError(res, 500, "Failed to delete blog", error);
+  }
 };
 
 exports.listBlogCategories = async (req, res) => {
-  const cacheKey = "blog_categories_list";
-  let categories = await CacheService.get(cacheKey);
-
-  if (!categories) {
-    categories = await BlogCategory.find().lean();
-    await CacheService.set(cacheKey, categories, 300);
+  try {
+    const categories = await BlogCategory.find().lean();
+    logger.info(`Retrieved ${categories.length} blog categories`);
+    res.json(categories);
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve blog categories", error);
   }
-
-  res.json(categories);
 };
 
 exports.createBlogCategory = async (req, res) => {
-  const { name } = req.body;
-  const category = await BlogCategory.create({ _id: uuidv4(), name });
-  await CacheService.del("blog_categories_list");
-  res.status(201).json(category);
+  try {
+    const { name } = req.body;
+
+    // Input validation
+    if (!name || typeof name !== "string") {
+      return handleError(
+        res,
+        400,
+        "Category name is required and must be a string"
+      );
+    }
+
+    // Check for duplicate category
+    const existingCategory = await BlogCategory.findOne({ name }).lean();
+    if (existingCategory) {
+      return handleError(res, 409, "Category name already exists");
+    }
+
+    const category = await BlogCategory.create({ _id: uuidv4(), name });
+    logger.info(`Blog category created: ${name} with ID: ${category._id}`);
+    res.status(201).json({
+      message: "Blog category created successfully",
+      category: { _id: category._id, name: category.name },
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to create blog category", error);
+  }
 };

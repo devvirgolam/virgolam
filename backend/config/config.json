@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "virgolam_rocklime",
+    "password": "O~ej@mmTGH{i",
+    "database": "virgolam_dashboard",
+    "host": "103.50.161.16",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "virgolam_rocklime",
+    "password": "O~ej@mmTGH{i",
+    "database": "virgolam_dashboard",
+    "host": "103.50.161.16",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "virgolam_rocklime",
+    "password": "O~ej@mmTGH{i",
+    "database": "virgolam_dashboard",
+    "host": "103.50.161.16",
+    "dialect": "mysql"
+  }
+}

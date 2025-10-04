@@ -1,6 +1,8 @@
 const express = require("express");
+const setupDB = require("./config/setupDb"); // <-- import your setupDB
 const connectMongo = require("./config/db.mongo");
-const sequelize = require("./config/db.mysql");
+
+// Import routes
 const authRoutes = require("./routes/auth");
 const blogRoutes = require("./routes/blogs");
 const categoryRoutes = require("./routes/category");
@@ -12,28 +14,47 @@ const catalogueRoutes = require("./routes/catalogue");
 const careerRoutes = require("./routes/careers");
 const roleRoutes = require("./routes/roles");
 const storeRoutes = require("./routes/stores");
-// Import other routes
-
+const parentCategoryRoutes = require("./routes/parentCategory");
+const cors = require("cors");
 const app = express();
-
 app.use(express.json());
+// CORS configuration
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
 
-// Connect to databases
+// ==============================
+// 🔥 Initialize Databases
+// ==============================
 (async () => {
   try {
-    await sequelize.authenticate();
-    console.log("MySQL connected");
-    await sequelize.sync();
+    // Setup MySQL (models, associations, sync)
+    await setupDB();
+
+    // Connect MongoDB
     await connectMongo();
+    console.log("\x1b[32m%s\x1b[0m", "✓ All databases connected!");
   } catch (error) {
-    console.error("Database connection error:", error);
+    console.error("\x1b[31m%s\x1b[0m", "Database connection error:", error);
+    process.exit(1);
   }
 })();
 
-// Routes
+// ==============================
+// 🔥 API ROUTES
+// ==============================
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
-app.use("api/careers", careerRoutes);
+app.use("/api/careers", careerRoutes);
 app.use("/api/catalogue", catalogueRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/contacts", contactRoutes);
@@ -42,11 +63,13 @@ app.use("/api/dealers", dealerRoutes);
 app.use("/api/roles", roleRoutes);
 app.use("/api/stores", storeRoutes);
 app.use("/api/users", userRoutes);
-
-// Use other routes
-// Add other routes
-const PORT = process.env.PORT || 3000;
+app.use("/api/parent-category", parentCategoryRoutes);
+// ==============================
+// 🔥 START SERVER
+// ==============================
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
 module.exports = app;

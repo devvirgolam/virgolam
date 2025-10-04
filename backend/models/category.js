@@ -30,6 +30,4 @@ const Category = sequelize.define(
   }
 );
 
-Category.belongsTo(Category, { foreignKey: "parent_id", as: "parent" });
-
 module.exports = Category;

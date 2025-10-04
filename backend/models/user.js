@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.mysql");
+const Role = require("./role");
 
 const User = sequelize.define(
   "User",
@@ -30,7 +31,7 @@ const User = sequelize.define(
       type: DataTypes.STRING(20),
     },
     role_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     is_active: {

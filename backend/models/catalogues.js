@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.mysql");
+const ParentCategory = require("./parentCategory");
 
 const Catalogue = sequelize.define(
   "Catalogue",
@@ -15,6 +16,16 @@ const Catalogue = sequelize.define(
     },
     pdf_url: DataTypes.STRING(1024),
     banner_image_url: DataTypes.STRING(1024),
+    parent_id: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: ParentCategory,
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL", // or "CASCADE" depending on your use case
+    },
   },
   {
     tableName: "catalogues",

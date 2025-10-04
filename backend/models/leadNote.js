@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../../config/db.mysql");
-const Lead = require("./Lead");
+const sequelize = require("../config/db.mysql");
+const Lead = require("./leads");
 const User = require("./user");
 
 const LeadNote = sequelize.define(
@@ -28,8 +28,5 @@ const LeadNote = sequelize.define(
     updatedAt: false,
   }
 );
-
-LeadNote.belongsTo(Lead, { foreignKey: "lead_id" });
-LeadNote.belongsTo(User, { foreignKey: "user_id" });
 
 module.exports = LeadNote;

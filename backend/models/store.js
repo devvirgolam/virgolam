@@ -28,7 +28,4 @@ const Store = sequelize.define(
   }
 );
 
-Store.belongsTo(Dealer, { foreignKey: "dealer_id" });
-Store.belongsTo(Address, { foreignKey: "address_id" });
-
 module.exports = Store;

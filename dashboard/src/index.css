@@ -1,0 +1,35 @@
+@import url("./assets/css/style.css");
+@import url("https://fonts.cdnfonts.com/css/neuropol-2");
+/* Base styles for the footer */
+.footer {
+  width: 100%;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.footer-text {
+  font-size: 16px; /* Default font size for desktop */
+  line-height: 1.5;
+}
+
+/* Styles for the Rocklime link */
+.rocklime-link {
+  color: #ed7c2f !important;
+  font-family: "Neuropol", sans-serif !important;
+  text-decoration: none;
+}
+
+.rocklime-link:hover {
+  text-decoration: underline;
+}
+.sidebar-logo img {
+  max-width: 120px; /* Adjust this to your preferred width */
+  height: auto;      /* Keeps the aspect ratio */
+  display: block;
+  margin: 0 auto;    /* Optional: centers the logo */
+}
+
+/* Optional: smaller logo for compact sidebar */
+.sidebar-logo .logo-small img {
+  max-width: 60px;
+}

@@ -2,69 +2,438 @@ const User = require("../models/user");
 const Role = require("../models/role");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
+const winston = require("winston");
+require("dotenv").config();
+
+// Configure Winston logger
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+    new winston.transports.File({ filename: "combined.log" }),
+    new winston.transports.Console(), // Console output for development
+  ],
+});
+
+// Centralized error response handler
+const handleError = (res, status, message, error = null) => {
+  logger.error(`${message}: ${error?.message || "No additional error info"}`, {
+    status,
+    stack: error?.stack,
+  });
+  return res.status(status).json({ error: message });
+};
 
 exports.listUsers = async (req, res) => {
-  const users = await User.findAll({ include: Role });
-  res.json(users);
+  try {
+    if (!req.user || !["ADMIN", "SUPER_ADMIN"].includes(req.user.role.name)) {
+      return handleError(res, 403, "Only admins can list users");
+    }
+    const users = await User.findAll({
+      include: { model: Role, as: "role", attributes: ["id", "name"] },
+    });
+    logger.info(`Retrieved ${users.length} users by user: ${req.user.id}`);
+    const sanitizedUsers = users.map((user) => ({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      name: user.name,
+      phone: user.phone,
+      role: user.Role ? { id: user.Role.id, name: user.Role.name } : null,
+    }));
+    res.json(sanitizedUsers);
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve users", error);
+  }
 };
 
 exports.getUserById = async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findByPk(id, { include: Role });
-  if (!user) return res.status(404).json({ message: "User not found" });
-  res.json(user);
+  try {
+    const { id } = req.params;
+
+    // Restrict to admin or self
+    if (
+      !req.user ||
+      (req.user.role !== "ADMIN" &&
+        req.user.id !== id &&
+        req.user.role !== "SUPER_ADMIN")
+    ) {
+      return handleError(res, 403, "Unauthorized access");
+    }
+
+    const user = await User.findByPk(id, {
+      include: {
+        model: Role,
+        as: "role",
+        attributes: ["id", "name"], // Only fetch role id and name
+      },
+    });
+    if (!user) {
+      return handleError(res, 404, "User not found");
+    }
+
+    logger.info(`Retrieved user with ID: ${id} by user: ${req.user.id}`);
+    // Limit exposed fields
+    res.json({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      name: user.name,
+      phone: user.phone,
+      role: user.Role ? { id: user.Role.id, name: user.Role.name } : null,
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve user", error);
+  }
 };
 
 exports.createUser = async (req, res) => {
-  const { username, email, password, name, phone, role_id } = req.body;
-  const password_hash = await bcrypt.hash(password, 10);
-  const user = await User.create({
-    id: uuidv4(),
-    username,
-    email,
-    password_hash,
-    name,
-    phone,
-    role_id,
-  });
-  res.status(201).json(user);
+  try {
+    const { username, email, password, name, phone, role_id } = req.body;
+
+    // Input validation
+    if (!username || !email || !password || !role_id) {
+      return handleError(
+        res,
+        400,
+        "Username, email, password, and role ID are required"
+      );
+    }
+
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return handleError(res, 400, "Invalid email format");
+    }
+
+    // Validate phone format if provided
+    if (phone && !/^\+?[\d\s-]{8,15}$/.test(phone)) {
+      return handleError(res, 400, "Invalid phone number format");
+    }
+
+    // Validate role_id
+    if (
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        role_id
+      )
+    ) {
+      return handleError(res, 400, "Invalid role ID format");
+    }
+    const role = await Role.findByPk(role_id);
+    if (!role) {
+      return handleError(res, 400, "Role not found");
+    }
+
+    // Restrict to admin users
+    if (
+      !req.user ||
+      (req.user.role !== "ADMIN" &&
+        req.user.id !== id &&
+        req.user.role !== "SUPER_ADMIN")
+    ) {
+      return handleError(res, 403, "Unauthorized access");
+    }
+
+    // Check for duplicate username or email
+    const existingUser = await User.findOne({
+      where: {
+        [Op.or]: [{ username }, { email }],
+      },
+    });
+    if (existingUser) {
+      return handleError(res, 409, "Username or email already exists");
+    }
+
+    const password_hash = await bcrypt.hash(password, 10);
+    const user = await User.create({
+      id: uuidv4(),
+      username,
+      email,
+      password_hash,
+      name,
+      phone,
+      role_id,
+      createdBy: req.user.id, // Track creator
+    });
+
+    logger.info(
+      `User created with ID: ${user.id}, email: ${email} by user: ${req.user.id}`
+    );
+    res.status(201).json({
+      message: "User created successfully",
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        name: user.name,
+        phone: user.phone,
+        role_id: user.role_id,
+      },
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to create user", error);
+  }
 };
 
 exports.updateUser = async (req, res) => {
-  const { id } = req.params;
-  const updates = req.body;
-  if (updates.password) {
-    updates.password_hash = await bcrypt.hash(updates.password, 10);
-    delete updates.password;
+  try {
+    const { id } = req.params;
+    const { username, email, password, name, phone, role_id } = req.body;
+
+    // Validate UUID format
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid user ID format");
+    }
+
+    // Restrict to admin users
+    if (
+      !req.user ||
+      (req.user.role !== "ADMIN" &&
+        req.user.id !== id &&
+        req.user.role !== "SUPER_ADMIN")
+    ) {
+      return handleError(res, 403, "Unauthorized access");
+    }
+
+    const user = await User.findByPk(id);
+    if (!user) {
+      return handleError(res, 404, "User not found");
+    }
+
+    // Validate updates
+    if (!username && !email && !password && !name && !phone && !role_id) {
+      return handleError(res, 400, "At least one field must be provided");
+    }
+
+    // Validate email format if provided
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return handleError(res, 400, "Invalid email format");
+    }
+
+    // Validate phone format if provided
+    if (phone && !/^\+?[\d\s-]{8,15}$/.test(phone)) {
+      return handleError(res, 400, "Invalid phone number format");
+    }
+
+    // Validate role_id if provided
+    if (role_id) {
+      if (
+        !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+          role_id
+        )
+      ) {
+        return handleError(res, 400, "Invalid role ID format");
+      }
+      const role = await Role.findByPk(role_id);
+      if (!role) {
+        return handleError(res, 400, "Role not found");
+      }
+    }
+
+    // Check for duplicate username or email if provided
+    if (username || email) {
+      const existingUser = await User.findOne({
+        where: {
+          [Op.or]: [
+            username && username !== user.username ? { username } : null,
+            email && email !== user.email ? { email } : null,
+          ].filter(Boolean),
+        },
+      });
+      if (existingUser) {
+        return handleError(res, 409, "Username or email already exists");
+      }
+    }
+
+    const updates = {
+      username,
+      email,
+      name,
+      phone,
+      role_id,
+      updatedAt: new Date(),
+    };
+    if (password) {
+      updates.password_hash = await bcrypt.hash(password, 10);
+    }
+    // Remove undefined fields
+    Object.keys(updates).forEach(
+      (key) => updates[key] === undefined && delete updates[key]
+    );
+    // Prevent updating createdBy
+    delete updates.createdBy;
+
+    await user.update(updates);
+    logger.info(`User updated with ID: ${id} by user: ${req.user.id}`);
+    res.json({
+      message: "User updated successfully",
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        name: user.name,
+        phone: user.phone,
+        role_id: user.role_id,
+      },
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to update user", error);
   }
-  const user = await User.findByPk(id);
-  if (!user) return res.status(404).json({ message: "User not found" });
-  await user.update(updates);
-  res.json(user);
 };
 
 exports.deleteUser = async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findByPk(id);
-  if (!user) return res.status(404).json({ message: "User not found" });
-  await user.destroy();
-  res.status(204).send();
+  try {
+    const { id } = req.params;
+
+    // Validate UUID format
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid user ID format");
+    }
+
+    if (
+      !req.user ||
+      (req.user.role !== "ADMIN" &&
+        req.user.id !== id &&
+        req.user.role !== "SUPER_ADMIN")
+    ) {
+      return handleError(res, 403, "Unauthorized access");
+    }
+
+    // Prevent self-deletion
+    if (req.user.id === id) {
+      return handleError(res, 400, "Cannot delete your own account");
+    }
+
+    const user = await User.findByPk(id);
+    if (!user) {
+      return handleError(res, 404, "User not found");
+    }
+
+    // Prevent deletion of critical users (e.g., admins)
+    const role = await Role.findByPk(user.role_id);
+    if (
+      !req.user ||
+      (req.user.role !== "ADMIN" &&
+        req.user.id !== id &&
+        req.user.role !== "SUPER_ADMIN")
+    ) {
+      return handleError(res, 403, "Unauthorized access");
+    }
+
+    await user.destroy();
+    logger.info(`User deleted with ID: ${id} by user: ${req.user.id}`);
+    res.status(204).send();
+  } catch (error) {
+    handleError(res, 500, "Failed to delete user", error);
+  }
 };
 
 exports.getCurrentUser = async (req, res) => {
-  const user = await User.findByPk(req.user.id, { include: Role });
-  if (!user) return res.status(404).json({ message: "User not found" });
-  res.json(user);
+  try {
+    const user = await User.findByPk(req.user.id, {
+      include: {
+        model: Role,
+        as: "role",
+        attributes: ["id", "name"], // Only fetch role id and name
+      },
+    });
+    if (!user) {
+      return handleError(res, 404, "User not found");
+    }
+
+    logger.info(`Retrieved current user with ID: ${req.user.id}`);
+    res.json({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      name: user.name,
+      phone: user.phone,
+      role: user.Role ? { id: user.Role.id, name: user.Role.name } : null,
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve current user", error);
+  }
 };
 
 exports.updateCurrentUser = async (req, res) => {
-  const updates = req.body;
-  if (updates.password) {
-    updates.password_hash = await bcrypt.hash(updates.password, 10);
-    delete updates.password;
+  try {
+    const { username, email, password, name, phone } = req.body;
+
+    // Validate updates
+    if (!username && !email && !password && !name && !phone) {
+      return handleError(res, 400, "At least one field must be provided");
+    }
+
+    // Validate email format if provided
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return handleError(res, 400, "Invalid email format");
+    }
+
+    // Validate phone format if provided
+    if (phone && !/^\+?[\d\s-]{8,15}$/.test(phone)) {
+      return handleError(res, 400, "Invalid phone number format");
+    }
+
+    const user = await User.findByPk(req.user.id);
+    if (!user) {
+      return handleError(res, 404, "User not found");
+    }
+
+    // Check for duplicate username or email if provided
+    if (username || email) {
+      const existingUser = await User.findOne({
+        where: {
+          [Op.or]: [
+            username && username !== user.username ? { username } : null,
+            email && email !== user.email ? { email } : null,
+          ].filter(Boolean),
+        },
+      });
+      if (existingUser) {
+        return handleError(res, 409, "Username or email already exists");
+      }
+    }
+
+    // Prevent changing role_id
+    const updates = { username, email, name, phone, updatedAt: new Date() };
+    if (password) {
+      updates.password_hash = await bcrypt.hash(password, 10);
+    }
+    // Remove undefined fields
+    Object.keys(updates).forEach(
+      (key) => updates[key] === undefined && delete updates[key]
+    );
+    // Prevent updating role_id or createdBy
+    delete updates.role_id;
+    delete updates.createdBy;
+
+    await user.update(updates);
+    logger.info(`Current user updated with ID: ${req.user.id}`);
+    res.json({
+      message: "User updated successfully",
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        name: user.name,
+        phone: user.phone,
+        role_id: user.role_id,
+      },
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to update current user", error);
   }
-  const user = await User.findByPk(req.user.id);
-  if (!user) return res.status(404).json({ message: "User not found" });
-  await user.update(updates);
-  res.json(user);
 };
