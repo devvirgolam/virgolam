@@ -1,132 +1,132 @@
-    #mobile-state-dropdown {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        background-color: #fff;
-    }
+#mobile-state-dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
 
-    #mobile-dealer-count {
-        font-size: 14px;
-        font-weight: bold;
-    }
+#mobile-dealer-count {
+    font-size: 14px;
+    font-weight: bold;
+}
 
-    .where-to-buy-page {
-        padding-top: 126px;
-        padding-bottom: 50px;
-        margin-bottom: 0;
-    }
+.where-to-buy-page {
+    padding-top: 126px;
+    padding-bottom: 50px;
+    margin-bottom: 0;
+}
 
+.where-to-buy-tabs .card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+}
+
+/* Mobile-friendly card styling */
+@media (max-width: 767.98px) {
     .where-to-buy-tabs .card {
+        width: 100% !important;
+        /* Take full width */
+        max-width: 100% !important;
+        padding: 15px !important;
+        /* Comfortable padding */
+        margin-bottom: 15px;
+        font-size: 14px;
+        /* Readable text */
+        border-radius: 8px;
+        /* Rounded edges */
+    }
+
+    .where-to-buy-tabs .card img {
         width: 100%;
-        max-width: 100%;
-        margin: 0 auto 15px;
-        padding: 15px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        background-color: #fff;
-        border: 1px solid #e1e1e1;
-        border-radius: 5px;
+        /* Make images scale */
+        height: auto;
+        object-fit: contain;
+        /* Prevent image squish */
+        margin-bottom: 10px;
     }
 
-    /* Mobile-friendly card styling */
-    @media (max-width: 767.98px) {
-        .where-to-buy-tabs .card {
-            width: 100% !important;
-            /* Take full width */
-            max-width: 100% !important;
-            padding: 15px !important;
-            /* Comfortable padding */
-            margin-bottom: 15px;
-            font-size: 14px;
-            /* Readable text */
-            border-radius: 8px;
-            /* Rounded edges */
-        }
-
-        .where-to-buy-tabs .card img {
-            width: 100%;
-            /* Make images scale */
-            height: auto;
-            object-fit: contain;
-            /* Prevent image squish */
-            margin-bottom: 10px;
-        }
-
-        .where-to-buy-tabs .card .name {
-            font-size: 16px;
-            /* Bigger labels */
-            font-weight: 600;
-            text-align: center;
-        }
+    .where-to-buy-tabs .card .name {
+        font-size: 16px;
+        /* Bigger labels */
+        font-weight: 600;
+        text-align: center;
     }
+}
 
-    /* Compress state dropdown into a scrollable menu */
-    .where-to-buy-tabs .state-filter .dropdown-menu {
-        max-height: 250px;
-        /* control height */
-        max-width: 220px;
-        /* prevent stretching */
-        overflow-y: auto;
-        /* vertical scroll if too many states */
-        overflow-x: hidden;
-        /* hide horizontal scroll */
-        background-color: #fff !important;
-        /* solid background */
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 10px;
-        text-align: left;
-        /* keep text aligned */
-        position: absolute !important;
-        /* force it to stay aligned under button */
-        z-index: 9999;
-        /* keep above other elements */
-    }
+/* Compress state dropdown into a scrollable menu */
+.where-to-buy-tabs .state-filter .dropdown-menu {
+    max-height: 250px;
+    /* control height */
+    max-width: 220px;
+    /* prevent stretching */
+    overflow-y: auto;
+    /* vertical scroll if too many states */
+    overflow-x: hidden;
+    /* hide horizontal scroll */
+    background-color: #fff !important;
+    /* solid background */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: left;
+    /* keep text aligned */
+    position: absolute !important;
+    /* force it to stay aligned under button */
+    z-index: 9999;
+    /* keep above other elements */
+}
 
-    /* Scrollbar styling (optional, modern browsers only) */
-    .where-to-buy-tabs .state-filter .dropdown-menu::-webkit-scrollbar {
-        width: 6px;
-    }
+/* Scrollbar styling (optional, modern browsers only) */
+.where-to-buy-tabs .state-filter .dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
 
-    .where-to-buy-tabs .state-filter .dropdown-menu::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 10px;
-    }
+.where-to-buy-tabs .state-filter .dropdown-menu::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
 
-    /* Sidebar wrapper */
-    .sidebar-state-filter {
-        width: 250px;
-        /* control width */
-        max-height: 400px;
-        /* adjust depending on your layout */
-        overflow-y: auto;
-        /* scrollable */
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        background: #fff;
-    }
+/* Sidebar wrapper */
+.sidebar-state-filter {
+    width: 250px;
+    /* control width */
+    max-height: 400px;
+    /* adjust depending on your layout */
+    overflow-y: auto;
+    /* scrollable */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+}
 
-    /* Scrollbar look (optional) */
-    .sidebar-state-filter::-webkit-scrollbar {
-        width: 6px;
-    }
+/* Scrollbar look (optional) */
+.sidebar-state-filter::-webkit-scrollbar {
+    width: 6px;
+}
 
-    .sidebar-state-filter::-webkit-scrollbar-thumb {
-        background: #aaa;
-        border-radius: 6px;
-    }
+.sidebar-state-filter::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 6px;
+}
 
-    /* State links inside */
-    .sidebar-state-filter .list-group-item {
-        font-size: 15px;
-        font-weight: 500;
-        color: #333;
-        cursor: pointer;
-    }
+/* State links inside */
+.sidebar-state-filter .list-group-item {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+}
 
-    .sidebar-state-filter .list-group-item:hover {
-        background: #f8f9fa;
-    }
+.sidebar-state-filter .list-group-item:hover {
+    background: #f8f9fa;
+}

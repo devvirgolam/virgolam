@@ -73,6 +73,15 @@ const setupDB = async () => {
 
     Store.belongsTo(Address, { foreignKey: "address_id", as: "address" });
 
+    // 👇 NEW RELATIONSHIP
+    Store.belongsTo(ParentCategory, {
+      foreignKey: "parent_category_id",
+      as: "parent_category",
+    });
+    ParentCategory.hasMany(Store, {
+      foreignKey: "parent_category_id",
+      as: "stores",
+    });
     // In setupDB, under // ==============================
     // 🔥 DEALER & STORE RELATIONSHIPS
     // ==============================

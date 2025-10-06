@@ -248,3 +248,20 @@
 {"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-06T08:00:43.805Z"}
 {"level":"info","message":"Retrieved 372 dealers","timestamp":"2025-10-06T08:29:23.195Z"}
 {"level":"info","message":"Retrieved 372 dealers","timestamp":"2025-10-06T08:32:18.662Z"}
+{"level":"info","message":"Retrieved 5 parent categories","timestamp":"2025-10-06T08:35:15.602Z"}
+{"level":"info","message":"Retrieved 0 categories","timestamp":"2025-10-06T08:35:15.631Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-06T08:35:17.065Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-06T09:20:37.160Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-06T09:21:15.362Z"}
+{"level":"error","message":"Unauthorized access: No additional error info","status":403,"timestamp":"2025-10-06T09:21:15.608Z"}
+{"level":"info","message":"Retrieved 5 parent categories","timestamp":"2025-10-06T09:21:23.580Z"}
+{"level":"info","message":"Retrieved 0 categories","timestamp":"2025-10-06T09:21:23.614Z"}
+{"level":"info","message":"Retrieved 37 catalogues","timestamp":"2025-10-06T09:21:25.224Z"}
+{"level":"info","message":"Retrieved 0 content items","timestamp":"2025-10-06T09:21:34.728Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-06T09:21:39.273Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-06T09:21:40.879Z"}
+{"level":"error","message":"Invalid blog ID format: No additional error info","status":400,"timestamp":"2025-10-06T09:21:42.305Z"}
+{"level":"info","message":"Retrieved 372 dealers","timestamp":"2025-10-06T09:21:45.627Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-06T09:21:53.228Z"}
+{"level":"info","message":"Retrieved 3 roles by user: unknown","timestamp":"2025-10-06T09:21:54.879Z"}
+{"level":"info","message":"Retrieved 372 stores","timestamp":"2025-10-06T09:50:17.449Z"}

@@ -1,6 +1,7 @@
 const Store = require("../models/store");
 const Dealer = require("../models/dealer");
 const Address = require("../models/address");
+const ParentCategory = require("../models/parentCategory");
 const { v4: uuidv4 } = require("uuid");
 const { Op } = require("sequelize");
 const winston = require("winston");
@@ -29,12 +30,16 @@ const handleError = (res, status, message, error = null) => {
   return res.status(status).json({ error: message });
 };
 
+// ==============================
+// 🔥 LIST ALL STORES
+// ==============================
 exports.listStores = async (req, res) => {
   try {
     const stores = await Store.findAll({
       include: [
-        { model: Dealer, as: "dealers" },
+        { model: Dealer, as: "dealer" },
         { model: Address, as: "address", required: false },
+        { model: ParentCategory, as: "parent_category", required: false },
       ],
     });
     logger.info(`Retrieved ${stores.length} stores`);
@@ -44,11 +49,14 @@ exports.listStores = async (req, res) => {
   }
 };
 
+// ==============================
+// 🔥 GET STORE BY ID
+// ==============================
 exports.getStoreById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Validate UUID format
+    // Validate UUID
     if (
       !id ||
       !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
@@ -60,10 +68,12 @@ exports.getStoreById = async (req, res) => {
 
     const store = await Store.findByPk(id, {
       include: [
-        { model: Dealer, as: "dealers" },
+        { model: Dealer, as: "dealer" },
         { model: Address, as: "address", required: false },
+        { model: ParentCategory, as: "parent_category", required: false },
       ],
     });
+
     if (!store) {
       return handleError(res, 404, "Store not found");
     }
@@ -75,16 +85,19 @@ exports.getStoreById = async (req, res) => {
   }
 };
 
+// ==============================
+// 🔥 CREATE STORE
+// ==============================
 exports.createStore = async (req, res) => {
   try {
-    const { dealer_id, name, phone, address } = req.body;
+    const { dealer_id, name, phone, address, parent_category_id } = req.body;
 
     // Input validation
     if (!dealer_id || !name) {
       return handleError(res, 400, "Dealer ID and name are required");
     }
 
-    // Validate UUID format for dealer_id
+    // Validate dealer UUID
     if (
       !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
         dealer_id
@@ -99,12 +112,12 @@ exports.createStore = async (req, res) => {
       return handleError(res, 400, "Dealer not found");
     }
 
-    // Validate phone format if provided
+    // Validate phone
     if (phone && !/^\+?[\d\s-]{8,15}$/.test(phone)) {
       return handleError(res, 400, "Invalid phone number format");
     }
 
-    // Validate address fields if provided
+    // Validate address
     if (address) {
       const { street, city, state, country, pincode } = address;
       if (!street || !city || !state || !country || !pincode) {
@@ -119,22 +132,45 @@ exports.createStore = async (req, res) => {
       }
     }
 
+    // Validate and handle parent category
+    let categoryId = parent_category_id;
+    if (categoryId) {
+      if (
+        !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+          categoryId
+        )
+      ) {
+        return handleError(res, 400, "Invalid parent category ID format");
+      }
+
+      const categoryExists = await ParentCategory.findByPk(categoryId);
+      if (!categoryExists) {
+        return handleError(res, 400, "Parent category not found");
+      }
+    } else {
+      // Default category if none provided
+      categoryId = "5ecc600d-a03c-11f0-b1b4-f875a42d8cde";
+    }
+
+    // Permission check (optional, adjust to your auth logic)
     if (
       !req.user ||
-      (req.user.role !== "ADMIN" &&
-        req.user.id !== id &&
-        req.user.role !== "SUPER_ADMIN")
+      (req.user.role !== "ADMIN" && req.user.role !== "SUPER_ADMIN")
     ) {
       return handleError(res, 403, "Unauthorized access");
     }
+
+    // Create store
     const store = await Store.create({
       id: uuidv4(),
       dealer_id,
       name,
       phone,
-      createdBy: req.user?.id, // Optional: Track creator
+      parent_category_id: categoryId,
+      createdBy: req.user?.id || null,
     });
 
+    // Create address if provided
     if (address) {
       const addressData = await Address.create({
         id: uuidv4(),
@@ -147,10 +183,9 @@ exports.createStore = async (req, res) => {
     }
 
     logger.info(
-      `Store created with ID: ${store.id}, name: ${name} by user: ${
-        req.user?.id || "unknown"
-      }`
+      `Store created with ID: ${store.id}, name: ${name}, category: ${categoryId}`
     );
+
     res.status(201).json({
       message: "Store created successfully",
       store: {
@@ -159,6 +194,7 @@ exports.createStore = async (req, res) => {
         name: store.name,
         phone: store.phone,
         address_id: store.address_id,
+        parent_category_id: store.parent_category_id,
       },
     });
   } catch (error) {
@@ -166,11 +202,13 @@ exports.createStore = async (req, res) => {
   }
 };
 
+// ==============================
+// 🔥 FIND STORES BY LOCATION
+// ==============================
 exports.findStoresByLocation = async (req, res) => {
   try {
     const { city, pincode } = req.query;
 
-    // Validate query parameters
     if (!city && !pincode) {
       return handleError(
         res,
@@ -179,14 +217,8 @@ exports.findStoresByLocation = async (req, res) => {
       );
     }
 
-    // Validate pincode format if provided
     if (pincode && !/^\d{5,10}$/.test(pincode)) {
       return handleError(res, 400, "Invalid pincode format");
-    }
-
-    // Validate city format if provided (basic check for non-empty string)
-    if (city && typeof city !== "string") {
-      return handleError(res, 400, "Invalid city format");
     }
 
     const whereClause = {
@@ -200,9 +232,10 @@ exports.findStoresByLocation = async (req, res) => {
         {
           model: Address,
           where: whereClause,
-          required: true, // Ensure only stores with matching addresses are returned
+          required: true,
         },
-        Dealer,
+        { model: Dealer, as: "dealer" },
+        { model: ParentCategory, as: "parent_category" },
       ],
     });
 

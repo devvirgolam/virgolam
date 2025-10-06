@@ -19,6 +19,10 @@ const Store = sequelize.define(
     address_id: {
       type: DataTypes.UUID,
     },
+    parent_category_id: {
+      type: DataTypes.UUID, // 👈 newly added
+      allowNull: true,
+    },
   },
   {
     tableName: "stores",
