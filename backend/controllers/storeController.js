@@ -31,7 +31,12 @@ const handleError = (res, status, message, error = null) => {
 
 exports.listStores = async (req, res) => {
   try {
-    const stores = await Store.findAll({ include: [Dealer, Address] });
+    const stores = await Store.findAll({
+      include: [
+        { model: Dealer, as: "dealers" },
+        { model: Address, as: "address", required: false },
+      ],
+    });
     logger.info(`Retrieved ${stores.length} stores`);
     res.json(stores);
   } catch (error) {
@@ -53,7 +58,12 @@ exports.getStoreById = async (req, res) => {
       return handleError(res, 400, "Invalid store ID format");
     }
 
-    const store = await Store.findByPk(id, { include: [Dealer, Address] });
+    const store = await Store.findByPk(id, {
+      include: [
+        { model: Dealer, as: "dealers" },
+        { model: Address, as: "address", required: false },
+      ],
+    });
     if (!store) {
       return handleError(res, 404, "Store not found");
     }

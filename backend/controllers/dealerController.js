@@ -44,7 +44,10 @@ const sendEmail = async (to, subject, text) => {
 
 exports.listDealers = async (req, res) => {
   try {
-    const dealers = await Dealer.findAll({ include: Address });
+    const dealers = await Dealer.findAll({
+      include: { model: Address, as: "addresses" },
+    });
+
     logger.info(`Retrieved ${dealers.length} dealers`);
     res.json(dealers);
   } catch (error) {
@@ -66,7 +69,9 @@ exports.getDealerById = async (req, res) => {
       return handleError(res, 400, "Invalid dealer ID format");
     }
 
-    const dealer = await Dealer.findByPk(id, { include: Address });
+    const dealer = await Dealer.findByPk(id, {
+      include: { model: Address, as: "addresses" },
+    });
     if (!dealer) {
       return handleError(res, 404, "Dealer not found");
     }

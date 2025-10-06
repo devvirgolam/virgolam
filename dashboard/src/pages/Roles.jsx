@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { Table, Input, Button, Modal, Form, Space } from "antd";
 import PageHeader from "../components/Common/PageHeader";
-import { useListRolesQuery, useCreateRoleMutation } from "../api/rolesApi"; // Adjust the import path based on your project structure
+import { useListRolesQuery, useCreateRoleMutation } from "../api/rolesApi"; // Adjust path as needed
+import { SearchOutlined } from "@ant-design/icons";
+import "antd/dist/reset.css"; // Import AntD styles
 
 const Roles = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [form] = Form.useForm(); // AntD Form instance
 
   // Fetch roles using the useListRolesQuery hook
   const { data: roles, isLoading, error } = useListRolesQuery();
-  console.log(roles);
   const [createRole] = useCreateRoleMutation();
 
   // Handle search input change
@@ -21,19 +25,50 @@ const Roles = () => {
   );
 
   // Handle form submission for creating a new role
-  const handleCreateRole = async (e) => {
-    e.preventDefault();
-    const roleName = e.target.elements.roleName.value;
-    if (roleName) {
-      try {
-        await createRole({ name: roleName }).unwrap();
-        e.target.reset(); // Reset form
-        document.getElementById("add_role").classList.remove("show"); // Close modal
-      } catch (err) {
-        console.error("Failed to create role:", err);
-      }
+  const handleCreateRole = async (values) => {
+    try {
+      await createRole({ name: values.roleName }).unwrap();
+      form.resetFields(); // Reset form
+      setIsModalOpen(false); // Close modal
+    } catch (err) {
+      console.error("Failed to create role:", err);
     }
   };
+
+  // Table columns configuration for AntD Table
+  const columns = [
+    {
+      title: "",
+      dataIndex: "checkbox",
+      render: () => <input type="checkbox" className="custom-checkbox" />,
+      width: 50,
+    },
+    {
+      title: "Role Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Created",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => new Date(createdAt).toLocaleDateString(),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: () => (
+        <Space>
+          <Button type="primary" size="small">
+            Edit
+          </Button>
+          <Button type="primary" danger size="small">
+            Delete
+          </Button>
+        </Space>
+      ),
+    },
+  ];
 
   return (
     <div className="content pb-0">
@@ -41,140 +76,62 @@ const Roles = () => {
 
       <div className="card border-0 rounded-0">
         <div className="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
-          <div className="input-icon input-icon-start position-relative">
-            <span className="input-icon-addon text-dark">
-              <i className="ti ti-search"></i>
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search"
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-          </div>
-          <a
-            href="#"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#add_role"
+          <Input
+            prefix={<SearchOutlined />}
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearch}
+            className="search-input"
+            style={{ width: 200 }}
+          />
+          <Button
+            type="primary"
+            icon={<i className="ti ti-square-rounded-plus-filled me-1"></i>}
+            onClick={() => setIsModalOpen(true)}
           >
-            <i className="ti ti-square-rounded-plus-filled me-1"></i>Add New
-            Role
-          </a>
+            Add New Role
+          </Button>
         </div>
         <div className="card-body">
           <div className="table-responsive custom-table">
-            <table className="table table-nowrap" id="roles_list">
-              <thead className="table-light">
-                <tr>
-                  <th className="no-sort">
-                    <div className="form-check form-check-md">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="select-all"
-                      />
-                    </div>
-                  </th>
-                  <th>Role Name</th>
-                  <th>Created</th>
-                  <th className="no-sort">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {isLoading ? (
-                  <tr>
-                    <td colSpan="4">Loading...</td>
-                  </tr>
-                ) : error ? (
-                  <tr>
-                    <td colSpan="4">Error loading roles</td>
-                  </tr>
-                ) : filteredRoles?.length > 0 ? (
-                  filteredRoles.map((role) => (
-                    <tr key={role.id}>
-                      <td>
-                        <div className="form-check form-check-md">
-                          <input className="form-check-input" type="checkbox" />
-                        </div>
-                      </td>
-                      <td>{role.name}</td>
-                      <td>{new Date(role.createdAt).toLocaleDateString()}</td>
-                      <td>
-                        <button className="btn btn-sm btn-primary me-1">
-                          Edit
-                        </button>
-                        <button className="btn btn-sm btn-danger">
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="4">No roles found</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+            <Table
+              columns={columns}
+              dataSource={filteredRoles}
+              loading={isLoading}
+              rowKey="id"
+              locale={{
+                emptyText: error ? "Error loading roles" : "No roles found",
+              }}
+              pagination={false}
+              className="roles-table"
+            />
           </div>
         </div>
       </div>
 
       {/* Modal for Adding a New Role */}
-      <div
-        className="modal fade"
-        id="add_role"
-        tabIndex="-1"
-        aria-labelledby="addRoleLabel"
-        aria-hidden="true"
+      <Modal
+        title="Add New Role"
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        footer={null}
       >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="addRoleLabel">
-                Add New Role
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <form onSubmit={handleCreateRole}>
-              <div className="modal-body">
-                <div className="mb-3">
-                  <label htmlFor="roleName" className="form-label">
-                    Role Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="roleName"
-                    name="roleName"
-                    placeholder="Enter role name"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="submit" className="btn btn-primary">
-                  Save Role
-                </button>
-              </div>
-            </form>
+        <Form form={form} onFinish={handleCreateRole} layout="vertical">
+          <Form.Item
+            name="roleName"
+            label="Role Name"
+            rules={[{ required: true, message: "Please enter role name" }]}
+          >
+            <Input placeholder="Enter role name" />
+          </Form.Item>
+          <div className="d-flex justify-content-end gap-2">
+            <Button onClick={() => setIsModalOpen(false)}>Close</Button>
+            <Button type="primary" htmlType="submit">
+              Save Role
+            </Button>
           </div>
-        </div>
-      </div>
+        </Form>
+      </Modal>
     </div>
   );
 };

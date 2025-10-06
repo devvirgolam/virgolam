@@ -17,6 +17,13 @@ const Dealer = sequelize.define(
       type: DataTypes.STRING(200),
       unique: true,
     },
+    email: {
+      type: DataTypes.STRING(255),
+      allowNull: true, // allows NULL
+      validate: {
+        isEmail: true, // optional, validates email format
+      },
+    },
     company_name: DataTypes.STRING(200),
   },
   {

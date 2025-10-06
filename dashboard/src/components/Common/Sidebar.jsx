@@ -8,6 +8,9 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 const Sidebar = () => {
   const [openMenus, setOpenMenus] = useState({}); // Track open submenus
   const location = useLocation(); // Get current route for active state
+  const [collapsed, setCollapsed] = useState(false);
+
+  const toggleSidebar = () => setCollapsed(!collapsed);
 
   const toggleSubmenu = (index) => {
     setOpenMenus((prev) => ({
@@ -17,7 +20,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sidebar" id="sidebar">
+    <div className={`sidebar ${collapsed ? "collapsed" : ""}`} id="sidebar">
       <div className="sidebar-logo">
         <div>
           <a href="index.html" className="logo logo-normal">
@@ -33,9 +36,11 @@ const Sidebar = () => {
         <button
           className="sidenav-toggle-btn btn border-0 p-0 active"
           id="toggle_btn"
+          onClick={toggleSidebar}
         >
-          <FaBars /> {/* Replaced ti-arrow-bar-to-left with FaBars */}
+          <FaBars />
         </button>
+
         <button className="sidebar-close">
           <FaTimes /> {/* Replaced ti-x with FaTimes */}
         </button>

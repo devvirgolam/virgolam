@@ -31,8 +31,6 @@ const setupDB = async () => {
     // ==============================
     // 🔥 ADDRESS RELATIONSHIPS
     // ==============================
-    Address.belongsTo(User, { foreignKey: "owner_id", as: "owner" });
-    User.hasMany(Address, { foreignKey: "owner_id", as: "addresses" });
 
     // ==============================
     // 🔥 CATEGORY RELATIONSHIPS
@@ -75,6 +73,21 @@ const setupDB = async () => {
 
     Store.belongsTo(Address, { foreignKey: "address_id", as: "address" });
 
+    // In setupDB, under // ==============================
+    // 🔥 DEALER & STORE RELATIONSHIPS
+    // ==============================
+    Dealer.hasMany(Address, {
+      foreignKey: "owner_id",
+      constraints: false,
+      scope: { owner_type: "dealer" },
+      as: "addresses",
+    });
+    Address.belongsTo(Dealer, {
+      foreignKey: "owner_id",
+      constraints: false,
+      scope: { owner_type: "dealer" },
+      as: "dealer",
+    });
     // ==============================
     // 🔥 LEAD RELATIONSHIPS
     // ==============================

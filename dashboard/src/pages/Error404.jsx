@@ -1,5 +1,5 @@
 import React from "react";
-
+import error404 from "../assets/img/authentication/error-404.png";
 const Error404 = () => {
   return (
     <div class="container">
@@ -7,11 +7,7 @@ const Error404 = () => {
         <div class="col-md-8 d-flex align-items-center justify-content-center mx-auto">
           <div>
             <div class="error-img p-4">
-              <img
-                src="assets/img/authentication/error-404.png"
-                class="img-fluid"
-                alt="Img"
-              />
+              <img src={error404} class="img-fluid" alt="Img" />
             </div>
             <div class="text-center">
               <h2 class="mb-3">Oops, something went wrong</h2>
@@ -21,7 +17,7 @@ const Error404 = () => {
               </p>
               <div class="pb-4">
                 <a
-                  href="index.html"
+                  href="/"
                   class="btn btn-primary d-inline-flex align-items-center"
                 >
                   <i class="ti ti-chevron-left me-1"></i>Back to Dashboard

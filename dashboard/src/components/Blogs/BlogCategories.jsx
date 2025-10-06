@@ -1,98 +1,259 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  useListBlogCategoriesQuery,
+  useCreateBlogCategoryMutation,
+} from "../../api/blogApi"; // Adjust path as needed
+import {
+  Table,
+  Input,
+  Button,
+  Modal,
+  Form,
+  DatePicker,
+  Dropdown,
+  Menu,
+} from "antd";
+import {
+  SearchOutlined,
+  PlusSquareFilled,
+  EditOutlined,
+  CalendarOutlined,
+  SortAscendingOutlined,
+} from "@ant-design/icons";
 import PageHeader from "../Common/PageHeader";
 
+const { RangePicker } = DatePicker;
+
 const BlogCategories = () => {
+  const {
+    data: categories,
+    isLoading,
+    isError,
+    error,
+  } = useListBlogCategoriesQuery(); // Fetch categories
+  const [createBlogCategory, { isLoading: isCreating }] =
+    useCreateBlogCategoryMutation(); // Create category mutation
+  const [categoryName, setCategoryName] = useState(""); // State for new category name
+  const [isModalVisible, setIsModalVisible] = useState(false); // Modal visibility state
+
+  // Handle form submission for creating a category
+  const handleCreateCategory = async () => {
+    if (!categoryName.trim()) {
+      alert("Category name is required");
+      return;
+    }
+    try {
+      await createBlogCategory({ name: categoryName }).unwrap();
+      setCategoryName(""); // Reset form
+      setIsModalVisible(false); // Close modal
+    } catch (err) {
+      alert(
+        `Failed to create category: ${
+          err.data?.error || "Something went wrong"
+        }`
+      );
+    }
+  };
+
+  // Render loading state
+  if (isLoading) {
+    return (
+      <div className="content pb-0">
+        <PageHeader />
+        <div className="card border-0 rounded-0">
+          <div className="card-body">Loading categories...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render error state
+  if (isError) {
+    return (
+      <div className="content pb-0">
+        <PageHeader />
+        <div className="card border-0 rounded-0">
+          <div className="card-body">
+            Error fetching categories:{" "}
+            {error?.data?.error || "Something went wrong"}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Dropdown menu for sorting
+  const sortMenu = (
+    <Menu>
+      <Menu.Item key="newest">Newest</Menu.Item>
+      <Menu.Item key="oldest">Oldest</Menu.Item>
+    </Menu>
+  );
+
+  // Table columns
+  const columns = [
+    {
+      title: "",
+      dataIndex: "checkbox",
+      render: () => (
+        <div className="form-check form-check-md">
+          <input className="form-check-input" type="checkbox" />
+        </div>
+      ),
+      className: "no-sort",
+    },
+    {
+      title: "Category Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Created Date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (date) =>
+        new Date(date).toLocaleDateString("en-US", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        }),
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: () => (
+        <span className="badge badge-sm badge-soft-success">Active</span>
+      ),
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      render: () => (
+        <Button
+          href="javascript:void(0);"
+          className="btn btn-xs px-3 fs-12 btn-outline-dark"
+          icon={<EditOutlined className="ti ti-edit me-1" />}
+        >
+          Edit
+        </Button>
+      ),
+      className: "no-sort",
+    },
+  ];
+
+  // Table data
+  const dataSource = categories?.map((category) => ({
+    key: category._id,
+    name: category.name,
+    createdAt: category.createdAt,
+  }));
+
   return (
-    <div class="content pb-0">
+    <div className="content pb-0">
       <PageHeader />
 
-      <div class="card border-0 rounded-0">
-        <div class="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
-          <div class="input-icon input-icon-start position-relative">
-            <span class="input-icon-addon text-dark">
-              <i class="ti ti-search"></i>
-            </span>
-            <input type="text" class="form-control" placeholder="Search" />
+      <div className="card border-0 rounded-0">
+        <div className="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
+          <div className="input-icon input-icon-start position-relative">
+            <Input
+              prefix={<SearchOutlined className="input-icon-addon text-dark" />}
+              placeholder="Search"
+              className="form-control"
+            />
           </div>
-          <a
-            href="javascript:void(0);"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#add_categories"
+          <Button
+            type="primary"
+            className="btn btn-primary"
+            icon={
+              <PlusSquareFilled className="ti ti-square-rounded-plus-filled me-1" />
+            }
+            onClick={() => setIsModalVisible(true)}
           >
-            <i class="ti ti-square-rounded-plus-filled me-1"></i>Add Blog
-            Category
-          </a>
+            Add Blog Category
+          </Button>
         </div>
-        <div class="card-body">
-          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-            <div class="d-flex align-items-center gap-2 flex-wrap">
-              <div class="reportrange-picker reportrange d-flex align-items-center shadow">
-                <i class="ti ti-calendar-due text-dark fs-14 me-1"></i>
-                <span class="reportrange-picker-field">
-                  9 Jun 25 - 9 Jun 25
-                </span>
+        <div className="card-body">
+          <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+            <div className="d-flex align-items-center gap-2 flex-wrap">
+              <div className="reportrange-picker reportrange d-flex align-items-center shadow">
+                <CalendarOutlined className="ti ti-calendar-due text-dark fs-14 me-1" />
+                <RangePicker
+                  className="reportrange-picker-field"
+                  defaultValue={[null, null]}
+                  format="D MMM YY"
+                />
               </div>
             </div>
-            <div class="d-flex align-items-center gap-2 flex-wrap">
-              <div class="dropdown">
-                <a
-                  href="javascript:void(0);"
-                  class="dropdown-toggle btn btn-outline-light px-2 shadow"
-                  data-bs-toggle="dropdown"
-                >
-                  <i class="ti ti-sort-ascending-2 me-2"></i>Sort By
-                </a>
-                <div class="dropdown-menu">
-                  <ul>
-                    <li>
-                      <a href="javascript:void(0);" class="dropdown-item">
-                        Newest
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0);" class="dropdown-item">
-                        Oldest
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div className="d-flex align-items-center gap-2 flex-wrap">
+              <Dropdown overlay={sortMenu}>
+                <Button className="btn btn-outline-light px-2 shadow">
+                  <SortAscendingOutlined className="ti ti-sort-ascending-2 me-2" />
+                  Sort By
+                </Button>
+              </Dropdown>
             </div>
           </div>
 
-          <div class="table-responsive custom-table">
-            <table class="table table-nowrap" id="categories_list">
-              <thead class="table-light">
-                <tr>
-                  <th class="no-sort">
-                    <div class="form-check form-check-md">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="select-all"
-                      />
-                    </div>
-                  </th>
-                  <th>Category Name</th>
-                  <th>Created Date</th>
-                  <th>Status</th>
-                  <th class="no-sort">Action</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <div class="datatable-length"></div>
-            </div>
-            <div class="col-md-6">
-              <div class="datatable-paginate"></div>
+          <div className="table-responsive custom-table">
+            <Table
+              columns={columns}
+              dataSource={dataSource}
+              pagination={false}
+              className="table table-nowrap"
+              id="categories_list"
+            />
+            <div className="row align-items-center">
+              <div className="col-md-6">
+                <div className="datatable-length"></div>
+              </div>
+              <div className="col-md-6">
+                <div className="datatable-paginate"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal for Adding Category */}
+      <Modal
+        title="Add Blog Category"
+        visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        footer={null}
+        className="modal fade"
+        wrapClassName="modal-dialog"
+        style={{ top: 20 }}
+      >
+        <div className="modal-content">
+          <div className="modal-body">
+            <Form onFinish={handleCreateCategory}>
+              <Form.Item
+                label="Category Name"
+                name="categoryName"
+                rules={[
+                  { required: true, message: "Category name is required" },
+                ]}
+              >
+                <Input
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                  placeholder="Enter category name"
+                  className="form-control"
+                />
+              </Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="btn btn-primary"
+                loading={isCreating}
+              >
+                {isCreating ? "Creating..." : "Create Category"}
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

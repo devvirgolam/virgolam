@@ -33,3 +33,127 @@
 .sidebar-logo .logo-small img {
   max-width: 60px;
 }
+/* Sidebar Container */
+.sidebar {
+  width: 250px; /* Default width */
+
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  z-index: 100;
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+  width: 70px; /* Only show icons */
+}
+
+/* Logo section */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+
+}
+
+.sidebar-logo img {
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-logo img {
+  max-width: 40px; /* Smaller logo for collapsed */
+}
+
+/* Toggle buttons */
+.sidenav-toggle-btn,
+.sidebar-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Menu items */
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  position: relative;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 12px 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+
+  border-radius: 4px;
+}
+
+.sidebar-menu li a .menu-icon {
+  font-size: 18px;
+  margin-right: 15px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Hide menu text when collapsed */
+.sidebar.collapsed .sidebar-menu li a span:not(.menu-icon) {
+  display: none;
+}
+
+/* Submenu */
+.sidebar-menu li.submenu ul {
+  display: none;
+  padding-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu li.submenu ul li a {
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.sidebar-menu li.submenu.subdrop ul {
+  display: block;
+}
+
+/* Arrow icon for submenu */
+.menu-arrow {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-menu li.submenu.subdrop .menu-arrow {
+  transform: rotate(180deg);
+}
+
+/* Scrollable menu */
+.sidebar-inner {
+  overflow-y: auto;
+  height: calc(100vh - 70px); /* adjust according to logo height */
+}
+
+
+.sidebar.collapsed ~ .page-wrapper {
+  margin-left: 70px;
+}

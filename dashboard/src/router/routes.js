@@ -1,4 +1,4 @@
-import { PiAddressBook, PiUserList } from "react-icons/pi";
+import { PiAddressBook, PiMicrosoftTeamsLogoLight } from "react-icons/pi";
 import { LiaFileSignatureSolid } from "react-icons/lia";
 import {
   MdOutlineBrandingWatermark,
@@ -7,6 +7,7 @@ import {
   MdOutlineInventory2,
   MdOutlineDiscount,
   MdOutlinePeopleAlt,
+  MdOutlinePerson,
 } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
 import {
@@ -17,14 +18,13 @@ import {
   BiCoinStack,
   BiShield,
 } from "react-icons/bi";
-import { FaFileCircleCheck, FaFileInvoice, FaTeamspeak } from "react-icons/fa6";
+import { FaFileCircleCheck, FaFileInvoice } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
-import { IoDocumentAttach, IoLogIn, IoPricetagOutline } from "react-icons/io5";
-import { MdOutlinePerson } from "react-icons/md";
-import { RiDashboardLine, RiListOrdered, RiFileListLine } from "react-icons/ri";
+import { IoLogIn } from "react-icons/io5";
+import { RiDashboardLine } from "react-icons/ri";
 import { TiBusinessCard } from "react-icons/ti";
-import { PiMicrosoftTeamsLogoLight } from "react-icons/pi";
 
+// Pages & components
 import Dashboard from "../pages/Dashboard";
 import Catalogues from "../pages/Catalogues";
 import Contact from "../pages/Contact";
@@ -38,6 +38,9 @@ import AddBlog from "../components/Blogs/AddBlog";
 import Roles from "../pages/Roles";
 import Stores from "../pages/Stores";
 import Categories from "../pages/Categories";
+import BlogCategories from "../components/Blogs/BlogCategories";
+import { FileMarkdownFilled } from "@ant-design/icons";
+import Content from "../pages/Content";
 
 const masterRoutes = [
   {
@@ -49,20 +52,12 @@ const masterRoutes = [
     submenu: [],
   },
   {
-    path: "#",
+    path: "/leads/list",
     name: "Leads",
     icon: <PiAddressBook />,
     isSidebarActive: true,
-
-    submenu: [
-      {
-        path: "/leads/list",
-        name: "Lead List",
-        icon: <RiListOrdered />,
-        element: <Leads />,
-        isSidebarActive: true,
-      },
-    ],
+    element: <Leads />,
+    submenu: [],
   },
   {
     path: "/catalogues/list",
@@ -73,9 +68,17 @@ const masterRoutes = [
     submenu: [],
   },
   {
+    path: "/file-manager",
+    name: "File Manager",
+    icon: <FileMarkdownFilled />,
+    element: <Content />,
+    submenu: [],
+    isSidebarActive: true,
+  },
+  {
     path: "/category-management",
     name: "Categories & Parent Categories",
-    icon: <FaTeamspeak />,
+    icon: <BiCategory />,
     element: <Categories />,
     submenu: [],
     isSidebarActive: true,
@@ -83,7 +86,7 @@ const masterRoutes = [
   {
     path: "/queries",
     name: "Queries",
-    icon: <FaTeamspeak />,
+    icon: <LiaFileSignatureSolid />,
     isSidebarActive: true,
     element: <Contact />,
     submenu: [],
@@ -93,7 +96,6 @@ const masterRoutes = [
     name: "Blogs & Categories",
     icon: <BiCategory />,
     isSidebarActive: true,
-
     submenu: [
       {
         path: "/blogs",
@@ -107,11 +109,12 @@ const masterRoutes = [
         name: "Add Blog",
         icon: <AiOutlineProduct />,
         element: <AddBlog />,
-        isSidebarActive: true,
+        isSidebarActive: false,
       },
       {
         path: "/blogs/categories",
         name: "Categories",
+        element: <BlogCategories />,
         icon: <BiAccessibility />,
         isSidebarActive: true,
       },
@@ -127,10 +130,9 @@ const masterRoutes = [
   },
   {
     path: "#",
-    name: "Users",
+    name: "User Management",
     icon: <MdOutlinePeopleAlt />,
     isSidebarActive: true,
-
     submenu: [
       {
         path: "/users",
@@ -140,22 +142,10 @@ const masterRoutes = [
         element: <ManageUsers />,
       },
       {
-        path: "/users/profile",
-        name: "Profile",
-        icon: <CgProfile />,
-        isSidebarActive: true,
-      },
-      {
         path: "/roles-permissions",
         name: "Roles",
         icon: <BiShield />,
         element: <Roles />,
-        isSidebarActive: true,
-      },
-      {
-        path: "/users/settings",
-        name: "Settings",
-        icon: <MdOutlineSettings />,
         isSidebarActive: true,
       },
     ],
@@ -164,8 +154,20 @@ const masterRoutes = [
     path: "/others",
     name: "Others",
     icon: <MdError />,
-    isSidebarActive: true,
+    isSidebarActive: false,
     submenu: [
+      {
+        path: "/u/:userId",
+        name: "Profile",
+        icon: <CgProfile />,
+        isSidebarActive: true,
+      },
+      {
+        path: "/users/settings",
+        name: "Settings",
+        icon: <MdOutlineSettings />,
+        isSidebarActive: true,
+      },
       {
         path: "/login",
         name: "Login",

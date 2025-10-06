@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       setAuthState({ accessToken, refreshToken, user });
-      navigate("/dashboard");
+      navigate("/");
       return { success: true };
     } catch (error) {
       return { success: false, error: error?.data?.error || "Login failed" };

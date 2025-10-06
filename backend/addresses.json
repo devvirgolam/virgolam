@@ -1,0 +1,3762 @@
+[
+  {
+    "id": "f560692c-293e-467d-b85f-338081901f99",
+    "owner_type": "dealer",
+    "owner_id": "8d0beb7f-0774-46a0-a03e-c26b1b7f7b26",
+    "street": "Guahati Flour Mil Compound, Opp. Hotel Gateway, G. S. Road, Guwahati",
+    "city": "Guwahati",
+    "state": "Assam",
+    "country": "India",
+    "pincode": "781005"
+  },
+  {
+    "id": "7777151c-3e8c-4427-971d-32aeef1f9148",
+    "owner_type": "dealer",
+    "owner_id": "99769014-d4ae-4ab5-abba-7136716bc60c",
+    "street": "Opp. Colours Mall. Nh-43 New Dhamtar Road, Pachpedi Naka",
+    "city": "Pachpedi Naka",
+    "state": "Assam",
+    "country": "India",
+    "pincode": "492001"
+  },
+  {
+    "id": "87372c00-2d53-4ce3-a4fa-30c916775aa2",
+    "owner_type": "dealer",
+    "owner_id": "816a2097-da21-46fc-b69f-e2a802b63bc0",
+    "street": "Shree Ram Bhawan, Exhibition Road, Patna",
+    "city": "Patna",
+    "state": "Bihar",
+    "country": "India",
+    "pincode": "800001"
+  },
+  {
+    "id": "e68f575d-5264-49cd-bd18-10faf7eca59e",
+    "owner_type": "dealer",
+    "owner_id": "d80a7805-5df2-4b46-b1bb-04f2841fe96c",
+    "street": "D-117, Okhla Industrial Area, Phase-1, New Delhi",
+    "city": "New Delhi",
+    "state": "Bihar",
+    "country": "India",
+    "pincode": "110020"
+  },
+  {
+    "id": "30696899-7b9e-4443-bf15-91472d90dd4f",
+    "owner_type": "dealer",
+    "owner_id": "bc4703ec-2ed2-4a1d-a67b-61d31de460f2",
+    "street": "Beside Choudhary Hospital, Main Road, Saraipali",
+    "city": "Saraipali",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "493558"
+  },
+  {
+    "id": "d3404a4c-01f3-454c-898d-692103ea24a6",
+    "owner_type": "dealer",
+    "owner_id": "764e3449-f31b-498d-acdf-3f829507235a",
+    "street": "Station Road, Durg",
+    "city": "Durg",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "491001"
+  },
+  {
+    "id": "2f3ae196-81da-46d4-a0e0-d99fa977bbf9",
+    "owner_type": "dealer",
+    "owner_id": "39e19f9d-493d-4ae2-a0c8-e5ceda7d5b44",
+    "street": "Keshri Bagicha Road, Bhatagaon",
+    "city": "Bhatagaon",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "492001"
+  },
+  {
+    "id": "029c1d61-c70d-42a2-972e-b76994c1c931",
+    "owner_type": "dealer",
+    "owner_id": "dd22a20a-f450-4890-8936-631a574a2d22",
+    "street": "Behind Nav Jgariti School, Vidhan Sabha Road, Saddu",
+    "city": "Saddu",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "492101"
+  },
+  {
+    "id": "fb67e5fb-db8a-4ce0-af4c-afa521dc5a6c",
+    "owner_type": "dealer",
+    "owner_id": "70b1d3e2-c645-42da-9413-ba8bd489cc96",
+    "street": "Near Miashra Hospital, Mandi Road, Fafadih",
+    "city": "Fafadih",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "490023"
+  },
+  {
+    "id": "7fa4bc77-c54a-4dd9-ae32-a1f8824c0424",
+    "owner_type": "dealer",
+    "owner_id": "57995957-85cd-433c-9247-fd92dda67385",
+    "street": "New Timber Market, Devendra Nagar Road, Fafadih Raipur",
+    "city": "Fafadih Raipur",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "492009"
+  },
+  {
+    "id": "b5a227bf-a293-41cd-91c0-09d396404f18",
+    "owner_type": "dealer",
+    "owner_id": "ceeddfef-b53e-412e-8a5c-c6939dd2b462",
+    "street": "Ampara, Raipur",
+    "city": "Raipur",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "492001"
+  },
+  {
+    "id": "5a65e9e1-e99b-41a3-b3b4-1b0a117e56d7",
+    "owner_type": "dealer",
+    "owner_id": "a9e41a25-e5ec-4f7e-bf15-0e85742af00e",
+    "street": "Behind Patidar Bhawan, Bhanpuri",
+    "city": "Bhanpuri",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "492001"
+  },
+  {
+    "id": "d8e2e252-62ad-4fff-a95b-9faf89d0afd3",
+    "owner_type": "dealer",
+    "owner_id": "be869097-47c9-4b2c-950f-5b3fd9a857dd",
+    "street": "Old High Court Road, Bilaspur",
+    "city": "Bilaspur",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "495220"
+  },
+  {
+    "id": "49cc228f-44fd-4f1c-a429-f3496be4fabc",
+    "owner_type": "dealer",
+    "owner_id": "3470e293-4d24-4f0a-9172-24e59a8f82dd",
+    "street": "Janak Bada K.Kroad, Moudahpara",
+    "city": "Moudahpara",
+    "state": "Chhattisgarh",
+    "country": "India",
+    "pincode": "492001"
+  },
+  {
+    "id": "31336560-5e71-4496-939d-9098b02e15a6",
+    "owner_type": "dealer",
+    "owner_id": "475c6eba-7f8d-44de-ae01-53b5ac6ed5e5",
+    "street": "73/13/2, Swarn Park, Main Rohtak Road, Assam Timber Market",
+    "city": "Assam Timber Market",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110041"
+  },
+  {
+    "id": "10ce7a23-207b-44c0-8243-59eae05cfa7c",
+    "owner_type": "dealer",
+    "owner_id": "2d07031b-3819-4511-88b8-b742638e1879",
+    "street": "113, Amrit Puri Opp. Isckon Temple, East Of Kailash",
+    "city": "East Of Kailash",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110065"
+  },
+  {
+    "id": "1b22539a-198c-4ecd-9d29-a354b57dae4f",
+    "owner_type": "dealer",
+    "owner_id": "1dcc9475-1649-491d-b0c2-f4c05b43a092",
+    "street": "1/3819, Bhagwanpur Khera Loni Road, Shahdara",
+    "city": "Shahdara",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110032"
+  },
+  {
+    "id": "c242b7c2-63f2-4cc3-9247-54b2694b6a5b",
+    "owner_type": "dealer",
+    "owner_id": "50bb0a6c-7e0b-47c0-be1d-45bd654a1c08",
+    "street": "892-B/1 Mehrauli",
+    "city": "892-B/1 Mehrauli",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110030"
+  },
+  {
+    "id": "282da116-63f2-44f1-8da1-f90c29bfee13",
+    "owner_type": "dealer",
+    "owner_id": "9a7d4a53-2c9e-4a5a-a43e-c8133e267da7",
+    "street": "B-1/7, Sewak Park, Uttam Nagar",
+    "city": "Uttam Nagar",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110059"
+  },
+  {
+    "id": "b5225662-3921-45d3-84d1-4bf3191c8809",
+    "owner_type": "dealer",
+    "owner_id": "ead52d11-8e11-49cc-a8ec-cf8ac03c10a4",
+    "street": "Ground Floor .1488, Gali No.5, Kotla Mubarakpur",
+    "city": "Kotla Mubarakpur",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110003"
+  },
+  {
+    "id": "676d79ab-15c7-4c67-b934-d9147ce33192",
+    "owner_type": "dealer",
+    "owner_id": "e4344076-9fcf-45f5-9101-84b501f1a6f6",
+    "street": "C-561, Chirag Delhi",
+    "city": "Chirag Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110017"
+  },
+  {
+    "id": "7c69b9b9-a939-4d41-a800-494b7177dd6e",
+    "owner_type": "dealer",
+    "owner_id": "d01c3bbc-9547-4491-b8c4-742932a31873",
+    "street": "342, Krishna Marketing, Pitampura Village",
+    "city": "Pitampura Village",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110034"
+  },
+  {
+    "id": "e5e6d0cb-c4f7-4032-a276-751dfe3c78d3",
+    "owner_type": "dealer",
+    "owner_id": "6cea8db5-7465-4d01-8857-b2445470ef40",
+    "street": "B-118, W.H.S., Kirti Nagar",
+    "city": "Kirti Nagar",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110015"
+  },
+  {
+    "id": "c0a5bea1-b7a1-4552-ab68-d4c85b4ba661",
+    "owner_type": "dealer",
+    "owner_id": "17255ac1-6226-4924-bc63-567bf3a70c42",
+    "street": "A-18, Ramgarh Near Jahangir Puri",
+    "city": "Ramgarh Near Jahangir Puri",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110033"
+  },
+  {
+    "id": "03de7dd7-cf3a-4822-a776-ff4db2c2d634",
+    "owner_type": "dealer",
+    "owner_id": "307dc209-9943-48f8-931a-b189234b5c63",
+    "street": "Kh. No. 64/10 Opp. Metro Pillar No. 582, Mundka Ind. Area",
+    "city": "Mundka Ind. Area",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110041"
+  },
+  {
+    "id": "862a89d4-a0f6-4fbd-89f9-a5208bfa9688",
+    "owner_type": "dealer",
+    "owner_id": "431385a0-8bf9-4a32-980f-2445c3a97b9b",
+    "street": "1/18, W.H.S., Kirti Nagar",
+    "city": "Kirti Nagar",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110015"
+  },
+  {
+    "id": "ccf04af7-fdbb-4400-89a6-6051d4d0d688",
+    "owner_type": "dealer",
+    "owner_id": "5506d87a-b956-4347-958e-899c8bb74dde",
+    "street": "220-A/23 Rama Market Pitampura",
+    "city": "220-A/23 Rama Market Pitampura",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110034"
+  },
+  {
+    "id": "dcd46b71-f618-406f-8bab-2d70fd47e03a",
+    "owner_type": "dealer",
+    "owner_id": "41aa7af2-566c-4145-bbe8-206f6a67b651",
+    "street": "B-1/7, Sewak Park, Uttam Nagar",
+    "city": "Uttam Nagar",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110059"
+  },
+  {
+    "id": "729b3991-440b-40b0-837a-28593613d6fc",
+    "owner_type": "dealer",
+    "owner_id": "8dcd3cbe-5adf-4183-bf68-e0572da41b0f",
+    "street": "1/4681, Gali No.-4, Balbir Nagar Extension, Shahdara",
+    "city": "Shahdara",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110032"
+  },
+  {
+    "id": "d707173c-7563-4474-9f6f-dc9a28bb7c44",
+    "owner_type": "dealer",
+    "owner_id": "0ea6087a-8a54-404e-a0d1-08d635d2e6d9",
+    "street": "1443A Wazir Nagar Kotla Mubaarak Pur",
+    "city": "1443A Wazir Nagar Kotla Mubaarak Pur",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110003"
+  },
+  {
+    "id": "cba6629e-e574-4665-acdf-541f83188b32",
+    "owner_type": "dealer",
+    "owner_id": "699f2195-ed76-4478-897c-732d1a165a07",
+    "street": "Krishna Mkt Pitam Pura",
+    "city": "Krishna Mkt Pitam Pura",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110034"
+  },
+  {
+    "id": "91f87e97-bff4-4d9c-98c6-550b73e74ee0",
+    "owner_type": "dealer",
+    "owner_id": "692e05e5-9de6-4e14-ae39-715d2579b6ec",
+    "street": "A-23 Gali No. 3, Jagatpuri, Near Red Light Krishna Nagar",
+    "city": "Near Red Light Krishna Nagar",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110051"
+  },
+  {
+    "id": "3ae9bcc1-7bd2-4b8d-8bb5-8d4879d6ad30",
+    "owner_type": "dealer",
+    "owner_id": "09214da4-f43d-45bd-8e63-ef070c367f2a",
+    "street": "1/16 Whs New Timber Market, Kirti Nagar, Near Mayapuri Chowk",
+    "city": "Near Mayapuri Chowk",
+    "state": "Delhi",
+    "country": "India",
+    "pincode": "110015"
+  },
+  {
+    "id": "138e616f-ae35-4d64-92ae-930e587adfb3",
+    "owner_type": "dealer",
+    "owner_id": "c97bcf33-7018-480c-a67d-42218f62aa4a",
+    "street": "Plot No.7, Shop No. 7/8/9/10, Maksudabad Colony, Furniture Market, Najafgarh",
+    "city": "Najafgarh",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "110043"
+  },
+  {
+    "id": "e206c83c-a4a5-492d-93ed-b35ec87f5aab",
+    "owner_type": "dealer",
+    "owner_id": "0c2541a6-4b88-4331-9dcd-d1e8f158620e",
+    "street": "G-20, Vikram Plaza, Nr. Gota Railway Cross Road, Chandlodia",
+    "city": "Chandlodia",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "382481"
+  },
+  {
+    "id": "fa627504-3c1e-4176-97af-f921bcb2e238",
+    "owner_type": "dealer",
+    "owner_id": "46c047b6-3862-45e4-919d-84a4f288e69f",
+    "street": "Lati Bazar -3, Near Gita Mandir, Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380022"
+  },
+  {
+    "id": "a7da9fba-2810-49da-a8d2-eaffc5c4d99c",
+    "owner_type": "dealer",
+    "owner_id": "c19194c8-62da-46d0-85ef-8f985f8bd8b9",
+    "street": "Shop No.15,17,18, Money Hotel Banquet Ne Niche, Isanpur",
+    "city": "Isanpur",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380028"
+  },
+  {
+    "id": "1bdb202d-cfe8-463e-bdaa-969c81bf16ee",
+    "owner_type": "dealer",
+    "owner_id": "02d7f68b-6765-4ada-952e-693409808768",
+    "street": "Shop No. 8, Below Money Hotel, Near Isanpur Cross Road Isanpur",
+    "city": "Near Isanpur Cross Road Isanpur",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380050"
+  },
+  {
+    "id": "bed8b709-3f95-4f65-bbfd-1d7778ce4581",
+    "owner_type": "dealer",
+    "owner_id": "18fb0fa3-f1ad-416b-a127-7a8618a0e588",
+    "street": "G-14, Monalisa Apartment, Opp Tera Panth Bhawan, Nr. Sujata Flats, Sahibaug",
+    "city": "Sahibaug",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380004"
+  },
+  {
+    "id": "0f1b1c03-4587-4a45-8a71-72aef70725df",
+    "owner_type": "dealer",
+    "owner_id": "bf70c149-1c8d-4824-9d73-507fe4cb23b6",
+    "street": "6, Shahajanad Tower, Jivraj Park Cross Road, Jivraj Park",
+    "city": "Jivraj Park",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380051"
+  },
+  {
+    "id": "1b3a679d-1175-4c5c-b2ac-1909bc564301",
+    "owner_type": "dealer",
+    "owner_id": "16cc6efe-fade-4f8f-b3e8-5ff7767e081e",
+    "street": "Opp. Geeta Mandir, Brts Busstop, Near Geeta Mandir, Lati Bazar",
+    "city": "Lati Bazar",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380022"
+  },
+  {
+    "id": "5c09c608-e709-4f5f-8820-4bf6d4ac1e92",
+    "owner_type": "dealer",
+    "owner_id": "0dd9ba31-69a3-4d7e-8e2f-2532f27bce97",
+    "street": "15, Ferdil House, Ground Flour Opp Saint Xaviers Girls Hostel",
+    "city": "Ground Flour Opp Saint Xaviers Girls Hostel",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380009"
+  },
+  {
+    "id": "74cea170-eb96-4976-b115-2e22e905cb54",
+    "owner_type": "dealer",
+    "owner_id": "66a761d7-c733-4c84-9ea8-8bc667c0caca",
+    "street": "4, Alif Complex, Sunrise Apartment Nr. Haji Baba Dargah",
+    "city": "Sunrise Apartment Nr. Haji Baba Dargah",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "380055"
+  },
+  {
+    "id": "6160bc58-94ec-45fa-8072-13fd208c2427",
+    "owner_type": "dealer",
+    "owner_id": "e43219c4-095c-4528-8b3b-51899244e77d",
+    "street": "28, Geeta Estate Nr Soni Ni Chali, Odhav",
+    "city": "Odhav",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "382415"
+  },
+  {
+    "id": "b0a208e9-fb8d-4511-8d9c-8f76c0a5e4e2",
+    "owner_type": "dealer",
+    "owner_id": "6a1c3abe-b0d4-4cfa-acc0-9df10b4fe3a0",
+    "street": "D-117, Okhla Industrial Area, Phase-1, New Delhi",
+    "city": "New Delhi",
+    "state": "Gujarat",
+    "country": "India",
+    "pincode": "110020"
+  },
+  {
+    "id": "f9c1da7c-1e8a-4cab-a4b0-5ef734bd0d2b",
+    "owner_type": "dealer",
+    "owner_id": "3ac25ee0-59a9-473c-9ae2-83590bebca2b",
+    "street": "Dss-44, Marble Market, Sector-21C Faridabad",
+    "city": "Sector-21C Faridabad",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "121001"
+  },
+  {
+    "id": "8dee54cb-6a6a-4034-9bcb-25aa22008762",
+    "owner_type": "dealer",
+    "owner_id": "350398b7-2579-415a-a29e-7e2c28882efd",
+    "street": "Opp. Metro Pillar No. 54, Sikanderpur, Gurgaon",
+    "city": "Gurgaon",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "122002"
+  },
+  {
+    "id": "2190d503-ce76-4e7a-9e52-d3963ebfe733",
+    "owner_type": "dealer",
+    "owner_id": "824db87d-7bd1-4147-95e7-6bb07c28247a",
+    "street": "Outer Quilla Road, Rohtak",
+    "city": "Rohtak",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "124001"
+  },
+  {
+    "id": "8ae7ba5a-3ff9-46a0-b7f2-fbcc6c992c06",
+    "owner_type": "dealer",
+    "owner_id": "824e3bca-55e1-4517-9ade-d883ff39f516",
+    "street": "Basment- Prem Puri, Jharsa Road, Sector 31-32, Gurgaon",
+    "city": "Gurgaon",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "122001"
+  },
+  {
+    "id": "1303b867-a6dc-4580-aba7-2f287bbdef70",
+    "owner_type": "dealer",
+    "owner_id": "3018f4bd-c827-4863-a108-1848a000654e",
+    "street": "2662,63, Sec-7A, Faridabad",
+    "city": "Faridabad",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "121006"
+  },
+  {
+    "id": "af479f06-7a17-4753-b2f8-a66eb324bb6d",
+    "owner_type": "dealer",
+    "owner_id": "03527ac6-face-4328-b55a-ae280fe2ca7e",
+    "street": "Plot No:-134 Dewat Colony Khera Dewat Road, Gurgaon Village, Gurgaon New Railway Road",
+    "city": "Gurgaon New Railway Road",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "122001"
+  },
+  {
+    "id": "22bf8e57-8a91-4b78-bdfe-b7cbb91c4386",
+    "owner_type": "dealer",
+    "owner_id": "29ebba88-bc56-4271-96ea-5528092b4afe",
+    "street": "Ambedker Chowk, Kurkeshtra H.R",
+    "city": "Kurkeshtra H.R",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "136118"
+  },
+  {
+    "id": "af9336a9-48f2-4e4e-a880-74f5938871d5",
+    "owner_type": "dealer",
+    "owner_id": "24dd0ef5-ffbd-43b1-aa7f-6be894045893",
+    "street": "Near Sherawali Mandir, Abdullapur, Pinjor",
+    "city": "Pinjor",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "134102"
+  },
+  {
+    "id": "afe8909b-9c93-43fe-85cb-8514ee6be503",
+    "owner_type": "dealer",
+    "owner_id": "2845b9af-eefc-4611-b170-8b0cb2802f03",
+    "street": "Sec 12 Really",
+    "city": "Sec 12 Really",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "134109"
+  },
+  {
+    "id": "c1a57b4b-ca1e-482f-bb52-c62d338e7973",
+    "owner_type": "dealer",
+    "owner_id": "795b41b9-008f-43ee-8aa7-0609dd4969d7",
+    "street": "Industries Area Phase 2 Panchkula",
+    "city": "Industries Area Phase 2 Panchkula",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "134113"
+  },
+  {
+    "id": "b59b3efa-2c53-43b5-b2f0-ad715943e4d9",
+    "owner_type": "dealer",
+    "owner_id": "8bf3a57c-2063-4b7e-b053-c5ca1c09dce4",
+    "street": "Industries Area Phase 1 Panchkula",
+    "city": "Industries Area Phase 1 Panchkula",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "133913"
+  },
+  {
+    "id": "7e5994a5-0225-4cfc-b8ff-c3b865d0dffa",
+    "owner_type": "dealer",
+    "owner_id": "81e5472d-f344-415b-88fe-525d98ebdca3",
+    "street": "Sec 20 Panchkula",
+    "city": "Sec 20 Panchkula",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "134109"
+  },
+  {
+    "id": "6caa9e42-ff9c-4cf7-999b-6140b4a7a4be",
+    "owner_type": "dealer",
+    "owner_id": "63b9a125-32f0-4fcb-96ec-9f4013673cb4",
+    "street": "Industries Area Phase 2",
+    "city": "Industries Area Phase 2",
+    "state": "Haryana",
+    "country": "India",
+    "pincode": "134113"
+  },
+  {
+    "id": "67061cba-8f57-4cc5-bacb-1ec546da3ad5",
+    "owner_type": "dealer",
+    "owner_id": "ab5cf869-3565-4099-9a39-cd91cad78177",
+    "street": "Plot No14 Sec3 Near Parwanoo",
+    "city": "Plot No14 Sec3 Near Parwanoo",
+    "state": "Himachal Pradesh",
+    "country": "India",
+    "pincode": "175220"
+  },
+  {
+    "id": "0bb6cd84-b041-48da-b0ca-0adc401d65b9",
+    "owner_type": "dealer",
+    "owner_id": "eed32301-c1f6-44f8-9224-7b3ee4ef2fbe",
+    "street": "Digiana, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "181101"
+  },
+  {
+    "id": "114f01b5-1c37-4eff-a511-2cfee92cedaf",
+    "owner_type": "dealer",
+    "owner_id": "cab5fcb9-df52-4a68-813f-e2c81cd75439",
+    "street": "Last Morh, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "180004"
+  },
+  {
+    "id": "b3aa913d-0c7d-4e38-8483-877311512b48",
+    "owner_type": "dealer",
+    "owner_id": "4c616826-b155-4a05-a98b-7b9144bf26e8",
+    "street": "Sunjwan Morh, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "180011"
+  },
+  {
+    "id": "ea4112c1-8db1-4edb-b296-6dce741b0b0c",
+    "owner_type": "dealer",
+    "owner_id": "61b28ea5-6aa9-4a8f-9c30-3a0a7c54a18f",
+    "street": "Talab Tillo, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "180002"
+  },
+  {
+    "id": "e1b7fc24-afc0-4ea8-9a86-8efbd8748653",
+    "owner_type": "dealer",
+    "owner_id": "24da9903-3e24-4a3c-915e-32855ef12915",
+    "street": "Greater Kailash, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "180001"
+  },
+  {
+    "id": "0290df82-0317-4e93-9bd0-315add382969",
+    "owner_type": "dealer",
+    "owner_id": "b862dc99-d670-42f8-9f56-ee43d745790a",
+    "street": "Shiva Ji Chowk, Nanak Nagar, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "180004"
+  },
+  {
+    "id": "8322742e-04ab-459c-8e3c-2d0437a2ef2a",
+    "owner_type": "dealer",
+    "owner_id": "8db1d97e-964c-48af-88c2-4ef119ffa15f",
+    "street": "Patel Nagar, Akhnoor Road, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "180002"
+  },
+  {
+    "id": "d841779e-9f3d-4751-9ba0-f634185290b7",
+    "owner_type": "dealer",
+    "owner_id": "0d79ddb9-48e3-4023-a86a-40ae3f056593",
+    "street": "Bishnah, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "181132"
+  },
+  {
+    "id": "9dc4911f-58f2-4708-aedc-50e544a5ca6a",
+    "owner_type": "dealer",
+    "owner_id": "fd989813-d3c7-46f0-8a84-aeb4cadc7d05",
+    "street": "Udhampur, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "182101"
+  },
+  {
+    "id": "a30191ae-d75b-4327-89da-0574202a27a7",
+    "owner_type": "dealer",
+    "owner_id": "a447cb04-52b0-489c-b2ad-e4675fcc3207",
+    "street": "Kunjwani, Gangyal, Jammu",
+    "city": "Jammu",
+    "state": "Jammu & Kashmir",
+    "country": "India",
+    "pincode": "180010"
+  },
+  {
+    "id": "78aaec04-c8e5-48dc-840c-f1f191de33a2",
+    "owner_type": "dealer",
+    "owner_id": "fc01fecc-383c-4a74-8d89-95334d082f31",
+    "street": "Inside Rajul Complexaga Chowk",
+    "city": "Inside Rajul Complexaga Chowk",
+    "state": "Jharkhand",
+    "country": "India",
+    "pincode": "482002"
+  },
+  {
+    "id": "aa5cfd73-297c-4c48-98f1-ba15e850d4c4",
+    "owner_type": "dealer",
+    "owner_id": "116de9ff-bf84-4e6a-a17f-3e2ef38c2b5d",
+    "street": "Gali No-6, Jay Prakash Nagar, Near Bartand Bus Stand, Dhanbad",
+    "city": "Dhanbad",
+    "state": "Jharkhand",
+    "country": "India",
+    "pincode": "826001"
+  },
+  {
+    "id": "f643aad0-cbf6-4e59-809d-fcd0b2a0c25d",
+    "owner_type": "dealer",
+    "owner_id": "cb8766d1-1db6-4f9c-98f9-9c221641023d",
+    "street": "Ground Floor Vikash Chandra Complex, Opp Akasvani, Ratu Road Ranchi",
+    "city": "Ratu Road Ranchi",
+    "state": "Jharkhand",
+    "country": "India",
+    "pincode": "834001"
+  },
+  {
+    "id": "f0c0021f-9644-4f3c-82db-5649d7e70043",
+    "owner_type": "dealer",
+    "owner_id": "042b136f-107f-468d-b6f1-39d5f75f26de",
+    "street": "Near Milkhiram Market Sakchi Jamshedpur",
+    "city": "Near Milkhiram Market Sakchi Jamshedpur",
+    "state": "Jharkhand",
+    "country": "India",
+    "pincode": "831001"
+  },
+  {
+    "id": "1de8d299-3566-43dd-935e-0030322a0a9a",
+    "owner_type": "dealer",
+    "owner_id": "23cf6ca5-99d0-42d3-99cb-091657f10367",
+    "street": "Harmu Housing Colony, H-119, P.S -Argora, Ranchi",
+    "city": "Ranchi",
+    "state": "Jharkhand",
+    "country": "India",
+    "pincode": "834002"
+  },
+  {
+    "id": "b79d38bf-c3ed-4e8c-9733-a51693f7385d",
+    "owner_type": "dealer",
+    "owner_id": "d53eb592-2189-483b-92b2-24baa8865169",
+    "street": "Thazhe Chelari, Velimukk, Chelari, Malappuram",
+    "city": "Malappuram",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "676317"
+  },
+  {
+    "id": "d19c92ce-f31d-4ef5-8d62-4df2a930e2db",
+    "owner_type": "dealer",
+    "owner_id": "6191335e-d7a9-4de5-923c-ca19b50442fa",
+    "street": "Shyamala Complex, Kannur",
+    "city": "Kannur",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "670012"
+  },
+  {
+    "id": "bb8e0b5e-1383-418e-820f-3bb632224914",
+    "owner_type": "dealer",
+    "owner_id": "fe83fd8f-baeb-462a-be03-166aa2ffcb27",
+    "street": "Vettikattu Complex, Tirurangadi, Malappuram",
+    "city": "Malappuram",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "676306"
+  },
+  {
+    "id": "c6ce9901-78c7-4655-874c-5e8a23991bd3",
+    "owner_type": "dealer",
+    "owner_id": "957194ff-6fe4-4560-9b1e-4ca7f1390142",
+    "street": "Calicut Road, Agastiamozhi, Mukkom, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673602"
+  },
+  {
+    "id": "a018f50c-0f45-473b-a232-59b197847c46",
+    "owner_type": "dealer",
+    "owner_id": "37c91c42-c785-466f-8bc8-bf4efcebf1ac",
+    "street": "Cinema Hall Jn, Vengara, Malappuram",
+    "city": "Malappuram",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "676304"
+  },
+  {
+    "id": "238a93c6-d3b0-4056-ad6e-b181fc239dd4",
+    "owner_type": "dealer",
+    "owner_id": "151725b3-cfd6-449a-baf9-db0c5f70bcea",
+    "street": "Kutooli, Valilapuzha, Areacode, Malappuram",
+    "city": "Malappuram",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673639"
+  },
+  {
+    "id": "509ae9bd-1779-45d5-99cd-191309e84975",
+    "owner_type": "dealer",
+    "owner_id": "70993c2b-e6fc-42b3-a117-4516504d7a15",
+    "street": "P.K.Tower, Opp. Aishwarya Athulya Theatre, Sulthan Bathery, Wayanad",
+    "city": "Wayanad",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673592"
+  },
+  {
+    "id": "7fd9c303-dbec-4426-a8d8-90c811777663",
+    "owner_type": "dealer",
+    "owner_id": "4a9625ba-8a7e-4711-8b3e-52abf43640bf",
+    "street": "City Building, Court Road, Thaliparamba, Kannur",
+    "city": "Kannur",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "670141"
+  },
+  {
+    "id": "5bdd43b5-2b8d-4809-b220-8dc574de233b",
+    "owner_type": "dealer",
+    "owner_id": "efa393b1-df35-4fa7-a51a-36549e7ed3cb",
+    "street": "Y.M.C.A Cross Road, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673001"
+  },
+  {
+    "id": "6e14377c-0ef0-4742-a1de-efda369902b6",
+    "owner_type": "dealer",
+    "owner_id": "249fd91d-a869-4358-a7a0-6136054536fb",
+    "street": "Ussan Mocta, Thalassery Road, Punnol, Kannur",
+    "city": "Kannur",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "670102"
+  },
+  {
+    "id": "6862a694-b478-4b3c-875a-3a1f125af3bd",
+    "owner_type": "dealer",
+    "owner_id": "6a27ea34-d61b-48a5-a783-69bbe3f1e3e9",
+    "street": "18/1175- A, T.T.Complex, Jail Jn, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673004"
+  },
+  {
+    "id": "a8834c09-ef31-4be4-ba4f-ed0190a7a397",
+    "owner_type": "dealer",
+    "owner_id": "b4977031-8c02-49e4-9cd6-11f8bd7ca6cc",
+    "street": "Farook Hospital Complex, Farook, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673631"
+  },
+  {
+    "id": "cb26fcec-e80d-4a80-98ed-eb75a9476cab",
+    "owner_type": "dealer",
+    "owner_id": "599914bf-2a7c-436e-a080-30069bcb53bf",
+    "street": "Mm-8/3026A,B,F, Main Road Mukkom, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673602"
+  },
+  {
+    "id": "aeec69fc-cb49-4584-a104-58394653e21a",
+    "owner_type": "dealer",
+    "owner_id": "e60eb950-4565-475c-bdd6-6e0f2d6c8075",
+    "street": "Kp8/285 B, Nihmath, Main Road, Kadungooth, Kootilangadi, Malappuram",
+    "city": "Malappuram",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "676506"
+  },
+  {
+    "id": "547675e5-4efd-4866-a22d-f365d89c2f37",
+    "owner_type": "dealer",
+    "owner_id": "f5ac393a-92dd-4785-bda5-23f9556b35aa",
+    "street": "18/1529-A, Puthiyapalam, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673002"
+  },
+  {
+    "id": "32fd383b-8b8d-4ede-a56e-50e5bfe0631c",
+    "owner_type": "dealer",
+    "owner_id": "5deceae0-a7c0-410e-9882-4d78d29ff7fd",
+    "street": "Xl Vii -2627, Near Makkani, South Bazar, Kannur",
+    "city": "Kannur",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "670002"
+  },
+  {
+    "id": "c30dc731-9544-4a0e-b2a5-5ea71c53424a",
+    "owner_type": "dealer",
+    "owner_id": "ec204f0d-06a1-4b1c-92d2-ddae33f44c50",
+    "street": "Palakad Road, Mele Pattambi, Palakad",
+    "city": "Palakad",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "679306"
+  },
+  {
+    "id": "619b851a-be41-490e-a01f-90af64d171a5",
+    "owner_type": "dealer",
+    "owner_id": "80ca2a4d-dc04-47ad-b912-b84664d10364",
+    "street": "Pushpa Jn, Kallai Road, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673003"
+  },
+  {
+    "id": "4429ee91-24e0-495d-ba65-b5781bf2f2b2",
+    "owner_type": "dealer",
+    "owner_id": "22b1671e-a6af-4224-8084-fa7de2d14d07",
+    "street": "18/1234 C1, Safa Building, Near Nss School, Tali, Puthiyapalam Road, Chalappuram, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673002"
+  },
+  {
+    "id": "807a6a94-3e84-4cb2-87b4-50098e04fd89",
+    "owner_type": "dealer",
+    "owner_id": "bb887370-7da5-455c-bade-0173bb785365",
+    "street": "Kp 6/36A, 36 B Salamath Arcade, Kunnamangalam, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673571"
+  },
+  {
+    "id": "416f744c-b67f-42c2-9ef4-7d02f10291d0",
+    "owner_type": "dealer",
+    "owner_id": "d10f367f-53c8-4271-8d0b-8b9d18038dea",
+    "street": "Ram Mohan Road, Kozhikode",
+    "city": "Kozhikode",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "673004"
+  },
+  {
+    "id": "60d183af-f309-4d50-8d91-05848a32b826",
+    "owner_type": "dealer",
+    "owner_id": "dc0fe161-33be-40aa-b012-7cfaccd1aa74",
+    "street": "Kochar Road, Valiyashala, Killipalam, Trivandrum",
+    "city": "Trivandrum",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "695002"
+  },
+  {
+    "id": "1a50ab55-19ef-4fa8-ba60-7877772c2af9",
+    "owner_type": "dealer",
+    "owner_id": "f508dd3a-840a-4465-95e6-70120e1eecd2",
+    "street": "Palimukku, Kollam, Kerala",
+    "city": "Kerala",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "691010"
+  },
+  {
+    "id": "99b1fa4e-1eaf-417d-9c70-a96f2ce3eca2",
+    "owner_type": "dealer",
+    "owner_id": "5fbc908a-d662-4eb5-a9e2-9bdf97634963",
+    "street": "53/2962,2963,2964,2965,2966, Magnum Building, Bhuvanaeswari Road, Ponnurunni",
+    "city": "Ponnurunni",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682019"
+  },
+  {
+    "id": "0600f1be-430c-4d3e-9947-247c71637e5e",
+    "owner_type": "dealer",
+    "owner_id": "915958a1-aecd-4334-b89f-48854aef7536",
+    "street": "Priyadarshini Road, Palakad",
+    "city": "Palakad",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "678001"
+  },
+  {
+    "id": "213a9140-7a3b-414d-96fd-3976d06283cb",
+    "owner_type": "dealer",
+    "owner_id": "3d07f7e6-4032-4823-9fc5-642bc751a8ff",
+    "street": "Tcm Building, Town Hall Road, Kunnamkulam, Thrissur",
+    "city": "Thrissur",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "680503"
+  },
+  {
+    "id": "507e0c15-1635-41c9-b9f8-76239b09aa94",
+    "owner_type": "dealer",
+    "owner_id": "6202c20b-9000-4bca-bf92-30397d5ed789",
+    "street": "Door No-Xiii/92-3, Thrissur Road, Kodungalure",
+    "city": "Kodungalure",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "680664"
+  },
+  {
+    "id": "bbc2a7eb-e768-4ac9-8ac6-7c6b78bc498c",
+    "owner_type": "dealer",
+    "owner_id": "0aed3997-e521-4108-a75e-26a96c36b0bc",
+    "street": "Paliyekara, Chittsery Po, Thrissure",
+    "city": "Thrissure",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "680301"
+  },
+  {
+    "id": "ff6cbf23-8633-4446-8ae4-7ef05bb2cef1",
+    "owner_type": "dealer",
+    "owner_id": "6d90b55a-a0e0-416f-8e0b-edbc3e4a3716",
+    "street": "Palithayam, Main Road, N-Paravur",
+    "city": "N-Paravur",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "683513"
+  },
+  {
+    "id": "bd56fb64-db94-4006-b550-e8fb7b4ff027",
+    "owner_type": "dealer",
+    "owner_id": "65a9e19b-8be3-4984-86ff-21bbfd6003ff",
+    "street": "Chambakkadavu, Vadakumthala Po, Karunagapally, Kollam",
+    "city": "Kollam",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "690536"
+  },
+  {
+    "id": "e920f079-1d06-4277-8556-b12853a4285f",
+    "owner_type": "dealer",
+    "owner_id": "140c11b9-20ed-407b-8f8a-f02d958eb216",
+    "street": "T K Road, Pullad Po, Pathanamthitta",
+    "city": "Pathanamthitta",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "689548"
+  },
+  {
+    "id": "3a557ce7-fad5-4858-8422-2ae592e1fb71",
+    "owner_type": "dealer",
+    "owner_id": "47ffd045-9f3e-48ab-9774-012ffd1b24d4",
+    "street": "29/1806, Nh Road Vyttila, Kochi",
+    "city": "Kochi",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682019"
+  },
+  {
+    "id": "332c2d10-6f9d-4ca9-800f-5bd6c43a7726",
+    "owner_type": "dealer",
+    "owner_id": "79d7b55b-c0c6-4b09-b008-7415c7cada82",
+    "street": "32/8A, R G Buildings, Chakkara Parmbu, Thamanam",
+    "city": "Thamanam",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682032"
+  },
+  {
+    "id": "e81b8e3c-c416-4afc-aadc-78177a388ac4",
+    "owner_type": "dealer",
+    "owner_id": "5c3b5c67-c48a-462f-8855-a6800b378810",
+    "street": "46/2850-D, Pannapara Building, Puthiya Road, Vennala, Kochi",
+    "city": "Kochi",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682028"
+  },
+  {
+    "id": "66504c29-f3d6-4c1b-bb8e-63ad2a4d2c8c",
+    "owner_type": "dealer",
+    "owner_id": "3fd28e7a-ac91-4309-a61a-04058407b2fb",
+    "street": "32/3018, D D1 D2-Ground Floor, Fsr Tower Ayesha Road, Vyttila",
+    "city": "Vyttila",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682019"
+  },
+  {
+    "id": "3fab0b24-1981-44c6-a73f-f0f0a182f2af",
+    "owner_type": "dealer",
+    "owner_id": "171db152-445e-4b58-ab0f-89e800284485",
+    "street": "Bank Jn., Aluva, Eranakulam",
+    "city": "Eranakulam",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "683101"
+  },
+  {
+    "id": "689853fd-17e8-45c6-be65-d485d65acfef",
+    "owner_type": "dealer",
+    "owner_id": "7ae8dae5-d3ba-4e1d-b3e3-7990b1992986",
+    "street": "35/2909, B-Thammanm, Palarivattom, Kochi",
+    "city": "Kochi",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682025"
+  },
+  {
+    "id": "48796092-04a0-4249-870d-9547eb6cc426",
+    "owner_type": "dealer",
+    "owner_id": "3cb8f879-7be4-4060-b116-c0f6c79e7a37",
+    "street": "Aysha Road, Vyttila Palrivattom Nh Bypass, Ponnruni, Kochi",
+    "city": "Kochi",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682019"
+  },
+  {
+    "id": "3c894799-5ca8-445f-9176-4c96ffd2f004",
+    "owner_type": "dealer",
+    "owner_id": "40b00172-1d7a-402d-b8de-bf6df2d68276",
+    "street": "34/147, B, Umiya Complex, Near Obran Mall, Edappaly, Kochi",
+    "city": "Kochi",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682024"
+  },
+  {
+    "id": "76e26220-ddbb-4e62-9b4e-abce09731a79",
+    "owner_type": "dealer",
+    "owner_id": "c493b797-7085-4355-9c36-bc30272e696b",
+    "street": "Hill Palace Road, Thripunithura, Kochi",
+    "city": "Kochi",
+    "state": "Kerala",
+    "country": "India",
+    "pincode": "682301"
+  },
+  {
+    "id": "0124faed-2d0f-490a-ab68-dbec9e924368",
+    "owner_type": "dealer",
+    "owner_id": "f8efec4d-4c99-4976-8ff1-da12bcdcfd6b",
+    "street": "156, Gnt Market, Dhar Road, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452002"
+  },
+  {
+    "id": "6db50d4d-3c99-4c88-abc9-aedc3bb6b014",
+    "owner_type": "dealer",
+    "owner_id": "511455ad-4c05-44bf-9fa1-66004880a3ba",
+    "street": "Near Sukkhan Akhada, Opp. Wama Tech",
+    "city": "Opp. Wama Tech",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "483501"
+  },
+  {
+    "id": "824c3384-4ea0-4d80-a13b-f145242ffc60",
+    "owner_type": "dealer",
+    "owner_id": "fce1c329-c953-43e6-bb81-686f831062ec",
+    "street": "Behind City Kotwali, Near Gourav Lodge",
+    "city": "Near Gourav Lodge",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "480001"
+  },
+  {
+    "id": "8956b808-b938-4ad4-8dc8-6d18c7895dba",
+    "owner_type": "dealer",
+    "owner_id": "583621ec-589e-4c33-b71b-d18fc57224ef",
+    "street": "14, Mahaveer Nagar, Bangali Square, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452016"
+  },
+  {
+    "id": "7c808ef6-7c21-4d36-b14d-22c995c7cd26",
+    "owner_type": "dealer",
+    "owner_id": "f96d92ce-014c-435d-af4d-019582cf7020",
+    "street": "Bhalsa Khana Road Jawahar Chowk",
+    "city": "Bhalsa Khana Road Jawahar Chowk",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "485001"
+  },
+  {
+    "id": "327c945b-6d83-491c-b1e5-b2614bffa96c",
+    "owner_type": "dealer",
+    "owner_id": "ef88b5f2-b625-4c50-80a2-35089aa8e228",
+    "street": "2 Kalani Nagar Main Road, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452006"
+  },
+  {
+    "id": "fbcc3dda-f0c8-4214-ae0c-437d48748cfc",
+    "owner_type": "dealer",
+    "owner_id": "b586056d-d386-4ea2-8ae2-8e295096047b",
+    "street": "Opp. Municipal Green Parking, Zone-2, Mp Nagar",
+    "city": "Mp Nagar",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "462011"
+  },
+  {
+    "id": "6c9c8779-ccb5-438a-89dd-44e7f25e435b",
+    "owner_type": "dealer",
+    "owner_id": "de00478c-1a99-40e9-ae4c-7bf1ef02e7ca",
+    "street": "Jhanda Chowk Gopal Ganj",
+    "city": "Jhanda Chowk Gopal Ganj",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "470001"
+  },
+  {
+    "id": "8f45f164-bd90-4968-baec-946f819af7df",
+    "owner_type": "dealer",
+    "owner_id": "ccc09296-f8ef-442a-9e77-3bad0141d74d",
+    "street": "121, Karas Dev Nagar, Main Road, Sukhliya, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452010"
+  },
+  {
+    "id": "e3ba319b-3e29-428a-9f46-e7a52de759ff",
+    "owner_type": "dealer",
+    "owner_id": "e59fe8ff-f717-46e1-850b-c3e67bdd4ab7",
+    "street": "Sector-B Ashoka Ice Compound, Industrial Area Govindpura, Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "462023"
+  },
+  {
+    "id": "fd55ded7-df08-4b9c-b2ea-067e2e0acaf6",
+    "owner_type": "dealer",
+    "owner_id": "0b1ca4ff-01d8-4f0b-826c-c426e5420961",
+    "street": "Subhash Chowk, Infront Of Prakash Talkies, Burhanpur",
+    "city": "Burhanpur",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "450331"
+  },
+  {
+    "id": "06fed10c-97ae-4906-b3bc-9e2253652f81",
+    "owner_type": "dealer",
+    "owner_id": "8c89249a-7546-4a36-8132-f14f127ffef1",
+    "street": "230, Shanku Marg, Tambaku Bazar, Near Vijayraje School, Freeganj, Ujjain",
+    "city": "Ujjain",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "456001"
+  },
+  {
+    "id": "f4c5264b-16fd-4869-b3b8-aef45a9c87ae",
+    "owner_type": "dealer",
+    "owner_id": "ded75823-0f61-4362-aa8b-edf748793de5",
+    "street": "Lalta Chowk",
+    "city": "Lalta Chowk",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "485001"
+  },
+  {
+    "id": "42ac3395-0a4f-47ed-b573-71a2a43afd5d",
+    "owner_type": "dealer",
+    "owner_id": "c1c0764c-3ad3-4389-90f9-f71fcd94eebe",
+    "street": "Chembur Of Commerce Building Civek Center",
+    "city": "Chembur Of Commerce Building Civek Center",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "482002"
+  },
+  {
+    "id": "3dc8473d-90a9-4f29-a561-35c1ebea7d3b",
+    "owner_type": "dealer",
+    "owner_id": "564f242d-0c71-4641-8e32-00337564399e",
+    "street": "Station Road, Opp., Shagun Garden, Mandsaur",
+    "city": "Mandsaur",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "458001"
+  },
+  {
+    "id": "6afdaf53-5211-4482-ae6c-464d8f7112ed",
+    "owner_type": "dealer",
+    "owner_id": "9606a0cb-9c9e-408e-a787-865c74288439",
+    "street": "Shop No. 02 House No. 36-D Zone -2 M P Nagar",
+    "city": "Shop No. 02 House No. 36-D Zone -2 M P Nagar",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "462011"
+  },
+  {
+    "id": "104e0742-6431-4080-ba3f-160ded330eb5",
+    "owner_type": "dealer",
+    "owner_id": "3142b196-8186-4374-809c-a371e0db55b2",
+    "street": "Station Road, Alot",
+    "city": "Alot",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "457114"
+  },
+  {
+    "id": "f11b6714-d258-4ea9-a8e9-01535c639e10",
+    "owner_type": "dealer",
+    "owner_id": "da8c2437-63bd-4146-83f2-b17d5c11e295",
+    "street": "18, Sukh Santi Nagar, Bangali Chouraha, Bicholi Road, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452016"
+  },
+  {
+    "id": "a40566b1-59a4-49f5-b996-d80a9b261260",
+    "owner_type": "dealer",
+    "owner_id": "eac4a7e9-3b7e-4073-8a23-c0bed4413a13",
+    "street": "46, Mahaveer Market, Behind Devshree Talkies, New Loha Mandi, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452004"
+  },
+  {
+    "id": "c90cccc0-c597-4674-8391-be193180f366",
+    "owner_type": "dealer",
+    "owner_id": "ee7a8ef0-792d-4746-8d23-e602b8c2ea59",
+    "street": "Shop No. 10,11 Koushalya Plaza Madan Mahal, Jabalpur",
+    "city": "Jabalpur",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "482001"
+  },
+  {
+    "id": "c67db728-d8c6-4d91-bbe7-91791c87e196",
+    "owner_type": "dealer",
+    "owner_id": "1b4fff40-a42f-424c-8fd2-a28a1c62d497",
+    "street": "New Bus Stand, Mandsaur Road, Suwasara",
+    "city": "Suwasara",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "458888"
+  },
+  {
+    "id": "36caab8c-6ad3-4710-a61b-50f4bfd1ee09",
+    "owner_type": "dealer",
+    "owner_id": "a22b6fc1-d58c-4d79-9fad-205b18754af2",
+    "street": "140/2, Gurunanak Timber Market, Dhar Road, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452002"
+  },
+  {
+    "id": "208ba337-1ed6-48cb-8e5b-87ea8b4fcf23",
+    "owner_type": "dealer",
+    "owner_id": "4a9da99e-4ae0-4f77-bcdb-85ec7b55445d",
+    "street": "131/16 Zone I, Old Naralia Building",
+    "city": "Old Naralia Building",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "462011"
+  },
+  {
+    "id": "8be41f1b-81fe-44bd-b772-8b31ac3fdbba",
+    "owner_type": "dealer",
+    "owner_id": "fed7693b-df41-4d81-b1ee-ed796940f116",
+    "street": "Suwasara Road, Bus Stand, Sitamau",
+    "city": "Sitamau",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "458889"
+  },
+  {
+    "id": "159bd6fe-31f5-4409-a747-27b529745f35",
+    "owner_type": "dealer",
+    "owner_id": "fdd0b720-ca73-40b6-867e-d0fe7b6e0a9a",
+    "street": "Usha Ganj, Rampura Road, Manasa",
+    "city": "Manasa",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "458110"
+  },
+  {
+    "id": "c4dc1ed9-0975-4a9b-821b-30e524528faf",
+    "owner_type": "dealer",
+    "owner_id": "c400ffac-ef4b-4b23-8b2c-ab972fa6fe70",
+    "street": "Daulatganj Gwalior",
+    "city": "Daulatganj Gwalior",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "474001"
+  },
+  {
+    "id": "8ae752a1-808d-47e2-8290-00b4b744fe0b",
+    "owner_type": "dealer",
+    "owner_id": "549ae5db-f33d-40f2-abbe-865206e789c8",
+    "street": "F-5, Scheme No. 54, Vijay Nagar, Near Kasturi Garden, Indore",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "452010"
+  },
+  {
+    "id": "b11ec581-0aec-413a-b456-18fad3b361b1",
+    "owner_type": "dealer",
+    "owner_id": "0961ce8e-a738-4d44-b8c1-23cffde41e58",
+    "street": "1/2, Laxman Bhawan, Chhawani Road",
+    "city": "Chhawani Road",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "462001"
+  },
+  {
+    "id": "9a98c629-a803-48da-b021-3b23c2915ee7",
+    "owner_type": "dealer",
+    "owner_id": "731b5acb-9456-4c6e-96e0-1e147237c67b",
+    "street": "H No.-10, Prakash Nagar Bijli Colony, Govindpura Bhopal",
+    "city": "Govindpura Bhopal",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "262023"
+  },
+  {
+    "id": "ad169f22-c506-404b-8dcf-59dc514f611b",
+    "owner_type": "dealer",
+    "owner_id": "dbc1ffa1-a3fb-4077-a819-41fe4b20eecc",
+    "street": "Shop No.3 3T. 108, Opp 61 Limited Bus Stop, R. C. Marg, Chembur Colony, Chembur",
+    "city": "Chembur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400074"
+  },
+  {
+    "id": "e78a526d-9d07-490c-99fa-911993881fa7",
+    "owner_type": "dealer",
+    "owner_id": "f023d4f7-9e6f-43eb-895f-f34123b9fede",
+    "street": "Shop No. 1-2, S.N. Dubey Road Chunabhatti, Opp. Side Walk Hotel, Dahisar East",
+    "city": "Dahisar East",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400068"
+  },
+  {
+    "id": "702a07a7-4ec3-4305-8b63-607240da77f9",
+    "owner_type": "dealer",
+    "owner_id": "36361876-32f4-4c75-8afc-9cf504c4a59a",
+    "street": "Shop No. 14, Shanti Niketan Building, Next To City Co-Op Bank, Kandar Pada, Dahisar West",
+    "city": "Dahisar West",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400068"
+  },
+  {
+    "id": "6be3c91d-f894-4038-8fdc-2a2422dd1a4a",
+    "owner_type": "dealer",
+    "owner_id": "143f662f-3046-4c2a-80db-6e1c81c14005",
+    "street": "Shop No- 1A, Nemji Karmshi Chawl, Y.R.Tawde Road, Dahisar East",
+    "city": "Dahisar East",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400068"
+  },
+  {
+    "id": "c695639f-8676-44c7-9527-a82e043b667a",
+    "owner_type": "dealer",
+    "owner_id": "d740c627-30b3-4d94-9cb0-c6e95b64e955",
+    "street": "5/6, Parasram Puria Enclave, Haji Babu Road, Malad (E)",
+    "city": "Malad (E)",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400097"
+  },
+  {
+    "id": "086da8a1-7608-41b0-9c13-2bf27955c6ea",
+    "owner_type": "dealer",
+    "owner_id": "26e946c3-0c5d-4c63-9ae1-bf86b0abf128",
+    "street": "Shop No, 12/13 Reng Height Sarvodaya Nagar, S.R.A. Chs Behram Baug, Jogeshwari – West",
+    "city": "Jogeshwari – West",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400102"
+  },
+  {
+    "id": "68c2d01e-acfe-4301-af4c-b228fad53095",
+    "owner_type": "dealer",
+    "owner_id": "1e2a76a9-4289-4c69-ae33-f441b6a7c585",
+    "street": "Padmashree Buildng, Inside Building. No.1, Gala No.1, Near Ambaji Dhamm, M.G.Road, Mulund West",
+    "city": "Mulund West",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400080"
+  },
+  {
+    "id": "c58abf3e-6fd5-4c4f-b153-092d3f54b55a",
+    "owner_type": "dealer",
+    "owner_id": "fcfdc070-3fe9-410a-bfdc-b04cf747ed97",
+    "street": "Shop No.2, Aeka Aprt, Rani Sati Marg, Opp.Saha Arcade, Malad (East)",
+    "city": "Malad (East)",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400097"
+  },
+  {
+    "id": "3bdc99fa-c0d6-4924-bc44-89547581d2da",
+    "owner_type": "dealer",
+    "owner_id": "6c4f5bf5-2cc0-40c8-a18f-03f8c3e82cd3",
+    "street": "83, Masjid Street, New Kazi Mohalla",
+    "city": "New Kazi Mohalla",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400003"
+  },
+  {
+    "id": "993a5a96-b01a-4ea0-83c3-86b5b8fe1234",
+    "owner_type": "dealer",
+    "owner_id": "7d0099f9-78ed-4a8a-8d11-83c6a2429f6c",
+    "street": "Azmi Nagar Akashwani, A.S, No., Main Road, Near. Fatima School Gate No 7, Malwani, Malad (West)",
+    "city": "Malad (West)",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400095"
+  },
+  {
+    "id": "055f278b-a761-4bca-8a71-34356a5a00b1",
+    "owner_type": "dealer",
+    "owner_id": "879bd583-d869-46f1-8f31-f33d4679c0f0",
+    "street": "Plot No.67/16 D-3, Block Midc Chinchwad Chinchwadgaon Pimpri Chinchwad(M.Corp)",
+    "city": "Block Midc Chinchwad Chinchwadgaon Pimpri Chinchwad(M.Corp)",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "411019"
+  },
+  {
+    "id": "6144b89a-209c-4a83-9935-af685a62961c",
+    "owner_type": "dealer",
+    "owner_id": "57fdbb3f-110f-4d52-a41b-eec96989bdd9",
+    "street": "Mahakali Ward, Near Mahakali Mandir, Chandrapur-442401, Ph.07172-227422/9822920336",
+    "city": "Ph.07172-227422/9822920336",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "442401"
+  },
+  {
+    "id": "b26bc0f8-eb22-4728-83ea-f3f8b3cf2b97",
+    "owner_type": "dealer",
+    "owner_id": "53ca17b4-e085-4d8b-8b18-3947cbb1b716",
+    "street": "Plot No.31/32, Sector 19/A Vashi Navi Mumbai",
+    "city": "Sector 19/A Vashi Navi Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400703"
+  },
+  {
+    "id": "a80c3918-dda5-4ff3-8626-d3a9b6cddf37",
+    "owner_type": "dealer",
+    "owner_id": "5de7f0f3-5412-474d-8770-bec63ca56e77",
+    "street": "Shop No.23,24 Divine Sherton Building Jesal Park Next To Gold Coin Gym Before Vijaya Bank Byendar (East)",
+    "city": "24 Divine Sherton Building Jesal Park Next To Gold Coin Gym Before Vijaya Bank Byendar (East)",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "401105"
+  },
+  {
+    "id": "5a6cb6a2-fd35-49c1-aa4f-a98c5846f21b",
+    "owner_type": "dealer",
+    "owner_id": "8055d592-e9e8-466e-9c9b-6dbb99531362",
+    "street": "C.S No.121/6 Opp.Railway Village Valiwade Dist.Kolhapur(M.S)",
+    "city": "C.S No.121/6 Opp.Railway Village Valiwade Dist.Kolhapur(M.S)",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "416000"
+  },
+  {
+    "id": "e5bdbb2d-6ac4-49bd-94c8-29902f2a32d5",
+    "owner_type": "dealer",
+    "owner_id": "9b621bde-e7b3-4e46-ac6c-3715d3e8af9b",
+    "street": "Sindhutirth Bldg Shop No.05/06, L.B.S Road Next To Mahakali Talav Thane (W)",
+    "city": "L.B.S Road Next To Mahakali Talav Thane (W)",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400601"
+  },
+  {
+    "id": "f71d0269-54df-4359-ae4b-4b577e774311",
+    "owner_type": "dealer",
+    "owner_id": "b2f750e3-69b8-4534-92eb-ee840cf111fd",
+    "street": "90, Shreejee Apartment, Chhapru Nagar Square, Nagpur-440008, Mb.9822336233",
+    "city": "Mb.9822336233",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "ccc1cf90-9eda-443f-b158-7c7c52bc470c",
+    "owner_type": "dealer",
+    "owner_id": "bef397c0-d081-4d77-b48b-0dc65ac6ed97",
+    "street": "A.M.C. Complex, Jattar Peth, Akola-444005, Mb. 9011028102",
+    "city": "Mb. 9011028102",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444005"
+  },
+  {
+    "id": "a2c16378-36c4-4612-aa8b-2aa09a6ab35d",
+    "owner_type": "dealer",
+    "owner_id": "795dd2b6-d96c-4565-a186-1ac2d78a0a18",
+    "street": "Chaproo Nagar Chowk, Shop No.6,7, Jaishri Krishna Society",
+    "city": "Jaishri Krishna Society",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "cace7960-e071-4768-8c0d-4447200531a8",
+    "owner_type": "dealer",
+    "owner_id": "9872c0f0-ef60-4855-a089-53b7356b0ec3",
+    "street": "State Bank Road, Dist. Washim, Karanja ( Lad )",
+    "city": "Karanja ( Lad )",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444105"
+  },
+  {
+    "id": "735082cf-694b-4520-98f1-97f4ec6cd4d0",
+    "owner_type": "dealer",
+    "owner_id": "542803bd-9393-421f-9523-22b5d5bbba26",
+    "street": "Ram Mandir Road, Mahadeo Pura, Wardha",
+    "city": "Wardha",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "442001"
+  },
+  {
+    "id": "106725d7-8e99-4c66-a636-eea218fe87f5",
+    "owner_type": "dealer",
+    "owner_id": "b0ec0e93-6e10-422b-96c7-5fa16ecc6162",
+    "street": "Shankar Galli, Gondia",
+    "city": "Gondia",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "441601"
+  },
+  {
+    "id": "e94ac550-34fa-441d-9910-6bafc7a3824e",
+    "owner_type": "dealer",
+    "owner_id": "d579d0f2-3d63-4a29-8373-3a779e48e1d1",
+    "street": "Civil Line, Near Shivaji High School, Dist.- Washim, Risod",
+    "city": "Risod",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444506"
+  },
+  {
+    "id": "584f174b-27dc-4527-af02-733afe0bcee3",
+    "owner_type": "dealer",
+    "owner_id": "92d7544b-3b51-4d99-8f51-b8417f134631",
+    "street": "Near Chitra Talkies, Kejaji Templex, Gawlipura, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440018"
+  },
+  {
+    "id": "97bd2d28-64c1-41f7-963e-d83e34e3790e",
+    "owner_type": "dealer",
+    "owner_id": "3a87c6b5-b1bb-4362-ba71-7a5766925494",
+    "street": "Shop No.5, Opp. Harihar Mandir, Lakadganj, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "f928e9a4-fa9f-45f2-8435-6a63729a904c",
+    "owner_type": "dealer",
+    "owner_id": "85875a5c-4966-4994-8c07-c2681f162c46",
+    "street": "Laxmi Niwas, 212, Opp. Aradhana Complex, Near Corporation Tax Office, Gokulpeth",
+    "city": "Gokulpeth",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440010"
+  },
+  {
+    "id": "567756ae-c13f-4a02-91cd-a85849fcabe3",
+    "owner_type": "dealer",
+    "owner_id": "b1449668-de0e-4f38-b972-9a59c988d013",
+    "street": "Mishra Chowk, Near Safed Pool, Paratwada",
+    "city": "Paratwada",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444805"
+  },
+  {
+    "id": "2e5d2756-3fd0-42e9-8e6f-22f6a1ac7f69",
+    "owner_type": "dealer",
+    "owner_id": "aa0492cd-0525-4f89-bb71-f01100c8c55c",
+    "street": "Shop No.02, Narsing Mandir Road, District. Akola, Akot",
+    "city": "Akot",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444101"
+  },
+  {
+    "id": "e42840bb-ab9e-4d5d-9eca-bc1c5b975698",
+    "owner_type": "dealer",
+    "owner_id": "de242d1d-f9ef-4a9b-b658-536386c75d4f",
+    "street": "Near Shitala Mandir Road, Khamala Road, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440025"
+  },
+  {
+    "id": "28dbbdb6-38db-4b42-893f-236c00fd3db4",
+    "owner_type": "dealer",
+    "owner_id": "eaee5a24-36d5-4808-92f9-d796f61446a9",
+    "street": "Shivaji Square, Near Blue Diamond English School, Borgaon Road",
+    "city": "Borgaon Road",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "40013"
+  },
+  {
+    "id": "f563cce7-5a5e-4a44-bb62-693db7c1a80b",
+    "owner_type": "dealer",
+    "owner_id": "91b4bec6-14f2-4ad7-b790-6a8b8163b60c",
+    "street": "Near Nmc Office, Lakdganj, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "5a4c601b-5435-45b8-8531-cfbf6a365e39",
+    "owner_type": "dealer",
+    "owner_id": "c044f138-3d2b-4830-b772-465290852d2c",
+    "street": "Mahatma Fule Chowk, Dist. Amravati, Warud",
+    "city": "Warud",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444906"
+  },
+  {
+    "id": "934e6263-e6dc-45a3-ab39-5ad5a44a55ab",
+    "owner_type": "dealer",
+    "owner_id": "78b25ef4-4fb2-4141-94a0-2cea43b52f91",
+    "street": "Near Shirbhate Mangal Karyalay, Moti Nagar, Amravati",
+    "city": "Amravati",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444607"
+  },
+  {
+    "id": "c65ad54d-c5d8-4a51-9a6c-a24a4fac4003",
+    "owner_type": "dealer",
+    "owner_id": "742bcfab-e41c-4854-b279-2ec6a555ef49",
+    "street": "26, Railway Siding Road, Near Lakkadganj Police Station, Old Bhandara Road, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "f06e1b69-7587-42b8-8408-1d7985ae5787",
+    "owner_type": "dealer",
+    "owner_id": "b78aed3f-8a73-41f1-9bfb-10cdea1d51db",
+    "street": "Plot No.22, Near Timber Bhawan, Timber Bhawan Road, Lakadganj, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "2fb3e4d9-2fae-40a2-8a01-b9ca83baf45f",
+    "owner_type": "dealer",
+    "owner_id": "0ce17f3b-c07c-406e-afeb-38ff20162648",
+    "street": "Main Road, Thakre Market Chowk, Hwaldarpura, Wardha",
+    "city": "Wardha",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "442001"
+  },
+  {
+    "id": "ee6351ab-03fa-401f-9631-d7813bcfce8a",
+    "owner_type": "dealer",
+    "owner_id": "3c023cbc-8438-4d94-850e-1c0fc6a9d38a",
+    "street": "Near Shivshakti Apartment, Jalaram Mandir Road, Lakadganj, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "fd311c13-e7b5-4d57-a94c-ae7e95a65ea7",
+    "owner_type": "dealer",
+    "owner_id": "bc37e9ad-9838-469d-80cb-19c06e262c92",
+    "street": "Shop No.5,6,7, & Utkarsh Complex, Kotwal Nagar",
+    "city": "Kotwal Nagar",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440022"
+  },
+  {
+    "id": "347f7aa8-c6f4-49d7-9ade-f50ea351ca25",
+    "owner_type": "dealer",
+    "owner_id": "8226ff8b-4d6b-4c05-972e-bbb9784ec256",
+    "street": "Ward No 1, Plot No.2351, Waddamna, Wadi, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440023"
+  },
+  {
+    "id": "841c7557-24da-4549-acce-20b61bafb483",
+    "owner_type": "dealer",
+    "owner_id": "6d40772f-8d11-477a-a3f0-e8d55163faa7",
+    "street": "Nirankari Complex, Bramhapuri Road, Desaiganj, Dist. Gadchiloli, Wadsa",
+    "city": "Wadsa",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "441207"
+  },
+  {
+    "id": "a718a0ff-b082-4e1e-90ee-829b74194892",
+    "owner_type": "dealer",
+    "owner_id": "2c367d97-0a8c-4298-8c64-3336d98861aa",
+    "street": "Hiwarkhed Road, Dist.Akola, Akot",
+    "city": "Akot",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444101"
+  },
+  {
+    "id": "1c6e03d1-47e1-4f8f-85d9-4a5c51dea26a",
+    "owner_type": "dealer",
+    "owner_id": "693fb09d-cb19-4bbd-b160-399ff548718c",
+    "street": "Gs-4, Matoshree Apartment, Satnami Nagar Sq., Ladadganj, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "52311751-6158-4702-90fe-ae456825674a",
+    "owner_type": "dealer",
+    "owner_id": "f08c6092-89bc-43fa-8358-1f316e9288e8",
+    "street": "Bypass Chowk, Girad Road, Umred",
+    "city": "Umred",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "441203"
+  },
+  {
+    "id": "271de367-993e-47dc-9af4-55ce647461a8",
+    "owner_type": "dealer",
+    "owner_id": "5b11f3b1-d560-4423-8022-6e41d6992679",
+    "street": "Laxmi Oil Mill Compound, Opp. Shivaji Park Post Office, Akola",
+    "city": "Akola",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444001"
+  },
+  {
+    "id": "5c74bfd5-286e-46d8-99f8-f4c442ca6e03",
+    "owner_type": "dealer",
+    "owner_id": "814e485f-193e-4795-b36c-e42f0957919a",
+    "street": "Date College Road, Opp. Vivekanand School, Yavatmal",
+    "city": "Yavatmal",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "445001"
+  },
+  {
+    "id": "e682256b-0be8-47de-8c21-710fd6526ecc",
+    "owner_type": "dealer",
+    "owner_id": "659ba487-4c39-4546-b65a-c3ea03eb67da",
+    "street": "Ganjipeth, Near Chitra Talkies Road, Gandhibagh, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440002"
+  },
+  {
+    "id": "316301ba-5456-42d4-8893-dfa32a798ea1",
+    "owner_type": "dealer",
+    "owner_id": "03e0bef5-dc71-4e84-9493-a4667c6242c2",
+    "street": "Near Catholic Church, Main Road, Dist. Chandrapur, Ballapur",
+    "city": "Ballapur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "442701"
+  },
+  {
+    "id": "5d94a82c-58b3-431b-8f1c-77d5828f2d3c",
+    "owner_type": "dealer",
+    "owner_id": "605f209f-6a16-451f-8a11-b1679d79b88d",
+    "street": "100, A.V.G. Layout, Chapru Nagar Square, Lakadganj, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "8a3702e9-0ea8-404b-8151-79a6c66ae435",
+    "owner_type": "dealer",
+    "owner_id": "37f73d4f-fac9-46da-8a48-81405325db7b",
+    "street": "Tiranga Chowk, Railway Station Road, Dist. Chandrapur, Bramhapuri",
+    "city": "Bramhapuri",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "441206"
+  },
+  {
+    "id": "42e763cf-d6bc-4e53-9202-f619b43572e7",
+    "owner_type": "dealer",
+    "owner_id": "4f799b8b-5ed5-490d-a42e-24e00846508a",
+    "street": "Khairlanji Road, Dist. Gondia, Tiroda",
+    "city": "Tiroda",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "441911"
+  },
+  {
+    "id": "69fcc9bd-19fc-4e42-90b1-1bece9e4d167",
+    "owner_type": "dealer",
+    "owner_id": "61a2eeb6-cc12-49f3-aa46-73bf132fefc7",
+    "street": "Shop No.1, Gandhi Market, Morshi",
+    "city": "Morshi",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444095"
+  },
+  {
+    "id": "9d8b89e9-e86e-48b8-989f-282c87c8cade",
+    "owner_type": "dealer",
+    "owner_id": "7cb89cf2-45a2-493b-92a5-88ceec45fd40",
+    "street": "Beside Dongare Petrol Pump, Chandrapur Road, Gadchiroli",
+    "city": "Gadchiroli",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "442605"
+  },
+  {
+    "id": "da4e5314-0df8-4d78-9665-f988c72ebda9",
+    "owner_type": "dealer",
+    "owner_id": "de0b0abc-b738-442e-823f-03310151c510",
+    "street": "231, Mahatma Gandhi Nagar, Hudkeshwar Road, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440034"
+  },
+  {
+    "id": "df5935b7-4a96-4f23-a032-8ea7f74ddaf2",
+    "owner_type": "dealer",
+    "owner_id": "d8fdc4b8-1834-4436-9985-33db25aacc5b",
+    "street": "Opp. Perfect Dharam, Kata Walgaon Road, Amravati",
+    "city": "Amravati",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "444601"
+  },
+  {
+    "id": "a88a15ae-5bc6-4aec-81ab-7b2ad5b428b0",
+    "owner_type": "dealer",
+    "owner_id": "f110e4ce-317c-41e0-a0f6-3913dfe52dea",
+    "street": "Chotta Bazar, M.G.Road, Chandrapur",
+    "city": "Chandrapur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "244402"
+  },
+  {
+    "id": "441298ab-9713-4c12-a274-1ed523aa328b",
+    "owner_type": "dealer",
+    "owner_id": "925f8dcc-a171-44e2-a850-a22a1539a55f",
+    "street": "05, Near Sbi Bank, Nh6, District. Bhandara, Sakoli",
+    "city": "Sakoli",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "441802"
+  },
+  {
+    "id": "c31f96f9-5259-49fc-82ee-447df4eec9d3",
+    "owner_type": "dealer",
+    "owner_id": "cb8bb580-5bb7-4146-b9b7-a44103a1204c",
+    "street": "Near Police Station, Lakadganaj, Old Bhandara Road, Nagpur",
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "440008"
+  },
+  {
+    "id": "1e115796-345e-4316-9aea-5f504605bd2f",
+    "owner_type": "dealer",
+    "owner_id": "5827bd45-9836-4fff-b055-d976482f0de8",
+    "street": "Sector22 Chandigarh Punjab",
+    "city": "Sector22 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": ""
+  },
+  {
+    "id": "d6c0a964-fc32-458c-b597-742f29042f28",
+    "owner_type": "dealer",
+    "owner_id": "e6aae88b-3e58-4aee-a8d3-d646cf183ac7",
+    "street": "Opp Royal Estate Near N.K .Sharma Off Ambala To Chandigarh Road",
+    "city": "Opp Royal Estate Near N.K .Sharma Off Ambala To Chandigarh Road",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "140603"
+  },
+  {
+    "id": "6ec4a547-28b8-42c6-9277-92eccaecb88d",
+    "owner_type": "dealer",
+    "owner_id": "d3628a06-8cb3-4aa5-a7b4-d74b0a6302d6",
+    "street": "Sector 45 Chandigarh Punjab",
+    "city": "Sector 45 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160047"
+  },
+  {
+    "id": "184c0749-e6c0-4eba-b15b-313a7c655f92",
+    "owner_type": "dealer",
+    "owner_id": "b34d5f10-b250-46d0-a5b2-79ffd1601f87",
+    "street": "Shop No 222 Sector 45 Chandigarh Punjab",
+    "city": "Shop No 222 Sector 45 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160047"
+  },
+  {
+    "id": "88fd4604-f19a-408e-8a43-fc1eb2f6bf2a",
+    "owner_type": "dealer",
+    "owner_id": "0335a85b-a9dc-467c-a214-913da3bcfcb9",
+    "street": "Nada Road Nayagoan",
+    "city": "Nada Road Nayagoan",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "327022"
+  },
+  {
+    "id": "8e1ae9d2-7e5e-4188-91b8-2fa6453277c2",
+    "owner_type": "dealer",
+    "owner_id": "b388e130-80ad-47c0-b8bf-4f2d1c71efd4",
+    "street": "Sector 26 Chandigarh Punjab",
+    "city": "Sector 26 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160019"
+  },
+  {
+    "id": "32c51e22-58e6-4f54-8d6f-54f3f9456728",
+    "owner_type": "dealer",
+    "owner_id": "3fc9ba11-2f1e-4c89-90bb-4a12487c00b3",
+    "street": "Sector 22 Chandigarh Punjab",
+    "city": "Sector 22 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160022"
+  },
+  {
+    "id": "0677cbdf-97bf-47cd-a985-7ebb4a225e6b",
+    "owner_type": "dealer",
+    "owner_id": "0c035956-d637-4972-b3c5-851c2388e14c",
+    "street": "Sector7 Chandigarh Punjab",
+    "city": "Sector7 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160019"
+  },
+  {
+    "id": "ba67dda4-3787-4b68-8673-32b276f21f1d",
+    "owner_type": "dealer",
+    "owner_id": "ec9aa978-86ba-4da9-8eb1-7f4af99dc0e9",
+    "street": "Sector7 Chandigarh Punjab",
+    "city": "Sector7 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160019"
+  },
+  {
+    "id": "10aa654a-9151-4f45-a772-6ce57084d2e5",
+    "owner_type": "dealer",
+    "owner_id": "8e63f293-57c1-4681-9817-bd1b8d4897b7",
+    "street": "Sector7 Chandigarh Punjab",
+    "city": "Sector7 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160019"
+  },
+  {
+    "id": "9c153496-4e9a-49fd-9d08-1c68e83a589b",
+    "owner_type": "dealer",
+    "owner_id": "16963c77-9714-45b5-8ed0-2c92061be34b",
+    "street": "Ind Area Phase2 Chandigarh Punjab",
+    "city": "Ind Area Phase2 Chandigarh Punjab",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160002"
+  },
+  {
+    "id": "fcde8cab-7441-4170-9367-d5854627b2d3",
+    "owner_type": "dealer",
+    "owner_id": "c97c3c01-e075-4351-8715-1ddb395d27b9",
+    "street": "Plot No 707 Sector82Mohali",
+    "city": "Plot No 707 Sector82Mohali",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160069"
+  },
+  {
+    "id": "c57e5d14-d0ae-46c0-a1e8-8ba2eaf49947",
+    "owner_type": "dealer",
+    "owner_id": "da52330e-d2ce-466f-b478-0eb18731fd22",
+    "street": "Kharar Near Corporation Bank",
+    "city": "Kharar Near Corporation Bank",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "140301"
+  },
+  {
+    "id": "4b6de0fe-bb90-4ddf-a29b-50e339aeb9c2",
+    "owner_type": "dealer",
+    "owner_id": "2f7953b6-1dec-4565-bd42-aa9cd1f19912",
+    "street": "Near Bus Stop Kharar",
+    "city": "Near Bus Stop Kharar",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "140301"
+  },
+  {
+    "id": "84e7e7b0-6476-4b5e-8bda-389ea16a47e0",
+    "owner_type": "dealer",
+    "owner_id": "a78f95b7-9f22-4bc0-b21f-214c538e6a5a",
+    "street": "Old Sunny Enclave Sector 125 Kharar",
+    "city": "Old Sunny Enclave Sector 125 Kharar",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "140301"
+  },
+  {
+    "id": "dc181778-6730-4e2b-b45c-195456b45b1a",
+    "owner_type": "dealer",
+    "owner_id": "3fea288a-d6eb-42f2-b48d-5a1e4c5ac594",
+    "street": "Industries Area Phase 3 Mohali",
+    "city": "Industries Area Phase 3 Mohali",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160055"
+  },
+  {
+    "id": "9caf3da0-4b30-4af0-b67f-bc0b47caa344",
+    "owner_type": "dealer",
+    "owner_id": "118b2b70-84da-4ca9-90e1-1a4440cd5d12",
+    "street": "Industries Area Phase 3 Mohali",
+    "city": "Industries Area Phase 3 Mohali",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160055"
+  },
+  {
+    "id": "91bcf604-67cb-4e21-9a3c-a095fb624a97",
+    "owner_type": "dealer",
+    "owner_id": "29f7f25e-a447-4554-9c0e-a8dee4383b15",
+    "street": "Industries Area Phase 2 Mohali",
+    "city": "Industries Area Phase 2 Mohali",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160055"
+  },
+  {
+    "id": "04fbb581-5a4c-4973-a1e1-165653ea107a",
+    "owner_type": "dealer",
+    "owner_id": "585f4d96-2a58-4290-bbb9-e0ef69693842",
+    "street": "Plot No.406 Sector 82 Mohali",
+    "city": "Plot No.406 Sector 82 Mohali",
+    "state": "Punjab",
+    "country": "India",
+    "pincode": "160062"
+  },
+  {
+    "id": "f60451f1-ee27-4ae0-b1de-2b6066873f95",
+    "owner_type": "dealer",
+    "owner_id": "a910a0dc-69e5-4421-9eff-5e56f57a0f6e",
+    "street": "Plot No-70, Kharavel Nagar, Behind Hallmark Jewellary, Station Square, Unit-111, Bhubaneshwar",
+    "city": "Bhubaneshwar",
+    "state": "Odisha",
+    "country": "India",
+    "pincode": "751001"
+  },
+  {
+    "id": "24c0ff25-e93d-4ed5-8a08-42ed075655a8",
+    "owner_type": "dealer",
+    "owner_id": "b906332f-dd12-45ed-ac3d-327abe36b5ac",
+    "street": "4/2, Nayapally District Center, Near Nabad Bank Bhubaneshwar",
+    "city": "Near Nabad Bank Bhubaneshwar",
+    "state": "Odisha",
+    "country": "India",
+    "pincode": "751015"
+  },
+  {
+    "id": "6bb98e4e-79d2-4e8f-a410-aee343474ce9",
+    "owner_type": "dealer",
+    "owner_id": "854212ec-678b-43bb-996a-1be25943df8e",
+    "street": "Plot No. 56A Brahmeswar Colony Canal Road Ggp Colony Bhubaneswar",
+    "city": "Plot No. 56A Brahmeswar Colony Canal Road Ggp Colony Bhubaneswar",
+    "state": "Odisha",
+    "country": "India",
+    "pincode": "751025"
+  },
+  {
+    "id": "407292d6-c95e-49e6-8c73-f15d63f72137",
+    "owner_type": "dealer",
+    "owner_id": "3152ed57-0317-4a80-9151-24a1b916b8d2",
+    "street": "Station Road Alwar",
+    "city": "Station Road Alwar",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "301001"
+  },
+  {
+    "id": "875a5de4-6bb0-4d5d-ab50-9979dc6d007d",
+    "owner_type": "dealer",
+    "owner_id": "a3da7b47-201b-4dbb-8e55-e4c38958d651",
+    "street": "Mount Road, Manpur, Abu Road",
+    "city": "Abu Road",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "307510"
+  },
+  {
+    "id": "c2c8a7fd-d685-4cbf-a627-378532b07a06",
+    "owner_type": "dealer",
+    "owner_id": "d2dd1d52-2478-4514-8b2a-88d9849ba6df",
+    "street": "Opp. Sbi Bank Jalore Sirohi Choraha Teen Batti Road Ramseen Jalore",
+    "city": "Opp. Sbi Bank Jalore Sirohi Choraha Teen Batti Road Ramseen Jalore",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "307803"
+  },
+  {
+    "id": "d4fdff7b-aacb-478b-8d72-1f8921ff6901",
+    "owner_type": "dealer",
+    "owner_id": "17b62048-d3b6-4792-8ceb-4d7e75e5e889",
+    "street": "Adhunik Market Near Bata Shoo Company Gandhi Nagar Basti",
+    "city": "Adhunik Market Near Bata Shoo Company Gandhi Nagar Basti",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "272001"
+  },
+  {
+    "id": "f66b0a63-6c40-4810-a29d-c6b521fc8b4f",
+    "owner_type": "dealer",
+    "owner_id": "784585f9-b63a-43bb-bf00-2bd4c89a72a2",
+    "street": "Sa 15/19 A2 Mavaiya Sarnath",
+    "city": "Sa 15/19 A2 Mavaiya Sarnath",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "221007"
+  },
+  {
+    "id": "7bd46e85-f043-4120-940b-7f836a5878e9",
+    "owner_type": "dealer",
+    "owner_id": "d2953e17-13ca-47e8-9f82-d9cc49bd56da",
+    "street": "Hariom Nagar, N.H.-8 Opp. Bus Stand, Kherwara Udaipur",
+    "city": "Kherwara Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313803"
+  },
+  {
+    "id": "c98baf44-b136-407d-8981-c2396c825f95",
+    "owner_type": "dealer",
+    "owner_id": "08064600-b87e-4349-9119-5ab3f895ac68",
+    "street": "Shop No.-3,4, C-2, Krishna Enclave, Kalwar Road, Jhotwara, Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302012"
+  },
+  {
+    "id": "b5fe8210-25fb-4750-b219-6eeb9dc206f7",
+    "owner_type": "dealer",
+    "owner_id": "072a01da-7a1c-4838-8424-f829506c4a7e",
+    "street": "100 Ft, Meeranagar Udaipur",
+    "city": "Meeranagar Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313001"
+  },
+  {
+    "id": "fc4862e8-c852-40f4-9405-b76f3c717f3e",
+    "owner_type": "dealer",
+    "owner_id": "75019696-3b9b-4fa8-8aef-5c53bbcf292a",
+    "street": "134, Mohan Nagar, Mansarovar Link Road",
+    "city": "Mansarovar Link Road",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302020"
+  },
+  {
+    "id": "24895b8e-bf48-4fe0-8d30-fc59dff5a44b",
+    "owner_type": "dealer",
+    "owner_id": "d939bedb-bde0-47d0-b852-02245e83258e",
+    "street": "Lic Office, Near Sinup Sagar Thakatgarh Road, Sumerpur Dist -Pali",
+    "city": "Sumerpur Dist -Pali",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "306902"
+  },
+  {
+    "id": "4344d23f-fe24-46e8-94c9-544aac5fb232",
+    "owner_type": "dealer",
+    "owner_id": "3b477c1d-7fd1-4c24-a93b-3227797565c3",
+    "street": "Shayam Plaza, Bhinmal Jalore",
+    "city": "Bhinmal Jalore",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "343029"
+  },
+  {
+    "id": "71f62ed4-d581-418b-8737-ec0be424aeb5",
+    "owner_type": "dealer",
+    "owner_id": "4437a7cf-b99a-4fbe-9f77-3bf10d2c84e3",
+    "street": "Near Siyag Petrol Pump Ke Pass, Murlidhar Vyas Coloney, Bikaner",
+    "city": "Bikaner",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "334004"
+  },
+  {
+    "id": "3bd80591-b6c1-461d-a437-ed29ee0015be",
+    "owner_type": "dealer",
+    "owner_id": "14095170-c63f-43d2-99cb-bec0db9c50ac",
+    "street": "R-4, Near Kamani Chouraha, Jhotwara Industrial Area, Jhotwara, Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302012"
+  },
+  {
+    "id": "96797959-f611-48c2-86e3-52f03f1ce31d",
+    "owner_type": "dealer",
+    "owner_id": "aced3cdd-6b92-4639-9ffa-98b2efba1dd4",
+    "street": "Opp. Heera Pura School, Near 200 Ft Bypass, Ajmer Road",
+    "city": "Ajmer Road",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302006"
+  },
+  {
+    "id": "ed6b14fb-52e0-4ff2-bdb8-6f3c42eb6eef",
+    "owner_type": "dealer",
+    "owner_id": "80887113-e962-403c-81a0-3cae99af960f",
+    "street": "Ayad Main Road Thokar Chouraha Udaipur",
+    "city": "Ayad Main Road Thokar Chouraha Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313001"
+  },
+  {
+    "id": "dc95ddd3-21cb-4f7c-aef8-769d158e7fca",
+    "owner_type": "dealer",
+    "owner_id": "0dd4a209-07d5-4cbe-a673-0ed51deb9e48",
+    "street": "Bhupalpura, Udaipur",
+    "city": "Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313001"
+  },
+  {
+    "id": "93507239-4728-4d35-af7b-dcbc0075222a",
+    "owner_type": "dealer",
+    "owner_id": "75688697-1cb7-4ebf-9ae6-e695b0981003",
+    "street": "Hiran Mangri Sec – 6, Udaipur",
+    "city": "Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313001"
+  },
+  {
+    "id": "5b6505b2-1ac6-4f4d-92b7-e1fadc6f2685",
+    "owner_type": "dealer",
+    "owner_id": "52fed96c-a242-4e40-bbb6-01aef2de0fd3",
+    "street": "3-4, Madhuban Colony Near Police Station, Nathdwara Rajsamand",
+    "city": "Nathdwara Rajsamand",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313301"
+  },
+  {
+    "id": "8ed2fd83-1dcb-4c6a-a1e7-0b13d9fe2944",
+    "owner_type": "dealer",
+    "owner_id": "acf7ae12-67c8-4ab3-ae72-88eaa9f5eef5",
+    "street": "Near Banmata Mandir, Udaipur Road Pindwara, Sirohi",
+    "city": "Sirohi",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "307022"
+  },
+  {
+    "id": "83193583-4699-44fd-a20a-db189304cbe1",
+    "owner_type": "dealer",
+    "owner_id": "6b04f2d8-6a18-48cb-b5a5-672debe6238e",
+    "street": "258-259, New Aattish Market, Gopalpura Bypass, Mansarover, Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302020"
+  },
+  {
+    "id": "3f3f3765-6d7e-4f2f-8a8c-ff5354406fbd",
+    "owner_type": "dealer",
+    "owner_id": "f3bc89b4-d583-4d81-8e82-138a1e1b8029",
+    "street": "Opp. Petrol Pump, Dungarpur Road Sagwara, Dungarpur",
+    "city": "Dungarpur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "314025"
+  },
+  {
+    "id": "1291a6ce-e019-46e9-bd39-39af29774c7a",
+    "owner_type": "dealer",
+    "owner_id": "bdecbcf8-265e-4a01-805f-a9fcafe4539e",
+    "street": "101-103, Surajpole Udaipur",
+    "city": "Surajpole Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313001"
+  },
+  {
+    "id": "da2b2ce8-68e9-4a55-91ae-e209f43779c0",
+    "owner_type": "dealer",
+    "owner_id": "3c01fab7-9fdd-4cb0-9ad7-15a6cfbb6c58",
+    "street": "Arun Oil Ind. Near Glass Factory, Tonk Road, Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302018"
+  },
+  {
+    "id": "8e66b492-8994-4732-8790-f9075e853f02",
+    "owner_type": "dealer",
+    "owner_id": "df150654-5844-46d9-bab5-e9d8217ff7f1",
+    "street": "Near Khatu Shyam Mandir 7 No., Jagatpura- Jaipur",
+    "city": "Jagatpura- Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302017"
+  },
+  {
+    "id": "3156ff54-f161-4d3a-b0e4-1dde0251f185",
+    "owner_type": "dealer",
+    "owner_id": "75f1637e-d1b8-48ae-b64d-a9b465d0d5a6",
+    "street": "Pratapnagar, Udaipur",
+    "city": "Udaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "313001"
+  },
+  {
+    "id": "598ca0c5-7eb5-47b7-a84c-285eda19e77e",
+    "owner_type": "dealer",
+    "owner_id": "3efeed60-acbe-4b92-9b00-cf4a93cb800f",
+    "street": "19-1, Small Scale Furniture Industires Area, Kota",
+    "city": "Kota",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "324007"
+  },
+  {
+    "id": "935d8428-1961-4d4b-8c4c-a78ad7b3c34a",
+    "owner_type": "dealer",
+    "owner_id": "af30f09b-c9e1-4f85-917a-80d1863e5b84",
+    "street": "Gudha Gorji, Near Central Bank, Jhunjhunu",
+    "city": "Jhunjhunu",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "333022"
+  },
+  {
+    "id": "dba52578-19d1-4601-a5da-2ce023b38a49",
+    "owner_type": "dealer",
+    "owner_id": "343fa0fa-db63-4e54-adad-a86695543e43",
+    "street": "A-40-A, Near Rastrapati Ground, Shastri Nagar, Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302016"
+  },
+  {
+    "id": "24efe350-a67b-4e86-93f2-3f4f96e92f23",
+    "owner_type": "dealer",
+    "owner_id": "a8294800-cd24-485e-a186-a6a598b3a6e8",
+    "street": "36-A Keshav Nagar, Opp.- Samrat Ashok Udyan Pal Road, Jodhpur",
+    "city": "Jodhpur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "342001"
+  },
+  {
+    "id": "19e02385-f529-4937-b167-95f11ee3b932",
+    "owner_type": "dealer",
+    "owner_id": "c4221d5e-a006-4738-90e1-c9877411fb17",
+    "street": "1059A Uniyaro Ka Rasta Chandpole Bazar Jaipur",
+    "city": "1059A Uniyaro Ka Rasta Chandpole Bazar Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302001"
+  },
+  {
+    "id": "f2446fad-f1f7-4c34-8c63-02df80ceb31e",
+    "owner_type": "dealer",
+    "owner_id": "30998ca9-e9ba-47b2-967f-c5fe275818b9",
+    "street": "Banswara Road, Sabla Dungarpur",
+    "city": "Sabla Dungarpur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "312240"
+  },
+  {
+    "id": "1cab2f06-0e6a-4ae8-8ca6-3349549ead16",
+    "owner_type": "dealer",
+    "owner_id": "1aee05c0-6187-4b45-bd2c-5fc75867c049",
+    "street": "Near Hdfc Bank, Jaipur-Jhunjhunu Byepass Road, Sikar",
+    "city": "Sikar",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "332001"
+  },
+  {
+    "id": "e7b55d9f-7e73-42a1-af0d-56403f599953",
+    "owner_type": "dealer",
+    "owner_id": "e073c031-4812-4d06-b3df-3e026cd4049b",
+    "street": "Vijay Bari, Near Khaitan Hospital, Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "302039"
+  },
+  {
+    "id": "8e90e15c-106a-4038-9b23-421b11e559a0",
+    "owner_type": "dealer",
+    "owner_id": "aa0be4c0-3a9f-4153-8a35-cf5ae02c6113",
+    "street": "Main Market, Swaroopganj Sirohi",
+    "city": "Swaroopganj Sirohi",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "307023"
+  },
+  {
+    "id": "10cc6086-3197-4685-9fab-cc4c5f5e3204",
+    "owner_type": "dealer",
+    "owner_id": "82794509-3a6c-42b1-8102-959390146960",
+    "street": "Modi Road, Near Gandhi Park, Jhunjhunu",
+    "city": "Jhunjhunu",
+    "state": "Rajasthan",
+    "country": "India",
+    "pincode": "333001"
+  },
+  {
+    "id": "25d70241-59c1-4edd-b228-590d71beaa89",
+    "owner_type": "dealer",
+    "owner_id": "612b9d51-2e5e-4fa0-8687-e06b3384d354",
+    "street": "Old No – 3, New No – 12/9, Mambakkam Main Road, Viajaypuram Extn, Sithalapakkam, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600126"
+  },
+  {
+    "id": "0fdf49a2-d6c6-45b0-aeb4-fd6c52b74424",
+    "owner_type": "dealer",
+    "owner_id": "d93bc548-d94e-4a16-8d65-86afe9e5b848",
+    "street": "No – 33, Church Street, Karaikal",
+    "city": "Karaikal",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "609602"
+  },
+  {
+    "id": "91e2bd4e-6444-4fbc-bbfa-287244b6ef78",
+    "owner_type": "dealer",
+    "owner_id": "8e17adf0-bda8-4d29-858e-59a038ab556f",
+    "street": "No – 25 / 1, High Road, Tirunelveli",
+    "city": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "627001"
+  },
+  {
+    "id": "f275e682-70db-4b75-9118-9ca0628c5b81",
+    "owner_type": "dealer",
+    "owner_id": "e4b24299-56aa-4407-b3f0-d4b57eef8e98",
+    "street": "No – 87, Arcot Road, Virugambakkam, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600092"
+  },
+  {
+    "id": "cbd78382-3e90-4f8f-b906-0d5677a14332",
+    "owner_type": "dealer",
+    "owner_id": "2856f746-3134-49be-ad49-a6c7b473f185",
+    "street": "New No – 556, Old No 416, Cth Road, Avadi, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600054"
+  },
+  {
+    "id": "83f72795-0f15-43e3-a720-698d6a5dbfe5",
+    "owner_type": "dealer",
+    "owner_id": "c3c4e46e-94d7-4b37-8ac3-6f0cb4777633",
+    "street": "No – 7, Co Operative Colony, Trichy Road, Dindial",
+    "city": "Dindial",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "624001"
+  },
+  {
+    "id": "c918e03b-12cc-4a38-9d66-11e9b0fdc011",
+    "owner_type": "dealer",
+    "owner_id": "4a1b0f06-0acb-4e5a-a1b0-3719ed47fc03",
+    "street": "No – 132, Choolai High Road, Choolai",
+    "city": "Choolai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600112"
+  },
+  {
+    "id": "99d939f1-0b09-4d40-a7b6-8ba3f13b6751",
+    "owner_type": "dealer",
+    "owner_id": "c74cd662-b80b-4b63-85cc-cf70bfc9b4ac",
+    "street": "No – 503, Old No – 268, Sydenhams Road, Choolai",
+    "city": "Choolai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600112"
+  },
+  {
+    "id": "d4478ea2-0058-4d64-845e-a08fe400d154",
+    "owner_type": "dealer",
+    "owner_id": "d6efa8c3-bdc2-4d79-997a-2dcff5da2c79",
+    "street": "No – 34 – A, Arcot Road, Porur, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600116"
+  },
+  {
+    "id": "3fe02d46-0edc-49bc-bba3-b84332cf9d2a",
+    "owner_type": "dealer",
+    "owner_id": "43206ff4-c4dd-4af2-866a-497421f44d88",
+    "street": "No – 17, Shri Ranganatha Nagar, Agaram Main Road, Selayur, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600073"
+  },
+  {
+    "id": "3fd1b093-a30e-4aba-9505-8249251f3f97",
+    "owner_type": "dealer",
+    "owner_id": "a88416cf-6415-46b0-b00b-d1cfe5e104d5",
+    "street": "No – 4 A/2, Sevalaperi Road, Palayamkotai",
+    "city": "Palayamkotai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "627002"
+  },
+  {
+    "id": "93549c1e-94b8-4ff3-afb1-cc68e15218d4",
+    "owner_type": "dealer",
+    "owner_id": "ec6d039a-dde8-4bfc-aaaa-81734d520de8",
+    "street": "No – 3, South Veeranam Canal Road, Kandanchavdi, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600096"
+  },
+  {
+    "id": "f38e09eb-7717-4199-90dc-8a007d7e45bd",
+    "owner_type": "dealer",
+    "owner_id": "121e5bb0-d894-44f8-b7da-ea105e3cf146",
+    "street": "No – 18, 2Nd Avenue, Ashok Nagar, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600083"
+  },
+  {
+    "id": "510b8c6f-4375-417f-b8f4-738151522dc2",
+    "owner_type": "dealer",
+    "owner_id": "63d776aa-d9f0-456c-a98c-d3907a3e5f74",
+    "street": "No – 185, A & B, Eswaran Koil Street, Pondicherry",
+    "city": "Pondicherry",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "605001"
+  },
+  {
+    "id": "a294d623-0dba-44f1-a4e4-74e47436e155",
+    "owner_type": "dealer",
+    "owner_id": "331cce8e-5c85-4f5c-b0c3-a3eb420763f0",
+    "street": "No – 3 B/4, Seevalaperi Road, Palayamkottai, Tirunelveli",
+    "city": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "627002"
+  },
+  {
+    "id": "70fa6ec3-ce7a-4827-83fa-8a712afd85dd",
+    "owner_type": "dealer",
+    "owner_id": "c87622ff-146e-4972-8163-db4aaeb80ef7",
+    "street": "No – 122, Velacherry Main Road, Rajakilpakkam, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600073"
+  },
+  {
+    "id": "c0880a33-e1d5-435a-b318-4461546f9cea",
+    "owner_type": "dealer",
+    "owner_id": "de88bccb-a830-465c-a413-308a5943f0d7",
+    "street": "No – 131, Choolai High Road, Choolai, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600112"
+  },
+  {
+    "id": "018dd38d-b3db-4248-bc1e-f6a9a5dcdd78",
+    "owner_type": "dealer",
+    "owner_id": "8a0b684c-a66b-4c80-acb7-a10874241595",
+    "street": "No – 394/ 121, Dr Natesan Road, Triplicane, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600005"
+  },
+  {
+    "id": "f496fe8b-fbd4-49e7-8094-83e58277f630",
+    "owner_type": "dealer",
+    "owner_id": "c6387884-6903-4d4c-87ae-6a1f4b8518b2",
+    "street": "Old No 102, New No 104, Velacherry Main Road, Pallikaranai, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600100"
+  },
+  {
+    "id": "b138e73f-aa80-4c93-8ea2-1d48fddcd7b2",
+    "owner_type": "dealer",
+    "owner_id": "d7103ecd-bfbf-4dee-9371-070660d84d32",
+    "street": "Old No – 194, New No – 24, Demellows Road, Choolai, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600112"
+  },
+  {
+    "id": "72bdee1a-e955-4ce0-aca8-7f95280647d2",
+    "owner_type": "dealer",
+    "owner_id": "2054d1bd-70cb-441a-8e07-f0384ecfbb64",
+    "street": "No – 137/2, Nsp Compound, Ganapathy Nagar, Ariyamangalam, Trichy",
+    "city": "Trichy",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "620010"
+  },
+  {
+    "id": "87c3eef2-a150-4305-b75e-95119e3fd380",
+    "owner_type": "dealer",
+    "owner_id": "7679605d-1aa8-4e14-ae91-0c3e6667b6cb",
+    "street": "Old No 22, New No 11, V V Koil Street, Choolai, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600112"
+  },
+  {
+    "id": "127812f3-f1a4-4a86-ac2d-180d0f01991d",
+    "owner_type": "dealer",
+    "owner_id": "43df991f-3ee8-4783-a4e6-eae05627e763",
+    "street": "No -275, West Masi Street, Madurai",
+    "city": "Madurai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "625001"
+  },
+  {
+    "id": "04a36215-0df4-4142-881f-e04e2e2dce8b",
+    "owner_type": "dealer",
+    "owner_id": "274f93e3-2cc2-4b54-a4d3-cb091850366c",
+    "street": "No – 172, Sangiliyandapuram Main Road, Trichy",
+    "city": "Trichy",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "620011"
+  },
+  {
+    "id": "4add874d-99d0-40c4-b514-a82f19c8ff37",
+    "owner_type": "dealer",
+    "owner_id": "71185ef7-94fc-4bdb-9c70-532a60ca94fe",
+    "street": "No – 125, Ponnurangam Road, R S Puram, Coimbatore",
+    "city": "Coimbatore",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "641002"
+  },
+  {
+    "id": "dc7150d9-8ca0-4d31-b3a1-5f80e77924a0",
+    "owner_type": "dealer",
+    "owner_id": "2a27ecc7-3fe1-4915-b0fd-f6390fc1de74",
+    "street": "Old No 16, New No – 34, T K Mudali Street, Choolai, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "630112"
+  },
+  {
+    "id": "bfafcdb3-4d3b-4fd0-954d-e9e3521e0458",
+    "owner_type": "dealer",
+    "owner_id": "1a6de63f-818c-4b54-bfb9-eb1bd657bdbb",
+    "street": "No 3, J Jayarathna Complex, Omalur Main Road, Five Road, Salem",
+    "city": "Salem",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "636004"
+  },
+  {
+    "id": "f45c6fb5-5075-4249-b6e5-856546363a21",
+    "owner_type": "dealer",
+    "owner_id": "5f6d44e8-31e6-4e41-907e-e47c9423e7b2",
+    "street": "No – 44 /1, Barracks Road, Periamet, Chennai",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "pincode": "600003"
+  },
+  {
+    "id": "02797be6-b20c-44c1-b501-09db052cf47c",
+    "owner_type": "dealer",
+    "owner_id": "f3bb63d6-738d-440f-a9ff-99873f55b23c",
+    "street": "Survya No.139Aa, Kuntloor Village, Hayat Nagar Mandal, R R Dist., Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "501505"
+  },
+  {
+    "id": "4d9baf5f-a7b4-4055-a4f0-4b30d2255e90",
+    "owner_type": "dealer",
+    "owner_id": "f7bd18bb-8b62-4c4e-a17e-f11cd470d50b",
+    "street": "8-7, Rukminipuri, Opp. Obc Bank, Ecil Main Road, Secundrabad",
+    "city": "Secundrabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500062"
+  },
+  {
+    "id": "86ac00eb-192e-4206-a1bb-f7d0136acd57",
+    "owner_type": "dealer",
+    "owner_id": "6bdf42f0-17b5-4a67-97f1-fd5791772e71",
+    "street": "S No.G-2, Padala Complex, Mig Kphp Colony, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500072"
+  },
+  {
+    "id": "8ac61b89-801e-4f14-b400-3f8074d6a53b",
+    "owner_type": "dealer",
+    "owner_id": "e8f19413-7f80-4802-aee0-1571d88a2469",
+    "street": "4-25/D, Dilsukhnagar Main Road, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500060"
+  },
+  {
+    "id": "6cff647d-3755-4770-9b9a-3651e6d429b7",
+    "owner_type": "dealer",
+    "owner_id": "9fd104d7-61ca-4340-ad62-403d2e35f879",
+    "street": "Shop No.182 & 183, Sama Mohan Reddy, Vijayawada Highway Road, Vanastalipuram, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500079"
+  },
+  {
+    "id": "6f00156d-2756-4f01-b8de-1c13c9a3f70a",
+    "owner_type": "dealer",
+    "owner_id": "ffca3fdd-6b2b-4790-8a2a-678138e0f284",
+    "street": "Plot No.90/H, Phase -1, Ida Jeedimetla, Quthbullapur, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500072"
+  },
+  {
+    "id": "d2320163-67fe-4036-8954-ae87460563e1",
+    "owner_type": "dealer",
+    "owner_id": "15218a97-0f00-4c75-b5a0-6b6418378025",
+    "street": "Opp. Jain Mandir, Aghapura, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500001"
+  },
+  {
+    "id": "bf4c9a11-7187-4468-942b-2f82d7787aeb",
+    "owner_type": "dealer",
+    "owner_id": "cc1fa796-5ade-4828-8262-a6f154c2516f",
+    "street": "5-3-412, Old Topkhana, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500012"
+  },
+  {
+    "id": "146de7a4-214d-4a43-a6e8-ba573036ff97",
+    "owner_type": "dealer",
+    "owner_id": "6f1a008d-f93d-4e4f-9e6a-7344e0298775",
+    "street": "5-6-172/A, Near Aghapura, Charkhandil, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500001"
+  },
+  {
+    "id": "484dee2e-e464-46f9-9063-e9320556547f",
+    "owner_type": "dealer",
+    "owner_id": "8921049d-64b3-44f2-8499-38eb6b83d5d0",
+    "street": "5-9-327/A, Gunfoundry, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500001"
+  },
+  {
+    "id": "4aa1e860-d52e-4138-958a-4933c017d0b7",
+    "owner_type": "dealer",
+    "owner_id": "81b0108a-1fb8-4894-b47b-e11c29eaafb5",
+    "street": "5-4-83, Shope No.3 & 4, Chambers M G Road, Secundrabad",
+    "city": "Secundrabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500003"
+  },
+  {
+    "id": "24716fa3-ec38-4a30-8866-ff6b0308a1e3",
+    "owner_type": "dealer",
+    "owner_id": "762b1833-be06-4e35-9d5f-a4ff0f885f75",
+    "street": "2-56/33/16/8, Sai Nagar, Ayyappa Society, Main Road, Madhapur, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500081"
+  },
+  {
+    "id": "c9eb2b50-7fff-4891-8516-55446f3a6d03",
+    "owner_type": "dealer",
+    "owner_id": "9721f921-e548-41cb-ba4a-42ed77c52460",
+    "street": "6-23, Prashanth Nagar, Municipal Office Road, Serlingampally, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500019"
+  },
+  {
+    "id": "5fa027c8-0248-498c-b696-44904072fe06",
+    "owner_type": "dealer",
+    "owner_id": "b835757a-0d9a-4e0e-9d4a-7c98c03cb53b",
+    "street": "Shop No.3-4-150, Vijayawada Road, Opp Hanuman Temple, L B Nagar, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500074"
+  },
+  {
+    "id": "5c263de6-e970-4890-b2bf-a5da09749129",
+    "owner_type": "dealer",
+    "owner_id": "eaccea03-e53f-4c35-ac7c-b16e3acf8fe6",
+    "street": "5-3-246 & 247, Opp Matha Temple, Hindinagar, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500012"
+  },
+  {
+    "id": "43ea4712-c8e9-4e5d-9866-2cd9bba88fc4",
+    "owner_type": "dealer",
+    "owner_id": "e708b1b5-42f4-467e-818c-0d81ceadcaa4",
+    "street": "#14-1-409, Aghapura, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500001"
+  },
+  {
+    "id": "30cb0c71-9b26-4f32-a399-95e9cd4d5129",
+    "owner_type": "dealer",
+    "owner_id": "8e489cd9-e6d8-4219-a8b4-b525ac9ed282",
+    "street": "5-5-685, Pink House, Goshamahal, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500012"
+  },
+  {
+    "id": "3c6e6784-2e93-4550-9b4d-b0539ab1e482",
+    "owner_type": "dealer",
+    "owner_id": "c47f79e4-4414-49cc-8ca0-614f35ae54e3",
+    "street": "5-3-262 & 263, Goshamahal, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500012"
+  },
+  {
+    "id": "be5d68be-3825-471a-aea5-4a0b2cc8f54a",
+    "owner_type": "dealer",
+    "owner_id": "52fe7a00-2791-40f8-971f-029f4c3daa2f",
+    "street": "5-5-682, Goshamahal, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500012"
+  },
+  {
+    "id": "a709e8ce-f60c-419a-91df-dc2d4fb10d91",
+    "owner_type": "dealer",
+    "owner_id": "10d23603-68d1-4884-846e-5dd1ad3170fe",
+    "street": "5-3-111, Chakanwadi, Goshamahal, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500012"
+  },
+  {
+    "id": "d630a024-7e74-4636-9291-13257a674f0f",
+    "owner_type": "dealer",
+    "owner_id": "5f3e78ea-4d6b-4682-a399-a11747ebe8ac",
+    "street": "8-2-231/F/7/9/A1, Kamalapuri Colony, Jubleehills, Hyderabad",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "pincode": "500033"
+  },
+  {
+    "id": "93cc1579-a142-4b8e-9982-dedf3bc64c82",
+    "owner_type": "dealer",
+    "owner_id": "a6e6e3d0-d0b2-4a2c-b0fd-e62d1667e57f",
+    "street": "Village Bura Rani Near Pani Ki Tanki Rudrapur, Uddham Singh Nagar",
+    "city": "Uddham Singh Nagar",
+    "state": "Uttarakhand",
+    "country": "India",
+    "pincode": "263153"
+  },
+  {
+    "id": "160b223e-2ddd-48d0-ae63-85afa7184e1a",
+    "owner_type": "dealer",
+    "owner_id": "6732b47a-aa47-4928-b4a9-4d9b4fce4e60",
+    "street": "441/7, Nyay Khand – Iii Opp. Orange Country, Indirapuram",
+    "city": "Indirapuram",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "201014"
+  },
+  {
+    "id": "dc94797f-8374-49fa-a130-593af8f404f0",
+    "owner_type": "dealer",
+    "owner_id": "2f1562ca-f8f5-4544-8956-29b1074cc712",
+    "street": "E-2, Site-Iv, G. Noida, Gautam Budh Nagar",
+    "city": "Gautam Budh Nagar",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "201310"
+  },
+  {
+    "id": "c1aa6aeb-73f3-469e-bd64-b62b9bc37edb",
+    "owner_type": "dealer",
+    "owner_id": "12717eec-9efb-4b8d-99d1-7239847482fe",
+    "street": "C-70, Sec-4, Noida, Gautam Budh Nagar",
+    "city": "Gautam Budh Nagar",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "201301"
+  },
+  {
+    "id": "953735ab-7b65-4e29-b69d-64ce76c5d9c6",
+    "owner_type": "dealer",
+    "owner_id": "80fb31de-9745-4bbf-94ab-937edd3892e8",
+    "street": "Khasra No-193/1 Village Akbarpur Near Tigri, Golchakar, Ghaziabad",
+    "city": "Ghaziabad",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": ""
+  },
+  {
+    "id": "39aacd41-4be1-4c5d-856e-26b5a22a2595",
+    "owner_type": "dealer",
+    "owner_id": "a4278c79-e897-4015-9953-d09b4eae81be",
+    "street": "Plot No. 17, Abhishek Nagar, Jankipuram",
+    "city": "Jankipuram",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "226021"
+  },
+  {
+    "id": "e37fbfd2-ebe3-4558-bdc9-ff1f5423096a",
+    "owner_type": "dealer",
+    "owner_id": "bba1c41d-7fdd-47dd-a0b0-dd681b6bb0e1",
+    "street": "Kanchanpur Chitaipur Chunar Road",
+    "city": "Kanchanpur Chitaipur Chunar Road",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "221010"
+  },
+  {
+    "id": "6367cafe-2e51-47ca-a192-b1af6ce12c96",
+    "owner_type": "dealer",
+    "owner_id": "156f1649-e7ef-43ff-a812-d4aced422777",
+    "street": "Plot No.05 Jhakarkati Kanpur",
+    "city": "Plot No.05 Jhakarkati Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208003"
+  },
+  {
+    "id": "e50e26fa-b3eb-4b46-9fb5-c4390b5225e6",
+    "owner_type": "dealer",
+    "owner_id": "40424a72-42db-4206-b8ff-53634d69e076",
+    "street": "E-23 Transport Nagar Lucknow",
+    "city": "E-23 Transport Nagar Lucknow",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "226005"
+  },
+  {
+    "id": "dcabcd67-eba5-4720-800a-359d7bff68bb",
+    "owner_type": "dealer",
+    "owner_id": "72e7ffa7-2574-4d5a-9d74-4607aa8faa0e",
+    "street": "Shri Pal Singh Chandel Market Opp Saubhagya Hospital Panki Road Kalyanpur Kanpur",
+    "city": "Shri Pal Singh Chandel Market Opp Saubhagya Hospital Panki Road Kalyanpur Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208014"
+  },
+  {
+    "id": "14eedc1f-7367-43ad-b104-bdb4421296e2",
+    "owner_type": "dealer",
+    "owner_id": "4a7750d2-7a3f-4545-94fc-8128167fded9",
+    "street": "Transport Nager Near Mahewa Falmandi",
+    "city": "Transport Nager Near Mahewa Falmandi",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "273016"
+  },
+  {
+    "id": "67d71a8b-e49e-452a-946f-120b640c10e0",
+    "owner_type": "dealer",
+    "owner_id": "3869d27d-47ac-45ed-bf24-5bf765b0a35c",
+    "street": "106/371, Jarib Chowki Kalpi Road Kanpur",
+    "city": "Jarib Chowki Kalpi Road Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208002"
+  },
+  {
+    "id": "ac6384b2-ec1d-447d-a5da-baf7d24973f6",
+    "owner_type": "dealer",
+    "owner_id": "831ddfd6-2c8b-463e-9f2c-06c16e0a890f",
+    "street": "Salempur Bazar Infrot Of Kotwali Salempur",
+    "city": "Salempur Bazar Infrot Of Kotwali Salempur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "274509"
+  },
+  {
+    "id": "1285e967-f1a3-4158-a1d1-b27373e9fad4",
+    "owner_type": "dealer",
+    "owner_id": "d73f707e-14fd-482f-af68-9fb0aed345a3",
+    "street": "Ashapur Chauraha, Varanasi",
+    "city": "Varanasi",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "221007"
+  },
+  {
+    "id": "9ae80b63-702a-4e7a-8d79-af268f1a717b",
+    "owner_type": "dealer",
+    "owner_id": "d4e640cf-4f22-4905-a4e8-a1bc0cf2ce18",
+    "street": "Jangal Sikri Bypass Chowk Deoria Road",
+    "city": "Jangal Sikri Bypass Chowk Deoria Road",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "273010"
+  },
+  {
+    "id": "7b695fce-2df1-40af-86a5-18c5a91450d6",
+    "owner_type": "dealer",
+    "owner_id": "4e7449d6-b370-4107-8523-f0a0280593fe",
+    "street": "Near Falmandi South Rustampur Gorakhpur",
+    "city": "Near Falmandi South Rustampur Gorakhpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "273016"
+  },
+  {
+    "id": "d360d80b-92de-4725-aeca-cb805e46f82e",
+    "owner_type": "dealer",
+    "owner_id": "a00dbcb7-262b-4bb2-b43e-8d45cae643a7",
+    "street": "Rajkey Kanya Intercollege, Bank Chauraha",
+    "city": "Bank Chauraha",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "272175"
+  },
+  {
+    "id": "a1786b73-66e9-47ae-a613-067de29abff2",
+    "owner_type": "dealer",
+    "owner_id": "cb0dbc97-49d5-4cb4-8661-39383a039233",
+    "street": "Infront Of V R Petrol Pump, Jhokan Bagh, Jhansi",
+    "city": "Jhansi",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "284001"
+  },
+  {
+    "id": "a7e6213e-cf9d-42ab-88a7-596c9d192d02",
+    "owner_type": "dealer",
+    "owner_id": "da5bc054-481b-4e7f-8a7f-7cbcbb4702bf",
+    "street": "Heerapatti Sadar",
+    "city": "Heerapatti Sadar",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "276001"
+  },
+  {
+    "id": "79702070-698c-4557-8470-f21104ce60ba",
+    "owner_type": "dealer",
+    "owner_id": "6880cd73-5ea7-4570-ae86-14d37ab5e9ea",
+    "street": "Sidharth Enclave Taramandal",
+    "city": "Sidharth Enclave Taramandal",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "273016"
+  },
+  {
+    "id": "0a953177-efb7-4203-b869-a05af13004db",
+    "owner_type": "dealer",
+    "owner_id": "974f3116-503e-4da5-aa1f-6fb25d9ec708",
+    "street": "110/136 Ram Krishna Nagar",
+    "city": "110/136 Ram Krishna Nagar",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208012"
+  },
+  {
+    "id": "f5e46af2-4613-44be-94b5-e2f3c3f27ace",
+    "owner_type": "dealer",
+    "owner_id": "d0525243-551b-46a2-9adf-80c1b7eaa6f5",
+    "street": "S-29/428 K Shivpur",
+    "city": "S-29/428 K Shivpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "221002"
+  },
+  {
+    "id": "e8cdfd94-6f1a-468d-a8e5-077cc96ebee8",
+    "owner_type": "dealer",
+    "owner_id": "d1612267-83ce-4eaf-92ef-23ab127d52e2",
+    "street": "Flat No 2C/5, Aakash Builders, D65/145, Lahartara",
+    "city": "Lahartara",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "221002"
+  },
+  {
+    "id": "339e92a6-d317-403a-a8d5-0f4f13961b61",
+    "owner_type": "dealer",
+    "owner_id": "b91fbc7b-588c-408d-b0ad-42f7c94d3547",
+    "street": "S-1/172-K-4 Nai Basti Pandeypur",
+    "city": "S-1/172-K-4 Nai Basti Pandeypur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "221002"
+  },
+  {
+    "id": "7c7c9204-b30c-4719-bf5d-a88f3d707a56",
+    "owner_type": "dealer",
+    "owner_id": "17833046-95bf-47c5-9e69-15dc196c18ea",
+    "street": "S-8/252-A-2C Khajuri Hukulganj Road Pandeypur",
+    "city": "S-8/252-A-2C Khajuri Hukulganj Road Pandeypur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "221002"
+  },
+  {
+    "id": "15ca590a-d346-4b58-b494-1906233fa772",
+    "owner_type": "dealer",
+    "owner_id": "195a7f90-0193-4c7f-b378-0acb5d1680fc",
+    "street": "C 27/279 A-2 Nirmal Complex Maldahia",
+    "city": "C 27/279 A-2 Nirmal Complex Maldahia",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "221001"
+  },
+  {
+    "id": "7c5c30b1-4f8d-4e75-a71a-8b4fe28565bf",
+    "owner_type": "dealer",
+    "owner_id": "2fd6160a-92a6-410e-9b96-32707e50f89a",
+    "street": "119/11 Chandra Nagar Kanpur",
+    "city": "119/11 Chandra Nagar Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208010"
+  },
+  {
+    "id": "3539ee1e-de4d-4e22-9390-2031d83fdebf",
+    "owner_type": "dealer",
+    "owner_id": "294f62c7-87cc-40ad-b6e2-5d3e94083adf",
+    "street": "Bansi Road Itwa",
+    "city": "Bansi Road Itwa",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "272192"
+  },
+  {
+    "id": "75268f29-a069-473e-9a75-f8e1cf5d2831",
+    "owner_type": "dealer",
+    "owner_id": "29cb4048-cfa3-48d8-99c9-237d6e48b440",
+    "street": "133/43 O Block Kanpur",
+    "city": "133/43 O Block Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208011"
+  },
+  {
+    "id": "9de3dc5f-894e-4deb-8ffa-94294ad2f57a",
+    "owner_type": "dealer",
+    "owner_id": "8de0bc27-a06f-436b-873c-f344961cd932",
+    "street": "0, Sadiganj, Machhalishahar, Jaunpur",
+    "city": "Jaunpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "222143"
+  },
+  {
+    "id": "fe76fa1c-ad6e-4359-abe5-da4ab8c41610",
+    "owner_type": "dealer",
+    "owner_id": "958d7cdc-c74f-4af3-90d6-15611fa21094",
+    "street": "Gandhi Nagar, Mahoba",
+    "city": "Mahoba",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "210427"
+  },
+  {
+    "id": "1347d331-8c70-445c-bd02-c82be65ceebf",
+    "owner_type": "dealer",
+    "owner_id": "359526f2-55d1-4f7e-9da1-217611a00adc",
+    "street": "Bada Shivala Gt Road Fatehpur",
+    "city": "Bada Shivala Gt Road Fatehpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "212601"
+  },
+  {
+    "id": "b3327945-2dfc-474c-be76-d5a717c0db8c",
+    "owner_type": "dealer",
+    "owner_id": "7daf2459-414b-4bf2-a5d2-f5310dc2bdc8",
+    "street": "122/237A Fazal Ganj Kalpi Road Kanpur",
+    "city": "122/237A Fazal Ganj Kalpi Road Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208012"
+  },
+  {
+    "id": "572d2665-3f3d-49a9-88b5-e6c766bd575a",
+    "owner_type": "dealer",
+    "owner_id": "d2e954ea-b242-4718-bd7a-7bff6aa21f2b",
+    "street": "87/4-A(10) Heera Ganj Jarib Chauki Kanpur",
+    "city": "87/4-A(10) Heera Ganj Jarib Chauki Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208012"
+  },
+  {
+    "id": "b5c48b6c-aa84-41eb-828b-baf151fefe4c",
+    "owner_type": "dealer",
+    "owner_id": "098c2e89-962e-4939-8718-e94f53a4675c",
+    "street": "Hakeemuddin Manzil Shop No. 1-2, Sanjarpur",
+    "city": "Sanjarpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "223227"
+  },
+  {
+    "id": "862e4860-c825-4adf-adcb-7cc36ca96895",
+    "owner_type": "dealer",
+    "owner_id": "652e6641-d1a8-4baa-b83c-1203f46ffcd7",
+    "street": "Bakhira Road Ghaghsra",
+    "city": "Bakhira Road Ghaghsra",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "273209"
+  },
+  {
+    "id": "0ed2634e-4b3e-4468-b41f-658dd206cb3c",
+    "owner_type": "dealer",
+    "owner_id": "7927648d-6da1-42be-97ba-8e6083a30ff4",
+    "street": "115, Patel Nagar Kanpur",
+    "city": "Patel Nagar Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208007"
+  },
+  {
+    "id": "9360fbd3-a6c5-4cea-b6fe-e1918b7d0b18",
+    "owner_type": "dealer",
+    "owner_id": "95202ee8-93de-4f49-aa1f-0bef1ab7e4e0",
+    "street": "Chanki Road Lar Bazar",
+    "city": "Chanki Road Lar Bazar",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "274502"
+  },
+  {
+    "id": "f13ead1b-626b-4763-8028-fe28a7baaa2a",
+    "owner_type": "dealer",
+    "owner_id": "2bb02b5a-1f15-4568-829c-999e77b87328",
+    "street": "C-221 Bulandshahar Road Industrial Area Lal Kuaa Ghaziabad",
+    "city": "C-221 Bulandshahar Road Industrial Area Lal Kuaa Ghaziabad",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "201009"
+  },
+  {
+    "id": "bc0fd267-8731-4130-a59d-166af5e17d00",
+    "owner_type": "dealer",
+    "owner_id": "f3a96487-1343-4af4-9825-49964f879174",
+    "street": "Plot No.05 Jhakarkati Kanpur",
+    "city": "Plot No.05 Jhakarkati Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208003"
+  },
+  {
+    "id": "531788fa-b9a8-4631-9fad-c2cbd8b54029",
+    "owner_type": "dealer",
+    "owner_id": "f51c26c8-f8c4-433a-8860-8deb278cbd31",
+    "street": "Anoop Nager Lumbani Road Tetari Bazar Sidharthnager",
+    "city": "Anoop Nager Lumbani Road Tetari Bazar Sidharthnager",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "272207"
+  },
+  {
+    "id": "ef9f7b95-1c75-4534-946d-f6bf984ff13b",
+    "owner_type": "dealer",
+    "owner_id": "5b2b2623-2cec-43b5-a62f-da26350bfe49",
+    "street": "Civil Line Azamgarh",
+    "city": "Civil Line Azamgarh",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "276001"
+  },
+  {
+    "id": "a1744f41-aa2c-4baa-ab97-4762d5879389",
+    "owner_type": "dealer",
+    "owner_id": "e186abc5-581a-4a24-af06-6e52f60821de",
+    "street": "Plot No.-1012/342, Union Bank Building, Matiwari Crossing, Faizabad Road, Chinhat, Lucknow",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "226028"
+  },
+  {
+    "id": "297d947d-c31e-401e-9bc6-305a5576279f",
+    "owner_type": "dealer",
+    "owner_id": "cccb0b6c-c3e3-4886-bc27-539dc7647961",
+    "street": "Near Police Chowki Manshipura Mau",
+    "city": "Near Police Chowki Manshipura Mau",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "275101"
+  },
+  {
+    "id": "8782bcca-5134-48a0-81e8-8b05b035a0ca",
+    "owner_type": "dealer",
+    "owner_id": "b259cccf-235c-420c-b7c9-dbf2e1e69717",
+    "street": "Plot No. 9 Cooper Ganj Kanpur",
+    "city": "Plot No. 9 Cooper Ganj Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208001"
+  },
+  {
+    "id": "8e8bb5ee-3aa1-4053-9c47-8002ad3d6655",
+    "owner_type": "dealer",
+    "owner_id": "885f3c5c-a351-4df8-b9ca-af5924eb2b84",
+    "street": "Shop No 3, Prahlad Trade Center Bank Road Gkp",
+    "city": "Prahlad Trade Center Bank Road Gkp",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "273016"
+  },
+  {
+    "id": "eda7a5ac-68de-4815-b443-c058e4ea9882",
+    "owner_type": "dealer",
+    "owner_id": "de3c5122-502a-430b-aeeb-648696e9650c",
+    "street": "13/380 Govind Nagar Kanpur",
+    "city": "13/380 Govind Nagar Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208006"
+  },
+  {
+    "id": "3727f2bf-9651-483f-ade0-fca27434bff7",
+    "owner_type": "dealer",
+    "owner_id": "b9d5b31e-ab39-4815-95c2-45782e29d57f",
+    "street": "21/11A. Free Gang, Agra",
+    "city": "Agra",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "282001"
+  },
+  {
+    "id": "f7bc94c4-01a3-4192-9f94-7d7c75451cc0",
+    "owner_type": "dealer",
+    "owner_id": "c87ec67f-2e88-4eef-a646-5473bed16df6",
+    "street": "3 Jagai Ka Purwa Chakeri Road, Kanpur",
+    "city": "Kanpur",
+    "state": "Uttar Pradesh",
+    "country": "India",
+    "pincode": "208008"
+  },
+  {
+    "id": "ce6058ac-a30b-45fd-acdc-9bc594d0584b",
+    "owner_type": "dealer",
+    "owner_id": "a4e34cde-12fe-43b6-abba-eb38e5cd5e52",
+    "street": "92A, C.R.Avenue, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700012"
+  },
+  {
+    "id": "7cb55420-3c33-4193-b111-317fcc04b62c",
+    "owner_type": "dealer",
+    "owner_id": "107ee9ed-ae9f-4072-8a55-393f37a5a74a",
+    "street": "34/1 Netaji Road, Po -Khagra, Behrampore, Murshidabad",
+    "city": "Murshidabad",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "742103"
+  },
+  {
+    "id": "69785c96-49cb-43ed-b801-c714d87e6054",
+    "owner_type": "dealer",
+    "owner_id": "2e42a774-d2b0-46a1-bb0c-f1b3cdf80501",
+    "street": "G.T.Road, Pangarh Bazar, Paschim Bardhaman",
+    "city": "Paschim Bardhaman",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "713148"
+  },
+  {
+    "id": "f1e060ff-4617-483c-b14d-901349b4a0e6",
+    "owner_type": "dealer",
+    "owner_id": "8b94a000-6951-4bbb-a0e4-a843789d5d5e",
+    "street": "Aliganj Road, Gola, Golakaranath, Kheri",
+    "city": "Kheri",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "262802"
+  },
+  {
+    "id": "9b7401c3-24b7-4028-9be2-fbe75e09483e",
+    "owner_type": "dealer",
+    "owner_id": "abf1a4ae-9782-4a47-ba23-8072e595e701",
+    "street": "138A, Picnic Garden Road, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700039"
+  },
+  {
+    "id": "700389b0-0ac2-41c7-b833-ca57feb87ea5",
+    "owner_type": "dealer",
+    "owner_id": "c72f66e6-270c-488e-bbf1-d3751c2cab60",
+    "street": "Village – English Bazar, Dist-, Malda",
+    "city": "Malda",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "732101"
+  },
+  {
+    "id": "014b8904-4c3a-4dac-b3c8-db66800a75ed",
+    "owner_type": "dealer",
+    "owner_id": "91b0ecb4-f43a-4c13-9d35-1c93d3622b54",
+    "street": "Saktigarh, Purba- Burdwan",
+    "city": "Purba- Burdwan",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "713149"
+  },
+  {
+    "id": "b3ec9486-9c8b-4c04-9fdb-de48fae303a3",
+    "owner_type": "dealer",
+    "owner_id": "90f0b492-b7b6-4257-84bc-4f075959fc1f",
+    "street": "Shastri Bagan, Joramandir, V.I.P.Road, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700059"
+  },
+  {
+    "id": "b944c7cd-7ed3-4e00-8a47-b2904ed1f2f6",
+    "owner_type": "dealer",
+    "owner_id": "94e4820a-e6f1-4708-a04e-411ff303e2cd",
+    "street": "Beside Sunny Tower, Sevok Road Siliguri",
+    "city": "Sevok Road Siliguri",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "734001"
+  },
+  {
+    "id": "4bcc87a5-beae-4eda-9222-68a8d935c7e2",
+    "owner_type": "dealer",
+    "owner_id": "33b73a74-4831-4f19-b226-1b4aa1e40b02",
+    "street": "Mohanpur, Sweli, Telenipara, P.O- Titagarh, North 24 Parganas, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700121"
+  },
+  {
+    "id": "7ceb9d32-5c24-46ef-be22-2e0276c05794",
+    "owner_type": "dealer",
+    "owner_id": "38ed7dfe-f534-4c40-a6e7-70518e7e85ab",
+    "street": "Ad/1J, Agatpur, Adasrshpally, Kestopur, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700159"
+  },
+  {
+    "id": "17a51c54-d6b5-43d1-bd96-94cf16c0a2cb",
+    "owner_type": "dealer",
+    "owner_id": "34dbc88c-fb7b-44d3-85c0-7b1d089e1611",
+    "street": "Lr Plot No 65, Mouja Karimpur, Nazirabad Road, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700150"
+  },
+  {
+    "id": "8cefac70-fd3a-4a68-aef6-a8942926cea4",
+    "owner_type": "dealer",
+    "owner_id": "228c1a50-811f-4222-8712-dae0f593ef01",
+    "street": "76, Elliot Rd, Park Street Area, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700016"
+  },
+  {
+    "id": "c8c13c7f-e4c2-474c-ab69-375f07aee802",
+    "owner_type": "dealer",
+    "owner_id": "f18a38dc-884c-4ee5-8337-64b4a08e3ee3",
+    "street": "18 Lala Lajpat Rai Road Sevoke Road Siliguri",
+    "city": "18 Lala Lajpat Rai Road Sevoke Road Siliguri",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "774001"
+  },
+  {
+    "id": "13c108a7-6c55-446b-9912-a14bbf4c1296",
+    "owner_type": "dealer",
+    "owner_id": "fd5381fe-4673-4926-ac0e-2ca1b79f2e31",
+    "street": "138 G.T. Road (South), Shibpur, Howrah",
+    "city": "Howrah",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "711102"
+  },
+  {
+    "id": "1c55f94c-4ba1-4e1d-a91a-ac042896733b",
+    "owner_type": "dealer",
+    "owner_id": "32c52b8e-ab77-4860-b628-02070731b472",
+    "street": "Shankar Plaza, Murgasol, Asansol",
+    "city": "Asansol",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "713303"
+  },
+  {
+    "id": "b67d0111-4e6a-4f19-8840-e54b8ad50460",
+    "owner_type": "dealer",
+    "owner_id": "e4611ad9-0d7e-46e3-97a7-90a5513cafea",
+    "street": "S.B.Gorai Road, Ranganiapara, Asansol",
+    "city": "Asansol",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "713303"
+  },
+  {
+    "id": "04fc49da-d14f-4be7-9e54-6211b66e51d4",
+    "owner_type": "dealer",
+    "owner_id": "b0d649f9-5b6d-4ffa-867e-48969a6081bd",
+    "street": "141, Ghosh Para Road, Lalkuthui, Barackpore",
+    "city": "Barackpore",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700120"
+  },
+  {
+    "id": "96e01539-e3c7-4ab3-aee1-f455ab0a8dad",
+    "owner_type": "dealer",
+    "owner_id": "16a3511d-9b80-4564-aac4-ca78e0c6b547",
+    "street": "54/1 Sukumar Ghosh Road, Belgharia, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700083"
+  },
+  {
+    "id": "2312cb75-deef-4a32-9576-e07634e33744",
+    "owner_type": "dealer",
+    "owner_id": "c4b244e6-e2fd-4fd7-8910-65fa310681d3",
+    "street": "8, Grand Lane Lalbazar, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700012"
+  },
+  {
+    "id": "918ee5fb-0aa6-4e46-a952-9e01c29d21ef",
+    "owner_type": "dealer",
+    "owner_id": "14ad977d-a068-43da-908a-dcea4372fec0",
+    "street": "33/1, Sashi Bhusan Dey Street, Kolkata",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "country": "India",
+    "pincode": "700012"
+  }
+]
