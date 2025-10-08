@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               9.2.0 - MySQL Community Server - GPL
--- Server OS:                    Win64
+-- Host:                         103.50.161.16
+-- Server version:               5.7.44 - MySQL Community Server (GPL)
+-- Server OS:                    Linux
 -- HeidiSQL Version:             12.11.0.7065
 -- --------------------------------------------------------
 
@@ -14,13 +14,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table virgo.products
+-- Dumping structure for table virgolam_dashboard.products
 CREATE TABLE IF NOT EXISTS `products` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) DEFAULT NULL,
   `sku` varchar(100) DEFAULT NULL,
-  `category_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `category_id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `description` text,
   `images` text,
   `seo` text,
@@ -75,17 +75,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   UNIQUE KEY `sku_23` (`sku`),
   UNIQUE KEY `slug_24` (`slug`),
   UNIQUE KEY `sku_24` (`sku`),
-  UNIQUE KEY `slug_25` (`slug`),
-  UNIQUE KEY `sku_25` (`sku`),
-  UNIQUE KEY `slug_26` (`slug`),
-  UNIQUE KEY `sku_26` (`sku`),
-  UNIQUE KEY `slug_27` (`slug`),
-  UNIQUE KEY `sku_27` (`sku`),
   KEY `category_id` (`category_id`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table virgo.products: ~0 rows (approximately)
+-- Dumping data for table virgolam_dashboard.products: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

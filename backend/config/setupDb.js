@@ -29,20 +29,38 @@ const setupDB = async () => {
     Role.hasMany(User, { foreignKey: "role_id", as: "users" });
 
     // ==============================
-    // 🔥 ADDRESS RELATIONSHIPS
-    // ==============================
-
-    // ==============================
     // 🔥 CATEGORY RELATIONSHIPS
     // ==============================
     Category.belongsTo(ParentCategory, {
-      foreignKey: "parent_id", // match your column name
-      as: "parent_categories",
+      foreignKey: "parent_id",
+      as: "parent_category",
     });
     ParentCategory.hasMany(Category, {
-      foreignKey: "parent_id", // match your column name
+      foreignKey: "parent_id",
       as: "categories",
     });
+
+    // ==============================
+    // 🔥 PRODUCT RELATIONSHIPS
+    // ==============================
+    Product.belongsTo(Category, { foreignKey: "category_id", as: "category" });
+    Category.hasMany(Product, { foreignKey: "category_id", as: "products" });
+
+    // 👇 ADD THIS NEW RELATIONSHIP
+    Product.belongsTo(ParentCategory, {
+      foreignKey: "parent_category_id",
+      as: "parent_category",
+    });
+    ParentCategory.hasMany(Product, {
+      foreignKey: "parent_category_id",
+      as: "products",
+    });
+
+    // ==============================
+    // 🔥 VARIANT RELATIONSHIPS
+    // ==============================
+    Variant.belongsTo(Product, { foreignKey: "product_id", as: "product" });
+    Product.hasMany(Variant, { foreignKey: "product_id", as: "variants" });
 
     // ==============================
     // 🔥 CATALOGUE RELATIONSHIPS
@@ -57,15 +75,6 @@ const setupDB = async () => {
     });
 
     // ==============================
-    // 🔥 PRODUCT & VARIANT RELATIONSHIPS
-    // ==============================
-    Product.belongsTo(Category, { foreignKey: "category_id", as: "category" });
-    Category.hasMany(Product, { foreignKey: "category_id", as: "products" });
-
-    Variant.belongsTo(Product, { foreignKey: "product_id", as: "product" });
-    Product.hasMany(Variant, { foreignKey: "product_id", as: "variants" });
-
-    // ==============================
     // 🔥 DEALER & STORE RELATIONSHIPS
     // ==============================
     Store.belongsTo(Dealer, { foreignKey: "dealer_id", as: "dealer" });
@@ -73,7 +82,7 @@ const setupDB = async () => {
 
     Store.belongsTo(Address, { foreignKey: "address_id", as: "address" });
 
-    // 👇 NEW RELATIONSHIP
+    // 👇 NEW RELATIONSHIP (store -> parent category)
     Store.belongsTo(ParentCategory, {
       foreignKey: "parent_category_id",
       as: "parent_category",
@@ -82,9 +91,7 @@ const setupDB = async () => {
       foreignKey: "parent_category_id",
       as: "stores",
     });
-    // In setupDB, under // ==============================
-    // 🔥 DEALER & STORE RELATIONSHIPS
-    // ==============================
+
     Dealer.hasMany(Address, {
       foreignKey: "owner_id",
       constraints: false,
@@ -97,6 +104,7 @@ const setupDB = async () => {
       scope: { owner_type: "dealer" },
       as: "dealer",
     });
+
     // ==============================
     // 🔥 LEAD RELATIONSHIPS
     // ==============================

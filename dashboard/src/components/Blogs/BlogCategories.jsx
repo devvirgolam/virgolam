@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import {
-  useListBlogCategoriesQuery,
+  useFetchAllBlogCategoriesQuery,
   useCreateBlogCategoryMutation,
-} from "../../api/blogApi"; // Adjust path as needed
+} from "../../api/blogApi";
 import {
   Table,
   Input,
@@ -30,7 +30,7 @@ const BlogCategories = () => {
     isLoading,
     isError,
     error,
-  } = useListBlogCategoriesQuery(); // Fetch categories
+  } = useFetchAllBlogCategoriesQuery(); // Fetch categories
   const [createBlogCategory, { isLoading: isCreating }] =
     useCreateBlogCategoryMutation(); // Create category mutation
   const [categoryName, setCategoryName] = useState(""); // State for new category name

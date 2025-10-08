@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../store/AuthContext"; // adjust path
+import { useAuth } from "../../store/AuthContext";
 import logo from "../../assets/img/logo.jpeg";
-import Avatar from "react-avatar"; // Import react-avatar
-import { Dropdown, Menu } from "antd"; // Import AntD Dropdown and Menu
+import Avatar from "react-avatar";
+import { Dropdown, Menu, Spin } from "antd";
 import {
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
-} from "@ant-design/icons"; // AntD icons
+} from "@ant-design/icons";
 
 const Header = () => {
   const { authState, logout } = useAuth();
@@ -19,18 +19,17 @@ const Header = () => {
     navigate("/login");
   };
 
-  // Define the dropdown menu using AntD's Menu component
   const menu = (
     <Menu className="p-2" style={{ minWidth: 200 }}>
       <Menu.ItemGroup
         title={
           <div className="d-flex align-items-center bg-light rounded-3 p-2 mb-2">
             <Avatar
-              src={authState.user?.avatar} // Use avatar URL if available
-              name={authState.user?.name || "Guest User"} // Fallback to name
-              email={authState.user?.email} // Optional: use email for avatar generation
-              size="42" // Match the original width/height
-              round={true} // Rounded avatar to match original styling
+              src={authState.user?.avatar}
+              name={authState.user?.name || "Guest User"}
+              email={authState.user?.email}
+              size="42"
+              round={true}
               className="rounded-circle"
               alt="user-image"
             />
@@ -39,20 +38,20 @@ const Header = () => {
                 {authState.user?.name || "Guest User"}
               </p>
               <span className="d-block fs-13">
-                {authState.user?.role || "Role"}
+                {authState.user?.role?.name || "Role"}
               </span>
             </div>
           </div>
         }
       />
-      <Menu.Item key="profile" onClick={() => navigate("/profile-settings")}>
+      <Menu.Item
+        key="profile"
+        onClick={() => navigate(`/u/${authState.user?.id}`)}
+      >
         <UserOutlined className="me-1" />
-        Profile Settings
+        Profile
       </Menu.Item>
-      <Menu.Item key="settings" onClick={() => navigate("/settings")}>
-        <SettingOutlined className="me-1" />
-        Settings
-      </Menu.Item>
+
       <Menu.Divider />
       <Menu.Item key="logout" onClick={handleLogout} danger>
         <LogoutOutlined className="me-1" />
@@ -60,6 +59,44 @@ const Header = () => {
       </Menu.Item>
     </Menu>
   );
+
+  if (!authState.user && authState.accessToken) {
+    return (
+      <header className="navbar-header">
+        <div className="page-container topbar-menu">
+          <div className="d-flex align-items-center gap-2">
+            <a href="/" className="logo">
+              <span className="logo-light">
+                <span className="logo-lg">
+                  <img src={logo} alt="logo" />
+                </span>
+                <span className="logo-sm">
+                  <img src={logo} alt="small logo" />
+                </span>
+              </span>
+              <span className="logo-dark">
+                <span className="logo-lg">
+                  <img src={logo} alt="dark logo" />
+                </span>
+              </span>
+            </a>
+            <a id="mobile_btn" className="mobile-btn" href="#sidebar">
+              <i className="ti ti-menu-deep fs-24"></i>
+            </a>
+            <button
+              className="sidenav-toggle-btn btn border-0 p-0"
+              id="toggle_btn2"
+            >
+              <i className="ti ti-arrow-bar-to-right"></i>
+            </button>
+          </div>
+          <div className="d-flex align-items-center">
+            <Spin size="small" />
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="navbar-header">
@@ -74,18 +111,15 @@ const Header = () => {
                 <img src={logo} alt="small logo" />
               </span>
             </span>
-
             <span className="logo-dark">
               <span className="logo-lg">
                 <img src={logo} alt="dark logo" />
               </span>
             </span>
           </a>
-
           <a id="mobile_btn" className="mobile-btn" href="#sidebar">
             <i className="ti ti-menu-deep fs-24"></i>
           </a>
-
           <button
             className="sidenav-toggle-btn btn border-0 p-0"
             id="toggle_btn2"
@@ -93,7 +127,6 @@ const Header = () => {
             <i className="ti ti-arrow-bar-to-right"></i>
           </button>
         </div>
-
         <div className="d-flex align-items-center">
           <Dropdown
             overlay={menu}
@@ -108,11 +141,11 @@ const Header = () => {
               onClick={(e) => e.preventDefault()}
             >
               <Avatar
-                src={authState.user?.avatar} // Use avatar URL if available
-                name={authState.user?.name || "Guest User"} // Fallback to name
-                email={authState.user?.email} // Optional: use email for avatar generation
-                size="38" // Match the original width
-                round={true} // Rounded avatar to match original styling
+                src={authState.user?.avatar}
+                name={authState.user?.name || "Guest User"}
+                email={authState.user?.email}
+                size="38"
+                round={true}
                 className="d-flex"
                 alt="user-image"
               />

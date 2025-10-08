@@ -94,7 +94,7 @@ const Blogs = () => {
                 </div>
                 <Button
                   type="primary"
-                  href="add-blog.html"
+                  href="/blogs/add"
                   className="btn btn-primary"
                   icon={<PlusSquareFilled className="me-1" />}
                 >

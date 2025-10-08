@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               9.2.0 - MySQL Community Server - GPL
--- Server OS:                    Win64
+-- Host:                         103.50.161.16
+-- Server version:               5.7.44 - MySQL Community Server (GPL)
+-- Server OS:                    Linux
 -- HeidiSQL Version:             12.11.0.7065
 -- --------------------------------------------------------
 
@@ -14,9 +14,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table virgo.parent_categories
+-- Dumping structure for table virgolam_dashboard.parent_categories
 CREATE TABLE IF NOT EXISTS `parent_categories` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `name` varchar(200) NOT NULL,
   `slug` varchar(200) DEFAULT NULL,
   `created_at` datetime NOT NULL,
@@ -45,13 +45,10 @@ CREATE TABLE IF NOT EXISTS `parent_categories` (
   UNIQUE KEY `slug_21` (`slug`),
   UNIQUE KEY `slug_22` (`slug`),
   UNIQUE KEY `slug_23` (`slug`),
-  UNIQUE KEY `slug_24` (`slug`),
-  UNIQUE KEY `slug_25` (`slug`),
-  UNIQUE KEY `slug_26` (`slug`),
-  UNIQUE KEY `slug_27` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `slug_24` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table virgo.parent_categories: ~5 rows (approximately)
+-- Dumping data for table virgolam_dashboard.parent_categories: ~5 rows (approximately)
 INSERT INTO `parent_categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 	('5ecb2d5f-a03c-11f0-b1b4-f875a42d8cde', 'ACP', 'acp', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
 	('5ecc600d-a03c-11f0-b1b4-f875a42d8cde', 'Laminates', 'laminates', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),

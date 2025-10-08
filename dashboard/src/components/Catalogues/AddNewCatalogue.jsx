@@ -1,208 +1,233 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useCreateCatalogueMutation,
   useUpdateCatalogueMutation,
-} from "../../api/catalogueApi"; // Adjust path to your API slice
-import { Modal, Button } from "react-bootstrap"; // For success modal
+} from "../../api/catalogueApi";
+import { Modal, Form, Input, Button, Upload, message, Image } from "antd";
+import { UploadOutlined, FilePdfOutlined } from "@ant-design/icons";
 
-const AddNewCatalogue = ({ catalogue, onClose }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    pdf_url: "",
-    banner_image_url: "",
-  });
-  const [formErrors, setFormErrors] = useState({});
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-
-  // RTK Query hooks
+const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
+  const [form] = Form.useForm();
   const [createCatalogue, { isLoading: isCreating }] =
     useCreateCatalogueMutation();
   const [updateCatalogue, { isLoading: isUpdating }] =
     useUpdateCatalogueMutation();
+  const [pdfFileList, setPdfFileList] = useState([]);
+  const [imageFileList, setImageFileList] = useState([]);
+
+  // Mock upload function (replace with actual RTK Query mutation)
+  const uploadFile = async (file) => {
+    // Simulate API call to upload file and return URL
+    // Replace with actual API call, e.g., using RTK Query mutation
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      // Example: const response = await fetch("/api/upload", { method: "POST", body: formData });
+      // return response.json().url;
+      return new Promise((resolve) => {
+        setTimeout(
+          () =>
+            resolve(`https://media.virgolam.com/assets/uploaded/${file.name}`),
+          1000
+        );
+      });
+    } catch (error) {
+      throw new Error("File upload failed");
+    }
+  };
 
   // Populate form with catalogue data if editing
   useEffect(() => {
     if (catalogue) {
-      setFormData({
+      form.setFieldsValue({
         name: catalogue.name || "",
         pdf_url: catalogue.pdf_url || "",
         banner_image_url: catalogue.banner_image_url || "",
       });
+      // Set file lists for edit mode
+      setPdfFileList(
+        catalogue.pdf_url
+          ? [
+              {
+                uid: "-1",
+                name: "PDF File",
+                status: "done",
+                url: catalogue.pdf_url,
+              },
+            ]
+          : []
+      );
+      setImageFileList(
+        catalogue.banner_image_url
+          ? [
+              {
+                uid: "-2",
+                name: "Banner Image",
+                status: "done",
+                url: catalogue.banner_image_url,
+              },
+            ]
+          : []
+      );
+    } else {
+      form.resetFields();
+      setPdfFileList([]);
+      setImageFileList([]);
     }
-  }, [catalogue]);
+  }, [catalogue, form]);
 
-  // Form validation
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.name.trim()) errors.name = "Name is required";
-    if (!formData.pdf_url.trim()) errors.pdf_url = "PDF URL is required";
-    if (!formData.banner_image_url.trim())
-      errors.banner_image_url = "Banner Image URL is required";
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
+  // Handle file upload for PDF
+  const handlePdfUpload = async ({ file, onSuccess, onError }) => {
+    try {
+      const url = await uploadFile(file);
+      setPdfFileList([{ uid: file.uid, name: file.name, status: "done", url }]);
+      form.setFieldsValue({ pdf_url: url });
+      onSuccess();
+    } catch (error) {
+      setPdfFileList([{ uid: file.uid, name: file.name, status: "error" }]);
+      onError(error);
+      message.error("Failed to upload PDF");
+    }
   };
 
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    setFormErrors({ ...formErrors, [name]: "" }); // Clear error on change
+  // Handle file upload for banner image
+  const handleImageUpload = async ({ file, onSuccess, onError }) => {
+    try {
+      const url = await uploadFile(file);
+      setImageFileList([
+        { uid: file.uid, name: file.name, status: "done", url },
+      ]);
+      form.setFieldsValue({ banner_image_url: url });
+      onSuccess();
+    } catch (error) {
+      setImageFileList([{ uid: file.uid, name: file.name, status: "error" }]);
+      onError(error);
+      message.error("Failed to upload banner image");
+    }
   };
 
-  // Handle form submission (create or update)
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-
+  // Handle form submission
+  const handleSubmit = async (values) => {
     try {
       if (catalogue) {
-        // Update existing catalogue
-        await updateCatalogue({ id: catalogue.id, ...formData }).unwrap();
+        await updateCatalogue({ id: catalogue.id, ...values }).unwrap();
+        message.success("Catalogue updated successfully!");
       } else {
-        // Create new catalogue
-        await createCatalogue(formData).unwrap();
+        await createCatalogue(values).unwrap();
+        message.success("Catalogue created successfully!");
       }
-      setShowSuccessModal(true); // Show success modal
-      setFormData({ name: "", pdf_url: "", banner_image_url: "" }); // Reset form
+      form.resetFields();
+      setPdfFileList([]);
+      setImageFileList([]);
+      onClose();
     } catch (error) {
       console.error("Error saving catalogue:", error);
-      alert(`Failed to ${catalogue ? "update" : "create"} catalogue`);
+      message.error(`Failed to ${catalogue ? "update" : "create"} catalogue`);
     }
-  };
-
-  // Handle success modal close
-  const handleSuccessModalClose = () => {
-    setShowSuccessModal(false);
-    onClose(); // Close offcanvas
   };
 
   return (
-    <>
-      <div
-        className="offcanvas offcanvas-end offcanvas-large"
-        tabIndex="-1"
-        id="offcanvas_add"
+    <Modal
+      title={catalogue ? "Edit Catalogue" : "Add New Catalogue"}
+      open={visible}
+      onCancel={onClose}
+      footer={null}
+      destroyOnClose
+      aria-label={
+        catalogue ? "Edit catalogue modal" : "Add new catalogue modal"
+      }
+    >
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+        initialValues={{
+          name: "",
+          pdf_url: "",
+          banner_image_url: "",
+        }}
       >
-        <div className="offcanvas-header border-bottom">
-          <h5 className="mb-0">
-            {catalogue ? "Edit Catalogue" : "Add New Catalogue"}
-          </h5>
-          <button
-            type="button"
-            className="btn-close custom-btn-close border p-1 me-0 d-flex align-items-center justify-content-center rounded-circle"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-            onClick={onClose}
-          ></button>
-        </div>
-        <div className="offcanvas-body">
-          <form onSubmit={handleSubmit}>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="mb-3">
-                  <label className="form-label">
-                    Catalogue Name<span className="text-danger">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    className={`form-control ${
-                      formErrors.name ? "is-invalid" : ""
-                    }`}
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                  />
-                  {formErrors.name && (
-                    <div className="invalid-feedback">{formErrors.name}</div>
-                  )}
-                </div>
-              </div>
-              <div className="col-md-12">
-                <div className="mb-3">
-                  <label className="form-label">
-                    PDF URL<span className="text-danger">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    className={`form-control ${
-                      formErrors.pdf_url ? "is-invalid" : ""
-                    }`}
-                    name="pdf_url"
-                    value={formData.pdf_url}
-                    onChange={handleInputChange}
-                  />
-                  {formErrors.pdf_url && (
-                    <div className="invalid-feedback">{formErrors.pdf_url}</div>
-                  )}
-                </div>
-              </div>
-              <div className="col-md-12">
-                <div className="mb-3">
-                  <label className="form-label">
-                    Banner Image URL<span className="text-danger">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    className={`form-control ${
-                      formErrors.banner_image_url ? "is-invalid" : ""
-                    }`}
-                    name="banner_image_url"
-                    value={formData.banner_image_url}
-                    onChange={handleInputChange}
-                  />
-                  {formErrors.banner_image_url && (
-                    <div className="invalid-feedback">
-                      {formErrors.banner_image_url}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="d-flex align-items-center justify-content-end">
-              <button
-                type="button"
-                data-bs-dismiss="offcanvas"
-                className="btn btn-light me-2"
-                onClick={onClose}
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                disabled={isCreating || isUpdating}
-              >
-                {isCreating || isUpdating
-                  ? "Saving..."
-                  : catalogue
-                  ? "Update"
-                  : "Create"}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      {/* Success Modal */}
-      <Modal
-        show={showSuccessModal}
-        onHide={handleSuccessModalClose}
-        centered
-        id="create_success"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Success</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Catalogue {catalogue ? "updated" : "created"} successfully!
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleSuccessModalClose}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+        <Form.Item
+          label="Catalogue Name"
+          name="name"
+          rules={[{ required: true, message: "Name is required" }]}
+        >
+          <Input placeholder="Enter catalogue name" />
+        </Form.Item>
+        <Form.Item
+          label="PDF File"
+          name="pdf_url"
+          rules={[{ required: true, message: "PDF file is required" }]}
+        >
+          <Upload
+            fileList={pdfFileList}
+            customRequest={handlePdfUpload}
+            accept=".pdf"
+            onChange={({ fileList }) => setPdfFileList(fileList)}
+            showUploadList={{
+              showPreviewIcon: true,
+              previewIcon: <FilePdfOutlined style={{ color: "#ff4d4f" }} />,
+            }}
+          >
+            <Button icon={<UploadOutlined />}>Upload PDF</Button>
+          </Upload>
+        </Form.Item>
+        {pdfFileList.length > 0 && pdfFileList[0].status === "done" && (
+          <Form.Item label="PDF Preview">
+            <a
+              href={pdfFileList[0].url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "flex", alignItems: "center", gap: 8 }}
+            >
+              <FilePdfOutlined style={{ fontSize: 24, color: "#ff4d4f" }} />
+              <span>{pdfFileList[0].name}</span>
+            </a>
+          </Form.Item>
+        )}
+        <Form.Item
+          label="Banner Image"
+          name="banner_image_url"
+          rules={[{ required: true, message: "Banner image is required" }]}
+        >
+          <Upload
+            fileList={imageFileList}
+            customRequest={handleImageUpload}
+            accept="image/*"
+            onChange={({ fileList }) => setImageFileList(fileList)}
+            listType="picture"
+          >
+            <Button icon={<UploadOutlined />}>Upload Image</Button>
+          </Upload>
+        </Form.Item>
+        {imageFileList.length > 0 && imageFileList[0].status === "done" && (
+          <Form.Item label="Image Preview">
+            <Image
+              src={imageFileList[0].url}
+              alt="Banner Image Preview"
+              style={{ maxWidth: 200, maxHeight: 100, objectFit: "contain" }}
+              fallback="https://via.placeholder.com/200x100"
+            />
+          </Form.Item>
+        )}
+        <Form.Item>
+          <div
+            style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}
+          >
+            <Button onClick={onClose} disabled={isCreating || isUpdating}>
+              Cancel
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={isCreating || isUpdating}
+            >
+              {catalogue ? "Update" : "Create"}
+            </Button>
+          </div>
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 };
 

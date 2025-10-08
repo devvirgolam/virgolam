@@ -31,7 +31,7 @@ const handleError = (res, status, message, error = null) => {
 exports.listCategories = async (req, res) => {
   try {
     const categories = await Category.findAll({
-      include: [{ model: ParentCategory, as: "parent_categories" }],
+      include: [{ model: ParentCategory, as: "parent_category" }], // Changed from parent_categories to parent_category
     });
     logger.info(`Retrieved ${categories.length} categories`);
     res.json(categories);
@@ -55,7 +55,7 @@ exports.getCategory = async (req, res) => {
     }
 
     const category = await Category.findByPk(id, {
-      include: [{ model: ParentCategory, as: "parent_categories" }],
+      include: [{ model: ParentCategory, as: "parent_category" }], // Changed from parent_categories to parent_category
     });
     if (!category) {
       return handleError(res, 404, "Category not found");
@@ -67,7 +67,6 @@ exports.getCategory = async (req, res) => {
     handleError(res, 500, "Failed to retrieve category", error);
   }
 };
-
 exports.createCategory = async (req, res) => {
   try {
     const { name, slug, parent_id } = req.body;

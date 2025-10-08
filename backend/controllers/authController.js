@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/user");
 const winston = require("winston"); // Added Winston for logging
+const Role = require("../models/role");
 require("dotenv").config();
 
 // Configure Winston logger
@@ -52,7 +53,10 @@ exports.login = async (req, res) => {
       return handleError(res, 400, "Email and password are required");
     }
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: { model: Role, as: "role", attributes: ["id", "name"] },
+    });
     if (!user) {
       logger.warn(`Login attempt with non-existent email: ${email}`);
       return handleError(res, 401, "Invalid credentials");
@@ -76,7 +80,18 @@ exports.login = async (req, res) => {
     );
 
     logger.info(`Successful login for user: ${email}`);
-    res.json({ accessToken, refreshToken });
+    res.json({
+      accessToken,
+      refreshToken,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        name: user.name,
+        phone: user.phone,
+        role: user.role ? { id: user.role.id, name: user.role.name } : null,
+      },
+    });
   } catch (error) {
     handleError(res, 500, "Internal server error", error);
   }
@@ -113,12 +128,10 @@ exports.register = async (req, res) => {
     });
 
     logger.info(`New user registered: ${email}`);
-    res
-      .status(201)
-      .json({
-        message: "User created successfully",
-        user: { id: user.id, email: user.email },
-      });
+    res.status(201).json({
+      message: "User created successfully",
+      user: { id: user.id, email: user.email },
+    });
   } catch (error) {
     handleError(res, 500, "Internal server error", error);
   }

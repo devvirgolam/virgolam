@@ -12,7 +12,17 @@ router.get("/:id", authMiddleware, userController.getUserById);
 router.post("/", authMiddleware, userController.createUser);
 router.put("/:id", authMiddleware, userController.updateUser);
 router.delete("/:id", authMiddleware, userController.deleteUser);
-router.get("/me", authMiddleware, userController.getCurrentUser);
+router.get(
+  "/me",
+  authMiddleware,
+  (req, res, next) => {
+    logger.info(
+      `Before getCurrentUser - req.user: ${JSON.stringify(req.user)}`
+    );
+    next();
+  },
+  userController.getCurrentUser
+);
 router.put("/me", authMiddleware, userController.updateCurrentUser);
 
 module.exports = router;

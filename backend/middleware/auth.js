@@ -1,16 +1,19 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const Role = require("../models/role");
-const logger = require("./logger"); // adjust the path
-
+const logger = require("./logger");
 require("dotenv").config();
 
 module.exports = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).json({ message: "No token provided" });
+  if (!token) {
+    logger.error("No token provided");
+    return res.status(401).json({ message: "No token provided" });
+  }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    logger.info(`Decoded token: ${JSON.stringify(decoded)}`);
     const user = await User.findByPk(decoded.id, {
       include: { model: Role, as: "role", attributes: ["id", "name"] },
     });
@@ -20,11 +23,12 @@ module.exports = async (req, res, next) => {
       return res.status(401).json({ message: "User not found" });
     }
 
+    logger.info(`Fetched user: ${JSON.stringify(user.toJSON())}`);
     req.user = {
       id: user.id,
       username: user.username,
       email: user.email,
-      role: user.role, // Match association alias
+      role: user.role?.name || null,
     };
 
     next();

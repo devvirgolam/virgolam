@@ -1,1728 +1,646 @@
-import React from "react";
-import PageHeader from "../components/Common/PageHeader";
+import React, { useState, useEffect } from "react";
+import {
+  DndContext,
+  useSensor,
+  useSensors,
+  PointerSensor,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import {
+  Button,
+  Input,
+  Select,
+  Card,
+  Modal,
+  Form,
+  Drawer,
+  Space,
+  Typography,
+  Avatar,
+} from "antd";
+import Title from "antd/es/typography/Title";
+const { Text } = Typography;
+// Mock leadApi hooks (replace with actual API hooks in a real app)
+const useListLeadsQuery = (filters) => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const mockLeads = [
+        {
+          id: "1",
+          name: "John Doe",
+          email: "john@example.com",
+          phone: "123-456-7890",
+          value: 1000,
+          status: "new",
+          location: "New York",
+          assignee: { id: "u1", name: "Alice Smith", avatar: "" },
+          source: "website",
+        },
+        {
+          id: "2",
+          name: "Jane Smith",
+          email: "jane@example.com",
+          phone: "987-654-3210",
+          value: 2000,
+          status: "contacted",
+          location: "London",
+          assignee: { id: "u2", name: "Bob Johnson", avatar: "" },
+          source: "referral",
+        },
+      ].filter((lead) => {
+        return (
+          (!filters.search ||
+            lead.name.toLowerCase().includes(filters.search.toLowerCase())) &&
+          (!filters.status || lead.status === filters.status) &&
+          (!filters.assigned_to || lead.assignee.id === filters.assigned_to)
+        );
+      });
+      setData(mockLeads);
+      setIsLoading(false);
+    }, 500);
+  }, [filters.search, filters.status, filters.assigned_to]);
+
+  return { data, isLoading, error };
+};
+
+const useCreateLeadMutation = () => {
+  return [
+    (leadData) =>
+      Promise.resolve({ data: { id: Math.random().toString(), ...leadData } }),
+  ];
+};
+
+const useUpdateLeadMutation = () => {
+  return [(leadData) => Promise.resolve({ data: leadData })];
+};
+
+const useDeleteLeadMutation = () => {
+  return [(id) => Promise.resolve({ data: id })];
+};
+
+const SortableLead = ({ lead, index, status }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: lead.id });
+  const style = {
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : undefined,
+    transition,
+  };
+
+  const [isEditDrawerOpen, setIsEditDrawerOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [editLead, setEditLead] = useState(null);
+  const [selectedLeadId, setSelectedLeadId] = useState(null);
+  const [form] = Form.useForm();
+  const [deleteLead] = useDeleteLeadMutation();
+  const [updateLead] = useUpdateLeadMutation();
+  const leadOwners = lead.assignee
+    ? [
+        {
+          id: lead.assignee.id,
+          name: lead.assignee.name,
+          avatar: lead.assignee.avatar,
+        },
+      ]
+    : [];
+
+  return (
+    <>
+      <div
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className="mb-4"
+      >
+        <Card
+          className={`border ${
+            status === "Contacted"
+              ? "border-yellow-500"
+              : status === "Not Contacted"
+              ? "border-blue-500"
+              : status === "Closed"
+              ? "border-green-500"
+              : "border-red-500"
+          }`}
+        >
+          <div
+            className={`h-2 w-full mb-3 ${
+              status === "Contacted"
+                ? "bg-yellow-500"
+                : status === "Not Contacted"
+                ? "bg-blue-500"
+                : status === "Closed"
+                ? "bg-green-500"
+                : "bg-red-500"
+            }`}
+          ></div>
+          <div className="flex items-center mb-3">
+            <Avatar
+              className={`mr-2 ${
+                status === "Contacted"
+                  ? "bg-yellow-100"
+                  : status === "Not Contacted"
+                  ? "bg-blue-100"
+                  : status === "Closed"
+                  ? "bg-green-100"
+                  : "bg-red-100"
+              }`}
+            >
+              <span
+                className={`text-${
+                  status === "Contacted"
+                    ? "yellow-500"
+                    : status === "Not Contacted"
+                    ? "blue-500"
+                    : status === "Closed"
+                    ? "green-500"
+                    : "red-500"
+                }`}
+              >
+                {lead.name
+                  ?.split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .slice(0, 2)
+                  .toUpperCase()}
+              </span>
+            </Avatar>
+            <Title level={5} className="m-0">
+              <a href="#">{lead.name}</a>
+            </Title>
+          </div>
+          <div className="space-y-2">
+            <Text>
+              <i className="ti ti-report-money mr-1"></i>$
+              {lead.value?.toLocaleString() || "0"}
+            </Text>
+            <Text>
+              <i className="ti ti-mail mr-1"></i>
+              <a href={`mailto:${lead.email}`}>{lead.email}</a>
+            </Text>
+            <Text>
+              <i className="ti ti-phone mr-1"></i>
+              {lead.phone || "N/A"}
+            </Text>
+            <Text>
+              <i className="ti ti-map-pin-pin mr-1"></i>
+              {lead.location || "Unknown"}
+            </Text>
+          </div>
+          <div className="flex items-center justify-between border-t pt-3 mt-3">
+            <Avatar
+              src={lead.company_icon || "/assets/img/icons/company-icon-01.svg"}
+              size="small"
+            />
+            <Space>
+              <Button
+                type="text"
+                icon={<i className="ti ti-phone-check"></i>}
+              />
+              <Button
+                type="text"
+                icon={<i className="ti ti-message-circle-2"></i>}
+              />
+              <Button
+                type="text"
+                icon={<i className="ti ti-color-swatch"></i>}
+              />
+            </Space>
+          </div>
+          <div className="flex justify-end mt-3">
+            <Button
+              type="primary"
+              size="small"
+              className="mr-2"
+              onClick={() => {
+                setEditLead(lead);
+                setIsEditDrawerOpen(true);
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              danger
+              size="small"
+              onClick={() => {
+                setSelectedLeadId(lead.id);
+                setIsDeleteModalOpen(true);
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        </Card>
+      </div>
+
+      <Drawer
+        title="Edit Lead"
+        open={isEditDrawerOpen}
+        onClose={() => setIsEditDrawerOpen(false)}
+        width={400}
+      >
+        {editLead && (
+          <Form
+            form={form}
+            layout="vertical"
+            initialValues={editLead}
+            onFinish={async (values) => {
+              try {
+                await updateLead({ id: editLead.id, ...values }).unwrap();
+                setIsEditDrawerOpen(false);
+                setEditLead(null);
+                form.resetFields();
+              } catch (error) {
+                Modal.error({
+                  title: "Error",
+                  content: "Failed to update lead: " + error.data?.error,
+                });
+              }
+            }}
+          >
+            <Form.Item
+              name="name"
+              label="Name"
+              rules={[{ required: true, message: "Please input the name!" }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="email"
+              label="Email"
+              rules={[
+                { type: "email", message: "Please input a valid email!" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item name="phone" label="Phone">
+              <Input />
+            </Form.Item>
+            <Form.Item name="message" label="Message">
+              <Input.TextArea />
+            </Form.Item>
+            <Form.Item name="source" label="Source">
+              <Select>
+                <Select.Option value="website">Website</Select.Option>
+                <Select.Option value="landing_page">Landing Page</Select.Option>
+                <Select.Option value="ad">Ad</Select.Option>
+                <Select.Option value="newsletter">Newsletter</Select.Option>
+                <Select.Option value="referral">Referral</Select.Option>
+                <Select.Option value="other">Other</Select.Option>
+              </Select>
+            </Form.Item>
+            <Form.Item name="status" label="Status">
+              <Select>
+                <Select.Option value="new">Not Contacted</Select.Option>
+                <Select.Option value="contacted">Contacted</Select.Option>
+                <Select.Option value="qualified">Qualified</Select.Option>
+                <Select.Option value="converted">Closed</Select.Option>
+                <Select.Option value="lost">Lost</Select.Option>
+              </Select>
+            </Form.Item>
+            <Form.Item name="assigned_to" label="Assigned To">
+              <Select allowClear>
+                <Select.Option value="">Unassigned</Select.Option>
+                {leadOwners.map((owner) => (
+                  <Select.Option key={owner.id} value={owner.id}>
+                    {owner.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item name="value" label="Value">
+              <Input type="number" step="0.01" />
+            </Form.Item>
+            <Form.Item name="location" label="Location">
+              <Input />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Update Lead
+              </Button>
+            </Form.Item>
+          </Form>
+        )}
+      </Drawer>
+
+      <Modal
+        title="Delete Lead"
+        open={isDeleteModalOpen}
+        onCancel={() => setIsDeleteModalOpen(false)}
+        footer={[
+          <Button key="cancel" onClick={() => setIsDeleteModalOpen(false)}>
+            Cancel
+          </Button>,
+          <Button
+            key="delete"
+            type="primary"
+            danger
+            disabled={!selectedLeadId}
+            onClick={async () => {
+              try {
+                await deleteLead(selectedLeadId).unwrap();
+                setIsDeleteModalOpen(false);
+                setSelectedLeadId(null);
+              } catch (error) {
+                Modal.error({
+                  title: "Error",
+                  content: "Failed to delete lead: " + error.data?.error,
+                });
+              }
+            }}
+          >
+            Delete
+          </Button>,
+        ]}
+      >
+        <p>Are you sure you want to delete this lead?</p>
+      </Modal>
+    </>
+  );
+};
 
 const Leads = () => {
+  const [filters, setFilters] = useState({
+    search: "",
+    status: "",
+    assigned_to: "",
+  });
+  const [isAddDrawerOpen, setIsAddDrawerOpen] = useState(false);
+  const [form] = Form.useForm();
+  const { data: leads, isLoading, error } = useListLeadsQuery(filters);
+  const [createLead] = useCreateLeadMutation();
+  const [updateLead] = useUpdateLeadMutation();
+
+  const handleFilterChange = (key, value) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleResetFilters = () => {
+    setFilters({ search: "", status: "", assigned_to: "" });
+  };
+
+  const groupedLeads = leads?.reduce(
+    (acc, lead) => {
+      const status =
+        {
+          new: "Not Contacted",
+          contacted: "Contacted",
+          qualified: "Contacted",
+          converted: "Closed",
+          lost: "Lost",
+        }[lead.status] || "Not Contacted";
+      acc[status] = acc[status] || [];
+      acc[status].push(lead);
+      return acc;
+    },
+    { Contacted: [], "Not Contacted": [], Closed: [], Lost: [] }
+  );
+
+  const getSummary = (leads) => {
+    const count = leads.length;
+    const totalValue = leads
+      .reduce((sum, lead) => sum + (lead.value || 0), 0)
+      .toLocaleString();
+    return `${count} Leads - $${totalValue}`;
+  };
+
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  const onDragEnd = async ({ active, over }) => {
+    if (!over) return;
+    const lead = leads.find((l) => l.id === active.id);
+    const newStatus = {
+      Contacted: lead.status === "qualified" ? "qualified" : "contacted",
+      "Not Contacted": "new",
+      Closed: "converted",
+      Lost: "lost",
+    }[over.id];
+    try {
+      await updateLead({ id: lead.id, status: newStatus }).unwrap();
+    } catch (error) {
+      console.error("Failed to update lead status:", error);
+    }
+  };
+
+  const leadOwners =
+    leads?.reduce((acc, lead) => {
+      if (
+        lead.assignee &&
+        !acc.find((owner) => owner.id === lead.assignee.id)
+      ) {
+        acc.push(lead.assignee);
+      }
+      return acc;
+    }, []) || [];
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
-    <div class="content">
-      <PageHeader />
-
-      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-        <div class="d-flex align-items-center gap-2 flex-wrap">
-          <div class="dropdown">
-            <a
-              href="javascript:void(0);"
-              class="btn btn-outline-light shadow px-2"
-              data-bs-toggle="dropdown"
-              data-bs-auto-close="outside"
-            >
-              <i class="ti ti-filter me-2"></i>Filter
-              <i class="ti ti-chevron-down ms-2"></i>
-            </a>
-            <div class="filter-dropdown-menu dropdown-menu dropdown-menu-lg p-0">
-              <div class="filter-header d-flex align-items-center justify-content-between border-bottom">
-                <h6 class="mb-0">
-                  <i class="ti ti-filter me-1"></i>Filter
-                </h6>
-                <button
-                  type="button"
-                  class="btn-close close-filter-btn"
-                  data-bs-dismiss="dropdown-menu"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="filter-set-view p-3">
-                <div class="accordion" id="accordionExample">
-                  <div class="filter-set-content">
-                    <div class="filter-set-content-head">
-                      <a
-                        href="#"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo"
-                        aria-expanded="true"
-                        aria-controls="collapseTwo"
-                      >
-                        Lead Name
-                      </a>
-                    </div>
-                    <div
-                      class="filter-set-contents accordion-collapse collapse show"
-                      id="collapseTwo"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="filter-content-list bg-light rounded border p-2 shadow mt-2">
-                        <div class="mb-2">
-                          <div class="input-icon-start input-icon position-relative">
-                            <span class="input-icon-addon fs-12">
-                              <i class="ti ti-search"></i>
-                            </span>
-                            <input
-                              type="text"
-                              class="form-control form-control-md"
-                              placeholder="Search"
-                            />
-                          </div>
-                        </div>
-                        <ul class="mb-0">
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-06.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Elizabeth Morgan
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-40.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Katherine Brooks
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-05.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Sophia Lopez
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-10.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              John Michael
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-15.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Natalie Brooks
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-01.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              William Turner
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-13.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Ava Martinez
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-12.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Nathan Reed
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-03.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Lily Anderson
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-18.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Ryan Coleman
-                            </label>
-                          </li>
-                          <li>
-                            <a
-                              href="javascript:void(0);"
-                              class="link-primary text-decoration-underline p-2 d-flex"
-                            >
-                              Load More
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-set-content">
-                    <div class="filter-set-content-head">
-                      <a
-                        href="#"
-                        class="collapsed"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree"
-                        aria-expanded="false"
-                        aria-controls="collapseThree"
-                      >
-                        Company Name
-                      </a>
-                    </div>
-                    <div
-                      class="filter-set-contents accordion-collapse collapse"
-                      id="collapseThree"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="filter-content-list bg-light rounded border p-2 shadow mt-2">
-                        <div class="mb-2">
-                          <div class="input-icon-start input-icon position-relative">
-                            <span class="input-icon-addon fs-12">
-                              <i class="ti ti-search"></i>
-                            </span>
-                            <input
-                              type="text"
-                              class="form-control form-control-md"
-                              placeholder="Search"
-                            />
-                          </div>
-                        </div>
-                        <ul>
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              NovaWave LLC
-                            </label>
-                          </li>
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              BlueSky Industries
-                            </label>
-                          </li>
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              Silver Hawk
-                            </label>
-                          </li>
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              Summit Peak
-                            </label>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-set-content">
-                    <div class="filter-set-content-head">
-                      <a
-                        href="#"
-                        class="collapsed"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#status"
-                        aria-expanded="false"
-                        aria-controls="status"
-                      >
-                        Lead Status
-                      </a>
-                    </div>
-                    <div
-                      class="filter-set-contents accordion-collapse collapse"
-                      id="status"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="filter-content-list bg-light rounded border p-2 shadow mt-2">
-                        <div class="mb-1">
-                          <div class="input-icon-start input-icon position-relative">
-                            <span class="input-icon-addon fs-12">
-                              <i class="ti ti-search"></i>
-                            </span>
-                            <input
-                              type="text"
-                              class="form-control form-control-md"
-                              placeholder="Search"
-                            />
-                          </div>
-                        </div>
-                        <ul class="mb-0">
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              Closed
-                            </label>
-                          </li>
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              Not Closed
-                            </label>
-                          </li>
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              Contacted
-                            </label>
-                          </li>
-                          <li>
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              Lost
-                            </label>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-set-content">
-                    <div class="filter-set-content-head">
-                      <a
-                        href="#"
-                        class="collapsed"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#date2"
-                        aria-expanded="false"
-                        aria-controls="date2"
-                      >
-                        Created Date
-                      </a>
-                    </div>
-                    <div
-                      class="filter-set-contents accordion-collapse collapse"
-                      id="date2"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="filter-content-list bg-light rounded border p-2 shadow mt-2">
-                        <div class="input-group w-auto input-group-flat">
-                          <input
-                            type="text"
-                            class="form-control"
-                            data-provider="flatpickr"
-                            data-date-format="d M, Y"
-                          />
-                          <span class="input-group-text">
-                            <i class="ti ti-calendar"></i>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="filter-set-content">
-                    <div class="filter-set-content-head">
-                      <a
-                        href="#"
-                        class="collapsed"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#owner"
-                        aria-expanded="false"
-                        aria-controls="owner"
-                      >
-                        Lead Owner
-                      </a>
-                    </div>
-                    <div
-                      class="filter-set-contents accordion-collapse collapse"
-                      id="owner"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="filter-content-list bg-light rounded border p-2 shadow mt-2">
-                        <div class="mb-2">
-                          <div class="input-icon-start input-icon position-relative">
-                            <span class="input-icon-addon fs-12">
-                              <i class="ti ti-search"></i>
-                            </span>
-                            <input
-                              type="text"
-                              class="form-control form-control-md"
-                              placeholder="Search"
-                            />
-                          </div>
-                        </div>
-                        <ul class="mb-0">
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-17.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Robert Johnson
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-16.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Isabella Cooper
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-14.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              John Smith
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-22.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Sophia Parker
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-25.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Emma Reynolds
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-24.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Liam Carter
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-39.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Noah Mitchell
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-31.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Mason Hayes
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-21.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Ron Thompson
-                            </label>
-                          </li>
-                          <li class="mb-1">
-                            <label class="dropdown-item px-2 d-flex align-items-center">
-                              <input
-                                class="form-check-input m-0 me-1"
-                                type="checkbox"
-                              />
-                              <span class="avatar avatar-xs rounded-circle me-2">
-                                <img
-                                  src="assets/img/users/user-10.jpg"
-                                  class="flex-shrink-0 rounded-circle"
-                                  alt="img"
-                                />
-                              </span>
-                              Laura Bennett
-                            </label>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                  <a
-                    href="javascript:void(0);"
-                    class="btn btn-outline-light w-100"
-                  >
-                    Reset
-                  </a>
-                  <a href="javascript:void(0);" class="btn btn-primary w-100">
-                    Filter
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="input-icon input-icon-start position-relative">
-            <span class="input-icon-addon text-dark">
-              <i class="ti ti-search"></i>
-            </span>
-            <input type="text" class="form-control" placeholder="Search" />
-          </div>
-        </div>
-        <div class="d-flex align-items-center gap-2 flex-wrap">
-          <div class="d-flex align-items-center shadow p-1 rounded border view-icons bg-white">
-            <a href="leads-list.html" class="btn btn-sm p-1 border-0 fs-14">
-              <i class="ti ti-list-tree"></i>
-            </a>
-            <a
-              href="leads.html"
-              class="flex-shrink-0 btn btn-sm p-1 border-0 ms-1 fs-14 active"
-            >
-              <i class="ti ti-grid-dots"></i>
-            </a>
-          </div>
-          <a
-            href="javascript:void(0);"
-            class="btn btn-primary"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvas_add"
+    <div className="p-4 max-w-screen-xl mx-auto">
+      <Title level={3}>Leads Management</Title>
+      <div className="flex flex-wrap items-center justify-between mb-4 gap-4">
+        <Space wrap>
+          <Input
+            placeholder="Search"
+            prefix={<i className="ti ti-search"></i>}
+            value={filters.search}
+            onChange={(e) => handleFilterChange("search", e.target.value)}
+            style={{ width: 200 }}
+          />
+          <Select
+            placeholder="Lead Status"
+            value={filters.status || null}
+            onChange={(value) => handleFilterChange("status", value)}
+            style={{ width: 200 }}
+            allowClear
           >
-            <i class="ti ti-square-rounded-plus-filled me-1"></i>Add Lead
-          </a>
-        </div>
+            {["new", "contacted", "qualified", "converted", "lost"].map(
+              (status) => (
+                <Select.Option key={status} value={status}>
+                  {
+                    {
+                      new: "Not Contacted",
+                      contacted: "Contacted",
+                      qualified: "Qualified",
+                      converted: "Closed",
+                      lost: "Lost",
+                    }[status]
+                  }
+                </Select.Option>
+              )
+            )}
+          </Select>
+          <Select
+            placeholder="Lead Owner"
+            value={filters.assigned_to || null}
+            onChange={(value) => handleFilterChange("assigned_to", value)}
+            style={{ width: 200 }}
+            allowClear
+          >
+            {leadOwners.map((owner) => (
+              <Select.Option key={owner.id} value={owner.id}>
+                {owner.name}
+              </Select.Option>
+            ))}
+          </Select>
+          <Button onClick={handleResetFilters}>Reset</Button>
+        </Space>
+        <Space>
+          <Button
+            type="primary"
+            icon={<i className="ti ti-square-rounded-plus-filled mr-1"></i>}
+            onClick={() => setIsAddDrawerOpen(true)}
+          >
+            Add Lead
+          </Button>
+        </Space>
       </div>
 
-      <div class="d-flex overflow-x-auto align-items-start gap-3">
-        <div class="kanban-list-items p-2 rounded border">
-          <div class="card mb-0 border-0 shadow">
-            <div class="card-body p-2">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="d-flex align-items-center mb-1">
-                    <i class="ti ti-circle-filled fs-10 text-warning me-1"></i>
-                    Contacted
-                  </h6>
-                  <span class="fw-medium">45 Leads - $15,44,540</span>
-                </div>
-                <div class="d-flex align-items-center">
-                  <a href="javascript:void(0);" class="text-info">
-                    <i class="ti ti-plus"></i>
-                  </a>
-                  <div class="dropdown table-action ms-2">
-                    <a
-                      href="#"
-                      class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="ti ti-dots-vertical"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvas_edit"
-                      >
-                        <i class="fa-solid fa-pencil text-blue"></i> Edit
-                      </a>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#delete_lead"
-                      >
-                        <i class="fa-regular fa-trash-can text-danger"></i>
-                        Delete
-                      </a>
-                    </div>
+      <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+        <div className="flex overflow-x-auto gap-4">
+          {Object.entries(groupedLeads).map(([status, leads]) => (
+            <div key={status} className="min-w-[300px] flex-1">
+              <Card
+                title={
+                  <div className="flex justify-between items-center">
+                    <Space>
+                      <i
+                        className={`ti ti-circle-filled text-${
+                          status === "Contacted"
+                            ? "yellow-500"
+                            : status === "Not Contacted"
+                            ? "blue-500"
+                            : status === "Closed"
+                            ? "green-500"
+                            : "red-500"
+                        }`}
+                      ></i>
+                      <Title level={5} className="m-0">
+                        {status}
+                      </Title>
+                    </Space>
+                    <Text>{getSummary(leads)}</Text>
                   </div>
-                </div>
-              </div>
+                }
+                className="border"
+              >
+                <SortableContext
+                  id={status}
+                  items={leads.map((lead) => lead.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {leads.map((lead, index) => (
+                    <SortableLead
+                      key={lead.id}
+                      lead={lead}
+                      index={index}
+                      status={status}
+                    />
+                  ))}
+                </SortableContext>
+              </Card>
             </div>
-          </div>
-          <div class="kanban-drag-wrap">
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-secondary"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-info flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-info">SM</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Schumm</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $03,50,000
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="f39792819f96969cb3968b929e839f96dd909c9e"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 12445-47878
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Newyork, United States
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-09.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-secondary"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-danger flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-danger">CS</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Collins</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $02,10,000
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="a4d6cbc6c1d6d0d7cbcae4c1dcc5c9d4c8c18ac7cbc9"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 13987-90231
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Austin, United States
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-01.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-secondary"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-warning flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-warning">KI</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Konopelski</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $02,18,000
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="eb98838a998485ab8e938a869b878ec5888486"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 17932-04278
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Atlanta, United States
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-02.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-        <div class="kanban-list-items p-2 rounded border">
-          <div class="card mb-0 border-0 shadow">
-            <div class="card-body p-2">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="d-flex align-items-center mb-1">
-                    <i class="ti ti-circle-filled fs-10 text-info me-1"></i>Not
-                    Contacted
-                  </h6>
-                  <span class="fw-medium">45 Leads - $15,44,540</span>
-                </div>
-                <div class="d-flex align-items-center">
-                  <a href="javascript:void(0);" class="text-info">
-                    <i class="ti ti-plus"></i>
-                  </a>
-                  <div class="dropdown table-action ms-2">
-                    <a
-                      href="#"
-                      class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="ti ti-dots-vertical"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvas_edit"
-                      >
-                        <i class="fa-solid fa-pencil text-blue"></i> Edit
-                      </a>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#delete_lead"
-                      >
-                        <i class="fa-regular fa-trash-can text-danger"></i>
-                        Delete
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="kanban-drag-wrap">
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-info"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-danger flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-danger">AS</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Adams</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $02,45,000
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="c8bea9bdafa0a9a6f9fa88adb0a9a5b8a4ade6aba7a5"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 17392-27846
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      London, United Kingdom
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-03.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-info"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-info flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-info">WK</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Wizosk</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $01,17,000
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="402321322f2c34282f73002538212d302c256e232f2d"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 78982-09163
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Bristol, United Kingdom
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-04.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-info"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-success flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-success">HR</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Heller</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $02,12,000
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="66020711080b0314050e0726031e070b160a034805090b"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 27691-89246
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      San Francisco, United States
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-05.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="kanban-list-items p-2 rounded border">
-          <div class="card mb-0 border-0 shadow">
-            <div class="card-body p-2">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="d-flex align-items-center mb-1">
-                    <i class="ti ti-circle-filled fs-10 text-success me-1"></i>
-                    Closed
-                  </h6>
-                  <span class="fw-medium">45 Leads - $15,44,540</span>
-                </div>
-                <div class="d-flex align-items-center">
-                  <a href="javascript:void(0);" class="text-info">
-                    <i class="ti ti-plus"></i>
-                  </a>
-                  <div class="dropdown table-action ms-2">
-                    <a
-                      href="#"
-                      class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="ti ti-dots-vertical"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a
-                        class="dropdown-item "
-                        href="#"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvas_edit"
-                      >
-                        <i class="fa-solid fa-pencil text-blue"></i> Edit
-                      </a>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#delete_lead"
-                      >
-                        <i class="fa-regular fa-trash-can text-danger"></i>
-                        Delete
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="kanban-drag-wrap">
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-success"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-danger flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-danger">GI</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Gutkowsi</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $01,84,043
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="364457555e535a76534e575b465a531855595b"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 17839-93617
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Dallas, United States
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-06.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-success"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-warning flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-warning">WR</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Walter</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $09,35,189
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="b9d3d6d7dcd5d5dcf9dcc1d8d4c9d5dc97dad6d4"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 16739-47193
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Leicester, United Kingdom
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-07.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-success"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-success flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-success">HN</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Hansen</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $04,27,940
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="81ebeeefe0f5e9e0efc1e4f9e0ecf1ede4afe2eeec"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 18390-37153
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Norwich, United Kingdom
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-08.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="kanban-list-items p-2 rounded border">
-          <div class="card mb-0 border-0 shadow">
-            <div class="card-body p-2">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="d-flex align-items-center mb-1">
-                    <i class="ti ti-circle-filled fs-10 text-danger me-1"></i>
-                    Lost
-                  </h6>
-                  <span class="fw-medium">15 Leads - $14,89,543</span>
-                </div>
-                <div class="d-flex align-items-center">
-                  <a href="javascript:void(0);" class="text-info">
-                    <i class="ti ti-plus"></i>
-                  </a>
-                  <div class="dropdown table-action ms-2">
-                    <a
-                      href="#"
-                      class="action-icon btn btn-xs shadow btn-icon btn-outline-light"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="ti ti-dots-vertical"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <a
-                        class="dropdown-item "
-                        href="#"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvas_edit"
-                      >
-                        <i class="fa-solid fa-pencil text-blue"></i> Edit
-                      </a>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#delete_lead"
-                      >
-                        <i class="fa-regular fa-trash-can text-danger"></i>
-                        Delete
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="kanban-drag-wrap">
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-danger"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-danger flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-danger">SE</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Steve</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $04,17,593
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="82f1ebe6ece7fbc2e7fae3eff2eee7ace1edef"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 11739-38135
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Manchester, United Kingdom
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-09.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-danger"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-info flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-info">LE</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Leuschke</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $08,81,389
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="eb8999848480ab8e938a869b878ec5888486"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 19302-91043
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Chicago, United States
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-10.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="card kanban-card border mb-0 mt-3 shadow ui-sortable-handle">
-                <div class="card-body">
-                  <div class="d-block">
-                    <div class="card-topbar mb-3 pt-1 bg-danger"></div>
-                    <div class="d-flex align-items-center mb-3">
-                      <a
-                        href="leads-details.html"
-                        class="avatar rounded-circle bg-soft-danger flex-shrink-0 me-2"
-                      >
-                        <span class="avatar-title text-danger">AY</span>
-                      </a>
-                      <h6 class="fw-medium fs-14 mb-0">
-                        <a href="leads-details.html">Anthony</a>
-                      </h6>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-report-money text-dark me-1"></i>
-                      $09,27,193
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-mail text-dark me-1"></i>
-                      <a
-                        href="https://crms.dreamstechnologies.com/cdn-cgi/l/email-protection"
-                        class="__cf_email__"
-                        data-cfemail="d5b8bcb6beb0ac95b0adb4b8a5b9b0fbb6bab8"
-                      >
-                        [email&#160;protected]
-                      </a>
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center mb-2">
-                      <i class="ti ti-phone text-dark me-1"></i>
-                      +1 17280-92016
-                    </p>
-                    <p class="text-default d-inline-flex align-items-center">
-                      <i class="ti ti-map-pin-pin text-dark me-1"></i>
-                      Derby, United Kingdom
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                    <span class="avatar avatar-xs border rounded-circle d-flex align-items-center justify-content-center p-1">
-                      <img
-                        src="assets/img/icons/company-icon-01.svg"
-                        alt="img"
-                      />
-                    </span>
-                    <div class="icons-social d-flex align-items-center gap-1">
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-phone-check"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center me-1"
-                      >
-                        <i class="ti ti-message-circle-2"></i>
-                      </a>
-                      <a
-                        href="#"
-                        class="d-flex align-items-center justify-content-center"
-                      >
-                        <i class="ti ti-color-swatch"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </DndContext>
+
+      <Drawer
+        title="Add Lead"
+        open={isAddDrawerOpen}
+        onClose={() => setIsAddDrawerOpen(false)}
+        width={400}
+      >
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={async (values) => {
+            try {
+              await createLead(values).unwrap();
+              setIsAddDrawerOpen(false);
+              form.resetFields();
+            } catch (error) {
+              Modal.error({
+                title: "Error",
+                content: "Failed to create lead: " + error.data?.error,
+              });
+            }
+          }}
+        >
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[{ required: true, message: "Please input the name!" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            label="Email"
+            rules={[{ type: "email", message: "Please input a valid email!" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item name="phone" label="Phone">
+            <Input />
+          </Form.Item>
+          <Form.Item name="message" label="Message">
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item name="source" label="Source">
+            <Select>
+              <Select.Option value="website">Website</Select.Option>
+              <Select.Option value="landing_page">Landing Page</Select.Option>
+              <Select.Option value="ad">Ad</Select.Option>
+              <Select.Option value="newsletter">Newsletter</Select.Option>
+              <Select.Option value="referral">Referral</Select.Option>
+              <Select.Option value="other">Other</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="status" label="Status">
+            <Select>
+              <Select.Option value="new">Not Contacted</Select.Option>
+              <Select.Option value="contacted">Contacted</Select.Option>
+              <Select.Option value="qualified">Qualified</Select.Option>
+              <Select.Option value="converted">Closed</Select.Option>
+              <Select.Option value="lost">Lost</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="assigned_to" label="Assigned To">
+            <Select allowClear>
+              <Select.Option value="">Unassigned</Select.Option>
+              {leadOwners.map((owner) => (
+                <Select.Option key={owner.id} value={owner.id}>
+                  {owner.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item name="value" label="Value">
+            <Input type="number" step="0.01" />
+          </Form.Item>
+          <Form.Item name="location" label="Location">
+            <Input />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Add Lead
+            </Button>
+          </Form.Item>
+        </Form>
+      </Drawer>
     </div>
   );
 };

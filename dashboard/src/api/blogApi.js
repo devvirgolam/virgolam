@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_URL } from "../store/config";
+
 export const blogApi = createApi({
   reducerPath: "blogApi",
   baseQuery: fetchBaseQuery({
@@ -15,7 +16,7 @@ export const blogApi = createApi({
   }),
   tagTypes: ["Blog", "Category"],
   endpoints: (builder) => ({
-    // ---- Public Routes ----
+    // Blog endpoints (unchanged)
     listBlogs: builder.query({
       query: () => "/",
       providesTags: ["Blog"],
@@ -28,12 +29,6 @@ export const blogApi = createApi({
       query: (slug) => `/slug/${slug}`,
       providesTags: (result, error, slug) => [{ type: "Blog", slug }],
     }),
-    listBlogCategories: builder.query({
-      query: () => "/categories",
-      providesTags: ["Category"],
-    }),
-
-    // ---- Protected Routes ----
     createBlog: builder.mutation({
       query: (data) => ({
         url: "/",
@@ -57,11 +52,39 @@ export const blogApi = createApi({
       }),
       invalidatesTags: ["Blog"],
     }),
+    // Category endpoints
+    fetchAllBlogCategories: builder.query({
+      query: ({ sort = "name", order = "asc" } = {}) =>
+        `/categories?sort=${sort}&order=${order}`,
+      providesTags: ["Category"],
+    }),
+    fetchBlogCategoryById: builder.query({
+      query: (id) => `/categories/${id}`,
+      providesTags: (result, error, id) => [{ type: "Category", id }],
+    }),
     createBlogCategory: builder.mutation({
       query: (data) => ({
-        url: "/categories",
+        url: "/categories/add",
         method: "POST",
         body: data,
+      }),
+      invalidatesTags: ["Category"],
+    }),
+    updateBlogCategory: builder.mutation({
+      query: ({ id, ...data }) => ({
+        url: `/categories/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: (result, error, { id }) => [
+        { type: "Category", id },
+        "Category",
+      ],
+    }),
+    deleteBlogCategory: builder.mutation({
+      query: (id) => ({
+        url: `/categories/${id}`,
+        method: "DELETE",
       }),
       invalidatesTags: ["Category"],
     }),
@@ -72,9 +95,12 @@ export const {
   useListBlogsQuery,
   useGetBlogByIdQuery,
   useGetBlogBySlugQuery,
-  useListBlogCategoriesQuery,
+  useFetchAllBlogCategoriesQuery,
+  useFetchBlogCategoryByIdQuery,
+  useCreateBlogCategoryMutation,
+  useUpdateBlogCategoryMutation,
+  useDeleteBlogCategoryMutation,
   useCreateBlogMutation,
   useUpdateBlogMutation,
   useDeleteBlogMutation,
-  useCreateBlogCategoryMutation,
 } = blogApi;

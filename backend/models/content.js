@@ -18,7 +18,14 @@ const Content = sequelize.define(
       allowNull: false,
     },
     description: DataTypes.TEXT,
-    image_url: DataTypes.STRING(1024),
+    featured_image: {
+      type: DataTypes.STRING(1024),
+      allowNull: true,
+    },
+    images: {
+      type: DataTypes.TEXT, // Can store JSON array or comma-separated URLs
+      allowNull: true,
+    },
     date: {
       type: DataTypes.DATE,
       allowNull: true, // Only relevant for events

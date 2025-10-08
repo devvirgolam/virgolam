@@ -210,42 +210,185 @@ exports.deleteBlog = async (req, res) => {
   }
 };
 
-exports.listBlogCategories = async (req, res) => {
+// Fetch all blog categories
+exports.fetchAllBlogCategories = async (req, res) => {
   try {
-    const categories = await BlogCategory.find().lean();
-    logger.info(`Retrieved ${categories.length} blog categories`);
+    // Optional query parameters for sorting or filtering
+    const { sort = "name", order = "asc" } = req.query;
+
+    // Validate sort field
+    const validSortFields = ["name", "createdAt", "updatedAt"];
+    if (!validSortFields.includes(sort)) {
+      return handleError(res, 400, "Invalid sort field");
+    }
+
+    // Validate order
+    if (!["asc", "desc"].includes(order.toLowerCase())) {
+      return handleError(res, 400, "Invalid sort order");
+    }
+
+    // Build query
+    const query = BlogCategory.find().lean();
+    query.sort({ [sort]: order.toLowerCase() === "asc" ? 1 : -1 });
+
+    const categories = await query.exec();
+    logger.info(`Retrieved ${categories.length} blog categories`, {
+      sort,
+      order,
+    });
+
     res.json(categories);
   } catch (error) {
     handleError(res, 500, "Failed to retrieve blog categories", error);
   }
 };
 
+// Fetch a single blog category by ID
+exports.fetchBlogCategoryById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Validate UUID format
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid category ID format");
+    }
+
+    const category = await BlogCategory.findById(id).lean();
+    if (!category) {
+      return handleError(res, 404, "Blog category not found");
+    }
+
+    logger.info(`Retrieved blog category with ID: ${id}`);
+    res.json(category);
+  } catch (error) {
+    handleError(res, 500, "Failed to retrieve blog category", error);
+  }
+};
+
+// Create a new blog category
 exports.createBlogCategory = async (req, res) => {
   try {
     const { name } = req.body;
 
     // Input validation
-    if (!name || typeof name !== "string") {
+    if (!name || typeof name !== "string" || name.trim().length === 0) {
       return handleError(
         res,
         400,
-        "Category name is required and must be a string"
+        "Category name is required and must be a non-empty string"
       );
     }
 
-    // Check for duplicate category
-    const existingCategory = await BlogCategory.findOne({ name }).lean();
+    const trimmedName = name.trim();
+
+    // Check for duplicate category (case-insensitive)
+    const existingCategory = await BlogCategory.findOne({
+      name: { $regex: `^${trimmedName}$`, $options: "i" },
+    }).lean();
     if (existingCategory) {
       return handleError(res, 409, "Category name already exists");
     }
 
-    const category = await BlogCategory.create({ _id: uuidv4(), name });
-    logger.info(`Blog category created: ${name} with ID: ${category._id}`);
+    const category = await BlogCategory.create({
+      _id: uuidv4(),
+      name: trimmedName,
+    });
+
+    logger.info(
+      `Blog category created: ${trimmedName} with ID: ${category._id}`
+    );
     res.status(201).json({
       message: "Blog category created successfully",
       category: { _id: category._id, name: category.name },
     });
   } catch (error) {
     handleError(res, 500, "Failed to create blog category", error);
+  }
+};
+
+// Update a blog category
+exports.updateBlogCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+
+    // Validate UUID format
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid category ID format");
+    }
+
+    // Input validation
+    if (!name || typeof name !== "string" || name.trim().length === 0) {
+      return handleError(
+        res,
+        400,
+        "Category name is required and must be a non-empty string"
+      );
+    }
+
+    const trimmedName = name.trim();
+
+    // Check for duplicate category name (case-insensitive, excluding current category)
+    const existingCategory = await BlogCategory.findOne({
+      name: { $regex: `^${trimmedName}$`, $options: "i" },
+      _id: { $ne: id },
+    }).lean();
+    if (existingCategory) {
+      return handleError(res, 409, "Category name already exists");
+    }
+
+    const category = await BlogCategory.findByIdAndUpdate(
+      id,
+      { name: trimmedName, updatedAt: new Date() },
+      { new: true }
+    ).lean();
+    if (!category) {
+      return handleError(res, 404, "Blog category not found");
+    }
+
+    logger.info(`Blog category updated: ${trimmedName} with ID: ${id}`);
+    res.json({
+      message: "Blog category updated successfully",
+      category: { _id: category._id, name: category.name },
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to update blog category", error);
+  }
+};
+
+// Delete a blog category
+exports.deleteBlogCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Validate UUID format
+    if (
+      !id ||
+      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+        id
+      )
+    ) {
+      return handleError(res, 400, "Invalid category ID format");
+    }
+
+    const category = await BlogCategory.findByIdAndDelete(id).lean();
+    if (!category) {
+      return handleError(res, 404, "Blog category not found");
+    }
+
+    logger.info(`Blog category deleted with ID: ${id}`);
+    res.status(204).send();
+  } catch (error) {
+    handleError(res, 500, "Failed to delete blog category", error);
   }
 };

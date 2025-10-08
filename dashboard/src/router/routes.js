@@ -41,6 +41,7 @@ import Categories from "../pages/Categories";
 import BlogCategories from "../components/Blogs/BlogCategories";
 import { FileMarkdownFilled } from "@ant-design/icons";
 import Content from "../pages/Content";
+import Profile from "../pages/Profile";
 
 const masterRoutes = [
   {
@@ -92,33 +93,12 @@ const masterRoutes = [
     submenu: [],
   },
   {
-    path: "#",
+    path: "/blogs/list",
     name: "Blogs & Categories",
     icon: <BiCategory />,
+    element: <Blogs />,
     isSidebarActive: true,
-    submenu: [
-      {
-        path: "/blogs",
-        name: "Blogs",
-        icon: <BiCategory />,
-        isSidebarActive: true,
-        element: <Blogs />,
-      },
-      {
-        path: "/blogs/add",
-        name: "Add Blog",
-        icon: <AiOutlineProduct />,
-        element: <AddBlog />,
-        isSidebarActive: false,
-      },
-      {
-        path: "/blogs/categories",
-        name: "Categories",
-        element: <BlogCategories />,
-        icon: <BiAccessibility />,
-        isSidebarActive: true,
-      },
-    ],
+    submenu: [],
   },
   {
     path: "/stores-dealers",
@@ -157,6 +137,13 @@ const masterRoutes = [
     isSidebarActive: false,
     submenu: [
       {
+        path: "/blogs/add",
+        name: "Add Blog",
+        icon: <AiOutlineProduct />,
+        element: <AddBlog />,
+        isSidebarActive: false,
+      },
+      {
         path: "/u/:userId",
         name: "Profile",
         icon: <CgProfile />,
@@ -188,6 +175,13 @@ const masterRoutes = [
         icon: <FaFileInvoice />,
         isSidebarActive: true,
         element: <Error500 />,
+      },
+      {
+        path: "/u/:userId",
+        name: "Profile",
+        icon: <FaFileCircleCheck />,
+        isSidebarActive: false,
+        element: <Profile />,
       },
     ],
   },

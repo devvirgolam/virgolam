@@ -4,7 +4,7 @@ import {
   useCreateCatalogueMutation,
   useUpdateCatalogueMutation,
   useDeleteCatalogueMutation,
-} from "../api/catalogueApi"; // Adjust path to your API slice
+} from "../api/catalogueApi";
 import {
   Button,
   Form,
@@ -14,16 +14,22 @@ import {
   Menu,
   Table,
   Popconfirm,
-} from "antd"; // Import Antd components
+  Card,
+  Row,
+  Col,
+  Tooltip,
+} from "antd";
 import {
   SearchOutlined,
   FilterOutlined,
   SortAscendingOutlined,
   DownOutlined,
-} from "@ant-design/icons"; // Antd icons
+  UnorderedListOutlined,
+  AppstoreOutlined,
+} from "@ant-design/icons";
 import PageHeader from "../components/Common/PageHeader";
 import AddNewCatalogue from "../components/Catalogues/AddNewCatalogue";
-import moment from "moment"; // For date handling with Antd DatePicker
+import moment from "moment";
 
 const { RangePicker } = DatePicker;
 
@@ -34,8 +40,9 @@ const Catalogues = () => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [showAddModal, setShowAddModal] = useState(false);
   const [currentCatalogue, setCurrentCatalogue] = useState(null);
-  const [page, setPage] = useState(1); // State for pagination
-  const [pageSize, setPageSize] = useState(10); // State for page size
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [viewMode, setViewMode] = useState("list");
 
   // RTK Query hooks
   const { data: catalogues = [], isLoading, error } = useListCataloguesQuery();
@@ -43,7 +50,7 @@ const Catalogues = () => {
   const [updateCatalogue] = useUpdateCatalogueMutation();
   const [deleteCatalogue] = useDeleteCatalogueMutation();
 
-  // Filter and sort catalogues (client-side for now)
+  // Filter and sort catalogues
   const filteredCatalogues = catalogues
     .filter((catalogue) =>
       catalogue.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -53,28 +60,38 @@ const Catalogues = () => {
       const createdAt = new Date(catalogue.created_at);
       const startDate = new Date(dateRange.start);
       const endDate = new Date(dateRange.end);
-      return createdAt >= startDate && createdAt <= endDate;
+      return (
+        createdAt >= startDate && createdAt <= endDate && !isNaN(createdAt)
+      );
     })
     .sort((a, b) => {
       const fieldA = a[sortBy];
       const fieldB = b[sortBy];
       if (sortBy === "created_at") {
+        const dateA = new Date(fieldA);
+        const dateB = new Date(fieldB);
         return sortOrder === "asc"
-          ? new Date(fieldA) - new Date(fieldB)
-          : new Date(fieldB) - new Date(fieldA);
+          ? (isNaN(dateA) ? 1 : dateA) - (isNaN(dateB) ? 1 : dateB)
+          : (isNaN(dateB) ? 1 : dateB) - (isNaN(dateA) ? 1 : dateA);
       }
       return sortOrder === "asc"
         ? fieldA.localeCompare(fieldB)
-        : fieldB.localeCompare(fieldA);
+        : fieldB.localeCompare(fieldB);
     });
 
-  // Open edit modal with catalogue data
+  // Paginate filtered catalogues
+  const paginatedCatalogues = filteredCatalogues.slice(
+    (page - 1) * pageSize,
+    page * pageSize
+  );
+
+  // Open edit modal
   const openEditModal = (catalogue) => {
     setCurrentCatalogue(catalogue);
     setShowAddModal(true);
   };
 
-  // Handle delete catalogue
+  // Handle delete
   const handleDelete = async (id) => {
     try {
       await deleteCatalogue(id).unwrap();
@@ -83,13 +100,13 @@ const Catalogues = () => {
     }
   };
 
-  // Handle offcanvas close
+  // Handle modal close
   const handleClose = () => {
     setShowAddModal(false);
     setCurrentCatalogue(null);
   };
 
-  // Sort menu for Antd Dropdown
+  // Sort menu
   const sortMenu = (
     <Menu>
       <Menu.Item
@@ -131,12 +148,27 @@ const Catalogues = () => {
     </Menu>
   );
 
-  // Antd Table columns configuration
+  // Table columns for list view
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (text) => (
+        <Tooltip title={text}>
+          <span
+            style={{
+              display: "inline-block",
+              maxWidth: 200,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {text}
+          </span>
+        </Tooltip>
+      ),
     },
     {
       title: "PDF URL",
@@ -162,7 +194,10 @@ const Catalogues = () => {
       title: "Created On",
       dataIndex: "created_at",
       key: "created_at",
-      render: (text) => new Date(text).toLocaleDateString(),
+      render: (text) => {
+        const date = new Date(text);
+        return isNaN(date) ? "Invalid Date" : date.toLocaleDateString();
+      },
     },
     {
       title: "Actions",
@@ -173,6 +208,7 @@ const Catalogues = () => {
             type="primary"
             size="small"
             onClick={() => openEditModal(record)}
+            aria-label={`Edit ${record.name}`}
           >
             Edit
           </Button>
@@ -182,7 +218,11 @@ const Catalogues = () => {
             okText="Yes"
             cancelText="No"
           >
-            <Button type="danger" size="small">
+            <Button
+              type="danger"
+              size="small"
+              aria-label={`Delete ${record.name}`}
+            >
               Delete
             </Button>
           </Popconfirm>
@@ -190,6 +230,92 @@ const Catalogues = () => {
       ),
     },
   ];
+
+  // Card view rendering
+  const renderCardView = () => (
+    <Row gutter={[16, 16]}>
+      {paginatedCatalogues.map((catalogue) => (
+        <Col xs={24} sm={12} md={8} lg={6} key={catalogue.id}>
+          <Card
+            hoverable
+            cover={
+              <img
+                alt={catalogue.name}
+                src={catalogue.banner_image_url}
+                style={{ height: 150, objectFit: "cover" }}
+                onError={(e) => {
+                  e.target.src = "https://via.placeholder.com/150";
+                }}
+              />
+            }
+            actions={[
+              <Button
+                type="link"
+                onClick={() => openEditModal(catalogue)}
+                key="edit"
+                aria-label={`Edit ${catalogue.name}`}
+              >
+                Edit
+              </Button>,
+              <Popconfirm
+                title="Are you sure you want to delete this catalogue?"
+                onConfirm={() => handleDelete(catalogue.id)}
+                okText="Yes"
+                cancelText="No"
+                key="delete"
+              >
+                <Button
+                  type="link"
+                  danger
+                  aria-label={`Delete ${catalogue.name}`}
+                >
+                  Delete
+                </Button>
+              </Popconfirm>,
+            ]}
+          >
+            <Card.Meta
+              title={
+                <Tooltip title={catalogue.name}>
+                  <span
+                    style={{
+                      display: "inline-block",
+                      maxWidth: "100%",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {catalogue.name}
+                  </span>
+                </Tooltip>
+              }
+              description={
+                <>
+                  <p>
+                    <a
+                      href={catalogue.pdf_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View PDF for ${catalogue.name}`}
+                    >
+                      View PDF
+                    </a>
+                  </p>
+                  <p>
+                    Created:{" "}
+                    {isNaN(new Date(catalogue.created_at))
+                      ? "Invalid Date"
+                      : new Date(catalogue.created_at).toLocaleDateString()}
+                  </p>
+                </>
+              }
+            />
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  );
 
   return (
     <div className="content pb-0">
@@ -203,20 +329,43 @@ const Catalogues = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{ width: 200 }}
+            aria-label="Search catalogues by name"
           />
-          <Button
-            type="primary"
-            onClick={() => setShowAddModal(true)}
-            icon={<i className="ti ti-square-rounded-plus-filled me-1"></i>}
-          >
-            Add Catalogue
-          </Button>
+          <div className="d-flex gap-2">
+            <Button
+              icon={
+                viewMode === "list" ? (
+                  <AppstoreOutlined />
+                ) : (
+                  <UnorderedListOutlined />
+                )
+              }
+              onClick={() => setViewMode(viewMode === "list" ? "card" : "list")}
+              aria-label={
+                viewMode === "list"
+                  ? "Switch to card view"
+                  : "Switch to list view"
+              }
+            >
+              {viewMode === "list" ? "Card View" : "List View"}
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => setShowAddModal(true)}
+              icon={<i className="ti ti-square-rounded-plus-filled me-1"></i>}
+              aria-label="Add new catalogue"
+            >
+              Add Catalogue
+            </Button>
+          </div>
         </div>
 
         <div className="card-body">
           {isLoading && <div>Loading...</div>}
           {error && (
-            <div className="alert alert-danger">Error fetching catalogues</div>
+            <div className="alert alert-danger" role="alert">
+              Error fetching catalogues
+            </div>
           )}
 
           <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
@@ -240,16 +389,22 @@ const Catalogues = () => {
                               end: dateStrings[1],
                             })
                           }
+                          aria-label="Select date range for filtering"
                         />
                       </Form.Item>
                       <div className="d-flex gap-2">
                         <Button
                           onClick={() => setDateRange({ start: "", end: "" })}
                           style={{ width: "100%" }}
+                          aria-label="Reset date range filter"
                         >
                           Reset
                         </Button>
-                        <Button type="primary" style={{ width: "100%" }}>
+                        <Button
+                          type="primary"
+                          style={{ width: "100%" }}
+                          aria-label="Apply date range filter"
+                        >
                           Apply
                         </Button>
                       </div>
@@ -258,40 +413,67 @@ const Catalogues = () => {
                 }
                 trigger={["click"]}
               >
-                <Button>
+                <Button aria-label="Open filter options">
                   <FilterOutlined /> Filter <DownOutlined />
                 </Button>
               </Dropdown>
               <Dropdown overlay={sortMenu} trigger={["click"]}>
-                <Button>
+                <Button aria-label="Open sort options">
                   <SortAscendingOutlined /> Sort By <DownOutlined />
                 </Button>
               </Dropdown>
             </div>
           </div>
 
-          <Table
-            columns={columns}
-            dataSource={filteredCatalogues}
-            loading={isLoading}
-            pagination={{
-              current: page,
-              pageSize: pageSize,
-              total: filteredCatalogues.length,
-              onChange: (page, pageSize) => {
-                setPage(page);
-                setPageSize(pageSize);
-              },
-              showSizeChanger: true,
-              pageSizeOptions: ["10", "20", "50"],
-            }}
-            rowKey="id"
-          />
+          {viewMode === "list" ? (
+            <Table
+              columns={columns}
+              dataSource={paginatedCatalogues}
+              loading={isLoading}
+              pagination={{
+                current: page,
+                pageSize: pageSize,
+                total: filteredCatalogues.length,
+                onChange: (page, pageSize) => {
+                  setPage(page);
+                  setPageSize(pageSize);
+                },
+                showSizeChanger: true,
+                pageSizeOptions: ["10", "20", "50"],
+                "aria-label": "Pagination for catalogue table",
+              }}
+              rowKey="id"
+            />
+          ) : (
+            <>
+              {renderCardView()}
+              <div className="d-flex justify-content-center mt-3">
+                <Table
+                  pagination={{
+                    current: page,
+                    pageSize: pageSize,
+                    total: filteredCatalogues.length,
+                    onChange: (page, pageSize) => {
+                      setPage(page);
+                      setPageSize(pageSize);
+                    },
+                    showSizeChanger: true,
+                    pageSizeOptions: ["10", "20", "50"],
+                    "aria-label": "Pagination for catalogue card view",
+                  }}
+                  style={{ width: "auto" }}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Add/Edit Catalogue Offcanvas */}
-      <AddNewCatalogue catalogue={currentCatalogue} onClose={handleClose} />
+      <AddNewCatalogue
+        visible={showAddModal}
+        catalogue={currentCatalogue}
+        onClose={handleClose}
+      />
     </div>
   );
 };

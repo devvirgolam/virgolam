@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               9.2.0 - MySQL Community Server - GPL
--- Server OS:                    Win64
+-- Host:                         103.50.161.16
+-- Server version:               5.7.44 - MySQL Community Server (GPL)
+-- Server OS:                    Linux
 -- HeidiSQL Version:             12.11.0.7065
 -- --------------------------------------------------------
 
@@ -14,14 +14,14 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table virgo.variants
+-- Dumping structure for table virgolam_dashboard.variants
 CREATE TABLE IF NOT EXISTS `variants` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `product_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
+  `product_id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `name` varchar(150) DEFAULT NULL,
   `sku` varchar(100) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `stock` int DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
   `attributes` text,
   `images` text,
   `created_at` datetime NOT NULL,
@@ -50,14 +50,11 @@ CREATE TABLE IF NOT EXISTS `variants` (
   UNIQUE KEY `sku_22` (`sku`),
   UNIQUE KEY `sku_23` (`sku`),
   UNIQUE KEY `sku_24` (`sku`),
-  UNIQUE KEY `sku_25` (`sku`),
-  UNIQUE KEY `sku_26` (`sku`),
-  UNIQUE KEY `sku_27` (`sku`),
   KEY `product_id` (`product_id`),
-  CONSTRAINT `variants_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `variants_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table virgo.variants: ~0 rows (approximately)
+-- Dumping data for table virgolam_dashboard.variants: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

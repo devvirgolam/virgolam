@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const contentController = require("../controllers/contentController"); // Path to your content controller file
-const authMiddleware = require("../middleware/auth"); // Path to your JWT middleware
+const contentController = require("../controllers/contentController");
+const upload = require("../middleware/multer");
 
-// Public routes (no authentication required)
 router.get("/", contentController.listContent);
-
-// Protected routes (require JWT authentication)
-router.post("/", authMiddleware, contentController.createContent);
+router.post("/", contentController.createContent);
+router.post("/upload", upload.single("file"), contentController.uploadFile);
+router.delete("/:id", contentController.deleteContent);
+router.put("/:id", contentController.updateContent);
 
 module.exports = router;

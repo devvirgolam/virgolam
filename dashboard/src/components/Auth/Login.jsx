@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/AuthContext";
 import { useForgotPasswordMutation } from "../../api/authApi";
 import logo from "../../assets/img/logo.jpeg";
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -39,11 +40,14 @@ const Login = () => {
     }
 
     try {
-      await login({ email: formData.email, password: formData.password });
-      if (formData.rememberMe) {
-        // Optionally, extend token storage logic for "Remember Me"
-        // For simplicity, tokens are already stored in localStorage
+      const result = await login({
+        email: formData.email,
+        password: formData.password,
+      });
+      if (!result.success) {
+        setError(result.error || "Invalid credentials");
       }
+      setIsLoading(false);
     } catch (err) {
       setError(err?.data?.message || "Invalid credentials");
       setIsLoading(false);
@@ -105,6 +109,7 @@ const Login = () => {
                           value={formData.email}
                           onChange={handleChange}
                           required
+                          disabled={isLoading}
                         />
                         <span className="input-group-text">
                           <i className="ti ti-mail"></i>
@@ -121,11 +126,14 @@ const Login = () => {
                           value={formData.password}
                           onChange={handleChange}
                           required
+                          disabled={isLoading}
                         />
                         <span
                           className="input-group-text toggle-password"
                           onClick={togglePasswordVisibility}
-                          style={{ cursor: "pointer" }}
+                          style={{
+                            cursor: isLoading ? "not-allowed" : "pointer",
+                          }}
                         >
                           <i
                             className={`ti ${
@@ -144,6 +152,7 @@ const Login = () => {
                           checked={formData.rememberMe}
                           onChange={handleChange}
                           id="checkebox-md"
+                          disabled={isLoading}
                         />
                         <label
                           className="form-check-label text-dark ms-1"
@@ -157,6 +166,7 @@ const Login = () => {
                           href="javascript:void(0);"
                           className="link-danger fw-medium link-hover"
                           onClick={handleForgotPassword}
+                          style={{ pointerEvents: isLoading ? "none" : "auto" }}
                         >
                           Forgot Password?
                         </a>

@@ -1,2 +1,5 @@
 node_modules/
 .env
+/catalogues_pdf
+/catalogue_pages
+/catalogue

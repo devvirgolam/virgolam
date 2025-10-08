@@ -14,6 +14,7 @@ const catalogueRoutes = require("./routes/catalogue");
 const careerRoutes = require("./routes/careers");
 const roleRoutes = require("./routes/roles");
 const storeRoutes = require("./routes/stores");
+const leadRoutes = require("./routes/leads");
 const parentCategoryRoutes = require("./routes/parentCategory");
 const cors = require("cors");
 const app = express();
@@ -62,6 +63,7 @@ app.use("/api/contents", contentRoutes);
 app.use("/api/dealers", dealerRoutes);
 app.use("/api/roles", roleRoutes);
 app.use("/api/stores", storeRoutes);
+app.use("/api/leads", leadRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/parent-category", parentCategoryRoutes);
 

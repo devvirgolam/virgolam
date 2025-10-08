@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_URL } from "../store/config";
+
 export const contentApi = createApi({
   reducerPath: "contentApi",
   baseQuery: fetchBaseQuery({
@@ -15,13 +16,13 @@ export const contentApi = createApi({
   }),
   tagTypes: ["Content"],
   endpoints: (builder) => ({
-    // ---- Public Route ----
     listContent: builder.query({
-      query: () => "/",
+      query: ({ type, parent_id, search } = {}) => ({
+        url: "/",
+        params: { type, parent_id, search },
+      }),
       providesTags: ["Content"],
     }),
-
-    // ---- Protected Route ----
     createContent: builder.mutation({
       query: (data) => ({
         url: "/",
@@ -30,7 +31,41 @@ export const contentApi = createApi({
       }),
       invalidatesTags: ["Content"],
     }),
+    uploadFile: builder.mutation({
+      query: ({ file, parent_id }) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        if (parent_id) formData.append("parent_id", parent_id);
+        return {
+          url: "/upload",
+          method: "POST",
+          body: formData,
+        };
+      },
+      invalidatesTags: ["Content"],
+    }),
+    deleteContent: builder.mutation({
+      query: (id) => ({
+        url: `/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Content"],
+    }),
+    updateContent: builder.mutation({
+      query: ({ id, ...data }) => ({
+        url: `/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["Content"],
+    }),
   }),
 });
 
-export const { useListContentQuery, useCreateContentMutation } = contentApi;
+export const {
+  useListContentQuery,
+  useCreateContentMutation,
+  useUploadFileMutation,
+  useDeleteContentMutation,
+  useUpdateContentMutation,
+} = contentApi;

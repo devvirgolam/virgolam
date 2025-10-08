@@ -2,20 +2,34 @@ import React, { useState } from "react";
 import {
   useListCategoriesQuery,
   useCreateCategoryMutation,
+  useUpdateCategoryMutation,
   useDeleteCategoryMutation,
 } from "../api/categoryApi";
 import { useGetParentCategoriesQuery } from "../api/parentCategoryApi";
+import {
+  Tabs,
+  Card,
+  Table,
+  Modal,
+  Row,
+  Col,
+  Badge,
+  Space,
+  Alert,
+  Breadcrumb,
+  Button,
+} from "antd";
+import { PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import CategoryModal from "../components/Category/CategoryModal";
+const { TabPane } = Tabs;
 
 const Categories = () => {
-  // State for modal, form, and selected parent category
+  // State for modal, selected parent category, active tab, and edit mode
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newCategory, setNewCategory] = useState({
-    name: "",
-    slug: "",
-    parent_id: "",
-  });
+  const [editCategory, setEditCategory] = useState(null); // Store category to edit
   const [error, setError] = useState(null);
   const [selectedParentId, setSelectedParentId] = useState(null);
+  const [activeTab, setActiveTab] = useState("parent-categories");
 
   // Fetch categories and parent categories
   const {
@@ -27,42 +41,61 @@ const Categories = () => {
     useGetParentCategoriesQuery();
   const [createCategory, { isLoading: isCreating }] =
     useCreateCategoryMutation();
+  const [updateCategory, { isLoading: isUpdating }] =
+    useUpdateCategoryMutation();
   const [deleteCategory] = useDeleteCategoryMutation();
 
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewCategory((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Handle form submission (create or update)
+  const handleSubmit = async (values) => {
     try {
-      await createCategory({
-        name: newCategory.name,
-        slug: newCategory.slug,
-        parent_id: newCategory.parent_id || null,
-      }).unwrap();
-      setNewCategory({ name: "", slug: "", parent_id: "" });
+      if (editCategory) {
+        // Update category
+        await updateCategory({
+          id: editCategory.id,
+          name: values.name,
+          slug: values.slug,
+          parent_id: values.parent_id || null,
+        }).unwrap();
+      } else {
+        // Create category
+        await createCategory({
+          name: values.name,
+          slug: values.slug,
+          parent_id: values.parent_id || null,
+        }).unwrap();
+      }
       setIsModalOpen(false);
+      setEditCategory(null);
       setError(null);
     } catch (err) {
-      setError(err.data?.error || "Failed to create category");
+      setError(
+        err.data?.error ||
+          `Failed to ${editCategory ? "update" : "create"} category`
+      );
     }
+  };
+
+  // Handle edit button click
+  const handleEdit = (category) => {
+    setEditCategory(category);
+    setIsModalOpen(true);
   };
 
   // Handle delete
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this category?")) {
-      try {
-        await deleteCategory(id).unwrap();
-      } catch (err) {
-        alert(
-          "Failed to delete category: " + (err.data?.error || "Unknown error")
-        );
-      }
-    }
+    Modal.confirm({
+      title: "Are you sure you want to delete this category?",
+      onOk: async () => {
+        try {
+          await deleteCategory(id).unwrap();
+        } catch (err) {
+          Modal.error({
+            title: "Failed to delete category",
+            content: err.data?.error || "Unknown error",
+          });
+        }
+      },
+    });
   };
 
   // Format date for display
@@ -77,258 +110,254 @@ const Categories = () => {
     );
   };
 
+  // Get independent categories (no parent)
+  const getIndependentCategories = () => {
+    return getChildCategories(null);
+  };
+
   // Handle parent category click
   const handleParentClick = (parentId) => {
     setSelectedParentId(selectedParentId === parentId ? null : parentId);
   };
 
+  // Table columns for child and independent categories
+  const columns = [
+    {
+      title: "Title",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Created Date",
+      dataIndex: "created_at",
+      key: "created_at",
+      render: (date) => formatDate(date),
+    },
+    {
+      title: "Status",
+      key: "status",
+      render: () => <Badge status="success" text="Active" />,
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space>
+          <Button
+            icon={<EditOutlined />}
+            size="small"
+            onClick={() => handleEdit(record)}
+          />
+          <Button
+            icon={<DeleteOutlined />}
+            size="small"
+            danger
+            onClick={() => handleDelete(record.id)}
+          />
+        </Space>
+      ),
+    },
+  ];
+
   return (
-    <div className="content pb-0">
+    <div style={{ padding: "0 24px" }}>
       {/* Page Header */}
-      <div className="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 24,
+          flexWrap: "wrap",
+          gap: 16,
+        }}
+      >
         <div>
-          <h4 className="mb-1">
+          <h4 style={{ marginBottom: 8 }}>
             Sources
-            <span className="badge badge-soft-primary ms-2">
-              {parentCategories.length} Parent Categories
-            </span>
+            <Badge
+              count={`${parentCategories.length} Parent Categories`}
+              style={{ backgroundColor: "#1890ff", marginLeft: 8 }}
+            />
+            <Badge
+              count={`${
+                getIndependentCategories().length
+              } Independent Categories`}
+              style={{ backgroundColor: "#8c8c8c", marginLeft: 8 }}
+            />
           </h4>
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb mb-0 p-0">
-              <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                Sources
-              </li>
-            </ol>
-          </nav>
+          <Breadcrumb>
+            <Breadcrumb.Item>
+              <a href="index.html">Home</a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>Sources</Breadcrumb.Item>
+          </Breadcrumb>
         </div>
-        <div className="gap-2 d-flex align-items-center flex-wrap">
-          <a
-            href="javascript:void(0);"
-            className="btn btn-primary"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <i className="ti ti-square-rounded-plus-filled me-1"></i>Add New
-            Category
-          </a>
-        </div>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={() => {
+            setEditCategory(null); // Clear edit mode for new category
+            setIsModalOpen(true);
+          }}
+        >
+          Add New Category
+        </Button>
       </div>
       {/* End Page Header */}
 
-      {/* Parent Categories as Cards */}
-      {isParentCategoriesLoading ? (
-        <p>Loading parent categories...</p>
-      ) : (
-        <div className="row g-3 mb-4">
-          {parentCategories.map((parent) => {
-            const childCount = getChildCategories(parent.id).length;
-            return (
-              <div className="col-md-4 col-lg-3" key={parent.id}>
-                <div
-                  className="card border-0 shadow-sm h-100"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleParentClick(parent.id)}
+      {/* Tabs for Parent Categories and Independent Categories */}
+      <Tabs activeKey={activeTab} onChange={setActiveTab}>
+        <TabPane tab="Parent Categories" key="parent-categories">
+          {/* Parent Categories as Cards */}
+          {isParentCategoriesLoading ? (
+            <div>Loading parent categories...</div>
+          ) : (
+            <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+              {parentCategories.map((parent) => {
+                const childCount = getChildCategories(parent.id).length;
+                return (
+                  <Col xs={24} sm={12} md={8} lg={6} key={parent.id}>
+                    <Card
+                      hoverable
+                      onClick={() => handleParentClick(parent.id)}
+                      style={{ height: "100%" }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                          height: "100%",
+                        }}
+                      >
+                        <div>
+                          <h5 style={{ margin: 0 }}>{parent.name}</h5>
+                          <p style={{ color: "#8c8c8c", margin: "8px 0 0" }}>
+                            {childCount}{" "}
+                            {childCount === 1 ? "Category" : "Categories"}
+                          </p>
+                        </div>
+                        <Badge
+                          count={childCount}
+                          style={{ backgroundColor: "#1890ff", marginTop: 16 }}
+                        />
+                      </div>
+                    </Card>
+                  </Col>
+                );
+              })}
+              {/* Card for categories without parent */}
+              <Col xs={24} sm={12} md={8} lg={6}>
+                <Card
+                  hoverable
+                  onClick={() => handleParentClick(null)}
+                  style={{ height: "100%" }}
                 >
-                  <div className="card-body d-flex flex-column justify-content-between">
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      height: "100%",
+                    }}
+                  >
                     <div>
-                      <h5 className="card-title">{parent.name}</h5>
-                      <p className="card-text text-muted">
-                        {childCount}{" "}
-                        {childCount === 1 ? "Category" : "Categories"}
+                      <h5 style={{ margin: 0 }}>No Parent</h5>
+                      <p style={{ color: "#8c8c8c", margin: "8px 0 0" }}>
+                        {getChildCategories(null).length}{" "}
+                        {getChildCategories(null).length === 1
+                          ? "Category"
+                          : "Categories"}
                       </p>
                     </div>
-                    <div className="mt-2">
-                      <span className="badge badge-soft-primary">
-                        <i className="ti ti-timer me-1"></i>
-                        {childCount}
-                      </span>
-                    </div>
+                    <Badge
+                      count={getChildCategories(null).length}
+                      style={{ backgroundColor: "#1890ff", marginTop: 16 }}
+                    />
                   </div>
-                </div>
-              </div>
-            );
-          })}
-          {/* Card for categories without parent */}
-          <div className="col-md-4 col-lg-3">
-            <div
-              className="card border-0 shadow-sm h-100"
-              style={{ cursor: "pointer" }}
-              onClick={() => handleParentClick(null)}
+                </Card>
+              </Col>
+            </Row>
+          )}
+
+          {/* Child Categories Table */}
+          {selectedParentId !== null && (
+            <Card
+              title={`Categories under ${
+                parentCategories.find((p) => p.id === selectedParentId)?.name ||
+                "No Parent"
+              }`}
+              style={{ marginTop: 24 }}
             >
-              <div className="card-body d-flex flex-column justify-content-between">
-                <div>
-                  <h5 className="card-title">No Parent</h5>
-                  <p className="card-text text-muted">
-                    {getChildCategories(null).length}{" "}
-                    {getChildCategories(null).length === 1
-                      ? "Category"
-                      : "Categories"}
-                  </p>
-                </div>
-                <div className="mt-2">
-                  <span className="badge badge-soft-primary">
-                    <i className="ti ti-timer me-1"></i>
-                    {getChildCategories(null).length}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+              {isCategoriesLoading ? (
+                <div>Loading categories...</div>
+              ) : categoriesError ? (
+                <Alert
+                  message="Error"
+                  description={
+                    categoriesError.data?.error || "Failed to load categories"
+                  }
+                  type="error"
+                  showIcon
+                />
+              ) : getChildCategories(selectedParentId).length === 0 ? (
+                <div>No categories found for this parent.</div>
+              ) : (
+                <Table
+                  columns={columns}
+                  dataSource={getChildCategories(selectedParentId)}
+                  rowKey="id"
+                  pagination={false}
+                  loading={isCategoriesLoading}
+                />
+              )}
+            </Card>
+          )}
+        </TabPane>
 
-      {/* Child Categories Table */}
-      {selectedParentId !== null && (
-        <div className="card border-0 rounded-0 mt-4">
-          <div className="card-header">
-            <h5>
-              Categories under{" "}
-              {parentCategories.find((p) => p.id === selectedParentId)?.name ||
-                "No Parent"}
-            </h5>
-          </div>
-          <div className="card-body">
+        <TabPane tab="Independent Categories" key="independent-categories">
+          <Card title="Independent Categories" style={{ marginTop: 24 }}>
             {isCategoriesLoading ? (
-              <p>Loading categories...</p>
+              <div>Loading categories...</div>
             ) : categoriesError ? (
-              <p>
-                Error:{" "}
-                {categoriesError.data?.error || "Failed to load categories"}
-              </p>
-            ) : getChildCategories(selectedParentId).length === 0 ? (
-              <p>No categories found for this parent.</p>
+              <Alert
+                message="Error"
+                description={
+                  categoriesError.data?.error || "Failed to load categories"
+                }
+                type="error"
+                showIcon
+              />
+            ) : getIndependentCategories().length === 0 ? (
+              <div>No independent categories found.</div>
             ) : (
-              <div className="table-responsive custom-table">
-                <table className="table table-nowrap">
-                  <thead className="table-light">
-                    <tr>
-                      <th>Title</th>
-                      <th>Created Date</th>
-                      <th>Status</th>
-                      <th className="no-sort">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {getChildCategories(selectedParentId).map((category) => (
-                      <tr key={category.id}>
-                        <td>{category.name}</td>
-                        <td>{formatDate(category.created_at)}</td>
-                        <td>
-                          <span className="badge badge-soft-success">
-                            Active
-                          </span>
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-sm btn-outline-primary me-1"
-                            onClick={() =>
-                              alert("Edit functionality not implemented")
-                            }
-                          >
-                            <i className="ti ti-pencil"></i>
-                          </button>
-                          <button
-                            className="btn btn-sm btn-outline-danger"
-                            onClick={() => handleDelete(category.id)}
-                          >
-                            <i className="ti ti-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <Table
+                columns={columns}
+                dataSource={getIndependentCategories()}
+                rowKey="id"
+                pagination={false}
+                loading={isCategoriesLoading}
+              />
             )}
-          </div>
-        </div>
-      )}
+          </Card>
+        </TabPane>
+      </Tabs>
 
-      {/* Modal for Adding New Category */}
-      <div
-        className={`modal fade ${isModalOpen ? "show d-block" : ""}`}
-        id="add_category"
-        tabIndex="-1"
-        aria-labelledby="addCategoryLabel"
-        aria-hidden={!isModalOpen}
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="addCategoryLabel">
-                Add New Category
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                onClick={() => setIsModalOpen(false)}
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              {error && <div className="alert alert-danger">{error}</div>}
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    value={newCategory.name}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="slug" className="form-label">
-                    Slug
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="slug"
-                    name="slug"
-                    value={newCategory.slug}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="parent_id" className="form-label">
-                    Parent Category
-                  </label>
-                  <select
-                    className="form-select"
-                    id="parent_id"
-                    name="parent_id"
-                    value={newCategory.parent_id}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">None</option>
-                    {parentCategories.map((parent) => (
-                      <option key={parent.id} value={parent.id}>
-                        {parent.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  disabled={isCreating}
-                >
-                  {isCreating ? "Creating..." : "Create Category"}
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Category Modal for Create/Edit */}
+      <CategoryModal
+        open={isModalOpen}
+        onCancel={() => {
+          setIsModalOpen(false);
+          setEditCategory(null);
+          setError(null);
+        }}
+        onSubmit={handleSubmit}
+        initialValues={editCategory || { name: "", slug: "", parent_id: "" }}
+        parentCategories={parentCategories}
+        isSubmitting={editCategory ? isUpdating : isCreating}
+        error={error}
+      />
     </div>
   );
 };

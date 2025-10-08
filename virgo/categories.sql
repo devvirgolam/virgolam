@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               9.2.0 - MySQL Community Server - GPL
--- Server OS:                    Win64
+-- Host:                         103.50.161.16
+-- Server version:               5.7.44 - MySQL Community Server (GPL)
+-- Server OS:                    Linux
 -- HeidiSQL Version:             12.11.0.7065
 -- --------------------------------------------------------
 
@@ -14,15 +14,14 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table virgo.categories
+-- Dumping structure for table virgolam_dashboard.categories
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `name` varchar(200) NOT NULL,
   `slug` varchar(200) DEFAULT NULL,
-  `parent_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `parent_id` char(36) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `parentCategoryId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
   UNIQUE KEY `slug_2` (`slug`),
@@ -48,17 +47,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
   UNIQUE KEY `slug_22` (`slug`),
   UNIQUE KEY `slug_23` (`slug`),
   UNIQUE KEY `slug_24` (`slug`),
-  UNIQUE KEY `slug_25` (`slug`),
-  UNIQUE KEY `slug_26` (`slug`),
-  UNIQUE KEY `slug_27` (`slug`),
-  UNIQUE KEY `slug_28` (`slug`),
   KEY `parent_id` (`parent_id`),
-  KEY `parentCategoryId` (`parentCategoryId`),
-  CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `categories_ibfk_2` FOREIGN KEY (`parentCategoryId`) REFERENCES `parent_categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `parent_categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table virgo.categories: ~0 rows (approximately)
+-- Dumping data for table virgolam_dashboard.categories: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

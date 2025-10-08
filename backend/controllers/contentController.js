@@ -2,6 +2,7 @@ const Content = require("../models/content");
 const { v4: uuidv4 } = require("uuid");
 const winston = require("winston");
 require("dotenv").config();
+const { uploadFileToFTP, deleteFileFromFTP } = require("../config/ftpConfig");
 
 // Configure Winston logger
 const logger = winston.createLogger({
@@ -115,5 +116,136 @@ exports.createContent = async (req, res) => {
     });
   } catch (error) {
     handleError(res, 500, "Failed to create content", error);
+  }
+};
+
+// Upload File Route
+exports.uploadFile = async (req, res) => {
+  try {
+    // Check if file is provided
+    if (!req.file) {
+      return handleError(res, 400, "No file uploaded");
+    }
+
+    // Upload file to FTP server
+    const fileUrl = await uploadFileToFTP(req.file);
+    logger.info(`File uploaded successfully: ${fileUrl}`);
+
+    res.status(200).json({
+      message: "File uploaded successfully",
+      fileUrl,
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to upload file", error);
+  }
+};
+
+// Update Content Route
+exports.updateContent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { type, title, description, image_url, date, location } = req.body;
+
+    // Find existing content
+    const content = await Content.findByPk(id);
+    if (!content) {
+      return handleError(res, 404, "Content not found");
+    }
+
+    // Input validation
+    if (type && !["csr", "event", "certification", "coverage"].includes(type)) {
+      return handleError(res, 400, "Invalid content type");
+    }
+
+    if (image_url && !/^https?:\/\/[^\s$.?#].[^\s]*$/.test(image_url)) {
+      return handleError(res, 400, "Invalid image URL format");
+    }
+
+    if (type === "event" || content.type === "event") {
+      if (date && isNaN(Date.parse(date))) {
+        return handleError(res, 400, "Valid date is required for event type");
+      }
+      if (location === "" || (type === "event" && !location)) {
+        return handleError(res, 400, "Location is required for event type");
+      }
+    }
+
+    // Check for duplicate title (excluding current content)
+    if (title && title !== content.title) {
+      const existingContent = await Content.findOne({ where: { title } });
+      if (existingContent) {
+        return handleError(res, 409, "Content with this title already exists");
+      }
+    }
+
+    // Prepare update data
+    const updateData = {
+      type: type || content.type,
+      title: title || content.title,
+      description: description || content.description,
+      image_url: image_url || content.image_url,
+    };
+
+    // Only update date and location for events
+    if (content.type === "event" || type === "event") {
+      updateData.date = date || content.date;
+      updateData.location = location || content.location;
+    }
+
+    // Update content
+    await content.update(updateData);
+
+    logger.info(
+      `Content updated with ID: ${id}, title: ${
+        title || content.title
+      } by user: ${req.user?.id || "unknown"}`
+    );
+    res.status(200).json({
+      message: "Content updated successfully",
+      content: {
+        id: content.id,
+        type: content.type,
+        title: content.title,
+        image_url: content.image_url,
+      },
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to update content", error);
+  }
+};
+
+// Delete Content Route
+exports.deleteContent = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find content
+    const content = await Content.findByPk(id);
+    if (!content) {
+      return handleError(res, 404, "Content not found");
+    }
+
+    // Delete associated file from FTP if it exists
+    if (content.image_url) {
+      try {
+        await deleteFileFromFTP(content.image_url);
+        logger.info(`File deleted from FTP: ${content.image_url}`);
+      } catch (ftpError) {
+        logger.warn(`Failed to delete file from FTP: ${ftpError.message}`);
+        // Continue with content deletion even if FTP deletion fails
+      }
+    }
+
+    // Delete content from database
+    await content.destroy();
+    logger.info(
+      `Content deleted with ID: ${id} by user: ${req.user?.id || "unknown"}`
+    );
+
+    res.status(200).json({
+      message: "Content deleted successfully",
+    });
+  } catch (error) {
+    handleError(res, 500, "Failed to delete content", error);
   }
 };

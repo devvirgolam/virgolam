@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               9.2.0 - MySQL Community Server - GPL
--- Server OS:                    Win64
+-- Host:                         103.50.161.16
+-- Server version:               5.7.44 - MySQL Community Server (GPL)
+-- Server OS:                    Linux
 -- HeidiSQL Version:             12.11.0.7065
 -- --------------------------------------------------------
 
@@ -14,15 +14,15 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table virgo.users
+-- Dumping structure for table virgolam_dashboard.users
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `username` varchar(80) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `name` varchar(150) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `role_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `role_id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
   `is_active` tinyint(1) DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -69,11 +69,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email_20` (`email`),
   UNIQUE KEY `username_21` (`username`),
   UNIQUE KEY `email_21` (`email`),
+  UNIQUE KEY `username_22` (`username`),
+  UNIQUE KEY `email_22` (`email`),
+  UNIQUE KEY `username_23` (`username`),
+  UNIQUE KEY `email_23` (`email`),
+  UNIQUE KEY `username_24` (`username`),
+  UNIQUE KEY `email_24` (`email`),
   KEY `role_id` (`role_id`),
-  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table virgo.users: ~2 rows (approximately)
+-- Dumping data for table virgolam_dashboard.users: ~2 rows (approximately)
 INSERT INTO `users` (`id`, `username`, `email`, `password_hash`, `name`, `phone`, `role_id`, `is_active`, `created_at`, `updated_at`) VALUES
 	('1f07df61-a0da-11f0-b1b4-f875a42d8cde', 'admin_user', 'admin@example.com', '$2b$12$aTChETQDYUSVvbBgmlGqk.cTHUrb3eWzrJDoSuzFZWv2Rwr4F3w6u', 'Admin Name', '9999999999', 'c63cdbd4-a0d9-11f0-b1b4-f875a42d8cde', 1, '2025-10-04 09:55:13', '2025-10-04 09:55:13'),
 	('1f0a18b6-a0da-11f0-b1b4-f875a42d8cde', 'superadmin_user', 'superadmin@example.com', '$2b$12$aTChETQDYUSVvbBgmlGqk.cTHUrb3eWzrJDoSuzFZWv2Rwr4F3w6u', 'Super Admin Name', '8888888888', 'c63dfa76-a0d9-11f0-b1b4-f875a42d8cde', 1, '2025-10-04 09:55:13', '2025-10-04 09:55:13');

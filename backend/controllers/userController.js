@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Role = require("../models/role");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
+const { Op } = require("sequelize");
 const winston = require("winston");
 require("dotenv").config();
 
@@ -15,7 +16,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.File({ filename: "error.log", level: "error" }),
     new winston.transports.File({ filename: "combined.log" }),
-    new winston.transports.Console(), // Console output for development
+    new winston.transports.Console(),
   ],
 });
 
@@ -28,9 +29,17 @@ const handleError = (res, status, message, error = null) => {
   return res.status(status).json({ error: message });
 };
 
+// Helper function to sanitize user data for logging
+const sanitizeUserForLogging = (user) => ({
+  id: user.id,
+  username: user.username,
+  email: user.email,
+  role: user.role ? { id: user.role.id, name: user.role.name } : null,
+});
+
 exports.listUsers = async (req, res) => {
   try {
-    if (!req.user || !["ADMIN", "SUPER_ADMIN"].includes(req.user.role.name)) {
+    if (!req.user || !["ADMIN", "SUPER_ADMIN"].includes(req.user.role)) {
       return handleError(res, 403, "Only admins can list users");
     }
     const users = await User.findAll({
@@ -43,7 +52,7 @@ exports.listUsers = async (req, res) => {
       email: user.email,
       name: user.name,
       phone: user.phone,
-      role: user.Role ? { id: user.Role.id, name: user.Role.name } : null,
+      role: user.role ? { id: user.role.id, name: user.role.name } : null,
     }));
     res.json(sanitizedUsers);
   } catch (error) {
@@ -69,7 +78,7 @@ exports.getUserById = async (req, res) => {
       include: {
         model: Role,
         as: "role",
-        attributes: ["id", "name"], // Only fetch role id and name
+        attributes: ["id", "name"],
       },
     });
     if (!user) {
@@ -77,14 +86,13 @@ exports.getUserById = async (req, res) => {
     }
 
     logger.info(`Retrieved user with ID: ${id} by user: ${req.user.id}`);
-    // Limit exposed fields
     res.json({
       id: user.id,
       username: user.username,
       email: user.email,
       name: user.name,
       phone: user.phone,
-      role: user.Role ? { id: user.Role.id, name: user.Role.name } : null,
+      role: user.role ? { id: user.role.id, name: user.role.name } : null,
     });
   } catch (error) {
     handleError(res, 500, "Failed to retrieve user", error);
@@ -130,9 +138,7 @@ exports.createUser = async (req, res) => {
     // Restrict to admin users
     if (
       !req.user ||
-      (req.user.role !== "ADMIN" &&
-        req.user.id !== id &&
-        req.user.role !== "SUPER_ADMIN")
+      (req.user.role !== "ADMIN" && req.user.role !== "SUPER_ADMIN")
     ) {
       return handleError(res, 403, "Unauthorized access");
     }
@@ -156,7 +162,7 @@ exports.createUser = async (req, res) => {
       name,
       phone,
       role_id,
-      createdBy: req.user.id, // Track creator
+      createdBy: req.user.id,
     });
 
     logger.info(
@@ -170,7 +176,7 @@ exports.createUser = async (req, res) => {
         email: user.email,
         name: user.name,
         phone: user.phone,
-        role_id: user.role_id,
+        role: { id: role.id, name: role.name },
       },
     });
   } catch (error) {
@@ -193,7 +199,7 @@ exports.updateUser = async (req, res) => {
       return handleError(res, 400, "Invalid user ID format");
     }
 
-    // Restrict to admin users
+    // Restrict to admin or self
     if (
       !req.user ||
       (req.user.role !== "ADMIN" &&
@@ -203,7 +209,9 @@ exports.updateUser = async (req, res) => {
       return handleError(res, 403, "Unauthorized access");
     }
 
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(id, {
+      include: { model: Role, as: "role", attributes: ["id", "name"] },
+    });
     if (!user) {
       return handleError(res, 404, "User not found");
     }
@@ -224,6 +232,7 @@ exports.updateUser = async (req, res) => {
     }
 
     // Validate role_id if provided
+    let role = user.role;
     if (role_id) {
       if (
         !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
@@ -232,7 +241,7 @@ exports.updateUser = async (req, res) => {
       ) {
         return handleError(res, 400, "Invalid role ID format");
       }
-      const role = await Role.findByPk(role_id);
+      role = await Role.findByPk(role_id);
       if (!role) {
         return handleError(res, 400, "Role not found");
       }
@@ -264,11 +273,9 @@ exports.updateUser = async (req, res) => {
     if (password) {
       updates.password_hash = await bcrypt.hash(password, 10);
     }
-    // Remove undefined fields
     Object.keys(updates).forEach(
       (key) => updates[key] === undefined && delete updates[key]
     );
-    // Prevent updating createdBy
     delete updates.createdBy;
 
     await user.update(updates);
@@ -281,7 +288,7 @@ exports.updateUser = async (req, res) => {
         email: user.email,
         name: user.name,
         phone: user.phone,
-        role_id: user.role_id,
+        role: role ? { id: role.id, name: role.name } : null,
       },
     });
   } catch (error) {
@@ -317,20 +324,16 @@ exports.deleteUser = async (req, res) => {
       return handleError(res, 400, "Cannot delete your own account");
     }
 
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(id, {
+      include: { model: Role, as: "role", attributes: ["id", "name"] },
+    });
     if (!user) {
       return handleError(res, 404, "User not found");
     }
 
-    // Prevent deletion of critical users (e.g., admins)
-    const role = await Role.findByPk(user.role_id);
-    if (
-      !req.user ||
-      (req.user.role !== "ADMIN" &&
-        req.user.id !== id &&
-        req.user.role !== "SUPER_ADMIN")
-    ) {
-      return handleError(res, 403, "Unauthorized access");
+    // Prevent deletion of SUPER_ADMIN users unless requester is SUPER_ADMIN
+    if (user.role?.name === "SUPER_ADMIN" && req.user.role !== "SUPER_ADMIN") {
+      return handleError(res, 403, "Cannot delete a SUPER_ADMIN user");
     }
 
     await user.destroy();
@@ -343,28 +346,63 @@ exports.deleteUser = async (req, res) => {
 
 exports.getCurrentUser = async (req, res) => {
   try {
+    // Log the entire req.user object and request headers for debugging
+    logger.info(
+      `Fetching current user with req.user: ${JSON.stringify(req.user)}`
+    );
+    logger.info(`Request headers: ${JSON.stringify(req.headers)}`);
+    if (!req.user?.id) {
+      logger.error("req.user.id is undefined or missing");
+      return handleError(res, 401, "Unauthorized: No user ID provided");
+    }
+
+    // Log database connection status
+    try {
+      await sequelize.authenticate();
+      logger.info("Database connection successful");
+    } catch (dbError) {
+      logger.error(`Database connection failed: ${dbError.message}`, {
+        stack: dbError.stack,
+      });
+    }
+
+    // Attempt to fetch user
+    logger.info(`Attempting to fetch user with ID: ${req.user.id}`);
     const user = await User.findByPk(req.user.id, {
       include: {
         model: Role,
         as: "role",
-        attributes: ["id", "name"], // Only fetch role id and name
+        attributes: ["id", "name"],
       },
     });
+
     if (!user) {
+      // Fallback query without Role association
+      const fallbackUser = await User.findByPk(req.user.id);
+      logger.error(
+        `User not found for ID: ${
+          req.user.id
+        }, Fallback query result: ${JSON.stringify(fallbackUser)}`
+      );
       return handleError(res, 404, "User not found");
     }
 
-    logger.info(`Retrieved current user with ID: ${req.user.id}`);
+    logger.info(
+      `Retrieved current user: ${JSON.stringify(sanitizeUserForLogging(user))}`
+    );
     res.json({
       id: user.id,
       username: user.username,
       email: user.email,
       name: user.name,
       phone: user.phone,
-      role: user.Role ? { id: user.Role.id, name: user.Role.name } : null,
+      role: user.role ? { id: user.role.id, name: user.role.name } : null,
     });
   } catch (error) {
-    handleError(res, 500, "Failed to retrieve current user", error);
+    logger.error(`Failed to retrieve current user: ${error.message}`, {
+      stack: error.stack,
+    });
+    handleError(res, 500, "Internal server error", error);
   }
 };
 
@@ -387,7 +425,9 @@ exports.updateCurrentUser = async (req, res) => {
       return handleError(res, 400, "Invalid phone number format");
     }
 
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findByPk(req.user.id, {
+      include: { model: Role, as: "role", attributes: ["id", "name"] },
+    });
     if (!user) {
       return handleError(res, 404, "User not found");
     }
@@ -407,16 +447,13 @@ exports.updateCurrentUser = async (req, res) => {
       }
     }
 
-    // Prevent changing role_id
     const updates = { username, email, name, phone, updatedAt: new Date() };
     if (password) {
       updates.password_hash = await bcrypt.hash(password, 10);
     }
-    // Remove undefined fields
     Object.keys(updates).forEach(
       (key) => updates[key] === undefined && delete updates[key]
     );
-    // Prevent updating role_id or createdBy
     delete updates.role_id;
     delete updates.createdBy;
 
@@ -430,7 +467,7 @@ exports.updateCurrentUser = async (req, res) => {
         email: user.email,
         name: user.name,
         phone: user.phone,
-        role_id: user.role_id,
+        role: user.role ? { id: user.role.id, name: user.role.name } : null,
       },
     });
   } catch (error) {

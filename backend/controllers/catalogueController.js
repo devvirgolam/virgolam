@@ -1,198 +1,217 @@
-const Catalogue = require("../models/catalogues");
-const { v4: uuidv4 } = require("uuid");
-const winston = require("winston");
-require("dotenv").config();
+const FTP = require("basic-ftp");
+const path = require("path");
+const Catalogue = require("../models/catalogues"); // Sequelize model
+const { Op } = require("sequelize"); // For Sequelize operators
 
-// Configure Winston logger
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  transports: [
-    new winston.transports.File({ filename: "error.log", level: "error" }),
-    new winston.transports.File({ filename: "combined.log" }),
-    new winston.transports.Console(), // Console output for development
-  ],
-});
-
-// Centralized error response handler
-const handleError = (res, status, message, error = null) => {
-  logger.error(`${message}: ${error?.message || "No additional error info"}`, {
-    status,
-    stack: error?.stack,
-  });
-  return res.status(status).json({ error: message });
+// FTP Configuration (unchanged)
+const FTP_CONFIG = {
+  host: "ftp.virgolam.com",
+  port: 21,
+  user: "103.50.161.16",
+  password: "(+p8kW6E)efJ",
+  secure: false, // Set to true for explicit FTPS
 };
 
+// Helper: Upload file to FTP and return URL (unchanged)
+const uploadToFTP = async (fileBuffer, originalName, fileType) => {
+  const client = new FTP();
+  let remotePath, baseUrl;
+
+  try {
+    if (fileType === "pdf") {
+      remotePath = `/assets/catalogues_pdf/${originalName}`;
+      baseUrl = "https://media.virgolam.com/assets/catalogues_pdf/";
+    } else if (fileType === "image") {
+      remotePath = `/assets/catalogue/${originalName}`;
+      baseUrl = "https://media.virgolam.com/assets/catalogue/";
+    } else {
+      throw new Error("Unsupported file type");
+    }
+
+    await client.access(FTP_CONFIG);
+    await client.uploadFrom(fileBuffer, remotePath);
+    await client.close();
+
+    return `${baseUrl}${originalName}`;
+  } catch (error) {
+    if (client) await client.close();
+    console.error("FTP Upload Error:", error);
+    throw new Error(`FTP upload failed: ${error.message}`);
+  }
+};
+
+// List catalogues
 exports.listCatalogues = async (req, res) => {
   try {
-    const catalogues = await Catalogue.findAll();
-    logger.info(`Retrieved ${catalogues.length} catalogues`);
+    const catalogues = await Catalogue.findAll({
+      order: [["created_at", "DESC"]], // Sort by created_at in descending order
+    });
     res.json(catalogues);
   } catch (error) {
-    handleError(res, 500, "Failed to retrieve catalogues", error);
+    res.status(500).json({ message: error.message });
   }
 };
 
+// Get catalogue by ID
 exports.getCatalogueById = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    // Basic validation for ID
-    if (
-      !id ||
-      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
-        id
-      )
-    ) {
-      return handleError(res, 400, "Invalid catalogue ID format");
-    }
-
-    const catalogue = await Catalogue.findByPk(id);
+    const catalogue = await Catalogue.findByPk(req.params.id);
     if (!catalogue) {
-      return handleError(res, 404, "Catalogue not found");
+      return res.status(404).json({ message: "Catalogue not found" });
     }
-
-    logger.info(`Retrieved catalogue with ID: ${id}`);
     res.json(catalogue);
   } catch (error) {
-    handleError(res, 500, "Failed to retrieve catalogue", error);
+    res.status(500).json({ message: error.message });
   }
 };
 
+// Create catalogue
 exports.createCatalogue = async (req, res) => {
   try {
-    const { name, pdf_url, banner_image_url } = req.body;
+    const {
+      name,
+      pdf_url: bodyPdfUrl,
+      banner_image_url: bodyBannerImageUrl,
+    } = req.body;
+    let pdf_url = "";
+    let banner_image_url = "";
 
-    // Input validation
-    if (!name || !pdf_url || !banner_image_url) {
-      return handleError(
-        res,
-        400,
-        "Name, PDF URL, and banner image URL are required"
+    // Handle PDF upload if provided
+    if (req.files && req.files["pdf_file"] && req.files["pdf_file"][0]) {
+      const pdfFile = req.files["pdf_file"][0];
+      pdf_url = await uploadToFTP(pdfFile.buffer, pdfFile.originalname, "pdf");
+    }
+
+    // Handle image upload if provided
+    if (
+      req.files &&
+      req.files["banner_image_file"] &&
+      req.files["banner_image_file"][0]
+    ) {
+      const imageFile = req.files["banner_image_file"][0];
+      banner_image_url = await uploadToFTP(
+        imageFile.buffer,
+        imageFile.originalname,
+        "image"
       );
     }
 
-    // Validate URL formats
-    const urlRegex = /^https?:\/\/[^\s$.?#].[^\s]*$/;
-    if (!urlRegex.test(pdf_url)) {
-      return handleError(res, 400, "Invalid PDF URL format");
-    }
-    if (!urlRegex.test(banner_image_url)) {
-      return handleError(res, 400, "Invalid banner image URL format");
-    }
-
-    // Check for duplicate name
-    const existingCatalogue = await Catalogue.findOne({ where: { name } });
-    if (existingCatalogue) {
-      return handleError(res, 409, "Catalogue name already exists");
+    // Validate required fields (if no file uploaded, require URL fallback)
+    if (
+      !name ||
+      (!pdf_url && !bodyPdfUrl) ||
+      (!banner_image_url && !bodyBannerImageUrl)
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Name, PDF, and banner image are required" });
     }
 
-    const catalogue = await Catalogue.create({
-      id: uuidv4(),
+    // Use uploaded URLs or fallback to provided URLs
+    const newCatalogue = await Catalogue.create({
       name,
-      pdf_url,
-      banner_image_url,
-      createdBy: req.user?.id, // Optional: Track creator if authenticated
+      pdf_url: pdf_url || bodyPdfUrl,
+      banner_image_url: banner_image_url || bodyBannerImageUrl,
+      parent_id: req.body.parent_id || null, // Handle parent_id if provided
     });
 
-    logger.info(
-      `Catalogue created with ID: ${catalogue.id} by user: ${
-        req.user?.id || "unknown"
-      }`
-    );
-    res.status(201).json({
-      message: "Catalogue created successfully",
-      catalogue: {
-        id: catalogue.id,
-        name: catalogue.name,
-        pdf_url: catalogue.pdf_url,
-        banner_image_url: catalogue.banner_image_url,
-      },
-    });
+    res.status(201).json(newCatalogue);
   } catch (error) {
-    handleError(res, 500, "Failed to create catalogue", error);
+    res.status(500).json({ message: error.message });
   }
 };
 
+// Update catalogue
 exports.updateCatalogue = async (req, res) => {
   try {
     const { id } = req.params;
-    const updates = req.body;
+    const {
+      name,
+      pdf_url: bodyPdfUrl,
+      banner_image_url: bodyBannerImageUrl,
+    } = req.body;
+    let pdf_url = bodyPdfUrl; // Default to existing/provided
+    let banner_image_url = bodyBannerImageUrl;
 
-    // Basic validation for ID
+    // Handle PDF upload if provided (overrides existing)
+    if (req.files && req.files["pdf_file"] && req.files["pdf_file"][0]) {
+      const pdfFile = req.files["pdf_file"][0];
+      pdf_url = await uploadToFTP(pdfFile.buffer, pdfFile.originalname, "pdf");
+    }
+
+    // Handle image upload if provided (overrides existing)
     if (
-      !id ||
-      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
-        id
-      )
+      req.files &&
+      req.files["banner_image_file"] &&
+      req.files["banner_image_file"][0]
     ) {
-      return handleError(res, 400, "Invalid catalogue ID format");
+      const imageFile = req.files["banner_image_file"][0];
+      banner_image_url = await uploadToFTP(
+        imageFile.buffer,
+        imageFile.originalname,
+        "image"
+      );
     }
 
-    // Validate URL formats if provided
-    if (
-      updates.pdf_url &&
-      !/^https?:\/\/[^\s$.?#].[^\s]*$/.test(updates.pdf_url)
-    ) {
-      return handleError(res, 400, "Invalid PDF URL format");
-    }
-    if (
-      updates.banner_image_url &&
-      !/^https?:\/\/[^\s$.?#].[^\s]*$/.test(updates.banner_image_url)
-    ) {
-      return handleError(res, 400, "Invalid banner image URL format");
-    }
-
-    // Prevent updating createdBy
-    delete updates.createdBy;
-    updates.updatedAt = new Date();
-
-    const catalogue = await Catalogue.findByPk(id);
-    if (!catalogue) {
-      return handleError(res, 404, "Catalogue not found");
-    }
-
-    await catalogue.update(updates);
-    logger.info(
-      `Catalogue updated with ID: ${id} by user: ${req.user?.id || "unknown"}`
+    const [updatedCount, updatedCatalogues] = await Catalogue.update(
+      {
+        name,
+        pdf_url: pdf_url || bodyPdfUrl,
+        banner_image_url: banner_image_url || bodyBannerImageUrl,
+        parent_id: req.body.parent_id || null, // Handle parent_id if provided
+      },
+      {
+        where: { id },
+        returning: true, // Return the updated record(s)
+      }
     );
-    res.json({
-      message: "Catalogue updated successfully",
-      catalogue,
-    });
+
+    if (updatedCount === 0) {
+      return res.status(404).json({ message: "Catalogue not found" });
+    }
+
+    res.json(updatedCatalogues[0]); // Return the first (and only) updated record
   } catch (error) {
-    handleError(res, 500, "Failed to update catalogue", error);
+    res.status(500).json({ message: error.message });
   }
 };
 
+// Delete catalogue
 exports.deleteCatalogue = async (req, res) => {
   try {
     const { id } = req.params;
-
-    // Basic validation for ID
-    if (
-      !id ||
-      !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
-        id
-      )
-    ) {
-      return handleError(res, 400, "Invalid catalogue ID format");
+    const deletedCount = await Catalogue.destroy({ where: { id } });
+    if (deletedCount === 0) {
+      return res.status(404).json({ message: "Catalogue not found" });
     }
-
-    const catalogue = await Catalogue.findByPk(id);
-    if (!catalogue) {
-      return handleError(res, 404, "Catalogue not found");
-    }
-
-    await catalogue.destroy();
-    logger.info(
-      `Catalogue deleted with ID: ${id} by user: ${req.user?.id || "unknown"}`
-    );
-    res.status(204).send();
+    res.json({ message: "Catalogue deleted successfully" });
   } catch (error) {
-    handleError(res, 500, "Failed to delete catalogue", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Optional: Dedicated upload endpoint (unchanged)
+exports.uploadFiles = async (req, res) => {
+  try {
+    let pdf_url = "";
+    let banner_image_url = "";
+
+    if (req.files["pdf_file"]) {
+      const pdfFile = req.files["pdf_file"][0];
+      pdf_url = await uploadToFTP(pdfFile.buffer, pdfFile.originalname, "pdf");
+    }
+
+    if (req.files["banner_image_file"]) {
+      const imageFile = req.files["banner_image_file"][0];
+      banner_image_url = await uploadToFTP(
+        imageFile.buffer,
+        imageFile.originalname,
+        "image"
+      );
+    }
+
+    res.json({ pdf_url, banner_image_url });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
