@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// src/components/Profile/Profile.jsx
+import React, { useState, useEffect, useMemo } from "react";
 import {
   useGetCurrentUserQuery,
   useUpdateCurrentUserMutation,
@@ -19,20 +20,23 @@ import {
   Avatar,
   Divider,
   Descriptions,
+  Upload,
+  Modal,
 } from "antd";
 import {
   ReloadOutlined,
   UpOutlined,
   EditOutlined,
   UserOutlined,
+  UploadOutlined,
+  LockOutlined,
 } from "@ant-design/icons";
-
+import PageHeader from "../components/Common/PageHeader";
 const { Title, Text } = Typography;
 
 const Profile = () => {
   const navigate = useNavigate();
   const { authState, logout, refreshToken } = useAuth();
-  console.log("authState:", authState); // Debug: Log authState
   const {
     data: user,
     isLoading,
@@ -45,26 +49,35 @@ const Profile = () => {
     useUpdateCurrentUserMutation();
   const [form] = Form.useForm();
   const [isEditing, setIsEditing] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
+  const [passwordModalVisible, setPasswordModalVisible] = useState(false);
+  const [passwordForm] = Form.useForm();
 
-  // Fallback to authState.user if API data is not available
-  const userData = user || authState.user;
-  console.log("user from API:", user); // Debug: Log API user data
-  console.log("userData (fallback):", userData); // Debug: Log final user data
-  console.log("error:", error); // Debug: Log any API errors
+  const userData = useMemo(
+    () => user || authState.user,
+    [user, authState.user]
+  );
 
-  // Populate form with user data
   useEffect(() => {
     if (userData) {
-      form.setFieldsValue({
+      const currentFormValues = form.getFieldsValue();
+      const newFormValues = {
         name: userData.name || "",
         username: userData.username || "",
         email: userData.email || "",
         phone: userData.phone || "",
-      });
+      };
+      if (
+        currentFormValues.name !== newFormValues.name ||
+        currentFormValues.username !== newFormValues.username ||
+        currentFormValues.email !== newFormValues.email ||
+        currentFormValues.phone !== newFormValues.phone
+      ) {
+        form.setFieldsValue(newFormValues);
+      }
     }
   }, [userData, form]);
 
-  // Handle form submission
   const handleSubmit = async (values) => {
     const updateData = {
       name: values.name,
@@ -72,7 +85,6 @@ const Profile = () => {
       email: values.email,
       phone: values.phone,
     };
-
     try {
       await updateCurrentUser(updateData).unwrap();
       toast.success("Profile updated successfully!");
@@ -102,7 +114,31 @@ const Profile = () => {
     }
   };
 
-  // Handle errors
+  const handlePasswordChange = async (values) => {
+    try {
+      await updateCurrentUser({
+        password: values.newPassword,
+      }).unwrap();
+      toast.success("Password updated successfully!");
+      passwordForm.resetFields();
+      setPasswordModalVisible(false);
+    } catch (err) {
+      toast.error("Failed to update password.");
+      console.error("Password update error:", err);
+    }
+  };
+
+  const handleProfilePicUpload = ({ file }) => {
+    setProfilePic(URL.createObjectURL(file));
+    // Implement actual upload logic here if needed
+    toast.success("Profile picture uploaded!");
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   useEffect(() => {
     if (error) {
       if (error.status === 401 || error.status === 403) {
@@ -119,49 +155,61 @@ const Profile = () => {
   }, [error, refreshToken, logout]);
 
   if (isLoading && !userData) {
-    return (
-      <Spin size="large" style={{ display: "block", margin: "50px auto" }} />
-    );
+    return <Spin size="large" className="profile-loading" />;
   }
   if (!authState.accessToken) {
-    return <Text type="danger">Please log in to view your profile.</Text>;
+    return (
+      <Text type="danger" className="profile-error">
+        Please log in to view your profile.
+      </Text>
+    );
   }
 
   return (
-    <div style={{ padding: "24px" }}>
+    <div className="profile-container">
+      <PageHeader />
       <Row justify="center">
-        <Col xl={18} lg={24}>
-          <Card bordered={false} style={{ marginBottom: "24px" }}>
+        <Col xl={18} lg={24} xs={24}>
+          <Card bordered={false} className="profile-card">
             {!isEditing ? (
-              // Profile View
               <div>
-                <Row justify="center" style={{ marginBottom: "24px" }}>
-                  <Col>
+                <div className="profile-avatar-container">
+                  <div className="profile-avatar">
                     <Avatar
                       size={120}
                       icon={<UserOutlined />}
-                      style={{ backgroundColor: "#1890ff" }}
+                      src={profilePic}
+                      style={{ backgroundColor: "#0055cc" }}
+                      aria-label="User profile picture"
                     />
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col>
-                    <Title
-                      level={4}
-                      style={{ textAlign: "center", marginBottom: "8px" }}
+                    <Upload
+                      accept="image/*"
+                      showUploadList={false}
+                      customRequest={handleProfilePicUpload}
                     >
-                      {userData?.name || "User Name"}
-                    </Title>
-                    <Text
-                      type="secondary"
-                      style={{ display: "block", textAlign: "center" }}
-                    >
-                      @{userData?.username || "username"}
-                    </Text>
-                  </Col>
-                </Row>
-                <Divider />
-                <Descriptions title="User Information" column={1} bordered>
+                      <span
+                        className="profile-avatar-upload"
+                        role="button"
+                        aria-label="Upload profile picture"
+                      >
+                        <UploadOutlined />
+                      </span>
+                    </Upload>
+                  </div>
+                </div>
+                <Title level={4} className="profile-title">
+                  {userData?.name || "User Name"}
+                </Title>
+                <Text type="secondary" className="profile-username">
+                  @{userData?.username || "username"}
+                </Text>
+                <Divider className="profile-divider" />
+                <Descriptions
+                  title="User Information"
+                  column={1}
+                  bordered
+                  className="profile-descriptions"
+                >
                   <Descriptions.Item label="Full Name">
                     {userData?.name || "N/A"}
                   </Descriptions.Item>
@@ -179,21 +227,42 @@ const Profile = () => {
                   </Descriptions.Item>
                 </Descriptions>
                 <Row justify="center" style={{ marginTop: "24px" }}>
-                  <Button
-                    type="primary"
-                    icon={<EditOutlined />}
-                    onClick={() => setIsEditing(true)}
-                  >
-                    Edit Profile
-                  </Button>
+                  <Space>
+                    <Button
+                      type="primary"
+                      icon={<EditOutlined />}
+                      onClick={() => setIsEditing(true)}
+                      className="profile-button profile-button-primary"
+                    >
+                      Edit Profile
+                    </Button>
+                    <Button
+                      icon={<LockOutlined />}
+                      onClick={() => setPasswordModalVisible(true)}
+                      className="profile-button profile-button-primary"
+                    >
+                      Change Password
+                    </Button>
+                    <Button
+                      icon={<ReloadOutlined />}
+                      onClick={refetch}
+                      className="profile-button profile-button-primary"
+                    >
+                      Refresh
+                    </Button>
+                    <Button
+                      danger
+                      onClick={handleLogout}
+                      className="profile-button profile-button-logout"
+                    >
+                      Logout
+                    </Button>
+                  </Space>
                 </Row>
               </div>
             ) : (
-              // Edit Form
               <div>
-                <Title level={5} style={{ marginBottom: "16px" }}>
-                  Edit Profile
-                </Title>
+                <Title level={5}>Edit Profile</Title>
                 <Text
                   type="secondary"
                   style={{ marginBottom: "24px", display: "block" }}
@@ -204,6 +273,7 @@ const Profile = () => {
                   form={form}
                   layout="vertical"
                   onFinish={handleSubmit}
+                  className="profile-form"
                   initialValues={{
                     name: userData?.name || "",
                     username: userData?.username || "",
@@ -214,16 +284,19 @@ const Profile = () => {
                   <Row gutter={16}>
                     <Col md={12} xs={24}>
                       <Form.Item
-                        label="First Name"
+                        label="Full Name"
                         name="name"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your first name!",
+                            message: "Please input your full name!",
                           },
                         ]}
                       >
-                        <Input />
+                        <Input
+                          className="profile-form-input"
+                          placeholder="Enter full name"
+                        />
                       </Form.Item>
                     </Col>
                     <Col md={12} xs={24}>
@@ -237,7 +310,10 @@ const Profile = () => {
                           },
                         ]}
                       >
-                        <Input />
+                        <Input
+                          className="profile-form-input"
+                          placeholder="Enter username"
+                        />
                       </Form.Item>
                     </Col>
                     <Col md={12} xs={24}>
@@ -251,7 +327,10 @@ const Profile = () => {
                           },
                         ]}
                       >
-                        <Input />
+                        <Input
+                          className="profile-form-input"
+                          placeholder="Enter phone number"
+                        />
                       </Form.Item>
                     </Col>
                     <Col md={12} xs={24}>
@@ -269,7 +348,10 @@ const Profile = () => {
                           },
                         ]}
                       >
-                        <Input />
+                        <Input
+                          className="profile-form-input"
+                          placeholder="Enter email"
+                        />
                       </Form.Item>
                     </Col>
                   </Row>
@@ -279,7 +361,8 @@ const Profile = () => {
                     >
                       <Button
                         onClick={() => setIsEditing(false)}
-                        style={{ marginRight: "8px" }}
+                        className="profile-button"
+                        disabled={isUpdating}
                       >
                         Cancel
                       </Button>
@@ -287,6 +370,7 @@ const Profile = () => {
                         type="primary"
                         htmlType="submit"
                         loading={isUpdating}
+                        className="profile-button profile-button-primary"
                       >
                         {isUpdating ? "Saving..." : "Save Changes"}
                       </Button>
@@ -298,6 +382,89 @@ const Profile = () => {
           </Card>
         </Col>
       </Row>
+
+      <Modal
+        title="Change Password"
+        open={passwordModalVisible}
+        onCancel={() => setPasswordModalVisible(false)}
+        footer={null}
+        className="profile-modal"
+        aria-label="Change password modal"
+      >
+        <Form
+          form={passwordForm}
+          layout="vertical"
+          onFinish={handlePasswordChange}
+          className="profile-form"
+        >
+          <Form.Item
+            label="Current Password"
+            name="currentPassword"
+            rules={[
+              {
+                required: true,
+                message: "Please input your current password!",
+              },
+            ]}
+          >
+            <Input.Password
+              className="profile-form-input"
+              placeholder="Enter current password"
+            />
+          </Form.Item>
+          <Form.Item
+            label="New Password"
+            name="newPassword"
+            rules={[
+              { required: true, message: "Please input your new password!" },
+            ]}
+          >
+            <Input.Password
+              className="profile-form-input"
+              placeholder="Enter new password"
+            />
+          </Form.Item>
+          <Form.Item
+            label="Confirm New Password"
+            name="confirmPassword"
+            dependencies={["newPassword"]}
+            rules={[
+              { required: true, message: "Please confirm your new password!" },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("newPassword") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("Passwords do not match!"));
+                },
+              }),
+            ]}
+          >
+            <Input.Password
+              className="profile-form-input"
+              placeholder="Confirm new password"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Space style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                onClick={() => setPasswordModalVisible(false)}
+                className="profile-button"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={isUpdating}
+                className="profile-button profile-button-primary"
+              >
+                {isUpdating ? "Saving..." : "Change Password"}
+              </Button>
+            </Space>
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 };

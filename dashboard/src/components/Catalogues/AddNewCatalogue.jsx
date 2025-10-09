@@ -1,3 +1,4 @@
+// src/components/Catalogues/AddNewCatalogue.jsx
 import React, { useEffect, useState } from "react";
 import {
   useCreateCatalogueMutation,
@@ -17,13 +18,10 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
 
   // Mock upload function (replace with actual RTK Query mutation)
   const uploadFile = async (file) => {
-    // Simulate API call to upload file and return URL
-    // Replace with actual API call, e.g., using RTK Query mutation
     const formData = new FormData();
     formData.append("file", file);
     try {
-      // Example: const response = await fetch("/api/upload", { method: "POST", body: formData });
-      // return response.json().url;
+      // Replace with actual API call
       return new Promise((resolve) => {
         setTimeout(
           () =>
@@ -36,7 +34,6 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
     }
   };
 
-  // Populate form with catalogue data if editing
   useEffect(() => {
     if (catalogue) {
       form.setFieldsValue({
@@ -44,7 +41,6 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
         pdf_url: catalogue.pdf_url || "",
         banner_image_url: catalogue.banner_image_url || "",
       });
-      // Set file lists for edit mode
       setPdfFileList(
         catalogue.pdf_url
           ? [
@@ -76,13 +72,13 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
     }
   }, [catalogue, form]);
 
-  // Handle file upload for PDF
   const handlePdfUpload = async ({ file, onSuccess, onError }) => {
     try {
       const url = await uploadFile(file);
       setPdfFileList([{ uid: file.uid, name: file.name, status: "done", url }]);
       form.setFieldsValue({ pdf_url: url });
       onSuccess();
+      message.success("PDF uploaded successfully");
     } catch (error) {
       setPdfFileList([{ uid: file.uid, name: file.name, status: "error" }]);
       onError(error);
@@ -90,7 +86,6 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
     }
   };
 
-  // Handle file upload for banner image
   const handleImageUpload = async ({ file, onSuccess, onError }) => {
     try {
       const url = await uploadFile(file);
@@ -99,6 +94,7 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
       ]);
       form.setFieldsValue({ banner_image_url: url });
       onSuccess();
+      message.success("Banner image uploaded successfully");
     } catch (error) {
       setImageFileList([{ uid: file.uid, name: file.name, status: "error" }]);
       onError(error);
@@ -106,7 +102,6 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (values) => {
     try {
       if (catalogue) {
@@ -133,6 +128,7 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
       onCancel={onClose}
       footer={null}
       destroyOnClose
+      className="wp-modal"
       aria-label={
         catalogue ? "Edit catalogue modal" : "Add new catalogue modal"
       }
@@ -146,13 +142,14 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
           pdf_url: "",
           banner_image_url: "",
         }}
+        className="wp-form"
       >
         <Form.Item
           label="Catalogue Name"
           name="name"
           rules={[{ required: true, message: "Name is required" }]}
         >
-          <Input placeholder="Enter catalogue name" />
+          <Input placeholder="Enter catalogue name" className="wp-input" />
         </Form.Item>
         <Form.Item
           label="PDF File"
@@ -168,17 +165,20 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
               showPreviewIcon: true,
               previewIcon: <FilePdfOutlined style={{ color: "#ff4d4f" }} />,
             }}
+            className="wp-upload"
           >
-            <Button icon={<UploadOutlined />}>Upload PDF</Button>
+            <Button icon={<UploadOutlined />} className="wp-upload-button">
+              Upload PDF
+            </Button>
           </Upload>
         </Form.Item>
         {pdfFileList.length > 0 && pdfFileList[0].status === "done" && (
-          <Form.Item label="PDF Preview">
+          <Form.Item label="PDF Preview" className="wp-pdf-preview">
             <a
               href={pdfFileList[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "flex", alignItems: "center", gap: 8 }}
+              className="wp-action-link"
             >
               <FilePdfOutlined style={{ fontSize: 24, color: "#ff4d4f" }} />
               <span>{pdfFileList[0].name}</span>
@@ -196,16 +196,19 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
             accept="image/*"
             onChange={({ fileList }) => setImageFileList(fileList)}
             listType="picture"
+            className="wp-upload"
           >
-            <Button icon={<UploadOutlined />}>Upload Image</Button>
+            <Button icon={<UploadOutlined />} className="wp-upload-button">
+              Upload Image
+            </Button>
           </Upload>
         </Form.Item>
         {imageFileList.length > 0 && imageFileList[0].status === "done" && (
-          <Form.Item label="Image Preview">
+          <Form.Item label="Image Preview" className="wp-image-preview">
             <Image
               src={imageFileList[0].url}
               alt="Banner Image Preview"
-              style={{ maxWidth: 200, maxHeight: 100, objectFit: "contain" }}
+              className="wp-image-preview"
               fallback="https://via.placeholder.com/200x100"
             />
           </Form.Item>
@@ -214,13 +217,18 @@ const AddNewCatalogue = ({ visible, catalogue, onClose }) => {
           <div
             style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}
           >
-            <Button onClick={onClose} disabled={isCreating || isUpdating}>
+            <Button
+              onClick={onClose}
+              disabled={isCreating || isUpdating}
+              className="wp-button"
+            >
               Cancel
             </Button>
             <Button
               type="primary"
               htmlType="submit"
               loading={isCreating || isUpdating}
+              className="wp-button-primary"
             >
               {catalogue ? "Update" : "Create"}
             </Button>

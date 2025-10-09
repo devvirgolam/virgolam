@@ -1,7 +1,6 @@
+// src/components/Category/CategoryModal.jsx
 import React from "react";
 import { Modal, Form, Input, Select, Button, Alert } from "antd";
-import { Option } from "antd/es/mentions";
-
 const CategoryModal = ({
   open,
   onCancel,
@@ -22,13 +21,17 @@ const CategoryModal = ({
         form.resetFields();
       }}
       footer={null}
+      className="category-modal"
+      aria-label={
+        initialValues.id ? "Edit category modal" : "Add new category modal"
+      }
     >
       {error && (
         <Alert
           message={error}
           type="error"
           showIcon
-          style={{ marginBottom: 16 }}
+          className="category-modal-error"
         />
       )}
       <Form
@@ -36,6 +39,7 @@ const CategoryModal = ({
         onFinish={onSubmit}
         layout="vertical"
         initialValues={initialValues}
+        className="category-modal-form"
       >
         <Form.Item
           label="Name"
@@ -44,27 +48,42 @@ const CategoryModal = ({
             { required: true, message: "Please enter the category name" },
           ]}
         >
-          <Input />
+          <Input
+            placeholder="Enter category name"
+            className="category-modal-input"
+          />
         </Form.Item>
         <Form.Item
           label="Slug"
           name="slug"
           rules={[{ required: true, message: "Please enter the slug" }]}
         >
-          <Input />
+          <Input
+            placeholder="Enter category slug"
+            className="category-modal-input"
+          />
         </Form.Item>
         <Form.Item label="Parent Category" name="parent_id">
-          <Select allowClear>
-            <Option value="">None</Option>
+          <Select
+            placeholder="Select parent category (optional)"
+            allowClear
+            className="category-modal-input"
+          >
+            <Select.Option value="">None</Select.Option>
             {parentCategories.map((parent) => (
-              <Option key={parent.id} value={parent.id}>
+              <Select.Option key={parent.id} value={parent.id}>
                 {parent.name}
-              </Option>
+              </Select.Option>
             ))}
           </Select>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isSubmitting}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={isSubmitting}
+            className="category-modal-button category-modal-button-primary"
+          >
             {isSubmitting
               ? initialValues.id
                 ? "Updating..."

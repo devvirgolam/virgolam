@@ -30,13 +30,12 @@ const BlogCategories = () => {
     isLoading,
     isError,
     error,
-  } = useFetchAllBlogCategoriesQuery(); // Fetch categories
+  } = useFetchAllBlogCategoriesQuery();
   const [createBlogCategory, { isLoading: isCreating }] =
-    useCreateBlogCategoryMutation(); // Create category mutation
-  const [categoryName, setCategoryName] = useState(""); // State for new category name
-  const [isModalVisible, setIsModalVisible] = useState(false); // Modal visibility state
+    useCreateBlogCategoryMutation();
+  const [categoryName, setCategoryName] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  // Handle form submission for creating a category
   const handleCreateCategory = async () => {
     if (!categoryName.trim()) {
       alert("Category name is required");
@@ -44,8 +43,8 @@ const BlogCategories = () => {
     }
     try {
       await createBlogCategory({ name: categoryName }).unwrap();
-      setCategoryName(""); // Reset form
-      setIsModalVisible(false); // Close modal
+      setCategoryName("");
+      setIsModalVisible(false);
     } catch (err) {
       alert(
         `Failed to create category: ${
@@ -55,25 +54,23 @@ const BlogCategories = () => {
     }
   };
 
-  // Render loading state
   if (isLoading) {
     return (
-      <div className="content pb-0">
+      <div className="wp-content">
         <PageHeader />
-        <div className="card border-0 rounded-0">
-          <div className="card-body">Loading categories...</div>
+        <div className="wp-card">
+          <div className="wp-card-body">Loading categories...</div>
         </div>
       </div>
     );
   }
 
-  // Render error state
   if (isError) {
     return (
-      <div className="content pb-0">
+      <div className="wp-content">
         <PageHeader />
-        <div className="card border-0 rounded-0">
-          <div className="card-body">
+        <div className="wp-card">
+          <div className="wp-card-body">
             Error fetching categories:{" "}
             {error?.data?.error || "Something went wrong"}
           </div>
@@ -82,7 +79,6 @@ const BlogCategories = () => {
     );
   }
 
-  // Dropdown menu for sorting
   const sortMenu = (
     <Menu>
       <Menu.Item key="newest">Newest</Menu.Item>
@@ -90,14 +86,13 @@ const BlogCategories = () => {
     </Menu>
   );
 
-  // Table columns
   const columns = [
     {
       title: "",
       dataIndex: "checkbox",
       render: () => (
-        <div className="form-check form-check-md">
-          <input className="form-check-input" type="checkbox" />
+        <div className="wp-form-check">
+          <input className="wp-checkbox" type="checkbox" />
         </div>
       ),
       className: "no-sort",
@@ -122,9 +117,7 @@ const BlogCategories = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
-      render: () => (
-        <span className="badge badge-sm badge-soft-success">Active</span>
-      ),
+      render: () => <span className="wp-badge wp-badge-success">Active</span>,
     },
     {
       title: "Action",
@@ -132,8 +125,8 @@ const BlogCategories = () => {
       render: () => (
         <Button
           href="javascript:void(0);"
-          className="btn btn-xs px-3 fs-12 btn-outline-dark"
-          icon={<EditOutlined className="ti ti-edit me-1" />}
+          className="wp-button wp-button-outline"
+          icon={<EditOutlined />}
         >
           Edit
         </Button>
@@ -142,7 +135,6 @@ const BlogCategories = () => {
     },
   ];
 
-  // Table data
   const dataSource = categories?.map((category) => ({
     key: category._id,
     name: category.name,
@@ -150,83 +142,71 @@ const BlogCategories = () => {
   }));
 
   return (
-    <div className="content pb-0">
-      <PageHeader />
-
-      <div className="card border-0 rounded-0">
-        <div className="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
-          <div className="input-icon input-icon-start position-relative">
-            <Input
-              prefix={<SearchOutlined className="input-icon-addon text-dark" />}
-              placeholder="Search"
-              className="form-control"
-            />
+    <>
+      <div className="wp-card">
+        <div className="wp-card-header">
+          <div className="wp-input-group">
+            <span className="wp-input-icon">
+              <SearchOutlined />
+            </span>
+            <Input placeholder="Search" className="wp-input" />
           </div>
           <Button
-            type="primary"
-            className="btn btn-primary"
-            icon={
-              <PlusSquareFilled className="ti ti-square-rounded-plus-filled me-1" />
-            }
+            className="wp-button wp-button-primary"
+            icon={<PlusSquareFilled />}
             onClick={() => setIsModalVisible(true)}
           >
             Add Blog Category
           </Button>
         </div>
-        <div className="card-body">
-          <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-            <div className="d-flex align-items-center gap-2 flex-wrap">
-              <div className="reportrange-picker reportrange d-flex align-items-center shadow">
-                <CalendarOutlined className="ti ti-calendar-due text-dark fs-14 me-1" />
+        <div className="wp-card-body">
+          <div className="wp-toolbar">
+            <div className="wp-toolbar-left">
+              <div className="wp-date-picker">
+                <CalendarOutlined />
                 <RangePicker
-                  className="reportrange-picker-field"
+                  className="wp-range-picker"
                   defaultValue={[null, null]}
                   format="D MMM YY"
                 />
               </div>
             </div>
-            <div className="d-flex align-items-center gap-2 flex-wrap">
+            <div className="wp-toolbar-right">
               <Dropdown overlay={sortMenu}>
-                <Button className="btn btn-outline-light px-2 shadow">
-                  <SortAscendingOutlined className="ti ti-sort-ascending-2 me-2" />
+                <Button className="wp-button wp-button-outline">
+                  <SortAscendingOutlined />
                   Sort By
                 </Button>
               </Dropdown>
             </div>
           </div>
-
-          <div className="table-responsive custom-table">
+          <div className="wp-table-container">
             <Table
               columns={columns}
               dataSource={dataSource}
               pagination={false}
-              className="table table-nowrap"
+              className="wp-table"
               id="categories_list"
             />
-            <div className="row align-items-center">
-              <div className="col-md-6">
-                <div className="datatable-length"></div>
-              </div>
-              <div className="col-md-6">
-                <div className="datatable-paginate"></div>
-              </div>
+            <div className="wp-table-footer">
+              <div className="wp-table-length"></div>
+              <div className="wp-table-paginate"></div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Modal for Adding Category */}
       <Modal
         title="Add Blog Category"
         visible={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={null}
-        className="modal fade"
-        wrapClassName="modal-dialog"
+        className="wp-modal"
+        wrapClassName="wp-modal-dialog"
         style={{ top: 20 }}
       >
-        <div className="modal-content">
-          <div className="modal-body">
+        <div className="wp-modal-content">
+          <div className="wp-modal-body">
             <Form onFinish={handleCreateCategory}>
               <Form.Item
                 label="Category Name"
@@ -239,13 +219,13 @@ const BlogCategories = () => {
                   value={categoryName}
                   onChange={(e) => setCategoryName(e.target.value)}
                   placeholder="Enter category name"
-                  className="form-control"
+                  className="wp-input"
                 />
               </Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
-                className="btn btn-primary"
+                className="wp-button wp-button-primary"
                 loading={isCreating}
               >
                 {isCreating ? "Creating..." : "Create Category"}
@@ -254,7 +234,7 @@ const BlogCategories = () => {
           </div>
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 

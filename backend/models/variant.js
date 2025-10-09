@@ -1,3 +1,4 @@
+// models/Variant.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.mysql");
 const Product = require("./product");
@@ -10,31 +11,47 @@ const Variant = sequelize.define(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    product_id: {
+
+    // Parent product (the main one shown to user)
+    parent_product_id: {
       type: DataTypes.UUID,
       allowNull: false,
+      references: {
+        model: "products",
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
-    name: {
-      type: DataTypes.STRING(150),
+
+    // The child product (the variant)
+    variant_product_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: "products",
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
-    sku: {
+
+    // Optional metadata for mapping clarity
+    group_label: {
       type: DataTypes.STRING(100),
-      unique: true,
+      allowNull: true,
+      comment: "Optional label or grouping name, e.g. 'color', 'finish', etc.",
     },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
-    },
-    stock: {
+
+    position: {
       type: DataTypes.INTEGER,
+      allowNull: true,
+      comment: "Order of variant display within group",
     },
-    attributes: DataTypes.TEXT,
-    images: DataTypes.TEXT,
   },
   {
     tableName: "variants",
     timestamps: true,
     createdAt: "created_at",
-    updatedAt: false,
+    updatedAt: "updated_at",
   }
 );
 

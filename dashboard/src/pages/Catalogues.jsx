@@ -1,3 +1,4 @@
+// src/components/Catalogues.jsx
 import React, { useState } from "react";
 import {
   useListCataloguesQuery,
@@ -27,7 +28,6 @@ import {
   UnorderedListOutlined,
   AppstoreOutlined,
 } from "@ant-design/icons";
-import PageHeader from "../components/Common/PageHeader";
 import AddNewCatalogue from "../components/Catalogues/AddNewCatalogue";
 import moment from "moment";
 
@@ -44,13 +44,11 @@ const Catalogues = () => {
   const [pageSize, setPageSize] = useState(10);
   const [viewMode, setViewMode] = useState("list");
 
-  // RTK Query hooks
   const { data: catalogues = [], isLoading, error } = useListCataloguesQuery();
   const [createCatalogue] = useCreateCatalogueMutation();
   const [updateCatalogue] = useUpdateCatalogueMutation();
   const [deleteCatalogue] = useDeleteCatalogueMutation();
 
-  // Filter and sort catalogues
   const filteredCatalogues = catalogues
     .filter((catalogue) =>
       catalogue.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -76,22 +74,19 @@ const Catalogues = () => {
       }
       return sortOrder === "asc"
         ? fieldA.localeCompare(fieldB)
-        : fieldB.localeCompare(fieldB);
+        : fieldB.localeCompare(fieldA); // Fixed typo in original code
     });
 
-  // Paginate filtered catalogues
   const paginatedCatalogues = filteredCatalogues.slice(
     (page - 1) * pageSize,
     page * pageSize
   );
 
-  // Open edit modal
   const openEditModal = (catalogue) => {
     setCurrentCatalogue(catalogue);
     setShowAddModal(true);
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     try {
       await deleteCatalogue(id).unwrap();
@@ -100,13 +95,11 @@ const Catalogues = () => {
     }
   };
 
-  // Handle modal close
   const handleClose = () => {
     setShowAddModal(false);
     setCurrentCatalogue(null);
   };
 
-  // Sort menu
   const sortMenu = (
     <Menu>
       <Menu.Item
@@ -148,7 +141,6 @@ const Catalogues = () => {
     </Menu>
   );
 
-  // Table columns for list view
   const columns = [
     {
       title: "Name",
@@ -175,7 +167,12 @@ const Catalogues = () => {
       dataIndex: "pdf_url",
       key: "pdf_url",
       render: (text) => (
-        <a href={text} target="_blank" rel="noopener noreferrer">
+        <a
+          href={text}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="wp-action-link"
+        >
           View PDF
         </a>
       ),
@@ -185,7 +182,12 @@ const Catalogues = () => {
       dataIndex: "banner_image_url",
       key: "banner_image_url",
       render: (text) => (
-        <a href={text} target="_blank" rel="noopener noreferrer">
+        <a
+          href={text}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="wp-action-link"
+        >
           View Image
         </a>
       ),
@@ -209,6 +211,7 @@ const Catalogues = () => {
             size="small"
             onClick={() => openEditModal(record)}
             aria-label={`Edit ${record.name}`}
+            className="wp-button-primary"
           >
             Edit
           </Button>
@@ -222,6 +225,7 @@ const Catalogues = () => {
               type="danger"
               size="small"
               aria-label={`Delete ${record.name}`}
+              className="wp-button-danger"
             >
               Delete
             </Button>
@@ -231,18 +235,18 @@ const Catalogues = () => {
     },
   ];
 
-  // Card view rendering
   const renderCardView = () => (
-    <Row gutter={[16, 16]}>
+    <Row gutter={[16, 16]} className="wp-grid">
       {paginatedCatalogues.map((catalogue) => (
         <Col xs={24} sm={12} md={8} lg={6} key={catalogue.id}>
           <Card
             hoverable
+            className="wp-catalogue-card"
             cover={
               <img
                 alt={catalogue.name}
                 src={catalogue.banner_image_url}
-                style={{ height: 150, objectFit: "cover" }}
+                className="wp-catalogue-image"
                 onError={(e) => {
                   e.target.src = "https://via.placeholder.com/150";
                 }}
@@ -254,6 +258,7 @@ const Catalogues = () => {
                 onClick={() => openEditModal(catalogue)}
                 key="edit"
                 aria-label={`Edit ${catalogue.name}`}
+                className="wp-action-link"
               >
                 Edit
               </Button>,
@@ -268,6 +273,7 @@ const Catalogues = () => {
                   type="link"
                   danger
                   aria-label={`Delete ${catalogue.name}`}
+                  className="wp-action-link"
                 >
                   Delete
                 </Button>
@@ -297,6 +303,7 @@ const Catalogues = () => {
                       href={catalogue.pdf_url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="wp-action-link"
                       aria-label={`View PDF for ${catalogue.name}`}
                     >
                       View PDF
@@ -318,17 +325,17 @@ const Catalogues = () => {
   );
 
   return (
-    <div className="content pb-0">
-      <PageHeader title="Catalogues" subtitle="Manage your Catalogues" />
+    <div className="wp-catalogues">
+      <h1 className="wp-page-title">Catalogues</h1>
 
-      <div className="card border-0 rounded-0">
-        <div className="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <div className="wp-card">
+        <div className="wp-card-header">
           <Input
             prefix={<SearchOutlined />}
-            placeholder="Search by name"
+            placeholder="Search catalogues..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ width: 200 }}
+            className="wp-search-input"
             aria-label="Search catalogues by name"
           />
           <div className="d-flex gap-2">
@@ -341,6 +348,7 @@ const Catalogues = () => {
                 )
               }
               onClick={() => setViewMode(viewMode === "list" ? "card" : "list")}
+              className="wp-view-toggle-button"
               aria-label={
                 viewMode === "list"
                   ? "Switch to card view"
@@ -353,6 +361,7 @@ const Catalogues = () => {
               type="primary"
               onClick={() => setShowAddModal(true)}
               icon={<i className="ti ti-square-rounded-plus-filled me-1"></i>}
+              className="wp-button-primary"
               aria-label="Add new catalogue"
             >
               Add Catalogue
@@ -360,10 +369,10 @@ const Catalogues = () => {
           </div>
         </div>
 
-        <div className="card-body">
+        <div className="wp-card-body">
           {isLoading && <div>Loading...</div>}
           {error && (
-            <div className="alert alert-danger" role="alert">
+            <div className="wp-error-alert" role="alert">
               Error fetching catalogues
             </div>
           )}
@@ -372,9 +381,7 @@ const Catalogues = () => {
             <div className="d-flex align-items-center gap-2 flex-wrap">
               <Dropdown
                 overlay={
-                  <div
-                    style={{ padding: 16, background: "#fff", borderRadius: 4 }}
-                  >
+                  <div className="wp-filter-dropdown">
                     <Form layout="vertical">
                       <Form.Item label="Date Range">
                         <RangePicker
@@ -390,12 +397,14 @@ const Catalogues = () => {
                             })
                           }
                           aria-label="Select date range for filtering"
+                          className="wp-input"
                         />
                       </Form.Item>
                       <div className="d-flex gap-2">
                         <Button
                           onClick={() => setDateRange({ start: "", end: "" })}
                           style={{ width: "100%" }}
+                          className="wp-button"
                           aria-label="Reset date range filter"
                         >
                           Reset
@@ -403,6 +412,7 @@ const Catalogues = () => {
                         <Button
                           type="primary"
                           style={{ width: "100%" }}
+                          className="wp-button-primary"
                           aria-label="Apply date range filter"
                         >
                           Apply
@@ -413,12 +423,18 @@ const Catalogues = () => {
                 }
                 trigger={["click"]}
               >
-                <Button aria-label="Open filter options">
+                <Button
+                  className="wp-filter-button"
+                  aria-label="Open filter options"
+                >
                   <FilterOutlined /> Filter <DownOutlined />
                 </Button>
               </Dropdown>
               <Dropdown overlay={sortMenu} trigger={["click"]}>
-                <Button aria-label="Open sort options">
+                <Button
+                  className="wp-sort-button"
+                  aria-label="Open sort options"
+                >
                   <SortAscendingOutlined /> Sort By <DownOutlined />
                 </Button>
               </Dropdown>
@@ -440,9 +456,11 @@ const Catalogues = () => {
                 },
                 showSizeChanger: true,
                 pageSizeOptions: ["10", "20", "50"],
+                className: "wp-pagination",
                 "aria-label": "Pagination for catalogue table",
               }}
               rowKey="id"
+              className="wp-table"
             />
           ) : (
             <>
@@ -459,6 +477,7 @@ const Catalogues = () => {
                     },
                     showSizeChanger: true,
                     pageSizeOptions: ["10", "20", "50"],
+                    className: "wp-pagination",
                     "aria-label": "Pagination for catalogue card view",
                   }}
                   style={{ width: "auto" }}

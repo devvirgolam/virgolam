@@ -1,132 +1,198 @@
+// src/components/Roles/Roles.jsx
 import React, { useState } from "react";
-import { Table, Input, Button, Modal, Form, Space } from "antd";
+import { Table, Input, Button, Modal, Form, Space, Popconfirm } from "antd";
+import {
+  SearchOutlined,
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 import PageHeader from "../components/Common/PageHeader";
-import { useListRolesQuery, useCreateRoleMutation } from "../api/rolesApi"; // Adjust path as needed
-import { SearchOutlined } from "@ant-design/icons";
-import "antd/dist/reset.css"; // Import AntD styles
+import {
+  useListRolesQuery,
+  useCreateRoleMutation,
+  useDeleteRoleMutation,
+} from "../api/rolesApi";
 
 const Roles = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // State for search input
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
-  const [form] = Form.useForm(); // AntD Form instance
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form] = Form.useForm();
 
-  // Fetch roles using the useListRolesQuery hook
-  const { data: roles, isLoading, error } = useListRolesQuery();
+  const { data: roles, isLoading, error, refetch } = useListRolesQuery();
   const [createRole] = useCreateRoleMutation();
+  const [deleteRole] = useDeleteRoleMutation();
 
-  // Handle search input change
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  // Filter roles based on search term
   const filteredRoles = roles?.filter((role) =>
     role.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Handle form submission for creating a new role
   const handleCreateRole = async (values) => {
     try {
       await createRole({ name: values.roleName }).unwrap();
-      form.resetFields(); // Reset form
-      setIsModalOpen(false); // Close modal
+      form.resetFields();
+      setIsModalOpen(false);
     } catch (err) {
       console.error("Failed to create role:", err);
+      Modal.error({
+        title: "Error",
+        content: "Failed to create role",
+      });
     }
   };
 
-  // Table columns configuration for AntD Table
+  const handleDeleteRole = async (id) => {
+    try {
+      await deleteRole(id).unwrap();
+      refetch();
+    } catch (err) {
+      console.error("Failed to delete role:", err);
+      Modal.error({
+        title: "Error",
+        content: "Failed to delete role",
+      });
+    }
+  };
+
   const columns = [
     {
-      title: "",
+      title: <input type="checkbox" className="roles-table-checkbox" />,
       dataIndex: "checkbox",
-      render: () => <input type="checkbox" className="custom-checkbox" />,
+      render: () => <input type="checkbox" className="roles-table-checkbox" />,
       width: 50,
     },
     {
       title: "Role Name",
       dataIndex: "name",
       key: "name",
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: "Created",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (createdAt) => new Date(createdAt).toLocaleDateString(),
+      render: (createdAt) =>
+        new Date(createdAt).toLocaleDateString("en-US", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        }),
+      sorter: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
     },
     {
       title: "Action",
       key: "action",
-      render: () => (
+      render: (_, record) => (
         <Space>
-          <Button type="primary" size="small">
+          <Button
+            size="small"
+            className="roles-table-action-button roles-table-action-button-edit"
+            icon={<EditOutlined />}
+            onClick={() => {
+              console.log("Edit role:", record.id);
+            }}
+          >
             Edit
           </Button>
-          <Button type="primary" danger size="small">
-            Delete
-          </Button>
+          <Popconfirm
+            title="Are you sure you want to delete this role?"
+            onConfirm={() => handleDeleteRole(record.id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button
+              size="small"
+              className="roles-table-action-button roles-table-action-button-delete"
+              icon={<DeleteOutlined />}
+            >
+              Delete
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },
   ];
 
   return (
-    <div className="content pb-0">
+    <div className="roles-container">
       <PageHeader />
-
-      <div className="card border-0 rounded-0">
-        <div className="card-header d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <div className="roles-card">
+        <div className="roles-card-header">
           <Input
             prefix={<SearchOutlined />}
-            placeholder="Search"
+            placeholder="Search roles"
             value={searchTerm}
             onChange={handleSearch}
-            className="search-input"
-            style={{ width: 200 }}
+            className="roles-search-input"
           />
           <Button
             type="primary"
-            icon={<i className="ti ti-square-rounded-plus-filled me-1"></i>}
+            icon={<PlusOutlined />}
             onClick={() => setIsModalOpen(true)}
+            className="roles-button-primary"
           >
             Add New Role
           </Button>
         </div>
-        <div className="card-body">
-          <div className="table-responsive custom-table">
+        <div className="roles-card-content">
+          {error ? (
+            <div className="roles-table-error">
+              Error: {error?.data?.message || "Failed to load roles"}
+            </div>
+          ) : (
             <Table
               columns={columns}
               dataSource={filteredRoles}
               loading={isLoading}
               rowKey="id"
-              locale={{
-                emptyText: error ? "Error loading roles" : "No roles found",
-              }}
               pagination={false}
               className="roles-table"
+              aria-label="Roles table"
             />
-          </div>
+          )}
         </div>
       </div>
 
-      {/* Modal for Adding a New Role */}
       <Modal
         title="Add New Role"
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
         footer={null}
+        className="roles-modal"
+        aria-label="Add new role modal"
       >
-        <Form form={form} onFinish={handleCreateRole} layout="vertical">
+        <Form
+          form={form}
+          onFinish={handleCreateRole}
+          layout="vertical"
+          className="roles-modal-form"
+        >
           <Form.Item
             name="roleName"
             label="Role Name"
             rules={[{ required: true, message: "Please enter role name" }]}
           >
-            <Input placeholder="Enter role name" />
+            <Input
+              placeholder="Enter role name"
+              className="roles-modal-input"
+            />
           </Form.Item>
           <div className="d-flex justify-content-end gap-2">
-            <Button onClick={() => setIsModalOpen(false)}>Close</Button>
-            <Button type="primary" htmlType="submit">
+            <Button
+              onClick={() => setIsModalOpen(false)}
+              className="roles-modal-button roles-modal-button-cancel"
+            >
+              Close
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="roles-modal-button roles-modal-button-primary"
+            >
               Save Role
             </Button>
           </div>

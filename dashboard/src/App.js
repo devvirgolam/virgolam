@@ -66,7 +66,7 @@ function App() {
       <div class="page-wrapper">
         <Router />
       </div>
-      <Footer />
+      {!isAuthPage && <Footer />}
     </div>
   );
 }

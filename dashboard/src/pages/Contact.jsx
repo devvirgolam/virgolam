@@ -1,8 +1,10 @@
+// src/components/Contact/Contact.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   useListContactsQuery,
   useSubmitContactMutation,
+  useDeleteContactMutation,
 } from "../api/contactApi";
 import { toast } from "react-toastify";
 import {
@@ -16,12 +18,20 @@ import {
   Typography,
   Popconfirm,
   Card,
+  Row,
+  Col,
+  Select,
 } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  SearchOutlined,
+  EditOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 import PageHeader from "../components/Common/PageHeader";
 
 const { Title } = Typography;
 const { TextArea } = Input;
+const { Option } = Select;
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -31,15 +41,19 @@ const Contact = () => {
   const [searchText, setSearchText] = useState("");
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
 
-  // RTK Query hooks
-  const { data: contacts, isLoading, isError, error } = useListContactsQuery();
+  const {
+    data: contacts,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useListContactsQuery();
   const [submitContact, { isLoading: isSubmitting }] =
     useSubmitContactMutation();
+  const [deleteContact] = useDeleteContactMutation();
 
-  // Handle modal open/close
   const toggleModal = (contact = null) => {
     if (contact) {
-      // Edit mode
       setEditContactId(contact._id);
       form.setFieldsValue({
         name: contact.name,
@@ -53,52 +67,40 @@ const Contact = () => {
         notified: contact.notified ? "true" : "false",
       });
     } else {
-      // Add mode
       setEditContactId(null);
       form.resetFields();
     }
     setIsModalOpen(true);
   };
 
-  // Handle form submission
-  const handleSubmit = async (values) => {
+  const handleDelete = async (id) => {
     try {
-      const payload = {
-        ...values,
-        notified: values.notified === "true",
-      };
-
-      await submitContact(payload).unwrap();
-      toast.success("Contact submitted successfully");
-
-      setIsModalOpen(false);
-      form.resetFields();
+      await deleteContact(id).unwrap();
+      toast.success("Contact deleted successfully");
+      refetch();
     } catch (err) {
-      toast.error(err?.data?.error || "Failed to submit contact");
+      toast.error(err?.data?.error || "Failed to delete contact");
     }
   };
 
-  // Handle delete
-
-  // Handle search
   const handleSearch = (e) => {
     setSearchText(e.target.value);
   };
 
-  // Filter contacts based on search
   const filteredContacts = contacts?.filter(
     (contact) =>
       contact.name?.toLowerCase().includes(searchText.toLowerCase()) ||
       contact.email?.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  // Table columns
   const columns = [
     {
-      title: "",
+      title: <input type="checkbox" className="contact-table-checkbox" />,
       dataIndex: "_id",
       width: 50,
-      render: () => <input type="checkbox" className="form-check-input" />,
+      render: () => (
+        <input type="checkbox" className="contact-table-checkbox" />
+      ),
     },
     {
       title: "Name",
@@ -112,70 +114,104 @@ const Contact = () => {
     {
       title: "Phone Number",
       dataIndex: "phoneNumber",
+      render: (phoneNumber) => phoneNumber || "N/A",
     },
     {
       title: "Message",
       dataIndex: "message",
-      render: (text) => <span>{text.slice(0, 50)}...</span>,
+      render: (text) => <span>{text?.slice(0, 50) || "N/A"}...</span>,
+    },
+    {
+      title: "City",
+      dataIndex: "city",
+      render: (city) => city || "N/A",
     },
     {
       title: "Created At",
       dataIndex: "createdAt",
-      render: (date) => new Date(date).toLocaleDateString(),
+      render: (date) =>
+        new Date(date).toLocaleDateString("en-US", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        }),
       sorter: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
     },
     {
       title: "Notified",
       dataIndex: "notified",
       render: (notified) => (notified ? "Yes" : "No"),
+      sorter: (a, b) => Number(a.notified) - Number(b.notified),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space>
+          <Button
+            type="link"
+            icon={<EditOutlined />}
+            onClick={() => toggleModal(record)}
+            className="contact-table-action-button contact-table-action-button-edit"
+          >
+            Edit
+          </Button>
+          <Popconfirm
+            title="Are you sure you want to delete this contact?"
+            onConfirm={() => handleDelete(record._id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button
+              type="link"
+              danger
+              icon={<DeleteOutlined />}
+              className="contact-table-action-button contact-table-action-button-delete"
+            >
+              Delete
+            </Button>
+          </Popconfirm>
+        </Space>
+      ),
     },
   ];
 
   return (
-    <div style={{ padding: "24px" }}>
+    <div className="contact-container">
       <PageHeader />
-
-      <Card>
-        <Space
-          style={{
-            marginBottom: 16,
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
+      <Card className="contact-card">
+        <div className="contact-card-header">
           <Input
             placeholder="Search by name or email"
             prefix={<SearchOutlined />}
             onChange={handleSearch}
-            style={{ width: 200 }}
+            className="contact-search-input"
           />
-        </Space>
-
-        {isLoading && (
-          <Spin
-            size="large"
-            style={{ display: "block", margin: "50px auto" }}
-          />
-        )}
-        {isError && (
-          <Typography.Text type="danger">
-            Error: {error?.data?.message || "Failed to load contacts"}
-          </Typography.Text>
-        )}
-        {!isLoading && !isError && (
-          <Table
-            columns={columns}
-            dataSource={filteredContacts}
-            rowKey="_id"
-            pagination={{
-              current: pagination.current,
-              pageSize: pagination.pageSize,
-              total: filteredContacts?.length,
-              onChange: (page, pageSize) =>
-                setPagination({ current: page, pageSize }),
-            }}
-          />
-        )}
+        </div>
+        <div className="contact-card-content">
+          {isLoading && <Spin size="large" className="contact-table-loading" />}
+          {isError && (
+            <Typography.Text type="danger" className="contact-table-error">
+              Error: {error?.data?.message || "Failed to load contacts"}
+            </Typography.Text>
+          )}
+          {!isLoading && !isError && (
+            <Table
+              columns={columns}
+              dataSource={filteredContacts}
+              rowKey="_id"
+              pagination={{
+                current: pagination.current,
+                pageSize: pagination.pageSize,
+                total: filteredContacts?.length,
+                onChange: (page, pageSize) =>
+                  setPagination({ current: page, pageSize }),
+              }}
+              className="contact-table"
+              aria-label="Contacts table"
+            />
+          )}
+        </div>
       </Card>
     </div>
   );

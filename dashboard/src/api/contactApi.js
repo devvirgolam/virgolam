@@ -1,5 +1,7 @@
+// src/api/contactApi.js
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_URL } from "../store/config";
+
 export const contactApi = createApi({
   reducerPath: "contactApi",
   baseQuery: fetchBaseQuery({
@@ -19,9 +21,10 @@ export const contactApi = createApi({
     submitContact: builder.mutation({
       query: (data) => ({
         url: "/",
-        method: "POST",
+        method: data._id ? "PUT" : "POST", // Support both create and update
         body: data,
       }),
+      invalidatesTags: ["Contact"], // Invalidate Contact tag to refetch list
     }),
 
     // ---- Protected Route ----
@@ -29,7 +32,20 @@ export const contactApi = createApi({
       query: () => "/",
       providesTags: ["Contact"],
     }),
+
+    // ---- Protected Route ----
+    deleteContact: builder.mutation({
+      query: (id) => ({
+        url: `/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Contact"], // Invalidate Contact tag to refetch list
+    }),
   }),
 });
 
-export const { useSubmitContactMutation, useListContactsQuery } = contactApi;
+export const {
+  useSubmitContactMutation,
+  useListContactsQuery,
+  useDeleteContactMutation,
+} = contactApi;

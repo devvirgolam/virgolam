@@ -1864,3 +1864,281 @@
 {"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-08T11:34:10.640Z"}
 {"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-08T11:34:10.703Z"}
 {"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-08T11:34:13.411Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-08T11:52:29.022Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-08T11:59:07.598Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-08T12:11:53.769Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-08T12:11:53.922Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-08T12:12:20.983Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-08T12:12:23.276Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-08T12:12:23.349Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-08T12:12:25.692Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-08T12:12:27.215Z"}
+{"level":"info","message":"Retrieved 21 blog categories","order":"asc","sort":"name","timestamp":"2025-10-08T12:12:29.235Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-08T12:12:38.027Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-08T12:13:08.587Z"}
+{"level":"info","message":"Retrieved 4 roles by user: unknown","timestamp":"2025-10-08T12:13:10.264Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-08T12:13:12.420Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-08T12:14:27.798Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-08T12:14:30.661Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-08T12:14:30.736Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T03:40:28.895Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T03:40:28.999Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T03:41:22.279Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T03:41:29.073Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T03:41:29.110Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T03:41:30.716Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T03:41:32.344Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T03:41:33.997Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T03:41:36.382Z"}
+{"level":"info","message":"Retrieved 4 roles by user: unknown","timestamp":"2025-10-09T03:41:37.640Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T03:41:49.145Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-09T03:41:54.471Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T03:41:54.596Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T03:43:11.813Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T03:43:14.386Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T03:43:14.428Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T03:43:16.928Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T03:43:18.497Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T03:43:20.964Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T03:43:22.140Z"}
+{"level":"info","message":"Retrieved 4 roles by user: unknown","timestamp":"2025-10-09T03:43:22.628Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T03:44:22.728Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T03:44:31.320Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T03:44:33.207Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T03:44:33.244Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T03:44:40.790Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T03:52:29.524Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T03:55:31.010Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T03:59:08.868Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T03:59:08.896Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T04:03:24.277Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T04:10:26.660Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T04:10:29.313Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T04:10:29.356Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:12:24.663Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T04:12:26.192Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T04:12:32.242Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T04:13:30.646Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T04:13:30.654Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:15:59.889Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T04:16:02.456Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T04:18:49.736Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T04:18:52.689Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T04:18:52.724Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:18:54.211Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T04:18:55.295Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T04:18:56.995Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:19:34.452Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T04:20:40.177Z"}
+{"level":"info","message":"Retrieved 21 blog categories","order":"asc","sort":"name","timestamp":"2025-10-09T04:27:27.654Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T04:37:10.388Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:40:03.605Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T04:40:06.165Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:40:08.442Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T04:40:09.844Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T04:40:09.883Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T04:40:12.141Z"}
+{"level":"info","message":"Retrieved 4 roles by user: unknown","timestamp":"2025-10-09T04:43:03.913Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T04:45:01.351Z"}
+{"level":"info","message":"Retrieved 4 roles by user: unknown","timestamp":"2025-10-09T04:47:24.586Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T04:48:03.565Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T04:48:08.280Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T04:48:08.292Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T04:48:22.167Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:41.956Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:41.985Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.855Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.873Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.901Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.910Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.934Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.945Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.965Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.977Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:42.995Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.007Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.011Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.029Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.041Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.045Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.050Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.059Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.073Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.084Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.098Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.103Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.112Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.121Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.129Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.139Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.149Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.162Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.167Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.182Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.188Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.192Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.216Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.220Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.226Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.245Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.250Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.258Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.272Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.275Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.278Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.292Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.302Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.307Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.322Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.326Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.331Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.348Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.353Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.357Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.361Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.363Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.366Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.369Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.374Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.376Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.379Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.382Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.387Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.389Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.393Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.395Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:48:43.400Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.402Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.405Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.407Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.410Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.411Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.414Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.416Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.417Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.422Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.424Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.427Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.431Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.432Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.434Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.437Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.439Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.441Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.443Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.446Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.452Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.461Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.463Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.469Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.473Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.479Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.486Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.489Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.492Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.495Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.498Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.501Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.503Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.506Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.510Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.512Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.517Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.519Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.521Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.524Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.526Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.528Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.530Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.533Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.535Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.537Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.539Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.541Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.543Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.544Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.546Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.549Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.551Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.555Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.556Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.558Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.560Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.562Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.564Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.566Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.568Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.570Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.571Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.573Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.575Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.577Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.579Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.581Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.583Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.584Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.585Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.587Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.589Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.591Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.592Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.593Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.595Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.596Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.598Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.600Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.601Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.603Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.605Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.606Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.608Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.609Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.611Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.612Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.614Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.617Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.620Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.623Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.728Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:43.793Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:44.099Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T04:48:44.100Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-09T04:50:13.428Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T04:50:13.646Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T04:50:16.721Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T04:53:14.017Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T04:55:49.803Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T04:56:08.998Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T04:56:14.329Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T04:56:14.370Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T04:56:16.427Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T05:00:40.257Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T05:00:40.290Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T05:05:20.702Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T05:05:22.750Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T05:05:22.785Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T05:05:24.066Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T05:05:25.753Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T05:05:27.641Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T05:05:29.865Z"}
+{"level":"info","message":"Retrieved 4 roles by user: unknown","timestamp":"2025-10-09T05:05:30.863Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T05:06:33.378Z"}
+{"level":"info","message":"Retrieved 2 users by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T05:06:35.658Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T05:06:41.493Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T05:06:42.638Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T05:06:45.135Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T05:06:49.583Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T05:11:26.339Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T05:11:28.051Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T05:11:30.249Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T05:14:24.974Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-09T05:16:25.064Z"}
+{"level":"info","message":"Successful login for user: superadmin@example.com","timestamp":"2025-10-09T05:24:18.313Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T05:24:18.530Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T05:24:27.225Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T05:25:15.153Z"}
+{"level":"info","message":"Retrieved 21 blog categories","order":"asc","sort":"name","timestamp":"2025-10-09T05:25:16.013Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T05:30:03.089Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T05:30:09.878Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T05:30:09.918Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T05:30:12.134Z"}

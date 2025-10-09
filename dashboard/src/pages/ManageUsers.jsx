@@ -1,3 +1,4 @@
+// src/components/ManageUsers/ManageUsers.jsx
 import React, { useState, useMemo } from "react";
 import { parse, format } from "date-fns";
 import {
@@ -47,7 +48,6 @@ const ManageUsers = () => {
   const users = usersData ?? [];
   const [deleteUser] = useDeleteUserMutation();
 
-  // Date formatting helpers
   const isValidDate = (date) => date && !isNaN(new Date(date).getTime());
   const formatDate = (dateString) => {
     if (!dateString || !isValidDate(dateString)) return "Invalid Date";
@@ -60,7 +60,6 @@ const ManageUsers = () => {
     }
   };
 
-  // Handlers for search, filters, sort, columns
   const handleSearch = (e) => setSearchTerm(e.target.value);
   const handleFilterChange = (category, value) =>
     setSelectedFilters((prev) => ({
@@ -77,18 +76,19 @@ const ManageUsers = () => {
   const handleColumnToggle = (column) =>
     setVisibleColumns((prev) => ({ ...prev, [column]: !prev[column] }));
 
-  // Delete user
   const handleDeleteUser = async (id) => {
     try {
       await deleteUser(id).unwrap();
       refetch();
     } catch (err) {
       console.error("Failed to delete user:", err);
-      alert("Failed to delete user");
+      Modal.error({
+        title: "Error",
+        content: "Failed to delete user",
+      });
     }
   };
 
-  // Filtered users
   const filteredUsers = useMemo(() => {
     if (!users) return [];
     return users.filter((user) => {
@@ -119,13 +119,12 @@ const ManageUsers = () => {
     );
   }, [filteredUsers, sortBy]);
 
-  // Table columns
   const columns = [
     {
       title: <Checkbox onChange={() => {}} />,
       dataIndex: "checkbox",
       key: "checkbox",
-      render: () => <Checkbox />,
+      render: () => <Checkbox className="manage-users-table-checkbox" />,
       width: 50,
     },
     visibleColumns.name && {
@@ -153,6 +152,7 @@ const ManageUsers = () => {
         <Badge
           status={is_active ? "success" : "error"}
           text={is_active ? "Active" : "Inactive"}
+          className="manage-users-table-status"
         />
       ),
     },
@@ -168,14 +168,24 @@ const ManageUsers = () => {
               onClick={() => {
                 console.log("Edit user:", record.id);
               }}
-            />
+              className="manage-users-table-action-button manage-users-table-action-button-edit"
+            >
+              Edit
+            </Button>
             <Popconfirm
               title="Are you sure you want to delete this user?"
               onConfirm={() => handleDeleteUser(record.id)}
               okText="Yes"
               cancelText="No"
             >
-              <Button type="link" danger icon={<i className="ti ti-trash" />} />
+              <Button
+                type="link"
+                danger
+                icon={<i className="ti ti-trash" />}
+                className="manage-users-table-action-button manage-users-table-action-button-delete"
+              >
+                Delete
+              </Button>
             </Popconfirm>
           </Space>
         ),
@@ -184,73 +194,71 @@ const ManageUsers = () => {
   ].filter(Boolean);
 
   return (
-    <div className="content pb-0">
+    <div className="manage-users-container">
       <PageHeader />
-      <div className="card border-0 rounded-0" style={{ padding: "16px" }}>
-        {/* Search/Add User */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "16px",
-            flexWrap: "wrap",
-            gap: "8px",
-          }}
-        >
+      <div className="manage-users-card">
+        <div className="manage-users-card-header">
           <Input
-            placeholder="Search"
+            placeholder="Search users"
             prefix={<SearchOutlined />}
             value={searchTerm}
             onChange={handleSearch}
-            style={{ width: "300px" }}
+            className="manage-users-search-input"
           />
           <Button
             type="primary"
-            icon={<i className="ti ti-square-rounded-plus-filled me-1" />}
+            icon={<i className="ti ti-square-rounded-plus-filled" />}
             onClick={() => setModalVisible(true)}
+            className="manage-users-button-primary"
           >
             Add User
           </Button>
         </div>
-
-        {/* Table */}
-        <Table
-          columns={columns}
-          dataSource={sortedUsers.map((user) => ({ ...user, key: user.id }))}
-          loading={isLoading}
-          pagination={{
-            current: currentPage,
-            pageSize: 10,
-            total: sortedUsers.length,
-            onChange: (page) => setCurrentPage(page),
-            showSizeChanger: false,
-          }}
-          onChange={handleSortChange}
-          locale={{
-            emptyText: isError
-              ? `Error: ${error?.data?.message || "Failed to load users"}`
-              : "No users found",
-          }}
-        />
-
-        {/* AddNewUser Modal */}
-        <Modal
-          title="Add New User"
-          open={modalVisible}
-          onCancel={() => setModalVisible(false)}
-          footer={null}
-          width={720}
-        >
-          <AddNewUser
-            onUserCreated={() => {
-              refetch();
-              setModalVisible(false);
-            }}
-            onCancel={() => setModalVisible(false)}
-          />
-        </Modal>
+        <div className="manage-users-card-content">
+          {isError ? (
+            <div className="manage-users-table-error">
+              Error: {error?.data?.message || "Failed to load users"}
+            </div>
+          ) : (
+            <Table
+              columns={columns}
+              dataSource={sortedUsers.map((user) => ({
+                ...user,
+                key: user.id,
+              }))}
+              loading={isLoading}
+              pagination={{
+                current: currentPage,
+                pageSize: 10,
+                total: sortedUsers.length,
+                onChange: (page) => setCurrentPage(page),
+                showSizeChanger: false,
+              }}
+              onChange={handleSortChange}
+              className="manage-users-table"
+              aria-label="Users table"
+            />
+          )}
+        </div>
       </div>
+
+      <Modal
+        title="Add New User"
+        open={modalVisible}
+        onCancel={() => setModalVisible(false)}
+        footer={null}
+        width={720}
+        className="manage-users-modal"
+        aria-label="Add new user modal"
+      >
+        <AddNewUser
+          onUserCreated={() => {
+            refetch();
+            setModalVisible(false);
+          }}
+          onCancel={() => setModalVisible(false)}
+        />
+      </Modal>
     </div>
   );
 };

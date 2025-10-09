@@ -1,4 +1,4 @@
-import { PiAddressBook, PiMicrosoftTeamsLogoLight } from "react-icons/pi";
+import { PiAddressBook } from "react-icons/pi";
 import { LiaFileSignatureSolid } from "react-icons/lia";
 import {
   MdOutlineBrandingWatermark,
@@ -7,22 +7,14 @@ import {
   MdOutlineInventory2,
   MdOutlineDiscount,
   MdOutlinePeopleAlt,
-  MdOutlinePerson,
 } from "react-icons/md";
-import { AiOutlineProduct } from "react-icons/ai";
-import {
-  BiAccessibility,
-  BiCart,
-  BiCategory,
-  BiUser,
-  BiCoinStack,
-  BiShield,
-} from "react-icons/bi";
-import { FaFileCircleCheck, FaFileInvoice } from "react-icons/fa6";
+import { AiOutlinePlus, AiOutlineAppstore } from "react-icons/ai";
+import { BiCategory, BiShield } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { IoLogIn } from "react-icons/io5";
 import { RiDashboardLine } from "react-icons/ri";
 import { TiBusinessCard } from "react-icons/ti";
+import { FileMarkdownFilled } from "@ant-design/icons";
 
 // Pages & components
 import Dashboard from "../pages/Dashboard";
@@ -39,9 +31,10 @@ import Roles from "../pages/Roles";
 import Stores from "../pages/Stores";
 import Categories from "../pages/Categories";
 import BlogCategories from "../components/Blogs/BlogCategories";
-import { FileMarkdownFilled } from "@ant-design/icons";
 import Content from "../pages/Content";
 import Profile from "../pages/Profile";
+import ProductsWrapper from "../pages/ProductsWrapper";
+import AddNewProduct from "../components/Products/AddNewProduct";
 
 const masterRoutes = [
   {
@@ -101,6 +94,14 @@ const masterRoutes = [
     submenu: [],
   },
   {
+    path: "/products",
+    name: "Products",
+    icon: <TiBusinessCard />,
+    isSidebarActive: true,
+    element: <ProductsWrapper />,
+    submenu: [],
+  },
+  {
     path: "/stores-dealers",
     name: "Stores & Dealers",
     icon: <TiBusinessCard />,
@@ -137,9 +138,16 @@ const masterRoutes = [
     isSidebarActive: false,
     submenu: [
       {
+        path: "/products/add",
+        name: "Add New Product",
+        icon: <AiOutlinePlus />,
+        element: <AddNewProduct />,
+        isSidebarActive: false,
+      },
+      {
         path: "/blogs/add",
         name: "Add Blog",
-        icon: <AiOutlineProduct />,
+        icon: <AiOutlineAppstore />,
         element: <AddBlog />,
         isSidebarActive: false,
       },
@@ -147,7 +155,8 @@ const masterRoutes = [
         path: "/u/:userId",
         name: "Profile",
         icon: <CgProfile />,
-        isSidebarActive: true,
+        isSidebarActive: false,
+        element: <Profile />,
       },
       {
         path: "/users/settings",
@@ -165,23 +174,16 @@ const masterRoutes = [
       {
         path: "/404",
         name: "404 Error",
-        icon: <FaFileCircleCheck />,
+        icon: <AiOutlineAppstore />,
         isSidebarActive: true,
         element: <Error404 />,
       },
       {
         path: "/500",
         name: "500 Error",
-        icon: <FaFileInvoice />,
+        icon: <AiOutlineAppstore />,
         isSidebarActive: true,
         element: <Error500 />,
-      },
-      {
-        path: "/u/:userId",
-        name: "Profile",
-        icon: <FaFileCircleCheck />,
-        isSidebarActive: false,
-        element: <Profile />,
       },
     ],
   },

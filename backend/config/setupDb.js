@@ -1,6 +1,6 @@
 require("dotenv").config();
 const sequelize = require("../config/db.mysql");
-
+const ProductMeta = require("../models/productMeta");
 // Import models
 const User = require("../models/user");
 const Role = require("../models/role");
@@ -59,8 +59,21 @@ const setupDB = async () => {
     // ==============================
     // 🔥 VARIANT RELATIONSHIPS
     // ==============================
-    Variant.belongsTo(Product, { foreignKey: "product_id", as: "product" });
-    Product.hasMany(Variant, { foreignKey: "product_id", as: "variants" });
+    // Associations
+    Variant.belongsTo(Product, {
+      foreignKey: "parent_product_id",
+      as: "parentProduct",
+    });
+
+    Variant.belongsTo(Product, {
+      foreignKey: "variant_product_id",
+      as: "variantProduct",
+    });
+
+    Product.hasMany(Variant, {
+      foreignKey: "parent_product_id",
+      as: "variants",
+    });
 
     // ==============================
     // 🔥 CATALOGUE RELATIONSHIPS

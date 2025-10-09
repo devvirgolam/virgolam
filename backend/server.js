@@ -16,6 +16,7 @@ const roleRoutes = require("./routes/roles");
 const storeRoutes = require("./routes/stores");
 const leadRoutes = require("./routes/leads");
 const parentCategoryRoutes = require("./routes/parentCategory");
+const productRoutes = require("./routes/products");
 const cors = require("cors");
 const app = express();
 app.use(express.json());
@@ -66,7 +67,7 @@ app.use("/api/stores", storeRoutes);
 app.use("/api/leads", leadRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/parent-category", parentCategoryRoutes);
-
+app.use("/api/products", productRoutes);
 app.use((err, req, res, next) => {
   console.error("Server error:", err);
   res

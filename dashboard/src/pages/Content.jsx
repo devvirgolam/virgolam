@@ -1,3 +1,4 @@
+// src/components/Content.jsx
 import React, { useState } from "react";
 import {
   useListContentQuery,
@@ -33,7 +34,6 @@ import {
   PictureOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import PageHeader from "../components/Common/PageHeader";
 
 const Content = () => {
   const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);
@@ -239,7 +239,7 @@ const Content = () => {
             shape="square"
             size={40}
             icon={<PictureOutlined />}
-            className="me-2"
+            className="me-2 wp-media-avatar"
             onError={() => true}
           />
           <a href="#" onClick={() => handleContentClick(record)}>
@@ -264,7 +264,7 @@ const Content = () => {
         <Dropdown overlay={actionMenu(record)}>
           <a
             href="#"
-            className="d-flex align-items-center justify-content-center"
+            className="d-flex align-items-center justify-content-center wp-action-link"
           >
             <MoreOutlined className="fs-14" />
           </a>
@@ -277,6 +277,7 @@ const Content = () => {
     <Col key={record.id} xs={12} sm={6} md={4} lg={3}>
       <Card
         hoverable
+        className="wp-media-card"
         cover={
           <Avatar
             src={record.featured_image}
@@ -284,6 +285,7 @@ const Content = () => {
             size={100}
             icon={<PictureOutlined />}
             style={{ objectFit: "cover" }}
+            className="wp-media-avatar"
             onError={() => true}
           />
         }
@@ -304,7 +306,7 @@ const Content = () => {
               <Dropdown overlay={actionMenu(record)}>
                 <a
                   href="#"
-                  className="d-flex align-items-center justify-content-center"
+                  className="d-flex align-items-center justify-content-center wp-action-link"
                 >
                   <MoreOutlined className="fs-14" />
                 </a>
@@ -318,8 +320,8 @@ const Content = () => {
 
   if (isLoading) {
     return (
-      <div className="content">
-        <PageHeader title="Content Library" />
+      <div className="wp-content">
+        <h1 className="wp-page-title">Media Library</h1>
         <Spin tip="Loading content..." />
       </div>
     );
@@ -327,10 +329,10 @@ const Content = () => {
 
   if (isError) {
     return (
-      <div className="content">
-        <PageHeader title="Content Library" />
-        <div className="card">
-          <div className="card-body">
+      <div className="wp-content">
+        <h1 className="wp-page-title">Media Library</h1>
+        <div className="wp-card">
+          <div className="wp-card-body">
             Error fetching content:{" "}
             {error?.data?.error || "Something went wrong"}
           </div>
@@ -340,19 +342,19 @@ const Content = () => {
   }
 
   return (
-    <div className="content">
-      <PageHeader title="Content Library" />
+    <div className="wp-content">
+      <h1 className="wp-page-title">Media Library</h1>
 
-      <div className="d-flex align-items-center justify-content-between flex-wrap mb-3">
-        <div className="d-flex align-items-center gap-2">
+      <div className="wp-toolbar">
+        <div className="wp-toolbar-left">
           <Input
-            placeholder="Search content..."
+            placeholder="Search media items..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{ width: 200 }}
+            className="wp-search-input"
           />
           <Dropdown overlay={typeFilterMenu}>
-            <Button>
+            <Button className="wp-filter-button">
               {contentType || "All Types"} <DownOutlined />
             </Button>
           </Dropdown>
@@ -361,11 +363,16 @@ const Content = () => {
             unCheckedChildren="List"
             checked={viewMode === "grid"}
             onChange={(checked) => setViewMode(checked ? "grid" : "list")}
+            className="wp-switch"
           />
         </div>
-        <div className="d-flex align-items-center gap-2">
+        <div className="wp-toolbar-right">
           {selectedRowKeys.length > 0 && (
-            <Button danger onClick={handleBulkDelete}>
+            <Button
+              danger
+              onClick={handleBulkDelete}
+              className="wp-button-danger"
+            >
               Delete Selected ({selectedRowKeys.length})
             </Button>
           )}
@@ -373,6 +380,7 @@ const Content = () => {
             type="primary"
             icon={<PlusCircleOutlined />}
             onClick={() => setIsCreateModalVisible(true)}
+            className="wp-button-primary"
           >
             Add New
           </Button>
@@ -381,7 +389,11 @@ const Content = () => {
             showUploadList={false}
             accept="image/*,video/*,audio/*,application/pdf"
           >
-            <Button type="primary" icon={<UploadOutlined />}>
+            <Button
+              type="primary"
+              icon={<UploadOutlined />}
+              className="wp-button-primary"
+            >
               Upload
             </Button>
           </Upload>
@@ -389,7 +401,9 @@ const Content = () => {
       </div>
 
       {viewMode === "grid" ? (
-        <Row gutter={[16, 16]}>{contents.map(renderGridItem)}</Row>
+        <Row gutter={[16, 16]} className="wp-grid">
+          {contents.map(renderGridItem)}
+        </Row>
       ) : (
         <Table
           rowSelection={{
@@ -399,18 +413,24 @@ const Content = () => {
           columns={columns}
           dataSource={contents.map((item) => ({ ...item, key: item.id }))}
           pagination={{ pageSize: 10 }}
+          className="wp-table"
         />
       )}
 
       {/* Create Content Modal */}
       <Modal
-        title="Add New Content"
+        title="Add New Media Item"
         open={isCreateModalVisible}
         onCancel={() => setIsCreateModalVisible(false)}
         footer={null}
         width={600}
+        className="wp-modal"
       >
-        <Form onFinish={handleCreateContent} layout="vertical">
+        <Form
+          onFinish={handleCreateContent}
+          layout="vertical"
+          className="wp-form"
+        >
           <Form.Item
             label="Type"
             name="type"
@@ -419,6 +439,7 @@ const Content = () => {
             <Select
               value={formData.type}
               onChange={(value) => setFormData({ ...formData, type: value })}
+              className="wp-select"
             >
               <Select.Option value="csr">CSR</Select.Option>
               <Select.Option value="event">Event</Select.Option>
@@ -437,6 +458,7 @@ const Content = () => {
                 setFormData({ ...formData, title: e.target.value })
               }
               placeholder="Enter title"
+              className="wp-input"
             />
           </Form.Item>
           <Form.Item
@@ -451,6 +473,7 @@ const Content = () => {
               }
               placeholder="Enter description"
               rows={4}
+              className="wp-textarea"
             />
           </Form.Item>
           <Form.Item
@@ -464,6 +487,7 @@ const Content = () => {
                 setFormData({ ...formData, image_url: e.target.value })
               }
               placeholder="Enter or upload image URL"
+              className="wp-input"
             />
           </Form.Item>
           {formData.type === "event" && (
@@ -481,6 +505,7 @@ const Content = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, date: e.target.value })
                   }
+                  className="wp-input"
                 />
               </Form.Item>
               <Form.Item
@@ -499,13 +524,19 @@ const Content = () => {
                     setFormData({ ...formData, location: e.target.value })
                   }
                   placeholder="Enter location"
+                  className="wp-input"
                 />
               </Form.Item>
             </>
           )}
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={isCreating}>
-              {isCreating ? "Creating..." : "Add Content"}
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={isCreating}
+              className="wp-button-primary"
+            >
+              {isCreating ? "Creating..." : "Add Media Item"}
             </Button>
           </Form.Item>
         </Form>
@@ -514,7 +545,7 @@ const Content = () => {
       {/* Details/Edit Modal */}
       {selectedContent && (
         <Modal
-          title="Content Details"
+          title="Media Item Details"
           open={isDetailsModalVisible}
           onCancel={() => {
             setIsDetailsModalVisible(false);
@@ -522,26 +553,32 @@ const Content = () => {
           }}
           footer={null}
           width={800}
+          className="wp-modal"
         >
           <Row gutter={16}>
             <Col span={12}>
               <img
                 src={selectedContent.featured_image}
                 alt={selectedContent.title}
-                style={{ width: "100%", maxHeight: 300, objectFit: "contain" }}
+                className="wp-media-image"
                 onError={(e) =>
                   (e.target.src = "https://via.placeholder.com/300")
                 }
               />
             </Col>
             <Col span={12}>
-              <Form layout="vertical" onFinish={handleUpdateContent}>
+              <Form
+                layout="vertical"
+                onFinish={handleUpdateContent}
+                className="wp-form"
+              >
                 <Form.Item label="Type" name="type">
                   <Select
                     value={selectedContent.type}
                     onChange={(value) =>
                       setSelectedContent({ ...selectedContent, type: value })
                     }
+                    className="wp-select"
                   >
                     <Select.Option value="csr">CSR</Select.Option>
                     <Select.Option value="event">Event</Select.Option>
@@ -561,6 +598,7 @@ const Content = () => {
                       })
                     }
                     placeholder="Enter title"
+                    className="wp-input"
                   />
                 </Form.Item>
                 <Form.Item label="Description" name="description">
@@ -574,6 +612,7 @@ const Content = () => {
                     }
                     placeholder="Enter description"
                     rows={4}
+                    className="wp-textarea"
                   />
                 </Form.Item>
                 <Form.Item label="Image URL" name="image_url">
@@ -586,6 +625,7 @@ const Content = () => {
                       })
                     }
                     placeholder="Enter or upload image URL"
+                    className="wp-input"
                   />
                 </Form.Item>
                 {selectedContent.type === "event" && (
@@ -604,6 +644,7 @@ const Content = () => {
                             date: e.target.value,
                           })
                         }
+                        className="wp-input"
                       />
                     </Form.Item>
                     <Form.Item label="Location" name="location">
@@ -616,18 +657,25 @@ const Content = () => {
                           })
                         }
                         placeholder="Enter location"
+                        className="wp-input"
                       />
                     </Form.Item>
                   </>
                 )}
                 <Form.Item>
-                  <Button type="primary" htmlType="submit" loading={isUpdating}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={isUpdating}
+                    className="wp-button-primary"
+                  >
                     {isUpdating ? "Saving..." : "Save Changes"}
                   </Button>
                   <Button
                     danger
                     style={{ marginLeft: 8 }}
                     onClick={() => handleDelete(selectedContent.id)}
+                    className="wp-button-danger"
                   >
                     Delete
                   </Button>

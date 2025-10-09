@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   DndContext,
   useSensor,
@@ -10,6 +10,7 @@ import {
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import {
   Button,
   Input,
@@ -21,89 +22,39 @@ import {
   Space,
   Typography,
   Avatar,
+  Tooltip,
+  Timeline,
 } from "antd";
-import Title from "antd/es/typography/Title";
-const { Text } = Typography;
-// Mock leadApi hooks (replace with actual API hooks in a real app)
-const useListLeadsQuery = (filters) => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  useListLeadsQuery,
+  useCreateLeadMutation,
+  useUpdateLeadMutation,
+  useDeleteLeadMutation,
+  useAddNoteMutation,
+  useGetNotesQuery,
+} from "../api/leadApi";
 
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      const mockLeads = [
-        {
-          id: "1",
-          name: "John Doe",
-          email: "john@example.com",
-          phone: "123-456-7890",
-          value: 1000,
-          status: "new",
-          location: "New York",
-          assignee: { id: "u1", name: "Alice Smith", avatar: "" },
-          source: "website",
-        },
-        {
-          id: "2",
-          name: "Jane Smith",
-          email: "jane@example.com",
-          phone: "987-654-3210",
-          value: 2000,
-          status: "contacted",
-          location: "London",
-          assignee: { id: "u2", name: "Bob Johnson", avatar: "" },
-          source: "referral",
-        },
-      ].filter((lead) => {
-        return (
-          (!filters.search ||
-            lead.name.toLowerCase().includes(filters.search.toLowerCase())) &&
-          (!filters.status || lead.status === filters.status) &&
-          (!filters.assigned_to || lead.assignee.id === filters.assigned_to)
-        );
-      });
-      setData(mockLeads);
-      setIsLoading(false);
-    }, 500);
-  }, [filters.search, filters.status, filters.assigned_to]);
-
-  return { data, isLoading, error };
-};
-
-const useCreateLeadMutation = () => {
-  return [
-    (leadData) =>
-      Promise.resolve({ data: { id: Math.random().toString(), ...leadData } }),
-  ];
-};
-
-const useUpdateLeadMutation = () => {
-  return [(leadData) => Promise.resolve({ data: leadData })];
-};
-
-const useDeleteLeadMutation = () => {
-  return [(id) => Promise.resolve({ data: id })];
-};
+const { Text, Title } = Typography;
 
 const SortableLead = ({ lead, index, status }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: lead.id });
   const style = {
-    transform: transform
-      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
-      : undefined,
+    transform: CSS.Transform.toString(transform),
     transition,
   };
 
   const [isEditDrawerOpen, setIsEditDrawerOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [editLead, setEditLead] = useState(null);
-  const [selectedLeadId, setSelectedLeadId] = useState(null);
+  const [isNoteDrawerOpen, setIsNoteDrawerOpen] = useState(false);
+  const [note, setNote] = useState("");
   const [form] = Form.useForm();
-  const [deleteLead] = useDeleteLeadMutation();
   const [updateLead] = useUpdateLeadMutation();
+  const [deleteLead] = useDeleteLeadMutation();
+  const [addNote] = useAddNoteMutation();
+  const { data: notes, isLoading: notesLoading } = useGetNotesQuery(lead.id);
+
   const leadOwners = lead.assignee
     ? [
         {
@@ -114,60 +65,44 @@ const SortableLead = ({ lead, index, status }) => {
       ]
     : [];
 
+  const handleAddNote = async () => {
+    try {
+      await addNote({ lead_id: lead.id, note }).unwrap();
+      setNote("");
+      setIsNoteDrawerOpen(false);
+    } catch (error) {
+      Modal.error({ title: "Error", content: "Failed to add note." });
+    }
+  };
+
   return (
     <>
-      <div
+      <motion.div
         ref={setNodeRef}
         style={style}
         {...attributes}
         {...listeners}
         className="mb-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
       >
         <Card
-          className={`border ${
-            status === "Contacted"
-              ? "border-yellow-500"
-              : status === "Not Contacted"
-              ? "border-blue-500"
-              : status === "Closed"
-              ? "border-green-500"
-              : "border-red-500"
-          }`}
+          className={`lead-card border-${status
+            .toLowerCase()
+            .replace(" ", "-")}`}
+          hoverable
         >
           <div
-            className={`h-2 w-full mb-3 ${
-              status === "Contacted"
-                ? "bg-yellow-500"
-                : status === "Not Contacted"
-                ? "bg-blue-500"
-                : status === "Closed"
-                ? "bg-green-500"
-                : "bg-red-500"
-            }`}
+            className={`status-bar status-bar-${status
+              .toLowerCase()
+              .replace(" ", "-")}`}
           ></div>
           <div className="flex items-center mb-3">
             <Avatar
-              className={`mr-2 ${
-                status === "Contacted"
-                  ? "bg-yellow-100"
-                  : status === "Not Contacted"
-                  ? "bg-blue-100"
-                  : status === "Closed"
-                  ? "bg-green-100"
-                  : "bg-red-100"
-              }`}
+              className={`avatar-${status.toLowerCase().replace(" ", "-")}`}
             >
-              <span
-                className={`text-${
-                  status === "Contacted"
-                    ? "yellow-500"
-                    : status === "Not Contacted"
-                    ? "blue-500"
-                    : status === "Closed"
-                    ? "green-500"
-                    : "red-500"
-                }`}
-              >
+              <span>
                 {lead.name
                   ?.split(" ")
                   .map((n) => n[0])
@@ -176,7 +111,7 @@ const SortableLead = ({ lead, index, status }) => {
                   .toUpperCase()}
               </span>
             </Avatar>
-            <Title level={5} className="m-0">
+            <Title level={5} className="m-0 ml-2">
               <a href="#">{lead.name}</a>
             </Title>
           </div>
@@ -198,51 +133,40 @@ const SortableLead = ({ lead, index, status }) => {
               {lead.location || "Unknown"}
             </Text>
           </div>
-          <div className="flex items-center justify-between border-t pt-3 mt-3">
+          <div className="flex justify-between items-center border-t pt-3 mt-3">
             <Avatar
               src={lead.company_icon || "/assets/img/icons/company-icon-01.svg"}
               size="small"
             />
             <Space>
-              <Button
-                type="text"
-                icon={<i className="ti ti-phone-check"></i>}
-              />
-              <Button
-                type="text"
-                icon={<i className="ti ti-message-circle-2"></i>}
-              />
-              <Button
-                type="text"
-                icon={<i className="ti ti-color-swatch"></i>}
-              />
+              <Tooltip title="Add Note">
+                <Button
+                  type="text"
+                  icon={<i className="ti ti-note"></i>}
+                  onClick={() => setIsNoteDrawerOpen(true)}
+                />
+              </Tooltip>
+              <Tooltip title="Edit Lead">
+                <Button
+                  type="text"
+                  icon={<i className="ti ti-edit"></i>}
+                  onClick={() => {
+                    setIsEditDrawerOpen(true);
+                    form.setFieldsValue(lead);
+                  }}
+                />
+              </Tooltip>
+              <Tooltip title="Delete Lead">
+                <Button
+                  type="text"
+                  icon={<i className="ti ti-trash"></i>}
+                  onClick={() => setIsDeleteModalOpen(true)}
+                />
+              </Tooltip>
             </Space>
           </div>
-          <div className="flex justify-end mt-3">
-            <Button
-              type="primary"
-              size="small"
-              className="mr-2"
-              onClick={() => {
-                setEditLead(lead);
-                setIsEditDrawerOpen(true);
-              }}
-            >
-              Edit
-            </Button>
-            <Button
-              danger
-              size="small"
-              onClick={() => {
-                setSelectedLeadId(lead.id);
-                setIsDeleteModalOpen(true);
-              }}
-            >
-              Delete
-            </Button>
-          </div>
         </Card>
-      </div>
+      </motion.div>
 
       <Drawer
         title="Edit Lead"
@@ -250,88 +174,107 @@ const SortableLead = ({ lead, index, status }) => {
         onClose={() => setIsEditDrawerOpen(false)}
         width={400}
       >
-        {editLead && (
-          <Form
-            form={form}
-            layout="vertical"
-            initialValues={editLead}
-            onFinish={async (values) => {
-              try {
-                await updateLead({ id: editLead.id, ...values }).unwrap();
-                setIsEditDrawerOpen(false);
-                setEditLead(null);
-                form.resetFields();
-              } catch (error) {
-                Modal.error({
-                  title: "Error",
-                  content: "Failed to update lead: " + error.data?.error,
-                });
-              }
-            }}
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={async (values) => {
+            try {
+              await updateLead({ id: lead.id, ...values }).unwrap();
+              setIsEditDrawerOpen(false);
+            } catch (error) {
+              Modal.error({
+                title: "Error",
+                content: "Failed to update lead.",
+              });
+            }
+          }}
+        >
+          {/* Form fields similar to original, with enhanced styling */}
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[{ required: true, message: "Please input the name!" }]}
           >
-            <Form.Item
-              name="name"
-              label="Name"
-              rules={[{ required: true, message: "Please input the name!" }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="email"
-              label="Email"
-              rules={[
-                { type: "email", message: "Please input a valid email!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item name="phone" label="Phone">
-              <Input />
-            </Form.Item>
-            <Form.Item name="message" label="Message">
-              <Input.TextArea />
-            </Form.Item>
-            <Form.Item name="source" label="Source">
-              <Select>
-                <Select.Option value="website">Website</Select.Option>
-                <Select.Option value="landing_page">Landing Page</Select.Option>
-                <Select.Option value="ad">Ad</Select.Option>
-                <Select.Option value="newsletter">Newsletter</Select.Option>
-                <Select.Option value="referral">Referral</Select.Option>
-                <Select.Option value="other">Other</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item name="status" label="Status">
-              <Select>
-                <Select.Option value="new">Not Contacted</Select.Option>
-                <Select.Option value="contacted">Contacted</Select.Option>
-                <Select.Option value="qualified">Qualified</Select.Option>
-                <Select.Option value="converted">Closed</Select.Option>
-                <Select.Option value="lost">Lost</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item name="assigned_to" label="Assigned To">
-              <Select allowClear>
-                <Select.Option value="">Unassigned</Select.Option>
-                {leadOwners.map((owner) => (
-                  <Select.Option key={owner.id} value={owner.id}>
-                    {owner.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item name="value" label="Value">
-              <Input type="number" step="0.01" />
-            </Form.Item>
-            <Form.Item name="location" label="Location">
-              <Input />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Update Lead
-              </Button>
-            </Form.Item>
-          </Form>
+            <Input className="form-input" />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            label="Email"
+            rules={[{ type: "email", message: "Please input a valid email!" }]}
+          >
+            <Input className="form-input" />
+          </Form.Item>
+          <Form.Item name="phone" label="Phone">
+            <Input className="form-input" />
+          </Form.Item>
+          <Form.Item name="value" label="Value">
+            <Input type="number" step="0.01" className="form-input" />
+          </Form.Item>
+          <Form.Item name="location" label="Location">
+            <Input className="form-input" />
+          </Form.Item>
+          <Form.Item name="status" label="Status">
+            <Select className="form-select">
+              <Select.Option value="new">Not Contacted</Select.Option>
+              <Select.Option value="contacted">Contacted</Select.Option>
+              <Select.Option value="qualified">Qualified</Select.Option>
+              <Select.Option value="converted">Closed</Select.Option>
+              <Select.Option value="lost">Lost</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="assigned_to" label="Assigned To">
+            <Select allowClear className="form-select">
+              <Select.Option value="">Unassigned</Select.Option>
+              {leadOwners.map((owner) => (
+                <Select.Option key={owner.id} value={owner.id}>
+                  {owner.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="form-button">
+              Update Lead
+            </Button>
+          </Form.Item>
+        </Form>
+      </Drawer>
+
+      <Drawer
+        title="Lead Notes"
+        open={isNoteDrawerOpen}
+        onClose={() => setIsNoteDrawerOpen(false)}
+        width={400}
+      >
+        <Form onFinish={handleAddNote} layout="vertical">
+          <Form.Item label="Add Note">
+            <Input.TextArea
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              rows={4}
+              className="form-input"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="form-button">
+              Add Note
+            </Button>
+          </Form.Item>
+        </Form>
+        {notesLoading ? (
+          <div>Loading notes...</div>
+        ) : (
+          <Timeline>
+            {notes?.map((note) => (
+              <Timeline.Item key={note.id}>
+                <Text>{note.note}</Text>
+                <br />
+                <Text type="secondary">
+                  {new Date(note.created_at).toLocaleString()}
+                </Text>
+              </Timeline.Item>
+            ))}
+          </Timeline>
         )}
       </Drawer>
 
@@ -347,16 +290,14 @@ const SortableLead = ({ lead, index, status }) => {
             key="delete"
             type="primary"
             danger
-            disabled={!selectedLeadId}
             onClick={async () => {
               try {
-                await deleteLead(selectedLeadId).unwrap();
+                await deleteLead(lead.id).unwrap();
                 setIsDeleteModalOpen(false);
-                setSelectedLeadId(null);
               } catch (error) {
                 Modal.error({
                   title: "Error",
-                  content: "Failed to delete lead: " + error.data?.error,
+                  content: "Failed to delete lead.",
                 });
               }
             }}
@@ -383,6 +324,8 @@ const Leads = () => {
   const [createLead] = useCreateLeadMutation();
   const [updateLead] = useUpdateLeadMutation();
 
+  const sensors = useSensors(useSensor(PointerSensor));
+
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
@@ -405,7 +348,7 @@ const Leads = () => {
       acc[status].push(lead);
       return acc;
     },
-    { Contacted: [], "Not Contacted": [], Closed: [], Lost: [] }
+    { "Not Contacted": [], Contacted: [], Closed: [], Lost: [] }
   );
 
   const getSummary = (leads) => {
@@ -415,8 +358,6 @@ const Leads = () => {
       .toLocaleString();
     return `${count} Leads - $${totalValue}`;
   };
-
-  const sensors = useSensors(useSensor(PointerSensor));
 
   const onDragEnd = async ({ active, over }) => {
     if (!over) return;
@@ -445,26 +386,28 @@ const Leads = () => {
       return acc;
     }, []) || [];
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">Error: {error.message}</div>;
 
   return (
-    <div className="p-4 max-w-screen-xl mx-auto">
-      <Title level={3}>Leads Management</Title>
-      <div className="flex flex-wrap items-center justify-between mb-4 gap-4">
+    <div className="leads-container">
+      <Title level={3} className="leads-title">
+        Leads Management
+      </Title>
+      <div className="filters-container">
         <Space wrap>
           <Input
-            placeholder="Search"
+            placeholder="Search leads"
             prefix={<i className="ti ti-search"></i>}
             value={filters.search}
             onChange={(e) => handleFilterChange("search", e.target.value)}
-            style={{ width: 200 }}
+            className="filter-input"
           />
           <Select
             placeholder="Lead Status"
             value={filters.status || null}
             onChange={(value) => handleFilterChange("status", value)}
-            style={{ width: 200 }}
+            className="filter-select"
             allowClear
           >
             {["new", "contacted", "qualified", "converted", "lost"].map(
@@ -487,7 +430,7 @@ const Leads = () => {
             placeholder="Lead Owner"
             value={filters.assigned_to || null}
             onChange={(value) => handleFilterChange("assigned_to", value)}
-            style={{ width: 200 }}
+            className="filter-select"
             allowClear
           >
             {leadOwners.map((owner) => (
@@ -496,13 +439,14 @@ const Leads = () => {
               </Select.Option>
             ))}
           </Select>
-          <Button onClick={handleResetFilters}>Reset</Button>
-        </Space>
-        <Space>
+          <Button onClick={handleResetFilters} className="filter-button">
+            Reset
+          </Button>
           <Button
             type="primary"
             icon={<i className="ti ti-square-rounded-plus-filled mr-1"></i>}
             onClick={() => setIsAddDrawerOpen(true)}
+            className="add-lead-button"
           >
             Add Lead
           </Button>
@@ -510,50 +454,52 @@ const Leads = () => {
       </div>
 
       <DndContext sensors={sensors} onDragEnd={onDragEnd}>
-        <div className="flex overflow-x-auto gap-4">
-          {Object.entries(groupedLeads).map(([status, leads]) => (
-            <div key={status} className="min-w-[300px] flex-1">
-              <Card
-                title={
-                  <div className="flex justify-between items-center">
-                    <Space>
-                      <i
-                        className={`ti ti-circle-filled text-${
-                          status === "Contacted"
-                            ? "yellow-500"
-                            : status === "Not Contacted"
-                            ? "blue-500"
-                            : status === "Closed"
-                            ? "green-500"
-                            : "red-500"
-                        }`}
-                      ></i>
-                      <Title level={5} className="m-0">
-                        {status}
-                      </Title>
-                    </Space>
-                    <Text>{getSummary(leads)}</Text>
-                  </div>
-                }
-                className="border"
+        <div className="kanban-board">
+          <AnimatePresence>
+            {Object.entries(groupedLeads).map(([status, leads]) => (
+              <motion.div
+                key={status}
+                className="kanban-column"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
               >
-                <SortableContext
-                  id={status}
-                  items={leads.map((lead) => lead.id)}
-                  strategy={verticalListSortingStrategy}
+                <Card
+                  title={
+                    <div className="kanban-column-header">
+                      <Space>
+                        <i
+                          className={`ti ti-circle-filled status-icon-${status
+                            .toLowerCase()
+                            .replace(" ", "-")}`}
+                        ></i>
+                        <Title level={5}>{status}</Title>
+                      </Space>
+                      <Text className="summary-text">{getSummary(leads)}</Text>
+                    </div>
+                  }
+                  className={`kanban-card border-${status
+                    .toLowerCase()
+                    .replace(" ", "-")}`}
                 >
-                  {leads.map((lead, index) => (
-                    <SortableLead
-                      key={lead.id}
-                      lead={lead}
-                      index={index}
-                      status={status}
-                    />
-                  ))}
-                </SortableContext>
-              </Card>
-            </div>
-          ))}
+                  <SortableContext
+                    id={status}
+                    items={leads.map((lead) => lead.id)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {leads.map((lead, index) => (
+                      <SortableLead
+                        key={lead.id}
+                        lead={lead}
+                        index={index}
+                        status={status}
+                      />
+                    ))}
+                  </SortableContext>
+                </Card>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </DndContext>
 
@@ -574,7 +520,7 @@ const Leads = () => {
             } catch (error) {
               Modal.error({
                 title: "Error",
-                content: "Failed to create lead: " + error.data?.error,
+                content: "Failed to create lead.",
               });
             }
           }}
@@ -584,33 +530,26 @@ const Leads = () => {
             label="Name"
             rules={[{ required: true, message: "Please input the name!" }]}
           >
-            <Input />
+            <Input className="form-input" />
           </Form.Item>
           <Form.Item
             name="email"
             label="Email"
             rules={[{ type: "email", message: "Please input a valid email!" }]}
           >
-            <Input />
+            <Input className="form-input" />
           </Form.Item>
           <Form.Item name="phone" label="Phone">
-            <Input />
+            <Input className="form-input" />
           </Form.Item>
-          <Form.Item name="message" label="Message">
-            <Input.TextArea />
+          <Form.Item name="value" label="Value">
+            <Input type="number" step="0.01" className="form-input" />
           </Form.Item>
-          <Form.Item name="source" label="Source">
-            <Select>
-              <Select.Option value="website">Website</Select.Option>
-              <Select.Option value="landing_page">Landing Page</Select.Option>
-              <Select.Option value="ad">Ad</Select.Option>
-              <Select.Option value="newsletter">Newsletter</Select.Option>
-              <Select.Option value="referral">Referral</Select.Option>
-              <Select.Option value="other">Other</Select.Option>
-            </Select>
+          <Form.Item name="location" label="Location">
+            <Input className="form-input" />
           </Form.Item>
           <Form.Item name="status" label="Status">
-            <Select>
+            <Select className="form-select">
               <Select.Option value="new">Not Contacted</Select.Option>
               <Select.Option value="contacted">Contacted</Select.Option>
               <Select.Option value="qualified">Qualified</Select.Option>
@@ -619,7 +558,7 @@ const Leads = () => {
             </Select>
           </Form.Item>
           <Form.Item name="assigned_to" label="Assigned To">
-            <Select allowClear>
+            <Select allowClear className="form-select">
               <Select.Option value="">Unassigned</Select.Option>
               {leadOwners.map((owner) => (
                 <Select.Option key={owner.id} value={owner.id}>
@@ -628,14 +567,8 @@ const Leads = () => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="value" label="Value">
-            <Input type="number" step="0.01" />
-          </Form.Item>
-          <Form.Item name="location" label="Location">
-            <Input />
-          </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" className="form-button">
               Add Lead
             </Button>
           </Form.Item>

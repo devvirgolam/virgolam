@@ -1,3 +1,4 @@
+// src/components/Stores/Stores.jsx
 import React, { useState } from "react";
 import {
   Table,
@@ -19,19 +20,21 @@ const { Text } = Typography;
 
 const Stores = () => {
   const { data: dealers, isLoading: isDealersLoading } = useListDealersQuery();
-  const [storeDetails, setStoreDetails] = useState({}); // Store details cache
-  const [loadingStores, setLoadingStores] = useState({}); // Track loading state per store
+  const [storeDetails, setStoreDetails] = useState({});
+  const [loadingStores, setLoadingStores] = useState({});
 
-  // Function to fetch store details directly from API
   const fetchStoreDetails = async (storeId) => {
-    if (storeDetails[storeId] || loadingStores[storeId]) return; // Avoid refetching
+    if (storeDetails[storeId] || loadingStores[storeId]) return;
     setLoadingStores((prev) => ({ ...prev, [storeId]: true }));
     try {
-      const response = await fetch(`http://localhost:8000/api/stores/${storeId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8000/api/stores/${storeId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       if (!response.ok) throw new Error("Failed to fetch store details");
       const data = await response.json();
       setStoreDetails((prev) => ({ ...prev, [storeId]: data }));
@@ -43,12 +46,11 @@ const Stores = () => {
     }
   };
 
-  // Columns for the Ant Design Table
   const columns = [
     {
       title: "",
       dataIndex: "select",
-      render: () => <input type="checkbox" />,
+      render: () => <input type="checkbox" className="stores-table-checkbox" />,
       width: 50,
     },
     {
@@ -77,7 +79,10 @@ const Stores = () => {
                 }
               }}
             >
-              <a onClick={(e) => e.preventDefault()}>
+              <a
+                onClick={(e) => e.preventDefault()}
+                className="stores-table-dropdown"
+              >
                 {store.name} <DownOutlined />
               </a>
             </Dropdown>
@@ -96,8 +101,16 @@ const Stores = () => {
       dataIndex: "action",
       render: () => (
         <Space>
-          <Button type="link">Edit</Button>
-          <Button type="link" danger>
+          <Button
+            type="link"
+            className="stores-table-action-button stores-table-action-button-edit"
+          >
+            Edit
+          </Button>
+          <Button
+            type="link"
+            className="stores-table-action-button stores-table-action-button-delete"
+          >
             Delete
           </Button>
         </Space>
@@ -106,13 +119,12 @@ const Stores = () => {
     },
   ];
 
-  // Menu for store details dropdown
   const storeDetailsMenu = (storeId) => {
     const store = storeDetails[storeId];
     const isLoading = loadingStores[storeId];
 
     return (
-      <Menu style={{ width: 300, padding: 16 }}>
+      <Menu className="stores-table-dropdown">
         {isLoading ? (
           <Text>Loading...</Text>
         ) : store ? (
@@ -152,77 +164,71 @@ const Stores = () => {
     );
   };
 
-  // Data transformation for table
   const dataSource =
     dealers?.map((dealer) => ({
       key: dealer.id,
       name: dealer.name,
       email: dealer.email || "N/A",
-      stores: dealer.stores || [], // Assuming stores are included in dealer response with id and name
+      stores: dealer.stores || [],
       company_name: dealer.company_name || "N/A",
     })) || [];
 
   return (
-    <div className="content pb-0">
+    <div className="stores-container">
       <PageHeader />
 
-      <div className="card border-0 rounded-0">
-        <div
-          className="card-header"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "16px",
-          }}
-        >
+      <div className="stores-card">
+        <div className="stores-card-header">
           <Input
             prefix={<SearchOutlined />}
-            placeholder="Search"
-            style={{ width: 200 }}
+            placeholder="Search companies"
+            className="stores-search-input"
           />
-          <Button type="primary" icon={<PlusOutlined />}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            className="stores-button-primary"
+          >
             Add Company
           </Button>
         </div>
-        <div className="card-body">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 16,
-            }}
-          >
+        <div className="stores-card-content">
+          <div className="stores-filter-container">
             <Space>
-              <Button>
+              <Button className="stores-filter-button">
                 Sort By <DownOutlined />
               </Button>
               <RangePicker
                 defaultValue={[moment("2025-06-09"), moment("2025-06-09")]}
                 format="MMM D, YYYY"
+                className="stores-date-picker"
               />
             </Space>
             <Space>
-              <Button>
+              <Button className="stores-filter-button">
                 Filter <DownOutlined />
               </Button>
-              <Button>Manage Columns</Button>
+              <Button className="stores-filter-button">Manage Columns</Button>
             </Space>
           </div>
-          <Table
-            columns={columns}
-            dataSource={dataSource}
-            loading={isDealersLoading}
-            pagination={{
-              pageSize: 10,
-              showSizeChanger: true,
-              pageSizeOptions: ["10", "20", "50"],
-            }}
-            rowSelection={{
-              type: "checkbox",
-            }}
-          />
+          {isDealersLoading ? (
+            <div className="stores-table-loading">Loading companies...</div>
+          ) : (
+            <Table
+              columns={columns}
+              dataSource={dataSource}
+              loading={isDealersLoading}
+              pagination={{
+                pageSize: 10,
+                showSizeChanger: true,
+                pageSizeOptions: ["10", "20", "50"],
+              }}
+              rowSelection={{
+                type: "checkbox",
+              }}
+              className="stores-table"
+            />
+          )}
         </div>
       </div>
     </div>

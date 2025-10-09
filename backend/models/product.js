@@ -1,3 +1,4 @@
+// models/Product.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.mysql");
 
@@ -21,78 +22,37 @@ const Product = sequelize.define(
       type: DataTypes.STRING(100),
       unique: true,
     },
-
-    // Relationships
     parent_category_id: {
       type: DataTypes.UUID,
       allowNull: false,
-      references: {
-        model: "parent_categories",
-        key: "id",
-      },
-      onDelete: "CASCADE",
     },
     category_id: {
       type: DataTypes.UUID,
       allowNull: false,
-      references: {
-        model: "categories",
-        key: "id",
-      },
-      onDelete: "CASCADE",
-    },
-
-    // Product details
-    design_code: {
-      type: DataTypes.STRING(100),
-      allowNull: true,
-      comment: "e.g., 2926",
-    },
-    full_name: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      comment: "e.g., German Ash",
-    },
-    thickness: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
-      comment: "e.g., 0.8mm",
-    },
-    finish: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
-      comment: "e.g., GH, SF, Matte",
-    },
-    size: {
-      type: DataTypes.STRING(50),
-      allowNull: true,
-      comment: "e.g., 8x4",
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
 
-    // Media
+    // 🧠 Dynamic meta values (JSON)
+    meta: {
+      type: DataTypes.JSON,
+      allowNull: true,
+      comment:
+        "Holds key-value pairs for dynamic metadata fields based on ProductMeta definitions",
+      // Example: { design_code: '2926', thickness: '0.8mm', finish: 'Matte' }
+    },
+
     images: {
       type: DataTypes.JSON,
       allowNull: true,
       comment: "Array of image URLs",
     },
 
-    // SEO
-    seo_title: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    seo_description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    seo_keywords: {
-      type: DataTypes.STRING(500),
-      allowNull: true,
-    },
+    seo_title: DataTypes.STRING(255),
+    seo_description: DataTypes.TEXT,
+    seo_keywords: DataTypes.STRING(500),
   },
   {
     tableName: "products",
