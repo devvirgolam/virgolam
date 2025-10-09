@@ -14,25 +14,18 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table virgolam_dashboard.roles
-CREATE TABLE IF NOT EXISTS `roles` (
+-- Dumping structure for table virgolam_dashboard.product_metas
+CREATE TABLE IF NOT EXISTS `product_metas` (
   `id` char(36) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  UNIQUE KEY `name_2` (`name`),
-  UNIQUE KEY `name_3` (`name`),
-  UNIQUE KEY `name_4` (`name`),
-  UNIQUE KEY `name_5` (`name`),
-  UNIQUE KEY `name_6` (`name`)
+  `title` varchar(255) NOT NULL COMMENT 'Label for the metadata field (e.g., Selling Price, MRP)',
+  `slug` varchar(255) DEFAULT NULL,
+  `fieldType` varchar(255) NOT NULL COMMENT 'Type of data (e.g., string, number, mm, inch, pcs, box, feet)',
+  `unit` varchar(255) DEFAULT NULL COMMENT 'Optional unit of measurement (e.g., inch, mm, pcs)',
+  `createdAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table virgolam_dashboard.roles: ~4 rows (approximately)
-INSERT INTO `roles` (`id`, `name`) VALUES
-	('0d512dd5-c55e-4d23-99ad-3297a2ab52e0', 'new_role'),
-	('c63cdbd4-a0d9-11f0-b1b4-f875a42d8cde', 'ADMIN'),
-	('c63dfa76-a0d9-11f0-b1b4-f875a42d8cde', 'SUPER_ADMIN'),
-	('c63e0074-a0d9-11f0-b1b4-f875a42d8cde', 'USERS');
+-- Dumping data for table virgolam_dashboard.product_metas: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

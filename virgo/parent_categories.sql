@@ -27,29 +27,16 @@ CREATE TABLE IF NOT EXISTS `parent_categories` (
   UNIQUE KEY `slug_3` (`slug`),
   UNIQUE KEY `slug_4` (`slug`),
   UNIQUE KEY `slug_5` (`slug`),
-  UNIQUE KEY `slug_6` (`slug`),
-  UNIQUE KEY `slug_7` (`slug`),
-  UNIQUE KEY `slug_8` (`slug`),
-  UNIQUE KEY `slug_9` (`slug`),
-  UNIQUE KEY `slug_10` (`slug`),
-  UNIQUE KEY `slug_11` (`slug`),
-  UNIQUE KEY `slug_12` (`slug`),
-  UNIQUE KEY `slug_13` (`slug`),
-  UNIQUE KEY `slug_14` (`slug`),
-  UNIQUE KEY `slug_15` (`slug`),
-  UNIQUE KEY `slug_16` (`slug`),
-  UNIQUE KEY `slug_17` (`slug`),
-  UNIQUE KEY `slug_18` (`slug`),
-  UNIQUE KEY `slug_19` (`slug`),
-  UNIQUE KEY `slug_20` (`slug`),
-  UNIQUE KEY `slug_21` (`slug`),
-  UNIQUE KEY `slug_22` (`slug`),
-  UNIQUE KEY `slug_23` (`slug`),
-  UNIQUE KEY `slug_24` (`slug`)
+  UNIQUE KEY `slug_6` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table virgolam_dashboard.parent_categories: ~5 rows (approximately)
+-- Dumping data for table virgolam_dashboard.parent_categories: ~10 rows (approximately)
 INSERT INTO `parent_categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+	('33707e91-a336-11f0-927a-fa163e2a6007', 'Digital', 'digital', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
+	('337147c5-a336-11f0-927a-fa163e2a6007', 'Mica', 'mica', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
+	('33714b78-a336-11f0-927a-fa163e2a6007', 'Lam', 'lam', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
+	('33714fa4-a336-11f0-927a-fa163e2a6007', 'Sparkling Solids', 'sparkling-solids', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
+	('337152bb-a336-11f0-927a-fa163e2a6007', 'Patterns', 'patterns', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
 	('5ecb2d5f-a03c-11f0-b1b4-f875a42d8cde', 'ACP', 'acp', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
 	('5ecc600d-a03c-11f0-b1b4-f875a42d8cde', 'Laminates', 'laminates', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),
 	('5ecc84f2-a03c-11f0-b1b4-f875a42d8cde', 'Doorskin', 'doorskin', '2025-10-03 15:05:59', '2025-10-03 15:05:59'),

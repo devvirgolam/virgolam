@@ -32,6 +32,9 @@ CREATE TABLE IF NOT EXISTS `leads` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table virgolam_dashboard.leads: ~0 rows (approximately)
+INSERT INTO `leads` (`id`, `name`, `email`, `phone`, `message`, `source`, `status`, `assigned_to`, `created_at`, `updated_at`) VALUES
+	('04ff6127-9fc2-400e-872f-4af6040a734f', 'JETHALAL CHAMPAKLAL GADA', 'jethalal@gadaelectronics.in', '08723723123', NULL, 'website', 'new', NULL, '2025-10-09 03:53:40', '2025-10-09 03:53:40'),
+	('51edfb2e-7436-4722-8241-62be8fcdf380', 'Dhruv Verma', 'vermadhruv09112002@gmail.com', '8278978827', NULL, 'website', 'new', NULL, '2025-10-09 03:53:05', '2025-10-09 03:53:05');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

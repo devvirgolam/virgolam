@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `lead_activities` (
   PRIMARY KEY (`id`),
   KEY `lead_id` (`lead_id`),
   KEY `created_by` (`created_by`),
-  CONSTRAINT `lead_activities_ibfk_45` FOREIGN KEY (`lead_id`) REFERENCES `leads` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `lead_activities_ibfk_46` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `lead_activities_ibfk_65` FOREIGN KEY (`lead_id`) REFERENCES `leads` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `lead_activities_ibfk_66` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table virgolam_dashboard.lead_activities: ~0 rows (approximately)

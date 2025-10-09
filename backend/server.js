@@ -27,6 +27,8 @@ const corsOptions = {
     "http://localhost:3001",
     "http://localhost:3002",
     "http://localhost:3003",
+    "https://virgolam.vercel.app",
+    "https://dashboard-virgolam.vercel.app",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],

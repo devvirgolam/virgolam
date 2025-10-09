@@ -2142,3 +2142,35 @@
 {"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T05:30:09.878Z"}
 {"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T05:30:09.918Z"}
 {"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T05:30:12.134Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T06:36:40.532Z"}
+{"level":"info","message":"Access token refreshed for user ID: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T06:38:28.930Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T06:38:29.043Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T06:39:18.827Z"}
+{"level":"info","message":"Retrieved 0 blogs","timestamp":"2025-10-09T06:39:30.030Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T06:39:30.247Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T06:48:59.625Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T06:48:59.665Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T06:59:15.637Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T06:59:17.956Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T07:00:04.964Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T07:00:04.978Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T07:00:05.046Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T07:01:59.089Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T07:01:59.129Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T07:01:59.222Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T07:02:15.206Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T07:02:15.225Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T07:02:15.294Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T07:07:16.249Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T07:07:16.259Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T07:07:16.306Z"}
+{"level":"info","message":"Retrieved 704 dealers","timestamp":"2025-10-09T07:13:44.887Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T07:13:55.512Z"}
+{"level":"error","message":"User not found: No additional error info","status":404,"timestamp":"2025-10-09T07:16:38.985Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T07:16:41.609Z"}
+{"level":"info","message":"Retrieved 10 parent categories","timestamp":"2025-10-09T07:17:16.672Z"}
+{"level":"info","message":"Retrieved 27 categories","timestamp":"2025-10-09T07:17:16.715Z"}
+{"level":"info","message":"Retrieved 0 contact submissions by user: 1f0a18b6-a0da-11f0-b1b4-f875a42d8cde","timestamp":"2025-10-09T07:17:35.395Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T07:33:22.868Z"}
+{"level":"error","message":"Failed to upload file: uploadFileToFTP is not a function","stack":"TypeError: uploadFileToFTP is not a function\n    at exports.uploadFile (E:\\virgo\\backend\\controllers\\contentController.js:131:27)\n    at Layer.handle [as handle_request] (E:\\virgo\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\virgo\\backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at done (E:\\virgo\\backend\\node_modules\\multer\\lib\\make-middleware.js:59:7)\n    at indicateDone (E:\\virgo\\backend\\node_modules\\multer\\lib\\make-middleware.js:63:68)\n    at Multipart.<anonymous> (E:\\virgo\\backend\\node_modules\\multer\\lib\\make-middleware.js:187:7)\n    at Multipart.emit (node:events:518:28)\n    at emitCloseNT (node:internal/streams/destroy:148:10)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","status":500,"timestamp":"2025-10-09T07:34:05.522Z"}
+{"level":"info","message":"Retrieved 37 content items","timestamp":"2025-10-09T07:34:05.740Z"}
